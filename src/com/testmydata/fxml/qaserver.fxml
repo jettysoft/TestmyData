@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.QAServerSettingsController">
+   <children>
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="productheader" alignment="CENTER" contentDisplay="CENTER" layoutX="530.0" layoutY="10.0" text="QA Server Settings" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <Glow level="0.2" />
+               </input>
+            </Glow>
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="fhosttext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="fusernametext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="192.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter User Name" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView fill="#40aa03" glyphName="BARCODE" layoutX="298.0" layoutY="164.0" size="15" />
+            <MaterialDesignIconView fill="#40aa03" glyphName="KEG" layoutX="298.0" layoutY="214.0" size="15" />
+            <MaterialDesignIconView fill="#40aa03" glyphName="POLL" layoutX="298.0" layoutY="264.0" size="15" />
+            <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+            <JFXComboBox fx:id="fservercombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="292.0" prefWidth="300.0" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0" />
+            <JFXButton fx:id="ftest" buttonType="RAISED" layoutX="33.0" layoutY="400.0" onAction="#ftest" prefWidth="90.0" style="-fx-background-color: #40AA03;" text="Test" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="fsave" buttonType="RAISED" layoutX="173.0" layoutY="400.0" onAction="#fsave" prefWidth="90.0" style="-fx-background-color: #0083FF;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="fupdate" buttonType="RAISED" layoutX="173.0" layoutY="400.0" onAction="#fupdate" prefWidth="90.0" style="-fx-background-color: #7C04C6;" text="Update" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="fexistingservercombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
+            <Label layoutX="15.0" layoutY="35.0" text="Update Existing" textFill="#f21111">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="106.0" text="Add New Server" textFill="#40aa03">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="154.0" layoutY="89.0" text="OR" textFill="#0083ff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXCheckBox fx:id="deafultcheckbox" checkedColor="#38c910" layoutX="16.0" layoutY="343.0" text="Set as Default  Server" textFill="#0c23ea" unCheckedColor="#eb1d1d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXPasswordField fx:id="fpasswordtext" labelFloat="true" layoutX="15.0" layoutY="242.0" prefWidth="300.0" />
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="59.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40AA03;" text="Add New Server" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="modulenametext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Module Name" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView fill="#40aa03" glyphName="BARCODE" layoutX="298.0" layoutY="164.0" size="15" />
+            <JFXButton fx:id="msave" buttonType="RAISED" layoutX="130.0" layoutY="200.0" onAction="#msave" prefWidth="90.0" style="-fx-background-color: #40AA03;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="mupdate" buttonType="RAISED" layoutX="130.0" layoutY="200.0" onAction="#mupdate" prefWidth="90.0" style="-fx-background-color: #7C04C6;" text="Update" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="existingmodulescombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
+            <Label layoutX="15.0" layoutY="35.0" text="Update Existing" textFill="#f21111">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="106.0" text="Add New Module" textFill="#40aa03">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="154.0" layoutY="89.0" text="OR" textFill="#0083ff">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="439.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: F8340D;" text="Define Modules" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

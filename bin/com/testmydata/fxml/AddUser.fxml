@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.AddUserController">
+   <children>
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="40.0" prefWidth="1200.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="header" alignment="CENTER" contentDisplay="CENTER" layoutX="500.0" layoutY="7.0" text="New User" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <Glow level="0.2" />
+               </input>
+            </Glow>
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="69.0" prefHeight="107.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="69.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXComboBox fx:id="usercombo" focusColor="#40aa03" labelFloat="true" layoutX="25.0" layoutY="37.0" prefWidth="300.0" unFocusColor="#f8340d" AnchorPane.leftAnchor="25.0" />
+            <JFXCheckBox fx:id="activatecheck" checkedColor="#40aa03" layoutX="14.0" layoutY="71.0" text="Activate User" textFill="#40aa03" unCheckedColor="#dad8d8" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="deactivatecheck" checkedColor="#40aa03" layoutX="14.0" layoutY="71.0" text="Deactivate User" textFill="#ff3300" unCheckedColor="#dad8d8" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="49.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40aa03;" text="Current Users" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="56.0">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#68e421" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="20.0" layoutY="199.0" prefHeight="391.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="firstnametext" labelFloat="true" layoutX="15.0" layoutY="47.0" prefWidth="300.0" promptText="Enter First Name" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lastnametext" labelFloat="true" layoutX="15.0" layoutY="97.0" prefWidth="300.0" promptText="Enter Last Name" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="emailtext" labelFloat="true" layoutX="15.0" layoutY="147.0" prefWidth="300.0" promptText="Enter Email Address" unFocusColor="#0083ff" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXCheckBox fx:id="receiveemailcheck" checkedColor="#40aa03" layoutX="5.0" layoutY="179.0" text="Choose to receive reports in email after execution" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXTextField fx:id="securityquestiontext" labelFloat="true" layoutX="15.0" layoutY="227.0" prefWidth="300.0" promptText="Provide Security Question" unFocusColor="#ff3300" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="securityanstext" labelFloat="true" layoutX="15.0" layoutY="277.0" prefWidth="300.0" promptText="Enter Security Answer" unFocusColor="#ff3300">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXPasswordField>
+            <FontAwesomeIconView fill="#40aa03" glyphName="USER" layoutX="303.0" layoutY="68.0" size="15" />
+            <FontAwesomeIconView fill="#40aa03" glyphName="USER" layoutX="303.0" layoutY="118.0" size="15" />
+            <FontAwesomeIconView fill="#ff3300" glyphName="KEY" layoutX="303.0" layoutY="298.0" size="15" />
+            <MaterialDesignIconView fill="#0083ff" glyphName="EMAIL" layoutX="299.0" layoutY="170.0" size="17" />
+            <FontAwesomeIconView fill="#ff3300" glyphName="QUESTION" layoutX="305.0" layoutY="247.0" size="15" />
+            <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="49.0" layoutY="186.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #0083FF;" text="User Info" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="186.0">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="517.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="69.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXCheckBox fx:id="newcrcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="49.0" text="New Control Report" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="newffcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="79.0" text="New Field - Field Test Case" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="newtscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="129.0" text="New Test Suite" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="execrcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="179.0" text="Control Report Execution" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="exetscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="209.0" text="Test Suite Execution" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="addusercheck" checkedColor="#40aa03" layoutX="14.0" layoutY="259.0" text="Add User" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="addqacheck" checkedColor="#40aa03" layoutX="14.0" layoutY="289.0" text="Add QA Server" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+            <JFXCheckBox fx:id="dasboardcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="339.0" text="View Dash Board Reports" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXCheckBox>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="439.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="239.0" style="-fx-background-color: #FF3300;" text="Features to Access" textFill="WHITE" AnchorPane.leftAnchor="439.0" AnchorPane.topAnchor="56.0">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="transaprentanchor" opacity="0.32" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0033CC;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="570.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/please_wait.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="800.0" layoutY="69.0" prefHeight="521.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="69.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="usernametext" labelFloat="true" layoutX="40.0" layoutY="46.0" prefWidth="300.0" promptText="Enter Username" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="47.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="passwordtext" labelFloat="true" layoutX="15.0" layoutY="97.0" prefWidth="300.0" promptText="Enter Password" unFocusColor="#ff3300" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXPasswordField>
+            <FontAwesomeIconView fill="#40aa03" glyphName="USER" layoutX="304.0" layoutY="66.0" size="15" />
+            <FontAwesomeIconView fill="#ff3300" glyphName="LOCK" layoutX="304.0" layoutY="116.0" size="15" />
+            <AnchorPane fx:id="passwordinformationanchor" prefHeight="174.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="150.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="22.0" text="Password Field Must Contain" textFill="#f8340d">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="50.0" text="Letters Bettween 12 - 20 Only">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="75.0" text="One Capital Letter">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="100.0" text="One Symbol(@,$,%,&amp;,#,)">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="125.0" text="One Number">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fx:id="wrongtick" fitHeight="20.0" fitWidth="20.0" layoutX="327.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="greentick" fitHeight="20.0" fitWidth="20.0" layoutX="327.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="save" buttonType="RAISED" layoutX="123.0" layoutY="349.0" onAction="#save" prefWidth="90.0" ripplerFill="#6be128" style="-fx-background-color: #40AA03;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="update" buttonType="RAISED" layoutX="123.0" layoutY="389.0" onAction="#update" prefWidth="90.0" ripplerFill="#6be128" style="-fx-background-color: #40AA03;" text="Update" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="829.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40aa03;" text="User Account Login" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#68e421" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

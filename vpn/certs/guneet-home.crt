@@ -1,0 +1,74 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+    Signature Algorithm: md5WithRSAEncryption
+        Issuer: C=CA, ST=BC, L=Vancouver, O=JettySoft, OU=TheBusinessStore, CN=Veerendra/name=Veerendra/emailAddress=Veerendra.jetty@gmail.com
+        Validity
+            Not Before: Apr  6 22:23:02 2017 GMT
+            Not After : Apr  4 22:23:02 2027 GMT
+        Subject: C=CA, ST=BC, L=Vancouver, O=JettySoft, OU=changeme, CN=guneet-home/name=Guneet/emailAddress=Veerendra.jetty@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (1024 bit)
+                Modulus:
+                    00:f9:52:37:d6:b9:f2:86:e8:60:59:a3:04:7a:3b:
+                    10:99:2e:86:f3:04:09:47:a9:c4:30:0b:d7:d2:84:
+                    e9:33:d9:8d:a3:e7:83:9e:73:3a:48:9b:49:04:51:
+                    34:a0:82:a9:94:01:fc:9e:96:f7:44:ff:ac:af:5a:
+                    e8:80:21:b3:ab:d5:14:4a:93:0a:6d:74:82:5c:8c:
+                    26:f6:c3:09:46:e3:a0:e5:5e:8e:24:f0:a5:c5:b1:
+                    ee:3f:cc:2c:fe:23:73:0d:fc:de:16:e5:a7:34:b5:
+                    be:bd:77:56:c0:ab:cf:5a:ce:32:96:cb:7b:14:80:
+                    03:df:5d:8a:18:61:8f:dd:6d
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                6D:A6:FA:FD:4B:5C:CC:1A:EB:98:7A:C4:7D:E6:62:07:F3:69:5C:77
+            X509v3 Authority Key Identifier: 
+                keyid:F4:54:0F:E5:C4:BC:B5:AB:33:38:65:2E:0D:74:66:18:CB:FE:F4:84
+                DirName:/C=CA/ST=BC/L=Vancouver/O=JettySoft/OU=TheBusinessStore/CN=Veerendra/name=Veerendra/emailAddress=Veerendra.jetty@gmail.com
+                serial:FF:9B:B2:40:4C:20:DE:87
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: md5WithRSAEncryption
+         01:ab:a9:f2:8a:fb:38:8f:ed:2c:7c:70:d2:27:c0:9f:42:51:
+         f6:4a:04:e7:f8:60:55:c2:4f:7c:32:28:26:55:2b:42:78:df:
+         d5:4c:af:cb:02:f3:c6:21:00:c1:a3:1f:5c:16:fa:95:b6:5e:
+         b7:c8:34:1d:19:7c:aa:18:22:81:1a:7b:ef:77:77:6d:13:16:
+         7a:3b:62:d3:e2:8f:2d:60:7d:6a:3c:cd:1c:36:dc:90:7f:f1:
+         8e:78:06:6e:47:71:aa:cb:8e:12:2e:f3:3c:a1:d4:40:98:04:
+         fa:82:ba:95:6b:b9:8e:72:51:78:9a:ac:3c:99:62:15:f1:d2:
+         41:4b
+-----BEGIN CERTIFICATE-----
+MIIENTCCA56gAwIBAgIBAjANBgkqhkiG9w0BAQQFADCBrzELMAkGA1UEBhMCQ0Ex
+CzAJBgNVBAgTAkJDMRIwEAYDVQQHEwlWYW5jb3V2ZXIxEjAQBgNVBAoTCUpldHR5
+U29mdDEZMBcGA1UECxMQVGhlQnVzaW5lc3NTdG9yZTESMBAGA1UEAxMJVmVlcmVu
+ZHJhMRIwEAYDVQQpEwlWZWVyZW5kcmExKDAmBgkqhkiG9w0BCQEWGVZlZXJlbmRy
+YS5qZXR0eUBnbWFpbC5jb20wHhcNMTcwNDA2MjIyMzAyWhcNMjcwNDA0MjIyMzAy
+WjCBpjELMAkGA1UEBhMCQ0ExCzAJBgNVBAgTAkJDMRIwEAYDVQQHEwlWYW5jb3V2
+ZXIxEjAQBgNVBAoTCUpldHR5U29mdDERMA8GA1UECxMIY2hhbmdlbWUxFDASBgNV
+BAMTC2d1bmVldC1ob21lMQ8wDQYDVQQpEwZHdW5lZXQxKDAmBgkqhkiG9w0BCQEW
+GVZlZXJlbmRyYS5qZXR0eUBnbWFpbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBAPlSN9a58oboYFmjBHo7EJkuhvMECUepxDAL19KE6TPZjaPng55zOkib
+SQRRNKCCqZQB/J6W90T/rK9a6IAhs6vVFEqTCm10glyMJvbDCUbjoOVejiTwpcWx
+7j/MLP4jcw383hblpzS1vr13VsCrz1rOMpbLexSAA99dihhhj91tAgMBAAGjggFm
+MIIBYjAJBgNVHRMEAjAAMC0GCWCGSAGG+EIBDQQgFh5FYXN5LVJTQSBHZW5lcmF0
+ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFG2m+v1LXMwa65h6xH3mYgfzaVx3MIHk
+BgNVHSMEgdwwgdmAFPRUD+XEvLWrMzhlLg10ZhjL/vSEoYG1pIGyMIGvMQswCQYD
+VQQGEwJDQTELMAkGA1UECBMCQkMxEjAQBgNVBAcTCVZhbmNvdXZlcjESMBAGA1UE
+ChMJSmV0dHlTb2Z0MRkwFwYDVQQLExBUaGVCdXNpbmVzc1N0b3JlMRIwEAYDVQQD
+EwlWZWVyZW5kcmExEjAQBgNVBCkTCVZlZXJlbmRyYTEoMCYGCSqGSIb3DQEJARYZ
+VmVlcmVuZHJhLmpldHR5QGdtYWlsLmNvbYIJAP+bskBMIN6HMBMGA1UdJQQMMAoG
+CCsGAQUFBwMCMAsGA1UdDwQEAwIHgDANBgkqhkiG9w0BAQQFAAOBgQABq6nyivs4
+j+0sfHDSJ8CfQlH2SgTn+GBVwk98MigmVStCeN/VTK/LAvPGIQDBox9cFvqVtl63
+yDQdGXyqGCKBGnvvd3dtExZ6O2LT4o8tYH1qPM0cNtyQf/GOeAZuR3Gqy44SLvM8
+odRAmAT6grqVa7mOclF4mqw8mWIV8dJBSw==
+-----END CERTIFICATE-----

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="dashboardanchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
+   <children>
+      <AnchorPane prefHeight="98.0" prefWidth="1132.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar fx:id="mymenubar" layoutY="36.0" prefHeight="25.0" prefWidth="1132.0" style="-fx-background-color: #ffffff;" styleClass="mymenubar" stylesheets="@../css/MenuBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Test Scripts">
+                  <items>
+                        <MenuItem fx:id="controlreport" mnemonicParsing="false" onAction="#controlreport" text="Control Report Rule">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/controlreport.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                    <MenuItem fx:id="fieldtofield" mnemonicParsing="false" onAction="#fieldtofield" text="Field-Field Script">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/fieldtofield.png" />
+                                 </image></ImageView>
+                           </graphic></MenuItem>
+                  </items>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <image>
+                              <Image url="/com/testmydata/fximages/testsuites.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Test Suites">
+                  <items>
+                    <MenuItem fx:id="newtestsuite" mnemonicParsing="false" onAction="#newtestsuite" text="New Test Suite">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/newtestsuite.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                  </items>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/com/testmydata/fximages/testsuites.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Test Execution">
+                    <items>
+                        <MenuItem fx:id="runcontrolreport" mnemonicParsing="false" onAction="#runcontrolreport" text="Control Reports">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/controlreport.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="runfieldtofield" mnemonicParsing="false" onAction="#runfieldtofield" text="Test Suites Execution">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/fieldtofield.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem> 
+                    </items>
+					<graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/com/testmydata/fximages/testexecution.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Reports">
+                    <items> 
+					  <MenuItem fx:id="testreports" mnemonicParsing="false" onAction="#testreports" text="Test Reports">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/testreports.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem> 
+                    </items>
+					<graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/com/testmydata/fximages/report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Settings">
+                    <items>
+                        <MenuItem fx:id="adduser" mnemonicParsing="false" onAction="#adduser" text="Add User">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/adduser.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="changepassword" mnemonicParsing="false" onAction="#changepassword" text="Change Password">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/changepassword.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="emailsettings" mnemonicParsing="false" onAction="#emailsettings" text="Email Settings">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/emailsettings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem fx:id="qaserver" mnemonicParsing="false" onAction="#qaserver" text="QA Server">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/com/testmydata/fximages/qaserver.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem> 
+                    </items>
+					<graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/com/testmydata/fximages/settings.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <Label fx:id="securestatuslabel" layoutX="1050.0" layoutY="74.0" text="SECURED" textFill="#fcfcfc" visible="false" AnchorPane.rightAnchor="140.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="6.0" text="Welcome" textFill="WHITE" />
+            <Label fx:id="clientname" layoutX="98.0" layoutY="6.0" text="Name" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="companylabel" alignment="CENTER" layoutX="538.0" layoutY="7.0" text="Company Name" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="500.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="logout" buttonType="RAISED" layoutX="1120.0" layoutY="70.0" onAction="#logout" prefWidth="113.0" style="-fx-background-color: #F8340D;" text="Logout" textFill="WHITE" AnchorPane.rightAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="qaserverlabel" layoutX="10.0" layoutY="74.0" text="Connected QA Server " textFill="#fcfcfc" visible="false">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="qaservertext" editable="false" focusColor="#0033cc" focusTraversable="false" layoutX="20.0" layoutY="70.0" prefWidth="600.0" scaleShape="false" unFocusColor="#0033cc">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXTextField>
+         </children>
+         <effect>
+            <ColorAdjust brightness="0.14" />
+         </effect>
+      </AnchorPane>
+      <ImageView fitHeight="25.0" fitWidth="160.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+    <image>
+            <Image url="/com/testmydata/fximages/crown.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

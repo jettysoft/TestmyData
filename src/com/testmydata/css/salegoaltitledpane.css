@@ -1,0 +1,20 @@
+.titled-pane {
+    -fx-effect: dropshadow(three-pass-box, #ffeb3b, 3, 0, 0, 0);
+    -fx-animated: true;
+    -fx-text-fill: #000000;
+}
+
+.titled-pane > .title  {
+    -fx-background-radius: 0, 0, 0;
+    -fx-font: bold 14px System; 
+    -fx-background-color: #ffeb3b;  
+
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+   -fx-background-color: #000000;
+}
+
+.titled-pane:focused > .title > .arrow-button .arrow {
+   -fx-background-color: #000000;
+}

@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
+   <children>
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="productheader" alignment="CENTER" contentDisplay="CENTER" layoutX="530.0" layoutY="10.0" text="Create Control Report" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <Glow level="0.2" />
+               </input>
+            </Glow>
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="msourceanchor" layoutX="20.0" layoutY="64.0" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="64.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <VBox layoutX="25.0" layoutY="43.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <JFXComboBox fx:id="sdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="200.0" unFocusColor="#f8340d">
+                     <VBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="stablebox" focusColor="#40aa03" prefWidth="200.0" unFocusColor="#0c23ea">
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="scolumnbox" focusColor="#40aa03" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="sourcevalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="100.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="sourcecolicon" fitHeight="30.0" fitWidth="30.0" layoutX="150.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="40.0" layoutY="49.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: FA4E04;" text="Source Selection" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXComboBox fx:id="modulebox" focusColor="#0083ff" labelFloat="true" layoutX="22.0" layoutY="313.0" prefWidth="200.0" unFocusColor="#40aa03" />
+      <AnchorPane fx:id="etlanchor" layoutX="280.0" layoutY="64.0" prefHeight="220.0" prefWidth="650.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="64.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <Label layoutX="90.0" layoutY="23.0" text="Staging" textFill="#40aa03" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="272.0" layoutY="23.0" text="Transformation" textFill="#0083ff" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="530.0" layoutY="23.0" text="Loading" textFill="#f8340d" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <VBox layoutX="50.0" layoutY="178.0" prefHeight="200.0" prefWidth="216.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <JFXComboBox fx:id="stdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="200.0" unFocusColor="#f8340d">
+                     <VBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="sttablebox" focusColor="#40aa03" prefWidth="200.0" unFocusColor="#0c23ea">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="stcolumnbox" focusColor="#40aa03" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <VBox layoutX="60.0" layoutY="188.0" prefHeight="200.0" prefWidth="216.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="217.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <JFXComboBox fx:id="trdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="200.0" unFocusColor="#f8340d">
+                     <VBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="trtablebox" focusColor="#40aa03" prefWidth="200.0" unFocusColor="#0c23ea">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="trcolumnbox" focusColor="#40aa03" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <VBox layoutX="70.0" layoutY="198.0" prefHeight="200.0" prefWidth="216.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="433.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <JFXComboBox fx:id="ldbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="200.0" unFocusColor="#f8340d">
+                     <VBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="ltablebox" focusColor="#40aa03" prefWidth="200.0" unFocusColor="#0c23ea">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="lcolumnbox" focusColor="#40aa03" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="stagingvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="205.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="transvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="425.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="stagingcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="255.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="transcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="475.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="300.0" layoutY="49.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #0083FF;" text="ETL Stages" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="mtargetanchor" layoutX="940.0" layoutY="64.0" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="64.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <VBox layoutX="48.0" layoutY="122.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+               <children>
+                  <JFXComboBox fx:id="tdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="200.0" unFocusColor="#f8340d">
+                     <VBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="ttablebox" focusColor="#40aa03" prefWidth="200.0" unFocusColor="#0c23ea">
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="tcolumnbox" focusColor="#40aa03" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <ImageView fx:id="targetvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="112.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="targetcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="960.0" layoutY="49.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #f8340d;" text="Target Selection" textFill="WHITE" AnchorPane.rightAnchor="40.0">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="createrule" buttonType="RAISED" layoutX="497.0" layoutY="310.0" onAction="#createrule" ripplerFill="#65e819" style="-fx-background-color: #40aa03;" text="Create Rule" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="rulestable" layoutX="30.0" layoutY="106.0" prefHeight="420.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="40.0" text="ID" />
+            <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="module" prefWidth="75.0" text="Module" />
+            <TableColumn fx:id="sdb" prefWidth="60.0" text="Source DB" />
+            <TableColumn fx:id="stable" prefWidth="60.0" text="S.Table" />
+            <TableColumn fx:id="scolumn" prefWidth="60.0" text="S.Column" />
+            <TableColumn fx:id="stdb" prefWidth="60.0" text="Staging DB" />
+            <TableColumn fx:id="sttable" prefWidth="60.0" text="Stg.Table" />
+            <TableColumn fx:id="stcolumn" prefWidth="60.0" text="Stg.Column" />
+            <TableColumn fx:id="trdb" prefWidth="60.0" text="Trans DB" />
+            <TableColumn fx:id="trtable" prefWidth="60.0" text="Trans.Table" />
+            <TableColumn fx:id="trcolumn" prefWidth="60.0" text="Trans.Column" />
+            <TableColumn fx:id="ldb" prefWidth="60.0" text="Loading DB" />
+            <TableColumn fx:id="ltable" prefWidth="60.0" text="Ldg.Table" />
+            <TableColumn fx:id="lcolumn" prefWidth="60.0" text="Ldg.Column" />
+            <TableColumn fx:id="tdb" prefWidth="60.0" text="Target DB" />
+            <TableColumn fx:id="ttable" prefWidth="60.0" text="Trg.Table" />
+            <TableColumn fx:id="tcolumn" prefWidth="60.0" text="Trg.Column" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="searchtext" focusColor="#f8340d" labelFloat="true" layoutX="930.0" layoutY="315.0" prefWidth="220.0" promptText="Search Rules" unFocusColor="#40aa03" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXTextField>
+      <FontAwesomeIconView fill="#40aa03" glyphName="SEARCH" layoutX="1180.0" layoutY="335.0" size="13" AnchorPane.rightAnchor="20.0" />
+      <JFXButton fx:id="updaterule" buttonType="RAISED" layoutX="497.0" layoutY="310.0" onAction="#updaterule" ripplerFill="#65e819" style="-fx-background-color: #40aa03;" text="Update Rule" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="rulenametext" labelFloat="true" layoutX="263.0" layoutY="313.0" prefWidth="200.0" promptText="Specify Rule Name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXTextField>
+      <AnchorPane fx:id="sourceanchor" layoutX="20.0" layoutY="48.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="sourcecloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Source to Staging" textFill="#f8340d" AnchorPane.leftAnchor="456.0" AnchorPane.rightAnchor="433.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="sourcesqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%101%';  Query count is validated with Staging Table)" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="srunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="staginganchor" layoutX="30.0" layoutY="58.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="stagingcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Staging to Transformation" textFill="#f8340d" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="400.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="stagingsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Transformation Table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="strunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="transanchor" layoutX="40.0" layoutY="68.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="transcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Transformation to Loading" textFill="#f8340d" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="400.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="transsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Loading table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="transrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="targetanchor" layoutX="50.0" layoutY="78.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="targetcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Loading to Target" textFill="#f8340d" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="400.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="targetsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Target table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="trunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="sourcecolanchor" layoutX="30.0" layoutY="58.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="sourcecolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Source Column to Staging Column" textFill="#f8340d" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="sourcecolsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select sum(tb1.amount) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%101%';  Query count is validated with Staging Table)" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="scolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="stagingcolanchor" layoutX="40.0" layoutY="68.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="stagingcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Staging Column to Transformation Column" textFill="#f8340d" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="stagingcolsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select sum(tb1.amount) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Transformation Table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="stcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="transcolanchor" layoutX="50.0" layoutY="78.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="transcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Transformation Column to Loading Column" textFill="#f8340d" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="transcolsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select sum(tb1.amount) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Loading table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="transcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="targetcolanchor" layoutX="60.0" layoutY="88.0" prefHeight="250.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <ImageView fx:id="targetcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="456.0" layoutY="9.0" text="Define Validation Query from Loading  Column to Target Column" textFill="#f8340d" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="targetcolsqltextarea" focusColor="#40aa03" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select sum(tb1.amount) from tb1 join tb2 on tb1.id = tb2.id where tb1.account like '%102%';  Query count is validated with Target table )" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+            <ImageView fx:id="tcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/runtest.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
