@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.RegistrationController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="1200.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="registerlabel" alignment="CENTER" contentDisplay="CENTER" layoutX="535.0" layoutY="7.0" text="Registration" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <Glow level="0.2" />
+               </input>
+            </Glow>
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="59.0" prefHeight="523.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="59.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="companynames" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="47.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Company name" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="streetno" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="97.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Street Address" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="city" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="147.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter City" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="province" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="197.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Province" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="postalcode" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="247.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Postal Code / Zip Code" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="mainservice" focusColor="#f8340d" labelFloat="true" layoutX="23.0" layoutY="297.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Company Main Service" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="industrycombo" focusColor="#f8340d" layoutX="56.0" layoutY="347.0" prefHeight="25.0" prefWidth="300.0" promptText="Select Industry" unFocusColor="#0dab2d" AnchorPane.leftAnchor="25.0" />
+            <MaterialDesignIconView fill="#40aa03" glyphName="FACTORY" layoutX="309.0" layoutY="69.0" size="16" />
+            <FontAwesomeIconView fill="#40aa03" glyphName="MAP" layoutX="311.0" layoutY="116.0" size="15" />
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="49.0" layoutY="46.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40aa03;" text="Business Information" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="420.0" layoutY="59.0" prefHeight="306.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="59.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="firstname" focusColor="#f8340d" layoutX="58.0" layoutY="47.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter First Name" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="lastname" focusColor="#f8340d" layoutX="58.0" layoutY="97.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Last Name" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="username" focusColor="#f8340d" layoutX="22.0" layoutY="147.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter User Name" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="password" focusColor="#f8340d" labelFloat="true" layoutX="22.0" layoutY="197.0" prefWidth="300.0" promptText="Enter Password" unFocusColor="#ff3300" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXPasswordField fx:id="confirmpassword" focusColor="#f8340d" labelFloat="true" layoutX="22.0" layoutY="247.0" prefWidth="300.0" promptText="Re-Enter Password" unFocusColor="#ff3300" AnchorPane.leftAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXPasswordField>
+            <ImageView fx:id="greentick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wrongtick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wrongtick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="greentick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+            <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT" layoutX="307.0" layoutY="70.0" size="18" />
+            <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT_OUTLINE" layoutX="307.0" layoutY="120.0" size="18" />
+            <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT_OUTLINE" layoutX="307.0" layoutY="170.0" size="18" />
+            <FontAwesomeIconView fill="#ff3300" glyphName="LOCK" layoutX="313.0" layoutY="218.0" size="16" />
+            <FontAwesomeIconView fill="#ff3300" glyphName="LOCK" layoutX="313.0" layoutY="268.0" size="16" />
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="449.0" layoutY="46.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #0083FF;" text="Login Information" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="passwordinformationanchor" layoutX="440.0" layoutY="373.0" prefHeight="174.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" visible="false">
+         <children>
+            <Label layoutX="14.0" layoutY="22.0" text="Password Field Must Contain" textFill="#f8340d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="50.0" text="Letters Bettween 12 - 20 Only">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="76.0" text="One Capital Letter">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="100.0" text="One Symbol(@,$,%,&amp;,#,)">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="131.0" text="One Number">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="820.0" layoutY="59.0" prefHeight="225.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="59.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXTextField fx:id="emailid" focusColor="#f8340d" labelFloat="true" layoutX="15.0" layoutY="47.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Email-Id" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXCheckBox fx:id="receiveemailcheck" checkedColor="#40aa03" layoutX="5.0" layoutY="82.0" text="Choose to receive reports in email after execution" unCheckedColor="#dad8d8" />
+            <JFXTextField fx:id="securityquestion" focusColor="#f8340d" labelFloat="true" layoutX="15.0" layoutY="127.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Secuiry Question" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="answer" focusColor="#f8340d" labelFloat="true" layoutX="15.0" layoutY="177.0" prefWidth="300.0" promptText="Enter Security Answer" unFocusColor="#ff3300" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="register" buttonType="RAISED" layoutX="131.0" layoutY="238.0" onAction="#register" prefWidth="90.0" ripplerFill="#5af219" style="-fx-background-color: #40AA03;" text="Register" textFill="WHITE" AnchorPane.bottomAnchor="268.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="greentick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/tick_green.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="wrongtick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIconView fill="#40aa03" glyphName="ENVELOPE" layoutX="300.0" layoutY="70.0" size="15" AnchorPane.rightAnchor="35.0" />
+            <MaterialDesignIconView fill="#ff3300" glyphName="ACCOUNT_KEY" layoutX="297.0" layoutY="200.0" size="18" AnchorPane.rightAnchor="35.0" />
+            <FontAwesomeIconView fill="#40aa03" glyphName="QUESTION" layoutX="301.8571424484253" layoutY="150.0" size="18" AnchorPane.rightAnchor="37.85714340209961" />
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="849.0" layoutY="46.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #fff933;" text="Account Security Info">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <MaterialDesignIconView fill="#40aa03" glyphName="CITY" layoutX="327.0" layoutY="229.0" size="18" />
+      <MaterialDesignIconView fill="#40aa03" glyphName="MAP" layoutX="327.0" layoutY="279.0" size="18" />
+      <MaterialDesignIconView fill="#40aa03" glyphName="NUMERIC" layoutX="328.0" layoutY="332.0" size="18" />
+      <FontAwesomeIconView fill="#40aa03" glyphName="INDUSTRY" layoutX="328.0" layoutY="379.0" size="15" />
+   </children>
+</AnchorPane>

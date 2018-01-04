@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ExecuteTestSuiteController">
+   <children>
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="productheader" alignment="CENTER" contentDisplay="CENTER" layoutX="530.0" layoutY="10.0" text="Test Suite Execution" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <Glow level="0.2">
+               <input>
+                  <Glow level="0.2" />
+               </input>
+            </Glow>
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="59.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="59.0">
+         <effect>
+            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+         </effect>
+         <children>
+            <JFXButton fx:id="run" buttonType="RAISED" layoutX="510.0" layoutY="48.0" onAction="#run" prefWidth="90.0" style="-fx-background-color: #0083FF;" text="Run" textFill="WHITE" AnchorPane.leftAnchor="510.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="totaltext" editable="false" focusColor="#0c23ea" labelFloat="true" layoutX="31.0" layoutY="50.0" prefWidth="100.0" promptText="Total Test Cases" text="0" unFocusColor="#0c23ea">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="passedtext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="271.0" layoutY="50.0" prefWidth="100.0" promptText="Passed Count" text="0" unFocusColor="#40aa03">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="failedtext" editable="false" focusColor="#f8340d" labelFloat="true" layoutX="391.0" layoutY="50.0" prefWidth="100.0" promptText="Failed Count" text="0" unFocusColor="#f8340d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <ImageView fx:id="excelicon" fitHeight="25.0" fitWidth="25.0" layoutX="870.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="870.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/excel.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="pdficon" fitHeight="23.0" fitWidth="25.0" layoutX="900.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="910.0">
+               <image>
+                  <Image url="/com/testmydata/fximages/pdf.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <JFXTextField fx:id="statustext" editable="false" focusColor="WHITE" layoutX="650.0" layoutY="50.0" prefWidth="200.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="executedtext" editable="false" focusColor="#0c23ea" labelFloat="true" layoutX="151.0" layoutY="50.0" prefWidth="100.0" promptText="Executed Test Cases" text="0" unFocusColor="#0c23ea">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="searchtext" focusColor="#f8340d" labelFloat="true" layoutX="943.0" layoutY="50.0" prefWidth="200.0" promptText="Search Test Suite" unFocusColor="#40aa03" AnchorPane.rightAnchor="20.0" />
+            <FontAwesomeIconView fill="#f8340d" glyphName="SEARCH" layoutX="1128.0" layoutY="70.0" AnchorPane.rightAnchor="20.0" />
+            <ImageView fx:id="processicon" fitHeight="30.0" fitWidth="30.0" layoutX="610.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="/com/testmydata/fximages/processing.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="49.0" layoutY="46.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40aa03;" text="View Status" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#0d96f1" />
+                  <Stop color="#0d96f1" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tstable" layoutX="20.0" layoutY="96.0" prefHeight="420.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="170.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="66.99996948242188" text="ID" />
+            <TableColumn fx:id="testsuite" prefWidth="109.0" text="Test Suite" />
+            <TableColumn fx:id="nooftestcases" prefWidth="150.0" text="No of Test Cases" />
+            <TableColumn fx:id="passcount" prefWidth="150.0" text="Pass Count" />
+            <TableColumn fx:id="failcount" prefWidth="150.0" text="Fail Count" />
+            <TableColumn fx:id="passper" prefWidth="150.0" text="Pass %" />
+            <TableColumn fx:id="failper" prefWidth="150.0" text="Fail %" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

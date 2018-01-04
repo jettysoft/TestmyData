@@ -1,0 +1,18 @@
+
+.mymenubar .label{
+ -fx-font-size: 9pt;  
+ -fx-font-weight: bold;
+}
+
+.menu:hover {
+    -fx-background-color: #1417f3;
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+     -fx-background-color: #1417f3;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}

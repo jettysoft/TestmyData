@@ -1,0 +1,8 @@
+.root { -fx-background-color: cornsilk; -fx-padding: 0; }
+.pbar { -fx-box-border: goldenrod; }
+.green-bar  { -fx-accent: green;  }
+.orange-bar { -fx-accent: #FF5722; }
+.red-bar    { -fx-accent: red;    }
+.purple-bar { -fx-accent: #7C04C6; }
+.blue-bar { -fx-accent: #0C23EA; }
+.lightblue-bar { -fx-accent: #00BCD4; }

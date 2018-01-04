@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane hgap="14.0" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ffffff;" stylesheets="@StyleDialog.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.TestResultsController">
+   <children>
+      <VBox fx:id="topBoxContainer" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.rowIndex="0">
+         <children>
+            <StackPane fx:id="headContainer" styleClass="headContainer">
+               <children>
+                  <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" style="-fx-background-color: #0033CC;" styleClass="header" text="Test Results" textAlignment="LEFT" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.2">
+                           <input>
+                              <Glow level="0.2" />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane id="bodyContainer" fx:id="bodyContainer">
+               <children>
+                  <Label id="details" fx:id="queryresultlabel" maxWidth="1.7976931348623157E308" text="Query Result :" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane id="bodyContainer" fx:id="bodyContainer1">
+               <children>
+                  <Label id="details" fx:id="teststatuslabel" maxWidth="1.7976931348623157E308" text="Test Status :" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane id="bodyContainer" fx:id="bodyContainer11">
+               <children>
+                  <Label id="details" fx:id="messagelabel" maxWidth="1.7976931348623157E308" text="Message :" textAlignment="LEFT" wrapText="true">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <HBox maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
+         <children>
+            <Pane HBox.hgrow="ALWAYS" />
+            <HBox fx:id="okParent" alignment="CENTER">
+               <HBox.margin>
+                  <Insets right="14.0" />
+               </HBox.margin>
+               <children>
+                  <JFXButton fx:id="okButton" buttonType="RAISED" minWidth="90.0" onAction="#onClick" style="-fx-background-color: #40AA03;" text="Ok" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+   </columnConstraints>
+   <padding>
+      <Insets bottom="14.0" />
+   </padding>
+   <rowConstraints>
+      <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints vgrow="NEVER" />
+   </rowConstraints>
+   <effect>
+      <InnerShadow />
+   </effect>
+</GridPane>

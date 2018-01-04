@@ -1,0 +1,105 @@
+/*
+The MIT License
+
+Copyright 2014-2015 Ryan Gilera.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/* 
+    Created on : 15-Dec-2014, 17:41:37
+    Author     : Ryan Gilera
+*/
+.header {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 25px;
+    -fx-padding: 10 10 10 10;
+    -fx-background-color: rgb(0, 133, 255);
+    -fx-background-insets: 0;
+    
+}
+
+.headContainer {
+    -fx-background-color: #fff;
+    -fx-effect: dropshadow(two-pass-box,black,5,.2,0,0);
+}
+
+#header-generic {
+    -mid-gray: rgb(216, 222, 227);
+    -fx-background-color: -mid-gray;
+}
+
+#header-info {
+    -fx-background-color: 
+        linear-gradient(to bottom, #A3D1FF 0%, #92C6FA 44%, #7BB7F3 100% );
+}
+
+#header-confirm {
+    -fx-background-color: 
+        linear-gradient(to bottom, #A3FFCE 0%, #92FAC3 44%, #7BF3B3 100% );
+}
+
+#header-error {
+    -fx-background-color: 
+        linear-gradient(to bottom, #FFA3A5 0%, #FA9294 44%, #F37B7D 100% );
+}
+
+#header-warning {
+    -fx-background-color: 
+        linear-gradient(to bottom, #FFD1A3 0%, #FAC692 44%, #F3B77B 100% );
+}
+
+#header-input-text {
+    -fx-background-color: 
+        linear-gradient(to bottom, #F9FFA3 0%, #F3FA92 44%, #EBF37B 100% );
+}
+
+#header-exception {
+    -fx-background-color: 
+        linear-gradient(to bottom, #E2A3FF 0%, #D992FA 44%, #CD7BF3 100% );
+}
+
+#exception-trace-label {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12px;
+    -fx-padding: 0 10 10 10;
+}
+
+#exception-area {
+    
+}
+
+#bodyContainer {
+    -fx-padding: 5 10 10 10;
+}
+
+#details {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14px;
+}
+
+#details-input-text {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14px;
+    -fx-padding: 0 15 8 10;
+}
+
+#details-exception {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14px;
+}

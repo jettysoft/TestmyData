@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="136d9877-3307-4cd1-b0ea-e939c49de367">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Transparent" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Transparent" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Transparent" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="style1" mode="Transparent" backcolor="#FFFFFF">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("NEWRED")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#F8340D" backcolor="#F8340D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("NEWGREEN")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#40AA03" backcolor="#40AA03"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("MARON")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#D5294D" backcolor="#D5294D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("YELLOW")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFF00" backcolor="#FFFF00"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("BLACK")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000" backcolor="#000000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("GREEN")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#00FF00" backcolor="#00FF00"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("RED")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000" backcolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("BLUE")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#0000FF" backcolor="#0000FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("ORANGE")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF4500" backcolor="#FF4500"/>
+		</conditionalStyle>
+	</style>
+	<style name="style2" mode="Transparent" backcolor="#FFFFFF">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("NEWRED")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#F8340D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("NEWGREEN")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#40AA03"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("MARON")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#D5294D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("YELLOW")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFF00"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("BLACK")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("GREEN")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#00FF00"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("RED")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("BLUE")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#0000FF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{bckColor}.equals("ORANGE")]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF4500"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="table_dataset" uuid="1932e840-84a6-4f2c-bd78-059afc7e1060">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="itemdescription" class="java.lang.String"/>
+		<field name="quantity" class="java.lang.String"/>
+		<field name="price" class="java.lang.String"/>
+		<field name="total" class="java.lang.String"/>
+		<field name="itemtitle" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="logo_path" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bckColor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="img_path" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="subtotal" class="java.lang.String"/>
+	<field name="items" class="java.util.List"/>
+	<field name="company_name" class="java.lang.String"/>
+	<field name="company_address" class="java.lang.String"/>
+	<field name="company_zipcode" class="java.lang.String"/>
+	<field name="company_phone_web_mail" class="java.lang.String"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="customer_address" class="java.lang.String"/>
+	<field name="customer_zip" class="java.lang.String"/>
+	<field name="customer_phone" class="java.lang.String"/>
+	<field name="customer_web_mail" class="java.lang.String"/>
+	<field name="date" class="java.lang.String"/>
+	<field name="invoice_no" class="java.lang.String"/>
+	<field name="terms" class="java.lang.String"/>
+	<field name="signature_name" class="java.lang.String"/>
+	<field name="footer" class="java.lang.String"/>
+	<field name="signature_title" class="java.lang.String"/>
+	<field name="gst" class="java.lang.String"/>
+	<field name="pst" class="java.lang.String"/>
+	<field name="totalall" class="java.lang.String"/>
+	<field name="notes" class="java.lang.String"/>
+	<field name="deposit" class="java.lang.String"/>
+	<field name="balance" class="java.lang.String"/>
+	<field name="invoice_type" class="java.lang.String"/>
+	<field name="igst" class="java.lang.String"/>
+	<field name="cgst" class="java.lang.String"/>
+	<field name="sgst" class="java.lang.String"/>
+	<background>
+		<band height="842" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="595" height="842" uuid="7c8a2901-7f6a-4df9-b706-5fa6b4f39b26"/>
+				<imageExpression><![CDATA[$P{img_path}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="242" splitType="Stretch">
+			<staticText>
+				<reportElement x="399" y="214" width="65" height="13" forecolor="#000000" uuid="7caea3e2-e467-4740-833f-75de00eae703"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="style2" mode="Transparent" x="399" y="190" width="65" height="13" backcolor="#FFFDEE" uuid="bad8d224-d64b-4f91-b181-10b13e28c1be"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="166" width="65" height="13" forecolor="#000000" uuid="08731520-a1d9-4849-a625-cc1e8e1ed04c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="190" width="62" height="13" forecolor="#000000" uuid="e9239dcb-790e-4666-a941-32c47a35dcbe">
+					<printWhenExpression><![CDATA[$F{invoice_no}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_no}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="166" width="62" height="13" forecolor="#000000" uuid="b28eafab-3fa0-4dd7-9aff-f0fd3a6c0d2b">
+					<printWhenExpression><![CDATA[$F{date}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="472" y="214" width="62" height="13" forecolor="#000000" uuid="93151fbf-1d9b-4718-b94b-6d598245a4c1">
+					<printWhenExpression><![CDATA[$F{invoice_type}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_type}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="239" y="59" width="311" height="1" forecolor="#FFFFFF" uuid="b85059de-4d93-4ba2-9a91-01aca0c8331a"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="284" y="29" width="267" height="30" forecolor="#FFFFFF" uuid="c881fd84-8aa9-422b-a55d-f098ca1762b3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement x="284" y="64" width="266" height="13" forecolor="#FFFFFF" uuid="2e06691d-cf2f-48d8-b9c4-e14988b4f870">
+					<printWhenExpression><![CDATA[$F{company_address}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company_address}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="284" y="92" width="266" height="15" forecolor="#FFFFFF" uuid="a6474b3c-212a-474c-9004-471b525c270d">
+					<printWhenExpression><![CDATA[$F{company_phone_web_mail}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company_phone_web_mail}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="284" y="77" width="266" height="15" forecolor="#FFFFFF" uuid="f81be6b1-7b12-45ff-a1aa-fb6485109840">
+					<printWhenExpression><![CDATA[$F{company_zipcode}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company_zipcode}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="240" y="27" width="30" height="30" uuid="50ff0f2e-41dc-44a1-b5a1-969fdf7ce5b2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA[$P{logo_path}!= null]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{logo_path}]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement x="58" y="165" width="336" height="76" uuid="9ab06398-b2e9-4bb0-b82d-754ee551b913"/>
+				<staticText>
+					<reportElement style="style2" mode="Transparent" x="3" y="1" width="25" height="13" isRemoveLineWhenBlank="true" backcolor="#FFFDEE" uuid="1d7d4c97-e27f-4e72-890e-4acf171ffa4c">
+						<printWhenExpression><![CDATA[$F{customer_name} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[To :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement positionType="Float" x="4" y="38" width="197" height="12" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="1af96a33-ae71-4fd0-88fe-41517d66b201">
+						<printWhenExpression><![CDATA[$F{customer_phone}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer_phone}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="style2" mode="Transparent" x="28" y="1" width="283" height="13" isRemoveLineWhenBlank="true" backcolor="#FFFDEE" uuid="4902b933-4052-4aaf-bc14-3589e974202a">
+						<printWhenExpression><![CDATA[$F{customer_name} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="4" y="14" width="308" height="12" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="dff2c136-3386-4f13-91f8-927661f3fe60">
+						<printWhenExpression><![CDATA[$F{customer_address}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer_address}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement positionType="Float" x="4" y="50" width="197" height="12" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="741a7a2a-37f1-44ee-b545-680d45854d40">
+						<printWhenExpression><![CDATA[$F{customer_web_mail}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer_web_mail}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement positionType="Float" x="4" y="26" width="197" height="12" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="2c19a4b3-199c-469a-a8ed-e2a297aedb75">
+						<printWhenExpression><![CDATA[$F{customer_zip}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer_zip}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement style="style1" mode="Opaque" x="46" y="241" width="504" height="1" forecolor="#D52943" uuid="7b04dd74-cd45-4b34-83df-3c23e5f1032a"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement style="style1" mode="Opaque" x="46" y="0" width="504" height="23" uuid="5cf87f15-c805-4011-8513-74f1d0ae1116"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="64" y="1" width="270" height="22" forecolor="#FFFFFF" uuid="15ec0404-1402-4c54-bc21-871dcce4df94"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="333" y="1" width="62" height="22" forecolor="#FFFFFF" uuid="6c6c14da-aac4-4be4-86b0-2368ca1bafa2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="394" y="1" width="65" height="22" forecolor="#FFFFFF" uuid="fddd34d2-b839-44d8-9031-2748acc1c042"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="458" y="1" width="74" height="22" forecolor="#FFFFFF" uuid="3ed6f994-00f8-44cb-9061-2cfd3041ab67"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" mode="Transparent" x="64" y="0" width="468" height="23" uuid="0039387f-09c7-4aa9-8d5b-4d6605589fc9"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="table_dataset" uuid="079278de-0abf-4828-8b19-a2727b31cda1">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{items})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="270" uuid="8f053ab6-b539-4635-baac-62ccc4ca6266">
+						<jr:detailCell style="table_TD" height="23" rowSpan="1">
+							<box bottomPadding="0">
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+								<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="270" height="23" isPrintWhenDetailOverflows="true" uuid="dc6caae3-3e60-4d9a-942d-f6cd5d3ff99e"/>
+								<box topPadding="5" leftPadding="0" bottomPadding="5" rightPadding="0">
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Justified" verticalAlignment="Middle">
+									<font fontName="Garamond" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{itemdescription}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="62" uuid="a670d0cc-ef74-403f-bbaa-ca3e7f58888c">
+						<jr:detailCell style="table_TD" height="23" rowSpan="1">
+							<box bottomPadding="0">
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textField isBlankWhenNull="false">
+								<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="62" height="23" uuid="dfd3879b-f8a9-4df4-9eb2-991dd1d4686f"/>
+								<box topPadding="5" leftPadding="0" bottomPadding="5" rightPadding="0">
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Garamond" size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="1449442f-ed24-4976-828f-44e446855381">
+						<jr:detailCell style="table_TD" height="23" rowSpan="1">
+							<box bottomPadding="0">
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textField isBlankWhenNull="false">
+								<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="23" uuid="4c54b64c-4ab7-467e-923e-a55ddefb2cd2"/>
+								<box topPadding="5" leftPadding="0" bottomPadding="5" rightPadding="0">
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Garamond" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="65756f64-a314-42e4-a59a-0150106b771f">
+						<jr:detailCell style="table_TD" height="23" rowSpan="1">
+							<box bottomPadding="0">
+								<bottomPen lineWidth="0.5"/>
+							</box>
+							<textField isBlankWhenNull="false">
+								<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="74" height="23" uuid="5b159a72-6744-4096-b90b-fd4052edaf92"/>
+								<box topPadding="5" leftPadding="0" bottomPadding="5" rightPadding="0">
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Garamond" size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="254" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="64" y="8" width="259" height="71" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="9e9a7f8d-1e29-4853-afef-c71ded9f5e67">
+					<printWhenExpression><![CDATA[$F{terms}!= null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="74" y="14" width="147" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="452ea3d6-ef8e-4549-9132-6ac299f8be74">
+					<printWhenExpression><![CDATA[$F{terms}!= null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TERMS AND CONDITIONS :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="74" y="30" width="240" height="45" isRemoveLineWhenBlank="true" uuid="ae0db194-81fd-4c5f-a3e0-8f0275de5ade">
+					<printWhenExpression><![CDATA[$F{terms}!= null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Garamond" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{terms}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="353" y="8" width="182" height="125" uuid="8fc23399-71b8-45b5-b6e1-cad441cd124e"/>
+				<staticText>
+					<reportElement x="16" y="41" width="55" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="df5f3046-8888-4309-8fcc-1256a7125dd5">
+						<printWhenExpression><![CDATA[$F{igst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[IGST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="54" width="55" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="fd0085d9-444e-4a40-a694-283ab98afad4">
+						<printWhenExpression><![CDATA[$F{cgst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[CGST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="67" width="55" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="8c462121-5e9b-4cfb-ac22-8d292bfc546a">
+						<printWhenExpression><![CDATA[$F{cgst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[SGST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="2" width="67" height="13" forecolor="#000000" uuid="b27a076c-468c-4a79-8a70-2609052bfd8d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[SUB TOTAL]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="93" y="2" width="88" height="13" uuid="a86c8e75-693b-4ecc-8a5b-0a8b9aaf2977"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="16" y="80" width="67" height="13" forecolor="#000000" uuid="f3a1c907-05ed-427c-89eb-53f8c79f6226"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="93" width="67" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="3f5626de-bf18-4b98-a3b0-47fa1907c0d0">
+						<printWhenExpression><![CDATA[$F{deposit}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Deposit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="106" width="67" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="f621b93b-88e4-4f16-ad52-f7b50eaa5b85">
+						<printWhenExpression><![CDATA[$F{balance}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Balance]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="42" width="88" height="13" isRemoveLineWhenBlank="true" uuid="a6cde0c1-7d57-4d7b-b887-377ed5181411">
+						<printWhenExpression><![CDATA[$F{igst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{igst}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="54" width="88" height="13" isRemoveLineWhenBlank="true" uuid="035c22b7-7847-4202-89b8-05a7b33e9941">
+						<printWhenExpression><![CDATA[$F{cgst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cgst}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="67" width="88" height="13" isRemoveLineWhenBlank="true" uuid="74356f11-6244-4fac-b48a-7850a3ed4deb">
+						<printWhenExpression><![CDATA[$F{cgst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sgst}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="80" width="88" height="13" uuid="550fe4ec-5a83-40d3-9db8-0ee80cd9ca26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{totalall}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="93" width="88" height="13" isRemoveLineWhenBlank="true" forecolor="#009933" uuid="52aab5b9-2020-456e-9d3a-1e75e8155316">
+						<printWhenExpression><![CDATA[$F{deposit}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{deposit}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="106" width="88" height="13" isRemoveLineWhenBlank="true" forecolor="#FF0000" uuid="8aec16c9-bbae-4d18-94c4-f83e3a72b015">
+						<printWhenExpression><![CDATA[$F{balance}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="16" y="15" width="55" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="6684af3c-1517-4925-8596-90b315f4f5b4">
+						<printWhenExpression><![CDATA[$F{gst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[GST]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="28" width="55" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="5fdf39d6-cb7c-43a0-bebe-874e579fbe86">
+						<printWhenExpression><![CDATA[$F{pst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Garamond" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PST]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="15" width="88" height="13" isRemoveLineWhenBlank="true" uuid="0b054b63-09d6-4e6a-8bcb-b8883db4fec7">
+						<printWhenExpression><![CDATA[$F{gst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{gst}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="93" y="28" width="88" height="13" isRemoveLineWhenBlank="true" uuid="4a2df5fc-d1cb-4ef4-b7fb-86b262089b97">
+						<printWhenExpression><![CDATA[$F{pst}!= null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Garamond" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pst}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement mode="Transparent" x="74" y="93" width="147" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="c99bb024-6e9f-49e6-b96f-cdb54ebebdd1">
+					<printWhenExpression><![CDATA[$F{notes}!= null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="9" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Remarks or Notes :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="74" y="109" width="240" height="50" uuid="4d6ec8a1-2c05-47f0-9c94-bd07fea96676"/>
+				<textElement>
+					<font fontName="Garamond" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{notes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="253" y="93" width="7" height="13" forecolor="#000000" uuid="a1d860de-8226-48e1-8aa6-c285feafc425"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="9" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="386" y="142" width="147" height="13" uuid="4579335d-3a48-4c5e-81e7-8b2a5417a535">
+					<printWhenExpression><![CDATA[$F{signature_name}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{signature_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="386" y="156" width="147" height="13" uuid="54eaa32f-e80c-4d41-a8d0-a30f84aeef73">
+					<printWhenExpression><![CDATA[$F{signature_title}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Garamond" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{signature_title}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="style1" mode="Opaque" x="46" y="197" width="504" height="1" forecolor="#D52943" uuid="77685831-dbe2-41f7-8722-b667724ec30b"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement style="style1" mode="Opaque" x="46" y="0" width="504" height="1" forecolor="#D52943" uuid="e14167dc-9b10-4aa1-8dff-e4f3d57aa7f7"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="66" y="88" width="259" height="76" isRemoveLineWhenBlank="true" forecolor="#000000" uuid="8ee4a786-53cd-4cd9-a0f3-2c841bc6d784">
+					<printWhenExpression><![CDATA[$F{terms}!= null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement style="style1" mode="Opaque" x="46" y="173" width="504" height="20" uuid="50c686a5-c8fc-43b1-a413-91bd3b27337c"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="236" y="173" width="80" height="20" forecolor="#FFFFFF" uuid="2ac6fad4-76f0-4a01-94d4-cb73f9ed20fd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Garamond" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="316" y="173" width="40" height="20" forecolor="#FFFFFF" uuid="e34eaac0-87cd-4452-ac2a-7193066ea1b0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Garamond" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="style2" mode="Transparent" x="46" y="203" width="504" height="20" uuid="2f6a8512-fbac-40ec-8779-3cead4b32f2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Garamond" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thank You For Your Business]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
