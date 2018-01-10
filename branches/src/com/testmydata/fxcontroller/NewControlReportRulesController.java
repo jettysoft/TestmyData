@@ -1025,7 +1025,7 @@ public class NewControlReportRulesController implements Initializable {
 		modulebox.getItems().clear();
 		modulebox.getItems().add("QA Modules");
 		modulebox.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules");
+		moduleslist = new DAO().getModuleDetails("modules", "all");
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulebox.getItems().add(moduleslist.get(i).getModulename());

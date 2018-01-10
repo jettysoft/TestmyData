@@ -1,0 +1,101 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.chart-pie-label { /*this is what you need for labels*/
+    -fx-text-fill:  black;
+    -fx-opacity: 0.6;
+}
+.chart-title {
+    -fx-text-fill:  black;
+    -fx-opacity: 0.6;
+    -fx-padding: 0;
+}
+.default-color0 { -fx-background-color: #66b366;-fx-opacity: 0.8; }
+.default-color1 { -fx-background-color: #ff6666;-fx-opacity: 0.8; }
+.button {
+    -fx-background-color: transparent;
+}
+.button:hover{
+    -fx-background-color:  #14234a88;
+}
+.button:pressed {
+    -fx-background-color: transparent;
+}
+
+.list-view {
+    -fx-border-color:  #E5E5E5;
+    -fx-border-radius:  2em;
+    -fx-border-width: 1.5;
+    -fx-padding: 5;
+    -fx-background-color: white;
+    -fx-background-radius: 2em;
+}
+.list-cell:odd{
+    -fx-background-color: white;
+    -fx-padding: 5;
+}
+.list-cell:filled:even{
+    -fx-background-color: white;
+    -fx-padding: 5;
+}
+
+.list-cell:filled:hover{
+    -fx-background-color:  #E5E5E5;
+    -fx-background-radius: 1em;
+}
+.list-cell:filled:selected{
+    -fx-background-color:  #E3E3E3;
+    -fx-background-radius: 1em;
+}
+.combo-box-popup .list-view .list-cell:hover{
+    -fx-background-color: #a0bac2;
+}
+
+.combo-box .cell{
+    -fx-font: 18px "Calibri";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+.combo-box .cell:selected{
+    -fx-text-fill: black;
+    -fx-font: 18px "Calibri";
+    -fx-opacity: 1;
+}
+
+
+
+
+.scroll-bar:vertical .track{
+    -fx-background-color:white;
+	-fx-background-radius: 0em;
+	-fx-border-radius:2em;
+        
+}
+
+.scroll-bar:vertical{
+      -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .thumb{
+     -fx-background-color: grey;
+	-fx-background-insets: 4;
+        -fx-opacity: 0.8;
+	-fx-background-radius: 2em;
+}
+.increment-button , .decrement-button {
+    -fx-background-color:white;
+}
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow{
+    -fx-shape: " ";
+}
+.scroll-bar .thumb:hover, .scroll-bar .thumb:pressed {
+    -fx-background-color: #14234abb;
+}
+
+
+

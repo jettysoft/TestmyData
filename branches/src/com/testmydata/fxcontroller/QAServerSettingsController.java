@@ -350,7 +350,7 @@ public class QAServerSettingsController implements Initializable {
 		existingmodulescombo.getItems().add("QA Modules");
 		existingmodulescombo.getSelectionModel().select(0);
 		moduleslist.clear();
-		moduleslist = new DAO().getModuleDetails("modules");
+		moduleslist = new DAO().getModuleDetails("modules", "all");
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				existingmodulescombo.getItems()

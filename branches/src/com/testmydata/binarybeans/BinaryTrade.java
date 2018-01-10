@@ -19,7 +19,7 @@ public abstract class BinaryTrade {
 		return val;
 	}
 
-	void string2Bytes(String value, byte[] data) {
+	protected void string2Bytes(String value, byte[] data) {
 		for (int i = 0; i < value.length(); i++)
 			data[i] = (byte) value.charAt(i);
 	}

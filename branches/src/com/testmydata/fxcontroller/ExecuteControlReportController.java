@@ -15,6 +15,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 
 import javafx.beans.value.ChangeListener;
@@ -436,10 +437,14 @@ public class ExecuteControlReportController implements Initializable {
 				if (!(ff.exists() && ff.isDirectory())) {
 					ff.mkdirs();
 				}
-				addcolumnsforpdfreport();
+				if (reportcolumnlist != null || reportcolumnlist.size() > 0) {
+					reportcolumnlist.clear();
+				}
+				reportcolumnlist.addAll(addcolumnsforpdfreport());
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("Control Report", batchid, "Reports/ControlReport/PDF", "pdf", reportcolumnlist,
-						new DAO().getcrresults(batchid, 0, replacer(), reportcolumnlist.size()));
+						new DAO().getcrresults(batchid, 0, replacer(reportcolumnlist), reportcolumnlist.size(),
+								QADefaultServerDetails.id));
 			}
 		});
 
@@ -450,10 +455,14 @@ public class ExecuteControlReportController implements Initializable {
 				if (!(ff.exists() && ff.isDirectory())) {
 					ff.mkdirs();
 				}
-				addcolumnsforexcelreport();
+				if (reportcolumnlist != null || reportcolumnlist.size() > 0) {
+					reportcolumnlist.clear();
+				}
+				reportcolumnlist.addAll(addcolumnsforpdfreport());
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("Control Report", batchid, "Reports/ControlReport/Excel", "excel", reportcolumnlist,
-						new DAO().getcrresults(batchid, 0, replacer(), reportcolumnlist.size()));
+						new DAO().getcrresults(batchid, 0, replacer(reportcolumnlist), reportcolumnlist.size(),
+								QADefaultServerDetails.id));
 			}
 		});
 
@@ -484,7 +493,7 @@ public class ExecuteControlReportController implements Initializable {
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("QA Modules");
 		modulecombo.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules");
+		moduleslist = new DAO().getModuleDetails("modules", "all");
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulecombo.getItems().add(moduleslist.get(i).getModulename());
@@ -694,7 +703,7 @@ public class ExecuteControlReportController implements Initializable {
 	private void controlreportsexecution(int start, int end, int batchid) {
 		for (int i = start; i <= end; i++) {
 			new DAO().executecrrules(Integer.parseInt(crtable.getItems().get(i - 1).getId()), batchid,
-					Long.parseLong(Integer.toString(Loggedinuserdetails.id)));
+					Long.parseLong(Integer.toString(Loggedinuserdetails.id)), QADefaultServerDetails.id);
 		}
 		populaterules(modulecombo.getSelectionModel().getSelectedItem());
 		statustext.setText("Execution Completed.");
@@ -723,58 +732,64 @@ public class ExecuteControlReportController implements Initializable {
 		}
 	}
 
-	private void addcolumnsforexcelreport() {
-		reportcolumnlist.clear();
-		reportcolumnlist.add("Result ID");
-		reportcolumnlist.add("Date");
-		reportcolumnlist.add("Executed By");
-		reportcolumnlist.add("Module");
-		reportcolumnlist.add("Rule");
-		reportcolumnlist.add("Message");
-		reportcolumnlist.add("Source Count");
-		reportcolumnlist.add("So-Stg Diff");
-		reportcolumnlist.add("Staging Count");
-		reportcolumnlist.add("Stg-Trans Diff");
-		reportcolumnlist.add("Transformation count");
-		reportcolumnlist.add("Trans-Ldg Diff");
-		reportcolumnlist.add("Loading Count");
-		reportcolumnlist.add("Ldg-Trg Diff");
-		reportcolumnlist.add("Target Count");
-		reportcolumnlist.add("Source Sum");
-		reportcolumnlist.add("So-Stg Sum Diff");
-		reportcolumnlist.add("Staging Sum");
-		reportcolumnlist.add("Stg-Trans Sum Diff");
-		reportcolumnlist.add("Transformation Sum");
-		reportcolumnlist.add("Trans-Ldg Sum Diff");
-		reportcolumnlist.add("Loading Sum Count");
-		reportcolumnlist.add("Ldg-Trg Sum Diff");
-		reportcolumnlist.add("Target Sum Count");
-		reportcolumnlist.add("Result");
+	public ArrayList<String> addcolumnsforexcelreport() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		result.add("Result ID");
+		result.add("Date");
+		result.add("Executed By");
+		result.add("Module");
+		result.add("Rule");
+		result.add("Message");
+		result.add("Source Count");
+		result.add("So-Stg Diff");
+		result.add("Staging Count");
+		result.add("Stg-Trans Diff");
+		result.add("Transformation count");
+		result.add("Trans-Ldg Diff");
+		result.add("Loading Count");
+		result.add("Ldg-Trg Diff");
+		result.add("Target Count");
+		result.add("Source Sum");
+		result.add("So-Stg Sum Diff");
+		result.add("Staging Sum");
+		result.add("Stg-Trans Sum Diff");
+		result.add("Transformation Sum");
+		result.add("Trans-Ldg Sum Diff");
+		result.add("Loading Sum Count");
+		result.add("Ldg-Trg Sum Diff");
+		result.add("Target Sum Count");
+		result.add("Result");
+
+		return result;
 	}
 
-	private void addcolumnsforpdfreport() {
-		reportcolumnlist.clear();
-		reportcolumnlist.add("Result ID");
-		reportcolumnlist.add("Module");
-		reportcolumnlist.add("Rule");
-		// reportcolumnlist.add("Source Count");
-		// reportcolumnlist.add("Staging Count");
-		// reportcolumnlist.add("Transformation count");
-		// reportcolumnlist.add("Loading Count");
-		// reportcolumnlist.add("Target Count");
-		// reportcolumnlist.add("Source Sum");
-		// reportcolumnlist.add("Staging Sum");
-		// reportcolumnlist.add("Transformation Sum");
-		// reportcolumnlist.add("Loading Sum Count");
-		// reportcolumnlist.add("Target Sum Count");
-		reportcolumnlist.add("So-Stg Status");
-		reportcolumnlist.add("Stg-Trans Status");
-		reportcolumnlist.add("Trans-Ldg Status");
-		reportcolumnlist.add("Ldg-Trg Status");
-		reportcolumnlist.add("Result");
+	public ArrayList<String> addcolumnsforpdfreport() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		result.add("Result ID");
+		result.add("Module");
+		result.add("Rule");
+		// result.add("Source Count");
+		// result.add("Staging Count");
+		// result.add("Transformation count");
+		// result.add("Loading Count");
+		// result.add("Target Count");
+		// result.add("Source Sum");
+		// result.add("Staging Sum");
+		// result.add("Transformation Sum");
+		// result.add("Loading Sum Count");
+		// result.add("Target Sum Count");
+		result.add("So-Stg Status");
+		result.add("Stg-Trans Status");
+		result.add("Trans-Ldg Status");
+		result.add("Ldg-Trg Status");
+		result.add("Result");
+
+		return result;
 	}
 
-	private String replacer() {
+	public String replacer(ArrayList<String> reportcolumnlist) {
 		String reportitems = null;
 		StringBuffer reports = new StringBuffer();
 		for (int i = 0; i < reportcolumnlist.size(); i++) {
