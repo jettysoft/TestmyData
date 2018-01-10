@@ -881,13 +881,13 @@ public class DashBoardController implements Initializable {
 			icon_run.setFitHeight(25.0);
 			icon_run.setFitWidth(25.0);
 			pdficon.setFitHeight(25.0);
-			pdficon.setFitWidth(25.0);
+			pdficon.setFitWidth(20.0);
 			excelicon.setFitHeight(25.0);
-			excelicon.setFitWidth(25.0);
+			excelicon.setFitWidth(23.0);
 			icon_execute.setCursor(Cursor.HAND);
 			pdficon.setCursor(Cursor.HAND);
 			excelicon.setCursor(Cursor.HAND);
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #40AA03");
 			lbl_pass.setStyle(
 					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
 			lbl_fail.setStyle(
@@ -911,7 +911,7 @@ public class DashBoardController implements Initializable {
 				if (release.IsExecute()) {
 					hbox.getChildren().addAll(hbox_title, icon_run); // true
 				} else {
-					if (release.getPass() > 0 || release.getFail() > 0) {
+					if (release.getBatchId() == new DAO().getmaxbatchid()) {
 						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon); // false
 					} else {
 						hbox.getChildren().addAll(hbox_title, icon_execute); // 1min
@@ -997,7 +997,7 @@ public class DashBoardController implements Initializable {
 						if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
 							reportcolumnlist.addAll(effc.addcolumnsforreport());
 						}
-						System.out.println(release.getBatchId());
+
 						ReportsDownloader rd = new ReportsDownloader();
 						rd.download("Test Suite", release.getBatchId(), "Reports/TestSuites/PDF", "pdf",
 								reportcolumnlist,
@@ -1036,7 +1036,6 @@ public class DashBoardController implements Initializable {
 
 		HBox hbox = new HBox();
 		HBox hbox_title = new HBox();
-		HBox hbox_icon = new HBox();
 		Label lbl_module = new Label("");
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
@@ -1047,42 +1046,42 @@ public class DashBoardController implements Initializable {
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
 		public ControlCell() {
-			hbox_title.setPadding(new Insets(0, 5, 0, 5));
-			hbox_icon.setPadding(new Insets(0, 5, 0, 5));
+			hbox_title.setPadding(new Insets(0, 0, 0, 0));
 			lbl_module.setPadding(new Insets(0, 5, 0, 5));
-			lbl_module.setMaxWidth(120);
-			lbl_module.setMinWidth(120);
-			lbl_pass.setPadding(new Insets(2, 6, 2, 10));
-			lbl_fail.setPadding(new Insets(2, 6, 2, 10));
+			lbl_module.setMaxWidth(170);
+			lbl_module.setMinWidth(170);
+			lbl_pass.setPadding(new Insets(2, 0, 2, 0));
+			lbl_fail.setPadding(new Insets(2, 0, 2, 0));
+			lbl_pass.setMaxWidth(40);
+			lbl_pass.setMinWidth(40);
+			lbl_fail.setMaxWidth(40);
+			lbl_fail.setMinWidth(40);
 			rec.setPadding(new Insets(1, 2, 1, 2));
 			hbox_title.setSpacing(2);
-			hbox.setSpacing(20);
-			hbox.setPadding(new Insets(0, 5, 0, 0));
+			hbox.setSpacing(5);
+			hbox.setPadding(new Insets(0, 0, 0, 5));
 			hbox_title.setStyle(" -fx-alignment : center_left;");
-			hbox_icon.setStyle(" -fx-background-color: #66b366;-fx-alignment : center;");
-			hbox.setStyle(" -fx-background-radius: 0em;-fx-alignment : center_left;");
+			hbox.setStyle(" -fx-background-radius: 1em;-fx-alignment : center_left;");
 			icon_execute.setFitHeight(25.0);
 			icon_execute.setFitWidth(25.0);
 			icon_run.setFitHeight(25.0);
 			icon_run.setFitWidth(25.0);
 			pdficon.setFitHeight(25.0);
-			pdficon.setFitWidth(25.0);
+			pdficon.setFitWidth(20.0);
 			excelicon.setFitHeight(25.0);
-			excelicon.setFitWidth(25.0);
+			excelicon.setFitWidth(23.0);
 			icon_execute.setCursor(Cursor.HAND);
 			pdficon.setCursor(Cursor.HAND);
 			excelicon.setCursor(Cursor.HAND);
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color:  #FFC107");
 			lbl_pass.setStyle(
-					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #66b366;-fx-opacity: 0.8;");
+					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\"; -fx-alignment : center; -fx-text-fill: #66b366;-fx-opacity: 0.8;");
 			lbl_fail.setStyle(
-					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
+					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\"; -fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_module.setStyle(
 					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
 			hbox_title.getChildren().addAll(rec, lbl_module, lbl_pass, lbl_fail);
-			hbox_icon.getChildren().add(icon_execute);
-			hbox.getChildren().addAll(hbox_title, icon_execute, icon_run, pdficon, excelicon);
-			icon_run.setVisible(false);
+
 		}
 
 		@Override
@@ -1092,20 +1091,20 @@ public class DashBoardController implements Initializable {
 												// Templates.
 			setText(null);
 			setGraphic(null);
+			hbox.getChildren().clear();
 			if (module != null && !empty) {
 				lbl_module.setText(module.getModulename());
 				lbl_pass.setText(module.getPass() + "%");
 				lbl_fail.setText(module.getFail() + "%");
+
 				if (module.IsExecute()) {
-					icon_execute.setVisible(false);
-					pdficon.setVisible(false);
-					excelicon.setVisible(false);
-					icon_run.setVisible(true);
+					hbox.getChildren().addAll(hbox_title, icon_run);
 				} else {
-					icon_run.setVisible(false);
-					icon_execute.setVisible(true);
-					pdficon.setVisible(true);
-					excelicon.setVisible(true);
+					if (module.getBatchId() == new DAO().getcrmaxbatchid()) {
+						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					} else {
+						hbox.getChildren().addAll(hbox_title, icon_execute);
+					}
 				}
 
 				for (int j = 0; j < module.getRules().length; j++) {
@@ -1117,10 +1116,6 @@ public class DashBoardController implements Initializable {
 					@SuppressWarnings("unchecked")
 					@Override
 					public void handle(MouseEvent event) {
-						icon_execute.setVisible(false);
-						pdficon.setVisible(false);
-						excelicon.setVisible(false);
-						icon_run.setVisible(true);
 
 						int currentbatchid = new DAO().getcrmaxbatchid() + 1;
 						module.setBatchId(currentbatchid);
@@ -1155,6 +1150,16 @@ public class DashBoardController implements Initializable {
 						ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
 						cre.modulerun(module.getModulename(), currentbatchid, listField, listControlData, module);
 
+						if (hbox.getChildren().size() == 4) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+
+						} else if (hbox.getChildren().size() == 2) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+						}
 					}
 				});
 				pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1171,9 +1176,8 @@ public class DashBoardController implements Initializable {
 						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
 						ReportsDownloader rd = new ReportsDownloader();
 						rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/PDF", "pdf",
-								reportcolumnlist,
-								new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										reportcolumnlist.size(), QADefaultServerDetails.id));
+								crcolumnlist, new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
+										crcolumnlist.size(), QADefaultServerDetails.id));
 					}
 				});
 				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1187,12 +1191,11 @@ public class DashBoardController implements Initializable {
 						if (crcolumnlist != null || crcolumnlist.size() > 0) {
 							crcolumnlist.clear();
 						}
-						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
+						crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
 						ReportsDownloader rd = new ReportsDownloader();
 						rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/Excel", "excel",
-								reportcolumnlist,
-								new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										reportcolumnlist.size(), QADefaultServerDetails.id));
+								crcolumnlist, new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
+										crcolumnlist.size(), QADefaultServerDetails.id));
 					}
 				});
 
@@ -1211,63 +1214,52 @@ public class DashBoardController implements Initializable {
 		Label lbl_fail = new Label("");
 		Label rec = new Label();
 		Label rec1 = new Label();
-		HBox hbox_icon = new HBox();
 		ImageView icon_execute = new ImageView(source_execute.getImage());
 		ImageView icon_run = new ImageView(source_run.getImage());
 		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
 		public DataCell() {
-			hbox_title.setPadding(new Insets(0, 5, 0, 5));
-			hbox_icon.setPadding(new Insets(5, 10, 5, 10));
+			hbox_title.setPadding(new Insets(0, 0, 0, 0));
 			lbl_cycle.setPadding(new Insets(0, 5, 0, 5));
-			lbl_cycle.setMaxWidth(120);
-			lbl_cycle.setMinWidth(120);
-			lbl_pass.setPadding(new Insets(2, 6, 2, 10));
-			lbl_fail.setPadding(new Insets(2, 6, 2, 10));
+			lbl_cycle.setMaxWidth(170);
+			lbl_cycle.setMinWidth(170);
+			lbl_pass.setPadding(new Insets(2, 0, 2, 0));
+			lbl_fail.setPadding(new Insets(2, 0, 2, 0));
+			lbl_pass.setMaxWidth(40);
+			lbl_pass.setMinWidth(40);
+			lbl_fail.setMaxWidth(40);
+			lbl_fail.setMinWidth(40);
 			hbox_title.setSpacing(2);
-			hbox.setSpacing(9);
-			hbox.setPadding(new Insets(0, 5, 5, 0));
+			hbox.setSpacing(5);
+			hbox.setPadding(new Insets(0, 0, 0, 5));
 			rec.setPadding(new Insets(1, 2, 1, 2));
 			rec1.setPrefSize(330, 0.1);
 			rec1.setMinSize(330, 0.1);
 			hbox_title.setStyle(" -fx-alignment : center_left;-fx-opacity: 1;");
-			hbox_icon.setStyle(" -fx-background-color: green;-fx-alignment : center;");
-			hbox.setStyle(" -fx-background-radius: 0em;-fx-alignment : center_left;");
-			// hbox.setPadding(new Insets(5, 5, 0, 5));
-			// hbox_title.setPadding(new Insets(10, 5, 0, 5));
-			// hbox_title.setSpacing(10);
-			// vbox.setSpacing(0);
-			// hbox.setSpacing(50);
-			// hbox_title.setStyle(" -fx-alignment : center_left;");
-			// hbox.setStyle(" -fx-alignment : center_left;");
+			hbox.setStyle(" -fx-background-radius: 1em;-fx-alignment : center_left;");
+
 			icon_execute.setFitHeight(25.0);
 			icon_execute.setFitWidth(25.0);
 			icon_run.setFitHeight(25.0);
 			icon_run.setFitWidth(25.0);
-			pdficon.setFitWidth(25.0);
 			pdficon.setFitHeight(25.0);
+			pdficon.setFitWidth(20.0);
 			excelicon.setFitHeight(25.0);
-			excelicon.setFitWidth(25.0);
+			excelicon.setFitWidth(23.0);
 			icon_execute.setCursor(Cursor.HAND);
 			pdficon.setCursor(Cursor.HAND);
 			excelicon.setCursor(Cursor.HAND);
 			lbl_pass.setStyle(
-					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #66b366;-fx-opacity: 0.8;");
+					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
 			lbl_fail.setStyle(
-					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
+					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_cycle.setStyle(
 					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey;");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC;");
 			rec1.setStyle(
 					"-fx-background-radius: 0em;-fx-background-color: grey;-fx-alignment : center;-fx-opacity: 0.2;");
 
-			// hbox_title.getChildren().addAll(lbl_pass, lbl_fail);
-			// hbox_icon.getChildren().add(icon_execute);
-			// // hbox.getChildren().addAll(lbl_cycle, hbox_title, hbox_icon);
-			// hbox.getChildren().addAll(lbl_cycle, hbox_icon);
-			// hbox.getChildren().add(icon_run);
-			// icon_run.setVisible(false);
 		}
 
 		@Override
@@ -1277,22 +1269,19 @@ public class DashBoardController implements Initializable {
 											// Templates.
 			setText(null);
 			setGraphic(null);
+			hbox.getChildren().clear();
+			hbox_title.getChildren().clear();
 			if (cycle != null && !empty) {
-				hbox.getChildren().clear();
-				hbox_title.getChildren().clear();
 				hbox_title.getChildren().addAll(rec, lbl_cycle, lbl_pass, lbl_fail);
-				hbox.getChildren().addAll(hbox_title, icon_execute, icon_run, pdficon, excelicon);
 
 				if (cycle.IsExecute()) {
-					icon_execute.setVisible(false);
-					pdficon.setVisible(false);
-					excelicon.setVisible(false);
-					icon_run.setVisible(true);
+					hbox.getChildren().addAll(hbox_title, icon_run);
 				} else {
-					icon_run.setVisible(false);
-					icon_execute.setVisible(true);
-					pdficon.setVisible(true);
-					excelicon.setVisible(true);
+					if (cycle.getBatchId() == new DAO().getmaxbatchid()) {
+						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					} else {
+						hbox.getChildren().addAll(hbox_title, icon_execute);
+					}
 				}
 
 				vbox.getChildren().clear();
@@ -1303,10 +1292,6 @@ public class DashBoardController implements Initializable {
 					@SuppressWarnings("unchecked")
 					@Override
 					public void handle(MouseEvent event) {
-						icon_execute.setVisible(false);
-						icon_run.setVisible(true);
-						pdficon.setVisible(false);
-						excelicon.setVisible(false);
 
 						int currentbatchid = new DAO().getmaxbatchid() + 1;
 						cycle.setBatchId(currentbatchid);
@@ -1330,6 +1315,16 @@ public class DashBoardController implements Initializable {
 						fs.cyclerun(cycle.getRelease().getName(), cycle.getCyname(), currentbatchid, listField,
 								listData, cycle.getRelease(), cycle);
 
+						if (hbox.getChildren().size() == 4) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+
+						} else if (hbox.getChildren().size() == 2) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+						}
 					}
 				});
 
@@ -1374,9 +1369,7 @@ public class DashBoardController implements Initializable {
 
 				lbl_cycle.setStyle(
 						"-fx-background-radius: 0.5em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
-				rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
-				hbox_icon.setStyle(
-						" -fx-background-color: #ff6666;-fx-alignment : center;-fx-background-radius: 0.5em;");
+				rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC");
 
 				lbl_cycle.setText(cycle.getCyname());
 				lbl_pass.setText(cycle.getPass() + "%");
@@ -1388,29 +1381,35 @@ public class DashBoardController implements Initializable {
 
 					HBox hbox_title_testSuite = new HBox();
 					HBox hbox_percent_testSuite = new HBox();
-					hbox_title_testSuite.setPadding(new Insets(3, 5, 3, 25));
+					hbox_percent_testSuite.setPadding(new Insets(0, 0, 0, 0));
+					hbox_title_testSuite.setPadding(new Insets(0, 0, 0, 25));
 					hbox_percent_testSuite.setSpacing(2);
-					hbox_title_testSuite.setSpacing(14);
+					hbox_title_testSuite.setSpacing(5);
 					Label lbl_testSuite = new Label("");
 					Label lbl_pass_testSuite = new Label("");
 					Label lbl_fail_testSuite = new Label("");
+					Label rec = new Label("");
 					lbl_testSuite.setPadding(new Insets(0, 5, 0, 5));
-					lbl_testSuite.setMaxWidth(100);
-					lbl_testSuite.setMinWidth(100);
-					lbl_pass_testSuite.setPadding(new Insets(2, 6, 2, 10));
-					lbl_fail_testSuite.setPadding(new Insets(2, 6, 2, 10));
+					lbl_testSuite.setMaxWidth(150);
+					lbl_testSuite.setMinWidth(150);
+					lbl_pass_testSuite.setPadding(new Insets(2, 0, 2, 0));
+					lbl_fail_testSuite.setPadding(new Insets(2, 0, 2, 0));
+					lbl_pass_testSuite.setMaxWidth(40);
+					lbl_pass_testSuite.setMinWidth(40);
+					lbl_fail_testSuite.setMaxWidth(40);
+					lbl_fail_testSuite.setMinWidth(40);
+					rec.setPadding(new Insets(1, 2, 1, 2));
 					lbl_pass_testSuite.setStyle(
-							"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-text-fill: #66b366;-fx-opacity: 0.8;");
+							"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
 					lbl_fail_testSuite.setStyle(
-							"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
+							"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 					lbl_testSuite.setStyle(
 							"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
 
 					lbl_testSuite.setText(testSuite.getTsname());
 					lbl_pass_testSuite.setText(testSuite.getPass() + "%");
 					lbl_fail_testSuite.setText(testSuite.getFail() + "%");
-					// hbox_title_testSuite.getChildren().addAll(lbl_testSuite,
-					// lbl_pass_testSuite, lbl_fail_testSuite);
+
 					ImageView icon_execute1 = new ImageView(source_execute.getImage());
 					ImageView icon_run1 = new ImageView(source_run.getImage());
 					ImageView pdficon1 = new ImageView(StaticImages.pdficon.getImage());
@@ -1421,26 +1420,25 @@ public class DashBoardController implements Initializable {
 					icon_run1.setFitHeight(25.0);
 					icon_run1.setFitWidth(25.0);
 					pdficon1.setFitHeight(25.0);
-					pdficon1.setFitWidth(25.0);
+					pdficon1.setFitWidth(20.0);
 					excelicon1.setFitHeight(25.0);
-					excelicon1.setFitWidth(25.0);
+					excelicon1.setFitWidth(23.0);
 					icon_execute1.setCursor(Cursor.HAND);
 					pdficon1.setCursor(Cursor.HAND);
 					excelicon1.setCursor(Cursor.HAND);
-					hbox_percent_testSuite.getChildren().addAll(lbl_pass_testSuite, lbl_fail_testSuite);
-					hbox_title_testSuite.getChildren().addAll(lbl_testSuite, hbox_percent_testSuite, icon_execute1,
-							icon_run1, pdficon1, excelicon1);
+					rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
+					hbox_percent_testSuite.getChildren().addAll(rec, lbl_testSuite, lbl_pass_testSuite,
+							lbl_fail_testSuite);
 
 					if (testSuite.IsExecute()) {
-						icon_execute1.setVisible(false);
-						pdficon1.setVisible(false);
-						excelicon1.setVisible(false);
-						icon_run1.setVisible(true);
+						hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_run1);
 					} else {
-						icon_run1.setVisible(false);
-						icon_execute1.setVisible(true);
-						pdficon1.setVisible(true);
-						excelicon1.setVisible(true);
+						if (testSuite.getBatchId() == new DAO().getmaxbatchid()) {
+							hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1, pdficon1,
+									excelicon1);
+						} else {
+							hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1);
+						}
 					}
 					vbox.getChildren().add(hbox_title_testSuite);
 
@@ -1470,6 +1468,20 @@ public class DashBoardController implements Initializable {
 							fs.testsuiterun(cycle.getRelease().getName(), cycle.getCyname(), testSuite.getTsname(),
 									currentbatchid1, listField, listData, cycle.getRelease(), cycle, testSuite);
 
+							if (hbox_title_testSuite.getChildren().size() == 4) {
+								hbox_title_testSuite.getChildren()
+										.remove(hbox_title_testSuite.getChildren().size() - 1);
+								hbox_title_testSuite.getChildren()
+										.remove(hbox_title_testSuite.getChildren().size() - 1);
+								hbox_title_testSuite.getChildren()
+										.remove(hbox_title_testSuite.getChildren().size() - 1);
+								hbox_title_testSuite.getChildren().add(icon_run1);
+
+							} else if (hbox_title_testSuite.getChildren().size() == 2) {
+								hbox_title_testSuite.getChildren()
+										.remove(hbox_title_testSuite.getChildren().size() - 1);
+								hbox_title_testSuite.getChildren().add(icon_run1);
+							}
 						}
 					});
 					pdficon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1526,7 +1538,6 @@ public class DashBoardController implements Initializable {
 
 		HBox hbox = new HBox();
 		HBox hbox_title = new HBox();
-		HBox hbox_icon = new HBox();
 		Label rec = new Label();
 		Label lbl_rule = new Label("");
 		Label lbl_pass = new Label("");
@@ -1537,44 +1548,41 @@ public class DashBoardController implements Initializable {
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
 		public DataControlCell() {
-			hbox_title.setPadding(new Insets(0, 5, 0, 5));
-			hbox_icon.setPadding(new Insets(0, 5, 0, 5));
+			hbox_title.setPadding(new Insets(0, 0, 0, 0));
 			lbl_rule.setPadding(new Insets(0, 5, 0, 5));
-			lbl_rule.setMaxWidth(120);
-			lbl_rule.setMinWidth(120);
-			lbl_pass.setPadding(new Insets(2, 6, 2, 10));
-			lbl_fail.setPadding(new Insets(2, 6, 2, 10));
+			lbl_rule.setMaxWidth(170);
+			lbl_rule.setMinWidth(170);
+			lbl_pass.setPadding(new Insets(2, 0, 2, 0));
+			lbl_fail.setPadding(new Insets(2, 0, 2, 0));
+			lbl_pass.setMaxWidth(40);
+			lbl_pass.setMinWidth(40);
+			lbl_fail.setMaxWidth(40);
+			lbl_fail.setMinWidth(40);
 			hbox_title.setSpacing(2);
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC");
 			rec.setPadding(new Insets(1, 2, 1, 2));
-			hbox.setSpacing(20);
-			hbox.setPadding(new Insets(0, 5, 0, 0));
+			hbox.setSpacing(5);
+			hbox.setPadding(new Insets(0, 0, 0, 5));
 			hbox_title.setStyle(" -fx-alignment : center_left;");
-			hbox_icon.setStyle(" -fx-background-color: #66b366;-fx-alignment : center;");
 			hbox.setStyle(" -fx-background-radius: 0em;-fx-alignment : center_left;");
 			icon_execute.setFitHeight(25.0);
 			icon_execute.setFitWidth(25.0);
 			icon_run.setFitHeight(25.0);
 			icon_run.setFitWidth(25.0);
 			pdficon.setFitHeight(25.0);
-			pdficon.setFitWidth(25.0);
+			pdficon.setFitWidth(20.0);
 			excelicon.setFitHeight(25.0);
-			excelicon.setFitWidth(25.0);
+			excelicon.setFitWidth(23.0);
 			icon_execute.setCursor(Cursor.HAND);
 			pdficon.setCursor(Cursor.HAND);
 			excelicon.setCursor(Cursor.HAND);
 			lbl_pass.setStyle(
-					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #66b366;-fx-opacity: 0.8;");
+					"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
 			lbl_fail.setStyle(
-					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
+					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_rule.setStyle(
 					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
-			// hbox_title.getChildren().addAll(lbl_release, lbl_pass, lbl_fail);
-			// hbox_icon.getChildren().add(icon_execute);
-			// // hbox.getChildren().addAll(hbox_title, hbox_icon);
-			// hbox.getChildren().addAll(lbl_release, hbox_icon);
-			// hbox.getChildren().add(icon_run);
-			// icon_run.setVisible(false);
+
 		}
 
 		@Override
@@ -1584,22 +1592,20 @@ public class DashBoardController implements Initializable {
 											// Templates.
 			setText(null);
 			setGraphic(null);
+			hbox.getChildren().clear();
+			hbox_title.getChildren().clear();
 			if (rule != null && !empty) {
-				hbox.getChildren().clear();
-				hbox_title.getChildren().clear();
-				hbox.getChildren().addAll(hbox_title, icon_execute, icon_run, pdficon, excelicon);
+
 				hbox_title.getChildren().addAll(rec, lbl_rule, lbl_pass, lbl_fail);
 
 				if (rule.IsExecute()) {
-					icon_execute.setVisible(false);
-					pdficon.setVisible(false);
-					excelicon.setVisible(false);
-					icon_run.setVisible(true);
+					hbox.getChildren().addAll(hbox_title, icon_run);
 				} else {
-					icon_run.setVisible(false);
-					icon_execute.setVisible(true);
-					pdficon.setVisible(true);
-					excelicon.setVisible(true);
+					if (rule.getBatchId() == new DAO().getcrmaxbatchid()) {
+						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					} else {
+						hbox.getChildren().addAll(hbox_title, icon_execute);
+					}
 				}
 
 				lbl_rule.setText(rule.getRulename());
@@ -1609,10 +1615,6 @@ public class DashBoardController implements Initializable {
 					@SuppressWarnings("unchecked")
 					@Override
 					public void handle(MouseEvent event) {
-						icon_execute.setVisible(false);
-						pdficon.setVisible(false);
-						excelicon.setVisible(false);
-						icon_run.setVisible(true);
 
 						int currentbatchid = new DAO().getcrmaxbatchid() + 1;
 						rule.setBatchId(currentbatchid);
@@ -1629,6 +1631,17 @@ public class DashBoardController implements Initializable {
 						ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
 						cre.rulerun(rule.getRulename(), currentbatchid, listField, listControlData, rule.getModule(),
 								rule);
+
+						if (hbox.getChildren().size() == 4) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+
+						} else if (hbox.getChildren().size() == 2) {
+							hbox.getChildren().remove(hbox.getChildren().size() - 1);
+							hbox.getChildren().add(icon_run);
+						}
 					}
 				});
 
@@ -1646,9 +1659,8 @@ public class DashBoardController implements Initializable {
 						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
 						ReportsDownloader rd = new ReportsDownloader();
 						rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/PDF", "pdf",
-								reportcolumnlist,
-								new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										reportcolumnlist.size(), QADefaultServerDetails.id));
+								crcolumnlist, new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
+										crcolumnlist.size(), QADefaultServerDetails.id));
 					}
 				});
 				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1662,12 +1674,11 @@ public class DashBoardController implements Initializable {
 						if (crcolumnlist != null || crcolumnlist.size() > 0) {
 							crcolumnlist.clear();
 						}
-						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
+						crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
 						ReportsDownloader rd = new ReportsDownloader();
 						rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/Excel", "excel",
-								reportcolumnlist,
-								new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										reportcolumnlist.size(), QADefaultServerDetails.id));
+								crcolumnlist, new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
+										crcolumnlist.size(), QADefaultServerDetails.id));
 					}
 				});
 				setGraphic(hbox);
