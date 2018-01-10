@@ -19,6 +19,7 @@ import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 
 import javafx.application.Platform;
@@ -231,6 +232,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				try {
 					if (!newFruit.equals("Select Release")) {
+						totaltext.setText(Integer.toString(0));
 						populatetestcases(newFruit);
 						setcyclecombo(newFruit);
 					} else {
@@ -416,10 +418,14 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				if (!(ff.exists() && ff.isDirectory())) {
 					ff.mkdirs();
 				}
-				addcolumnsforreport();
+				if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+					reportcolumnlist.addAll(addcolumnsforreport());
+				}
+
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("Test Suite", batchid, "Reports/TestSuites/PDF", "pdf", reportcolumnlist,
-						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null));
+						new DAO().getfieldresults(batchid, 0, 0, replacer(reportcolumnlist), reportcolumnlist.size(),
+								null, QADefaultServerDetails.id));
 			}
 		});
 
@@ -430,10 +436,14 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				if (!(ff.exists() && ff.isDirectory())) {
 					ff.mkdirs();
 				}
-				addcolumnsforreport();
+				if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+					reportcolumnlist.addAll(addcolumnsforreport());
+				}
+
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("Test Suite", batchid, "Reports/TestSuites/Excel", "excel", reportcolumnlist,
-						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null));
+						new DAO().getfieldresults(batchid, 0, 0, replacer(reportcolumnlist), reportcolumnlist.size(),
+								null, QADefaultServerDetails.id));
 			}
 		});
 		searchicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -518,6 +528,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 
 	private void settscombo(String release, String cycle) {
 		settestsuite();
+		tslist.clear();
 		tslist = new DAO().gettestsuitesonly(cycle, release);
 		if (tslist != null && tslist.size() > 0) {
 			for (int i = 0; i < tslist.size(); i++) {
@@ -575,6 +586,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 
 	private void populatetestcases(String release) {
 		try {
+
 			if (release != null) {
 				removePrevioustestcasesfromtable();
 
@@ -666,6 +678,9 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				tctable.getItems().remove(i);
 			}
 		}
+		totaltext.setText("0");
+		passedtext.setText("0");
+		failedtext.setText("0");
 	}
 
 	@FXML
@@ -746,14 +761,14 @@ public class ExecuteFieldtoFieldController implements Initializable {
 											postresultactions(tctable.getItems().get(it).getId(), result, "Pass",
 													Integer.parseInt(tctable.getItems().get(it).getTestsuiteid()),
 													tctable.getItems().get(it).getRelease(),
-													tctable.getItems().get(it).getCycle(), "Run Successul");
+													tctable.getItems().get(it).getCycle(), "Run Successul", batchid);
 										} else {
 											failcount++;
 											failedtext.setText(Integer.toString(failcount));
 											postresultactions(tctable.getItems().get(it).getId(), result, "Fail",
 													Integer.parseInt(tctable.getItems().get(it).getTestsuiteid()),
 													tctable.getItems().get(it).getRelease(),
-													tctable.getItems().get(it).getCycle(), "Run Successful");
+													tctable.getItems().get(it).getCycle(), "Run Successful", batchid);
 										}
 									} else {
 										failcount++;
@@ -761,7 +776,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 										postresultactions(tctable.getItems().get(it).getId(), result, "Fail",
 												Integer.parseInt(tctable.getItems().get(it).getTestsuiteid()),
 												tctable.getItems().get(it).getRelease(),
-												tctable.getItems().get(it).getCycle(), "Run Successful");
+												tctable.getItems().get(it).getCycle(), "Run Successful", batchid);
 									}
 									showtablenow();
 								} finally {
@@ -817,8 +832,8 @@ public class ExecuteFieldtoFieldController implements Initializable {
 		}
 	}
 
-	private void postresultactions(String id, String result, String status, int suiteid, String releasename,
-			String cyclename, String message) {
+	public void postresultactions(String id, String result, String status, int suiteid, String releasename,
+			String cyclename, String message, int batchid1) {
 		new DAO().updatetabledata("testcases", "message", message, "id", id);
 		new DAO().updatetabledata("testcases", "queryresult", result, "id", id);
 		new DAO().updatetabledata("testcases", "teststatus", status, "id", id);
@@ -831,22 +846,25 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			new DAO().updatetabledata("testcases", "failcount", "failcount+1", "id", id);
 		}
 		new DAO().createresultstable("fieldresults", Long.parseLong(Integer.toString(Loggedinuserdetails.id)), id,
-				message, result, status, batchid, suiteid, releasename, cyclename);
+				message, result, status, batchid1, suiteid, releasename, cyclename, QADefaultServerDetails.id);
 	}
 
-	private void addcolumnsforreport() {
-		reportcolumnlist.clear();
-		reportcolumnlist.add("T.C ID");
-		reportcolumnlist.add("Release");
-		reportcolumnlist.add("Cycle");
-		reportcolumnlist.add("Test Suite");
-		reportcolumnlist.add("Test Case");
+	public ArrayList<String> addcolumnsforreport() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		result.add("T.C ID");
+		result.add("Release");
+		result.add("Cycle");
+		result.add("Test Suite");
+		result.add("Test Case");
 		// reportcolumnlist.add("Test Condition");
-		reportcolumnlist.add("Query Result");
-		reportcolumnlist.add("Status");
+		result.add("Query Result");
+		result.add("Status");
+
+		return result;
 	}
 
-	private String replacer() {
+	public String replacer(ArrayList<String> reportcolumnlist) {
 		String reportitems = null;
 		StringBuffer reports = new StringBuffer();
 		for (int i = 0; i < reportcolumnlist.size(); i++) {

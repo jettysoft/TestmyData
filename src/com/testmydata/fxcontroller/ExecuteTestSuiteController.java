@@ -15,6 +15,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 
 import javafx.application.Platform;
@@ -97,7 +98,8 @@ public class ExecuteTestSuiteController implements Initializable {
 			public void handle(MouseEvent event) {
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("TestSuite", batchid, "Reports/TestSuites/PDF", "pdf", reportcolumnlist,
-						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null));
+						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null,
+								QADefaultServerDetails.id));
 			}
 		});
 
@@ -106,7 +108,8 @@ public class ExecuteTestSuiteController implements Initializable {
 			public void handle(MouseEvent event) {
 				ReportsDownloader rd = new ReportsDownloader();
 				rd.download("TestSuite", batchid, "Reports/TestSuites/Excel", "excel", reportcolumnlist,
-						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null));
+						new DAO().getfieldresults(batchid, 0, 0, replacer(), reportcolumnlist.size(), null,
+								QADefaultServerDetails.id));
 			}
 		});
 
@@ -288,7 +291,7 @@ public class ExecuteTestSuiteController implements Initializable {
 			new DAO().updatetabledata("testcases", "failcount", "failcount+1", "id", id);
 		}
 		new DAO().createresultstable("fieldresults", Long.parseLong(Integer.toString(Loggedinuserdetails.id)), id,
-				"Executed", result, status, batchid, suiteid, null, null);
+				"Executed", result, status, batchid, suiteid, null, null, QADefaultServerDetails.id);
 	}
 
 	// Method to display the Messages

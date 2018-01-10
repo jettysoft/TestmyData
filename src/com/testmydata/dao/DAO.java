@@ -23,6 +23,8 @@ import com.testmydata.binarybeans.TestScenariosBinaryTrade;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.binarybeans.UserTypeBeanBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
+import com.testmydata.dashboardfunction.Rule;
+import com.testmydata.dashboardfunction.TestSuite;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.DBConfigJAXB;
 import com.testmydata.util.EncryptAndDecrypt;
@@ -1368,34 +1370,48 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<ModulesBinaryTrade> getModuleDetails(String tableName) {
+	public ArrayList<ModulesBinaryTrade> getModuleDetails(String tableName, String required) {
 
 		ArrayList<ModulesBinaryTrade> mb = new ArrayList<ModulesBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tableName);
 		try {
 			if (checktable.equals("existed")) {
-				sql = "select id, module, createdUserId, createdDate, updateddate from " + tableName;
+				if (required.equals("moduleonly")) {
+					sql = "select  distinct(module) from " + tableName;
 
-				st = con.createStatement();
-				rs = st.executeQuery(sql);
+					st = con.createStatement();
+					rs = st.executeQuery(sql);
 
-				while (rs.next()) {
-					ModulesBinaryTrade mbt = new ModulesBinaryTrade();
-					mbt.setId(rs.getString(1));
-					mbt.setModulename(rs.getString(2));
-					mbt.setUserid(rs.getString(3));
-					mbt.setCreateddate(rs.getString(4));
-					mbt.setUpdateddate(rs.getString(5));
+					while (rs.next()) {
+						ModulesBinaryTrade mbt = new ModulesBinaryTrade();
+						mbt.setModulename(rs.getString(1));
 
-					mb.add(mbt);
+						mb.add(mbt);
+					}
+					rs.close();
+					st.close();
+				} else {
+					sql = "select id, module, createdUserId, createdDate, updateddate from " + tableName;
+
+					st = con.createStatement();
+					rs = st.executeQuery(sql);
+
+					while (rs.next()) {
+						ModulesBinaryTrade mbt = new ModulesBinaryTrade();
+						mbt.setId(rs.getString(1));
+						mbt.setModulename(rs.getString(2));
+						mbt.setUserid(rs.getString(3));
+						mbt.setCreateddate(rs.getString(4));
+						mbt.setUpdateddate(rs.getString(5));
+
+						mb.add(mbt);
+					}
+					rs.close();
+					st.close();
 				}
-
-				rs.close();
-				st.close();
 			} else {
 				mb = null;
 			}
-
 		} catch (Exception e) {
 			mb = null;
 		}
@@ -1657,7 +1673,7 @@ public class DAO {
 							+ "on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
 							+ release + "' and DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= '" + startdate
 							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') " + "<= '" + enddate
-							+ "' and tc.status = 1 group by tc.id ) result group by tcname";
+							+ "' and tc.status = 1 group by tc.id ) result group by tcname, cycle, tsname";
 				} else {
 					sql = "select id, (select module from modules where id = moduleid)as modulename, tsname, tcname, testcondition, sqlscript, executioncount, "
 							+ "passcount, failcount, (select userId from users where id = executeduserid)as executedby, (select userId from users where "
@@ -1688,7 +1704,7 @@ public class DAO {
 
 				while (rs.next()) {
 					FieldtoFieldBinaryTrade ftfb = new FieldtoFieldBinaryTrade();
-					ftfb.setId(rs.getString(1));
+					ftfb.setId(rs.getString(1)); // testcaseID
 					ftfb.setModulename(rs.getString(2));
 					ftfb.setTsname(rs.getString(3));
 					ftfb.setTcname(rs.getString(4));
@@ -1712,6 +1728,82 @@ public class DAO {
 						ftfb.setTestsuitename(rs.getString(21));
 						ftfb.setTestsuiteid(rs.getString(22));
 					}
+
+					ff.add(ftfb);
+				}
+
+				rs.close();
+				st.close();
+			} else {
+				ff = null;
+			}
+
+		} catch (Exception e) {
+			ff = null;
+			e.printStackTrace();
+		}
+		return ff;
+	}
+
+	public ArrayList<FieldtoFieldBinaryTrade> getScriptsforFieldonDash(String tableName, String release, String cycle,
+			String testsuite) {
+
+		ArrayList<FieldtoFieldBinaryTrade> ff = new ArrayList<FieldtoFieldBinaryTrade>();
+		String checktable = isTableAlreadyExisted(tableName);
+		try {
+			if (checktable.equals("existed")) {
+				if (release != null && cycle == null && testsuite == null) {
+					sql = "select testsuiteid, id, `release`, `cycle`,  sqlscript from (select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.moduleid = "
+							+ "(select id from modules where module = tsd.selecteditems) where ts.`type` = 'modules' and ts.`release` = '"
+							+ release + "' and "
+							+ "tc.status = 1  group by tc.id union all select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.tsname = tsd.selecteditems "
+							+ "where ts.`type` = 'testscenario' and ts.`release` = '" + release
+							+ "' and tc.status = 1 group by tc.id union all "
+							+ "select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from testsuites ts join testsuitedetails tsd on "
+							+ "tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
+							+ release + "' "
+							+ "and tc.status = 1 group by tc.id ) result group by id, cycle, testsuiteid";
+				} else if (release != null && cycle != null && testsuite == null) {
+					sql = "select testsuiteid, id, `release`, `cycle`,  sqlscript from (select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.moduleid = "
+							+ "(select id from modules where module = tsd.selecteditems) where ts.`type` = 'modules' and ts.`release` = '"
+							+ release + "' and ts.`cycle` = '" + cycle
+							+ "' and tc.status = 1  group by tc.id union all select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.tsname = tsd.selecteditems "
+							+ "where ts.`type` = 'testscenario' and ts.`release` = '" + release + "' and ts.`cycle` = '"
+							+ cycle + "' and tc.status = 1 group by tc.id union all "
+							+ "select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from testsuites ts join testsuitedetails tsd on "
+							+ "tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
+							+ release + "' " + "and ts.`cycle` = '" + cycle
+							+ "' and tc.status = 1 group by tc.id ) result group by id, cycle, testsuiteid";
+				} else if (release != null && cycle != null && testsuite != null) {
+					sql = "select testsuiteid, id, `release`, `cycle`,  sqlscript from (select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.moduleid = "
+							+ "(select id from modules where module = tsd.selecteditems) where ts.`type` = 'modules' and ts.`release` = '"
+							+ release + "' and ts.`cycle` = '" + cycle + "' and ts.suitename = '" + testsuite + "' and "
+							+ " tc.status = 1  group by tc.id union all select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from "
+							+ "testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.tsname = tsd.selecteditems "
+							+ "where ts.`type` = 'testscenario' and ts.`release` = '" + release + "' and ts.`cycle` = '"
+							+ cycle + "' and ts.suitename = '" + testsuite
+							+ "' and tc.status = 1 group by tc.id union all "
+							+ "select ts.id as testsuiteid, tc.id, ts.release, ts.cycle, tc.sqlscript from testsuites ts join testsuitedetails tsd on "
+							+ "tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
+							+ release + "' " + "and ts.`cycle` = '" + cycle + "' and ts.suitename = '" + testsuite
+							+ "' and tc.status = 1 group by tc.id ) result group by id, cycle, testsuiteid";
+				}
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+
+				while (rs.next()) {
+					FieldtoFieldBinaryTrade ftfb = new FieldtoFieldBinaryTrade();
+					ftfb.setTestsuiteid(rs.getString(1));
+					ftfb.setId(rs.getString(2)); // tcID
+					ftfb.setRelease(rs.getString(3));
+					ftfb.setCycle(rs.getString(4));
+					ftfb.setSqlscript(rs.getString(5));
 
 					ff.add(ftfb);
 				}
@@ -1797,7 +1889,8 @@ public class DAO {
 	}
 
 	public String createresultstable(String tableName, long userId, String testcaseid, String message,
-			String queryresult, String status, int batchid, int testsuiteid, String releasename, String cyclename) {
+			String queryresult, String status, int batchid, int testsuiteid, String releasename, String cyclename,
+			int serverid) {
 
 		String returnValue = "failure";
 
@@ -1809,7 +1902,7 @@ public class DAO {
 				String createTabelSQL = "CREATE TABLE " + tableName
 						+ " (id bigint(255) NOT NULL auto_increment, batchid bigint(100) default 0, testsuiteid bigint(10) default 0, testcaseid bigint(20) not null, "
 						+ "message varchar(100) default Not Run, release varchar(200) default null, cycle varchar(200) default null,"
-						+ "queryresult varchar(100) default null, teststatus varchar(10) default null, executeduserid bigint(5) default null, "
+						+ "queryresult varchar(100) default null, teststatus varchar(10) default null, executeduserid bigint(5) default null, serverid int(10) default 1"
 						+ "createdDate datetime default CURRENT_TIMESTAMP, PRIMARY KEY (id))";
 
 				st = con.createStatement();
@@ -1817,12 +1910,12 @@ public class DAO {
 
 				if (isTableCreated == 0)
 					returnValue = insertresults(tableName, userId, testcaseid, message, queryresult, status, batchid,
-							testsuiteid, releasename, cyclename);
+							testsuiteid, releasename, cyclename, serverid);
 				else
 					returnValue = "failure";
 			} else if (checktable.equals("existed")) {
 				returnValue = insertresults(tableName, userId, testcaseid, message, queryresult, status, batchid,
-						testsuiteid, releasename, cyclename);
+						testsuiteid, releasename, cyclename, serverid);
 			} else {
 				returnValue = "failure";
 			}
@@ -1835,12 +1928,12 @@ public class DAO {
 	}
 
 	public String insertresults(String tableName, long userId, String testcaseid, String message, String queryresult,
-			String status, int batchid, int testsuiteid, String releasename, String cyclename) {
+			String status, int batchid, int testsuiteid, String releasename, String cyclename, int serverid) {
 		String result = "failure";
 		try {
 
 			sql = "insert into " + tableName
-					+ " (batchid, testsuiteid, testcaseid, message, queryresult, teststatus, executeduserid, `release`, `cycle`) values( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+					+ " (batchid, testsuiteid, testcaseid, message, queryresult, teststatus, executeduserid, `release`, `cycle`, serverid) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, batchid);
 			ps.setInt(2, testsuiteid);
@@ -1851,6 +1944,8 @@ public class DAO {
 			ps.setLong(7, userId);
 			ps.setString(8, releasename);
 			ps.setString(9, cyclename);
+			ps.setInt(10, serverid);
+
 			int status1 = ps.executeUpdate();
 			if (status1 == 1) {
 				result = "success";
@@ -1889,7 +1984,7 @@ public class DAO {
 	}
 
 	public ArrayList<String> getfieldresults(int batchid, int suiteid, int testcaseid, String columns, int countsize,
-			String testsuite) {
+			String testsuite, int serverid) {
 
 		ArrayList<String> reportsbean = new ArrayList<String>();
 		try {
@@ -1897,44 +1992,47 @@ public class DAO {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid "
 						+ " where fr.testsuiteid = (select id from testsuites where suitename = '" + testsuite
-						+ "') order by fr.batchid ";
+						+ "') and serverid = " + serverid + " order by fr.batchid ";
 			} else if (testsuite != null && batchid != 0 && suiteid == 0 && testcaseid == 0) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid "
 						+ " where fr.testsuiteid = (select id from testsuites where suitename = '" + testsuite
-						+ "') and fr.batchid = " + batchid + " order by fr.batchid ";
+						+ "') and fr.batchid = " + batchid + " and serverid = " + serverid + " order by fr.batchid ";
 			} else if (batchid != 0 && suiteid == 0 && testcaseid == 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid "
-						+ " where fr.batchid = " + batchid + " order by fr.batchid";
+						+ " where fr.batchid = " + batchid + " and serverid = " + serverid + " order by fr.batchid";
 			} else if (suiteid != 0 && batchid == 0 && testcaseid == 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid "
-						+ " where fr.testsuiteid = " + suiteid + " order by fr.testsuiteid";
+						+ " where fr.testsuiteid = " + suiteid + " and serverid = " + serverid
+						+ " order by fr.testsuiteid";
 			} else if (suiteid == 0 && batchid == 0 && testcaseid != 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid "
-						+ " where fr.testcaseid = " + testcaseid + " order by fr.testcaseid";
+						+ " where fr.testcaseid = " + testcaseid + " and serverid = " + serverid
+						+ " order by fr.testcaseid";
 			} else if (batchid != 0 && suiteid != 0 && testcaseid == 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid"
-						+ " where fr.batchid = " + batchid + " and fr.testsuiteid = " + suiteid
-						+ " order by fr.batchid, fr.testsuiteid";
+						+ " where fr.batchid = " + batchid + " and fr.testsuiteid = " + suiteid + " and serverid = "
+						+ serverid + " order by fr.batchid, fr.testsuiteid";
 			} else if (batchid != 0 && suiteid == 0 && testcaseid != 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid"
-						+ " where fr.batchid = " + batchid + " and fr.testcaseid = " + testcaseid
-						+ " order by fr.batchid, fr.testcaseid";
+						+ " where fr.batchid = " + batchid + " and fr.testcaseid = " + testcaseid + " and serverid = "
+						+ serverid + " order by fr.batchid, fr.testcaseid";
 			} else if (batchid == 0 && suiteid != 0 && testcaseid != 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid"
 						+ " where fr.testsuiteid = " + suiteid + " and fr.testcaseid = " + testcaseid
-						+ " order by fr.testsuiteid, fr.testcaseid";
+						+ " and serverid = " + serverid + " order by fr.testsuiteid, fr.testcaseid";
 			} else if (batchid != 0 && suiteid != 0 && testcaseid != 0 && testsuite == null) {
 				sql = "select " + columns
 						+ " from testcases tc join fieldresults fr on tc.id = fr.testcaseid join testsuites ts on ts.id = fr.testsuiteid"
 						+ " where fr.batchid = " + batchid + " and fr.testsuiteid = " + suiteid
-						+ " and fr.testcaseid = " + testcaseid + " order by fr.batchid, fr.testsuiteid, fr.testcaseid";
+						+ " and fr.testcaseid = " + testcaseid + " and serverid = " + serverid
+						+ " order by fr.batchid, fr.testsuiteid, fr.testcaseid";
 			}
 
 			st = con.createStatement();
@@ -2904,7 +3002,7 @@ public class DAO {
 		return value;
 	}
 
-	public String executecrrules(int id, int batchid, Long userid) {
+	public String executecrrules(int id, int batchid, Long userid, int serveriddefault) {
 		String result = "failure";
 		boolean finalresult = true;
 
@@ -2941,7 +3039,7 @@ public class DAO {
 						rs1 = st1.executeQuery(fsql);
 						while (rs1.next()) {
 							// Insert the result to crresults
-							sql = "insert into crresults (batchid, moduleid, ruleid, message, sourcecount, sourcecolvalue ) values( ?, ?, ?, ?, ?, ?)";
+							sql = "insert into crresults (batchid, moduleid, ruleid, message, sourcecount, sourcecolvalue, serverid ) values( ?, ?, ?, ?, ?, ?, ?)";
 							ps = con.prepareStatement(sql);
 							ps.setInt(1, batchid);
 							ps.setString(2, rs.getString(2));
@@ -2949,6 +3047,7 @@ public class DAO {
 							ps.setString(4, "Run Successful");
 							ps.setString(5, rs1.getString(1));
 							ps.setString(6, rs1.getString(2));
+							ps.setInt(7, serveriddefault);
 
 							ps.executeUpdate();
 							ps.close();
@@ -3312,18 +3411,19 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<String> getcrresults(int batchid, int moduleid, String columns, int countsize) {
+	public ArrayList<String> getcrresults(int batchid, int moduleid, String columns, int countsize, int serverid) {
 
 		ArrayList<String> reportsbean = new ArrayList<String>();
 		try {
 			if (batchid != 0 && moduleid == 0) {
-				sql = "select " + columns + " from crresults where batchid = " + batchid + " order by moduleid, ruleid";
+				sql = "select " + columns + " from crresults where batchid = " + batchid + " and serverid = " + serverid
+						+ " order by moduleid, ruleid";
 			} else if (batchid == 0 && moduleid != 0) {
-				sql = "select " + columns + " from crresults where moduleid = " + moduleid
-						+ " order by batchid desc, ruleid";
+				sql = "select " + columns + " from crresults where moduleid = " + moduleid + " and serverid = "
+						+ serverid + " order by batchid desc, ruleid";
 			} else if (batchid != 0 && moduleid != 0) {
 				sql = "select " + columns + " from crresults where batchid = " + batchid + " and moduleid = " + moduleid
-						+ " order by moduleid, ruleid";
+						+ " and serverid = " + serverid + " order by moduleid, ruleid";
 			}
 
 			st = con.createStatement();
@@ -3344,12 +3444,13 @@ public class DAO {
 		return reportsbean;
 	}
 
-	public ArrayList<String> getbatchids(String tablename) {
+	public ArrayList<String> getbatchids(String tablename, int serverid) {
 		ArrayList<String> returnvalue = new ArrayList<>();
 		String checktable = isTableAlreadyExisted(tablename);
 		try {
 			if (checktable.equals("existed")) {
-				sql = "select distinct(batchid) from " + tablename + " order by batchid desc";
+				sql = "select distinct(batchid) from " + tablename + " where serverid = " + serverid
+						+ " order by batchid desc";
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
 				while (rs.next()) {
@@ -3419,13 +3520,13 @@ public class DAO {
 		return returnvalue;
 	}
 
-	public ArrayList<String> getbatchids1(String testsuitename) {
+	public ArrayList<String> getbatchids1(String testsuitename, int serverid) {
 		ArrayList<String> returnvalue = new ArrayList<>();
 		String checktable = isTableAlreadyExisted("fieldresults");
 		try {
 			if (checktable.equals("existed")) {
 				sql = "select distinct(batchid) from fieldresults where testsuiteid = (select id from testsuites where suitename = '"
-						+ testsuitename + "') order by batchid desc";
+						+ testsuitename + "') and serverid = " + serverid + " order by batchid desc";
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
 				while (rs.next()) {
@@ -3537,7 +3638,105 @@ public class DAO {
 			userlist = null;
 			e.printStackTrace();
 		}
-
 		return userlist;
+	}
+
+	public ArrayList<TestSuite> gettestsuitespercentage(String tablename, int batchid) {
+		ArrayList<TestSuite> suites = new ArrayList<TestSuite>();
+		String checktable = isTableAlreadyExisted(tablename);
+		if (checktable.equals("existed")) {
+			try {
+				sql = "select TRUNCATE((((select count(1) from fieldresults where batchid = " + batchid
+						+ " and teststatus = 'fail') / (select count(1) from fieldresults where batchid = " + batchid
+						+ ") ) * 100),2)as failper, TRUNCATE((((select count(1) from fieldresults where batchid = "
+						+ batchid + " and teststatus = 'pass')/ (select count(1) from fieldresults where batchid = "
+						+ batchid + ") ) *100),2) as passper, ts.suitename "
+						+ "from fieldresults fr join testsuites ts on fr.testsuiteid = ts.id " + "where batchid = "
+						+ batchid + " group by fr.`release`, fr.cycle, fr.testsuiteid";
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					// here i am getting pass and fail percentage
+					TestSuite testSuite = new TestSuite();
+					testSuite.setTsname(rs.getString(3));
+					testSuite.setPass(rs.getInt(2)); // pass
+					testSuite.setFail(rs.getInt(1)); // fail
+
+					suites.add(testSuite);
+				}
+				rs.close();
+				st.close();
+
+			} catch (Exception e) {
+			}
+		}
+		return suites;
+	}
+
+	public ArrayList<ControlReportExecutionBinaryTrade> getruleidonly(String name, int type) {
+		String checktable2 = isTableAlreadyExisted("controlreportrules");
+		ArrayList<ControlReportExecutionBinaryTrade> crbt = new ArrayList<ControlReportExecutionBinaryTrade>();
+		try {
+			if (checktable2.equals("existed")) {
+				if (type == 1) {// GetRuleIDusingModule
+					sql = "select id from controlreportrules where module = '" + name + "'";
+				} else if (type == 2) {// GetRuleIDusingRulename
+					sql = "select id from controlreportrules where rulename = '" + name + "'";
+				}
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+
+				while (rs.next()) {
+					ControlReportExecutionBinaryTrade cr = new ControlReportExecutionBinaryTrade();
+					cr.setId(rs.getString(1));
+
+					crbt.add(cr);
+				}
+				rs.close();
+				st.close();
+
+			} else {
+				crbt = null;
+			}
+
+		} catch (Exception e) {
+			crbt = null;
+			e.printStackTrace();
+		}
+		return crbt;
+	}
+
+	public ArrayList<Rule> getRulesPercentage(String tablename, int batchid) {
+		ArrayList<Rule> rules = new ArrayList<Rule>();
+		String checktable = isTableAlreadyExisted(tablename);
+		if (checktable.equals("existed")) {
+			try {
+				sql = "select TRUNCATE((((select count(1) from crresults where batchid = '" + batchid
+						+ "' and result = 'Passed') / (select count(1) from crresults where batchid = " + batchid
+						+ ") ) * 100),2)as passper, " + "TRUNCATE((((select count(1) from crresults where batchid = '"
+						+ batchid + "' and result = 'Failed')/ (select count(1) from crresults where batchid = "
+						+ batchid + ") ) *100),2) as failper, crr.rulename "
+						+ "from crresults cr join controlreportrules crr on cr.ruleid = crr.id where cr.batchid = '"
+						+ batchid + "' group by cr.moduleid, cr.ruleid";
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					Rule rule = new Rule();
+					rule.setPass(rs.getInt(1));
+					rule.setFail(rs.getInt(2));
+					rule.setRulename(rs.getString(3));
+
+					rules.add(rule);
+				}
+				rs.close();
+				st.close();
+
+			} catch (Exception e) {
+			}
+		}
+		return rules;
 	}
 }

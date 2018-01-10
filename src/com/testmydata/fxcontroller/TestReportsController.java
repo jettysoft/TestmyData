@@ -11,6 +11,7 @@ import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.dao.DAO;
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
+import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 
 import javafx.application.Platform;
@@ -506,9 +507,9 @@ public class TestReportsController implements Initializable {
 		}
 
 		if (type.equals("Test Suite")) {
-			batchidlist = new DAO().getbatchids("fieldresults");
+			batchidlist = new DAO().getbatchids("fieldresults", QADefaultServerDetails.id);
 		} else if (type.equals("Control Reports")) {
-			batchidlist = new DAO().getbatchids("crresults");
+			batchidlist = new DAO().getbatchids("crresults", QADefaultServerDetails.id);
 		}
 
 		if (batchidlist != null && batchidlist.size() > 0) {
@@ -572,7 +573,7 @@ public class TestReportsController implements Initializable {
 		if (batchidlist1 != null && batchidlist1.size() > 0) {
 			batchidlist1.clear();
 		}
-		batchidlist1 = new DAO().getbatchids1(type);
+		batchidlist1 = new DAO().getbatchids1(type, QADefaultServerDetails.id);
 
 		if (batchidlist1 != null && batchidlist1.size() > 0) {
 			for (int i = 0; i < batchidlist1.size(); i++) {
@@ -849,7 +850,8 @@ public class TestReportsController implements Initializable {
 											"Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
-													0, fieldreplacer(), reportfieldcolumnlist.size(), null));
+													0, fieldreplacer(), reportfieldcolumnlist.size(), null,
+													QADefaultServerDetails.id));
 								} else if (downloadno == 2) {
 									String[] select = testormoduleid.getSelectionModel().getSelectedItem().split("-");
 									rd.download("Test Suite",
@@ -858,14 +860,15 @@ public class TestReportsController implements Initializable {
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
 													Integer.parseInt(select[0]), fieldreplacer(),
-													reportfieldcolumnlist.size(), null));
+													reportfieldcolumnlist.size(), null, QADefaultServerDetails.id));
 								} else if (downloadno == 3) {
 									rd.download("Control Report",
 											Integer.parseInt(batchid.getSelectionModel().getSelectedItem()),
 											"Reports/ControlReport/PDF", "pdf", reportCRcolumnlist,
 											new DAO().getcrresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
-													CRreplacer(), reportCRcolumnlist.size()));
+													CRreplacer(), reportCRcolumnlist.size(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 4) {
 									String[] select = testormoduleid.getSelectionModel().getSelectedItem().split("-");
 									rd.download("Control Report",
@@ -874,14 +877,15 @@ public class TestReportsController implements Initializable {
 											new DAO().getcrresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()),
 													Integer.parseInt(select[0]), CRreplacer(),
-													reportCRcolumnlist.size()));
+													reportCRcolumnlist.size(), QADefaultServerDetails.id));
 								} else if (downloadno == 5) {
 									rd.download("Test Suite",
 											Integer.parseInt(batchid.getSelectionModel().getSelectedItem()),
 											"Reports/TestSuites/Excel", "excel", reportfieldcolumnlist,
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
-													0, fieldreplacer(), reportfieldcolumnlist.size(), null));
+													0, fieldreplacer(), reportfieldcolumnlist.size(), null,
+													QADefaultServerDetails.id));
 								} else if (downloadno == 6) {
 									String[] select = testormoduleid.getSelectionModel().getSelectedItem().split("-");
 									rd.download("Test Suite",
@@ -890,14 +894,15 @@ public class TestReportsController implements Initializable {
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
 													Integer.parseInt(select[0]), fieldreplacer(),
-													reportfieldcolumnlist.size(), null));
+													reportfieldcolumnlist.size(), null, QADefaultServerDetails.id));
 								} else if (downloadno == 7) {
 									rd.download("Control Report",
 											Integer.parseInt(batchid.getSelectionModel().getSelectedItem()),
 											"Reports/ControlReport/Excel", "excel", reportCRcolumnlist,
 											new DAO().getcrresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()), 0,
-													CRreplacer(), reportCRcolumnlist.size()));
+													CRreplacer(), reportCRcolumnlist.size(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 8) {
 									String[] select = testormoduleid.getSelectionModel().getSelectedItem().split("-");
 									rd.download("Control Report",
@@ -906,14 +911,15 @@ public class TestReportsController implements Initializable {
 											new DAO().getcrresults(
 													Integer.parseInt(batchid.getSelectionModel().getSelectedItem()),
 													Integer.parseInt(select[0]), CRreplacer(),
-													reportCRcolumnlist.size()));
+													reportCRcolumnlist.size(), QADefaultServerDetails.id));
 								} else if (downloadno == 9) {
 									rd.download("Test Suite",
 											Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()),
 											"Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getfieldresults(0, 0, 0, fieldreplacer(),
 													reportfieldcolumnlist.size(),
-													testtype1.getSelectionModel().getSelectedItem()));
+													testtype1.getSelectionModel().getSelectedItem(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 10) {
 									rd.download("Test Suite",
 											Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()),
@@ -921,14 +927,16 @@ public class TestReportsController implements Initializable {
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()), 0,
 													0, fieldreplacer(), reportfieldcolumnlist.size(),
-													testtype1.getSelectionModel().getSelectedItem()));
+													testtype1.getSelectionModel().getSelectedItem(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 11) {
 									rd.download("Test Suite",
 											Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()),
 											"Reports/TestSuites/Excel", "excel", reportfieldcolumnlist,
 											new DAO().getfieldresults(0, 0, 0, fieldreplacer(),
 													reportfieldcolumnlist.size(),
-													testtype1.getSelectionModel().getSelectedItem()));
+													testtype1.getSelectionModel().getSelectedItem(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 12) {
 									rd.download("Test Suite",
 											Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()),
@@ -936,7 +944,8 @@ public class TestReportsController implements Initializable {
 											new DAO().getfieldresults(
 													Integer.parseInt(batchid1.getSelectionModel().getSelectedItem()), 0,
 													0, fieldreplacer(), reportfieldcolumnlist.size(),
-													testtype1.getSelectionModel().getSelectedItem()));
+													testtype1.getSelectionModel().getSelectedItem(),
+													QADefaultServerDetails.id));
 								} else if (downloadno == 13) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),

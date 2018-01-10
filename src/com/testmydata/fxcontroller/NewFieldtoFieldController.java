@@ -240,7 +240,7 @@ public class NewFieldtoFieldController implements Initializable {
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("QA Modules");
 		modulecombo.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules");
+		moduleslist = new DAO().getModuleDetails("modules", "all");
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulecombo.getItems().add(moduleslist.get(i).getModulename());

@@ -1,5 +1,6 @@
 package com.testmydata.fxcontroller;
 
+import com.testmydata.dashboardfunction.FieldtoFieldExecutionServices;
 import com.testmydata.util.QADefaultServerDetails;
 
 public class InvoiceStaticHelper {
@@ -7,6 +8,7 @@ public class InvoiceStaticHelper {
 	public static DashBoardController dash = null;
 	public static NewControlReportRulesController newcrs = null;
 	public static QADefaultServerDetails qasd = null;
+	public static FieldtoFieldExecutionServices ffes = null;
 
 	public static void setDash(DashBoardController dash) {
 		InvoiceStaticHelper.dash = dash;
@@ -20,4 +22,7 @@ public class InvoiceStaticHelper {
 		InvoiceStaticHelper.qasd = qas;
 	}
 
+	public static void setffes(FieldtoFieldExecutionServices ffesc) {
+		InvoiceStaticHelper.ffes = ffesc;
+	}
 }
