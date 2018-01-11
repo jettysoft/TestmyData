@@ -44,10 +44,7 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="69.0" prefHeight="107.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="69.0">
-         <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
-         </effect>
+      <AnchorPane layoutX="20.0" layoutY="69.0" prefHeight="107.0" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-width: 2;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="69.0">
          <children>
             <JFXComboBox fx:id="usercombo" focusColor="#40aa03" labelFloat="true" layoutX="25.0" layoutY="37.0" prefWidth="300.0" unFocusColor="#f8340d" AnchorPane.leftAnchor="25.0" />
             <JFXCheckBox fx:id="activatecheck" checkedColor="#40aa03" layoutX="14.0" layoutY="71.0" text="Activate User" textFill="#40aa03" unCheckedColor="#dad8d8" visible="false">
@@ -61,6 +58,9 @@
                </cursor>
             </JFXCheckBox>
          </children>
+         <effect>
+            <InnerShadow color="#bdbdbd" height="40.02" radius="17.47" width="31.86" />
+         </effect>
       </AnchorPane>
       <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="49.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40aa03;" text="Current Users" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="56.0">
          <ripplerFill>
@@ -75,9 +75,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane layoutX="20.0" layoutY="199.0" prefHeight="391.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="199.0">
+      <AnchorPane layoutX="20.0" layoutY="199.0" prefHeight="391.0" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-width: 2;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="199.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow color="#bdbdbd" height="40.02" radius="17.47" width="31.86" />
          </effect>
          <children>
             <JFXTextField fx:id="firstnametext" labelFloat="true" layoutX="15.0" layoutY="47.0" prefWidth="300.0" promptText="Enter First Name" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0">
@@ -139,9 +139,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="517.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="69.0">
+      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="517.0" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="69.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXCheckBox fx:id="newcrcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="49.0" text="New Control Report" unCheckedColor="#dad8d8">
@@ -200,9 +200,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="800.0" layoutY="69.0" prefHeight="521.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="69.0">
+      <AnchorPane layoutX="800.0" layoutY="69.0" prefHeight="521.0" prefWidth="350.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="69.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXTextField fx:id="usernametext" labelFloat="true" layoutX="40.0" layoutY="46.0" prefWidth="300.0" promptText="Enter Username" unFocusColor="#40aa03" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="47.0">

@@ -39,9 +39,9 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="59.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="59.0">
+      <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="59.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="59.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXComboBox fx:id="testtype" focusColor="#0083ff" labelFloat="true" layoutX="38.0" layoutY="40.0" prefWidth="180.0" unFocusColor="#40aa03" />
@@ -99,9 +99,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="199.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="199.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXComboBox fx:id="testtype1" focusColor="#0083ff" labelFloat="true" layoutX="38.0" layoutY="40.0" prefWidth="180.0" unFocusColor="#40aa03" />
@@ -145,9 +145,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane fx:id="selectionanchor11" layoutX="20.0" layoutY="349.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane fx:id="selectionanchor11" layoutX="20.0" layoutY="349.0" prefHeight="100.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXComboBox fx:id="releasecombo" focusColor="#0083ff" labelFloat="true" layoutX="38.0" layoutY="40.0" prefWidth="180.0" unFocusColor="#40aa03" />

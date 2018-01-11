@@ -226,7 +226,7 @@
                   </Label>
                </children>
                <effect>
-                  <InnerShadow color="#cdcdc4" />
+                  <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
             <AnchorPane fx:id="resultspane" layoutX="406.0" layoutY="16.0" prefHeight="551.0" prefWidth="386.0" style="-fx-border-color: #F0F0F0; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="10.0">
@@ -240,12 +240,12 @@
                   </Label>
                </children>
                <effect>
-                  <InnerShadow color="#cdcdc4" />
+                  <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
             <AnchorPane fx:id="chartspane" layoutX="802.0" layoutY="26.0" prefHeight="551.0" prefWidth="386.0" style="-fx-border-color: #F0F0F0; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="10.0">
                <effect>
-                  <InnerShadow color="#cdcdc4" />
+                  <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
          </children>
