@@ -44,9 +44,9 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="30.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
+      <AnchorPane layoutX="30.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXTextField fx:id="fhosttext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" AnchorPane.leftAnchor="15.0">
@@ -125,9 +125,9 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
+      <AnchorPane layoutX="410.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXTextField fx:id="modulenametext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Module Name" AnchorPane.leftAnchor="15.0">

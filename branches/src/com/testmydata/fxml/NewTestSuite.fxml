@@ -42,9 +42,9 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="64.0" prefHeight="200.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane layoutX="20.0" layoutY="64.0" prefHeight="200.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXTextField fx:id="relasetext" focusColor="#0d96f1" labelFloat="true" layoutX="30.0" layoutY="40.0" prefWidth="200.0" promptText="Specify Release">

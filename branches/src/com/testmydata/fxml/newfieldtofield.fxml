@@ -45,9 +45,9 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="59.0" prefHeight="310.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <AnchorPane layoutX="20.0" layoutY="59.0" prefHeight="310.0" prefWidth="1143.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <effect>
-            <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+            <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
             <JFXButton fx:id="save" buttonType="RAISED" layoutX="1055.0" layoutY="238.0" onAction="#save" prefWidth="90.0" style="-fx-background-color: #40aa03;" text="Save" textFill="WHITE" AnchorPane.rightAnchor="10.0">
@@ -71,9 +71,9 @@
                   <Font size="13.0" />
                </font>
             </JFXTextArea>
-            <AnchorPane layoutX="370.0" prefHeight="100.0" prefWidth="350.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="35.0">
+            <AnchorPane layoutX="370.0" prefHeight="100.0" prefWidth="350.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="35.0">
                <effect>
-                  <InnerShadow blurType="THREE_PASS_BOX" color="#cdcdc4" height="20.0" radius="9.5" width="20.0" />
+                  <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
                </effect>
             </AnchorPane>
             <JFXTextArea fx:id="sqlscripttextarea" focusColor="#40aa03" layoutX="400.0" layoutY="190.0" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; If count = 0 then PASS, if count &gt; 0 then FAIL)" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
