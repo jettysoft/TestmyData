@@ -231,7 +231,7 @@
             </AnchorPane>
             <AnchorPane fx:id="resultspane" layoutX="406.0" layoutY="16.0" prefHeight="551.0" prefWidth="386.0" style="-fx-border-color: #F0F0F0; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <JFXListView fx:id="list_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../../../../../../Downloads/etlreport/etlreport/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                  <JFXListView fx:id="list_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                   <JFXListView fx:id="list_control_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                   <Label fx:id="lbl_data_title" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="15.0" layoutY="5.0" prefHeight="30.0" prefWidth="358.0" style="-fx-background-color: #0033CC; -fx-background-radius: 1em; -fx-alignment: center;" textAlignment="CENTER" textFill="WHITE">
                      <font>
