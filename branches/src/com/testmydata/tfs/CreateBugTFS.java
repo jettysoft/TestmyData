@@ -1,0 +1,216 @@
+package com.testmydata.tfs;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.microsoft.tfs.core.TFSTeamProjectCollection;
+import com.microsoft.tfs.core.clients.workitem.CoreFieldReferenceNames;
+import com.microsoft.tfs.core.clients.workitem.NonCoreFieldsReferenceNames;
+import com.microsoft.tfs.core.clients.workitem.WorkItem;
+import com.microsoft.tfs.core.clients.workitem.files.Attachment;
+import com.microsoft.tfs.core.clients.workitem.files.AttachmentCollection;
+import com.microsoft.tfs.core.clients.workitem.files.AttachmentFactory;
+import com.microsoft.tfs.core.clients.workitem.project.Project;
+import com.microsoft.tfs.core.clients.workitem.wittype.WorkItemType;
+//import com.microsoft.tfs.core.clients.workitem.wittype.WorkItemType;
+import com.testmydata.dao.TFSAccess;
+import com.testmydata.tfs.jira.binarybeans.BugAttachmentsBeans;
+import com.testmydata.tfs.jira.binarybeans.BugFieldsBeans;
+
+public class CreateBugTFS {
+	public static void main(final String[] args) {
+		CreateBugTFS cfs = new CreateBugTFS();
+		// cfs.createTFSBug();
+		// cfs.addTFSattachment(new File(
+		// new
+		// File("C:/Users/jithendra.jetty/workspace/TestMyData/src/com/testmydata/fximages/testsuites.png")
+		// .getAbsolutePath()).getAbsoluteFile(),
+		// 30);
+		cfs.testgetmethod();
+		ProjectsTFS pfs = new ProjectsTFS();
+
+		UsersTFS usr = new UsersTFS();
+		for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
+			// usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
+		}
+		IterationTFS its = new IterationTFS();
+		// its.getiterations("BusinessStore_Desktop");
+	}
+
+	public void testgetmethod() {
+		ArrayList<BugFieldsBeans> buglist = new ArrayList<BugFieldsBeans>();
+		buglist = getBugFields(30);
+		System.out.println(buglist.get(0).getTitle());
+		System.out.println(buglist.get(0).getReprosteps().replaceAll("<br>", "\n"));
+	}
+
+	public void createTFSBug(String title, String assignedto, String areapath, String reprosteps, String createduser) {
+		try {
+			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+			tpc.authenticate();
+
+			final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+
+			// Find the work item type matching the specified name.
+			final WorkItemType bugWorkItemType = project.getWorkItemTypes().get("Bug"); //$NON-NLS-1$
+
+			// Create a new work item of the specified type.
+			final WorkItem newWorkItem = project.getWorkItemClient().newWorkItem(bugWorkItemType);
+			// final WorkItem newWorkItem =
+			// project.getWorkItemClient().getWorkItemByID(30);
+
+			// Set the title on the work item.
+			newWorkItem.setTitle(title); // $NON-NLS-1$
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.ASSIGNED_TO).setValue(assignedto);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).setValue("New");
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).setValue("New");
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(TFSAccess.PROJECT_NAME);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
+					.setValue("<p>Created from TestMyData by " + createduser + "</p>"); //$NON-NLS-1$
+			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
+
+			// Enumerate the work item types for this project.
+			// for (final FieldDefinition fieldDefinition :
+			// bugWorkItemType.getFieldDefinitions()) {
+			// System.out.println(fieldDefinition.getFieldType().getValue() +
+			// "[" + fieldDefinition.getName() + "]"); //$NON-NLS-1$
+			// // $NON-NLS-2$
+			// }
+
+			// final WorkItemClient workItemClient =
+			// project.getWorkItemClient();
+			// final WorkItemCollection workItems = workItemClient.query(
+			// "Select Id from
+			// Tfs_JettySoftCollection.dbo.tbl_WorkItemCoreLatest where
+			// (WorkItemType = 'Bug')");
+			// for (int i = 0; i < workItems.size(); i++) {
+			// final WorkItem workItem = workItems.getWorkItem(i);
+			// System.out.println(workItem.getID() + "\t" +
+			// workItem.getTitle()); //$NON-NLS-1$
+			// }
+
+			// Save the new work item to the server.
+			newWorkItem.save();
+
+			// System.out.println("Work item " + newWorkItem.getID() + "
+			// successfully created"); //$NON-NLS-1$ //$NON-NLS-2$
+
+			tpc.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateTFSBug(int bugid, String title, String assignedto, String state, String reason, String areapath,
+			String reprosteps, String updateduser) {
+		try {
+			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+			tpc.authenticate();
+
+			final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+
+			final WorkItem newWorkItem = project.getWorkItemClient().getWorkItemByID(bugid);
+
+			// Set the title on the work item.
+			newWorkItem.setTitle(title); // $NON-NLS-1$
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.ASSIGNED_TO).setValue(assignedto);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).setValue(state);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).setValue(reason);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(TFSAccess.PROJECT_NAME);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
+					.setValue("<p>Update from TestMyData by " + updateduser + "</p>"); //$NON-NLS-1$
+			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
+
+			// Save the new work item to the server.
+			newWorkItem.save();
+
+			tpc.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<BugFieldsBeans> getBugFields(int bugid) {
+		ArrayList<BugFieldsBeans> bugdetails = new ArrayList<BugFieldsBeans>();
+		try {
+			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+			tpc.authenticate();
+
+			final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+
+			final WorkItem newWorkItem = project.getWorkItemClient().getWorkItemByID(bugid);
+
+			BugFieldsBeans bfb = new BugFieldsBeans();
+			bfb.setTitle(newWorkItem.getTitle());
+			bfb.setAssignedto(
+					newWorkItem.getFields().getField(CoreFieldReferenceNames.ASSIGNED_TO).getValue().toString());
+			bfb.setState(newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).getValue().toString());
+			bfb.setReason(newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).getValue().toString());
+			bfb.setArea(newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).getValue().toString());
+			// bfb.setHistory(newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY).getValue().toString());
+			bfb.setReprosteps(
+					newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).getValue().toString());
+			// bfb.setBugattachmentsbeans(getTFSattachment(bugid));
+			bugdetails.add(bfb);
+
+			tpc.close();
+
+			return bugdetails;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void addTFSattachment(File attachment, int bugid) {
+		try {
+			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+			tpc.authenticate();
+
+			final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+
+			final WorkItem newWorkItem = project.getWorkItemClient().getWorkItemByID(bugid);
+			Attachment attach = AttachmentFactory.newAttachment(attachment, "");
+			newWorkItem.getAttachments().add(attach);
+
+			// Save the new work item to the server.
+			newWorkItem.save();
+
+			tpc.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public BugAttachmentsBeans[] getTFSattachment(int bugid) {
+		BugAttachmentsBeans[] bab = new BugAttachmentsBeans[0];
+		try {
+			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+			tpc.authenticate();
+
+			final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+
+			final WorkItem newWorkItem = project.getWorkItemClient().getWorkItemByID(bugid);
+			AttachmentCollection attach = newWorkItem.getAttachments();
+			Iterator<Attachment> iterator = attach.iterator();
+
+			bab = new BugAttachmentsBeans[attach.size()];
+			for (int i = 0; i < attach.size(); i++) {
+				BugAttachmentsBeans ba = new BugAttachmentsBeans();
+				Attachment attach1 = iterator.next();
+				File temp = new File("");
+				attach1.downloadTo(temp);
+				ba.setAttachment(temp);
+				bab[i] = ba;
+			}
+
+			tpc.close();
+			return bab;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+}
