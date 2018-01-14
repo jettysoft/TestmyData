@@ -17,6 +17,7 @@ import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -63,6 +64,10 @@ public class ExecuteTestSuiteController implements Initializable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		processicon.setImage(StaticImages.source_run.getImage());
+		excelicon.setImage(StaticImages.excelicon.getImage());
+		pdficon.setImage(StaticImages.pdficon.getImage());
 
 		tstable.getColumns().addAll(checkbox);
 		checkbox.setCellValueFactory(new PropertyValueFactory<>("checkboxs"));

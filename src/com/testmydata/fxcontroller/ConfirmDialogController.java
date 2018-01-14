@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.testmydata.util.CommonFunctions;
+import com.testmydata.util.StaticImages;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -20,6 +22,8 @@ public class ConfirmDialogController implements Initializable {
 	private Label detailsLabel, headerLabel;
 	@FXML
 	private Button yes, cancel;
+	@FXML
+	private ImageView exiticon;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -27,6 +31,8 @@ public class ConfirmDialogController implements Initializable {
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+
+		exiticon.setImage(StaticImages.exit_confirm.getImage());
 
 		headerLabel.setEffect(ds);
 		yes.setEffect(ds);

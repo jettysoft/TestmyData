@@ -12,6 +12,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.StaticImages;
 import com.testmydata.vpn.VpnConnectionThread;
 
 import javafx.application.Platform;
@@ -57,6 +58,14 @@ public class ChangePasswordController implements Initializable {
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 		changepasswordlabel.setEffect(ds);
 		update.setEffect(ds);
+
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		wrongtick.setImage(StaticImages.wrong_tick.getImage());
+		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
+		wrongtick2.setImage(StaticImages.wrong_tick.getImage());
+		greentick.setImage(StaticImages.green_tick.getImage());
+		greentick1.setImage(StaticImages.green_tick.getImage());
+		greentick2.setImage(StaticImages.green_tick.getImage());
 
 		oldPasswordField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (oldPasswordField.getText() != null && !oldPasswordField.getText().trim().isEmpty()

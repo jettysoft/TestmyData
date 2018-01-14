@@ -10,7 +10,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -19,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.RegistrationController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="1200.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="registerlabel" alignment="CENTER" contentDisplay="CENTER" layoutX="535.0" layoutY="7.0" text="Registration" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
                <font>
@@ -118,26 +117,10 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </JFXPasswordField>
-            <ImageView fx:id="greentick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/tick_green.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="wrongtick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="wrongtick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="greentick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/tick_green.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="greentick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="wrongtick" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="wrongtick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="greentick2" fitHeight="20.0" fitWidth="20.0" layoutX="325.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" visible="false" />
             <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT" layoutX="307.0" layoutY="70.0" size="18" />
             <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT_OUTLINE" layoutX="307.0" layoutY="120.0" size="18" />
             <MaterialDesignIconView fill="#40aa03" glyphName="ACCOUNT_OUTLINE" layoutX="307.0" layoutY="170.0" size="18" />
@@ -213,16 +196,8 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <ImageView fx:id="greentick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/tick_green.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="wrongtick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="greentick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+            <ImageView fx:id="wrongtick3" fitHeight="20.0" fitWidth="20.0" layoutX="322.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" visible="false" />
             <FontAwesomeIconView fill="#40aa03" glyphName="ENVELOPE" layoutX="300.0" layoutY="70.0" size="15" AnchorPane.rightAnchor="35.0" />
             <MaterialDesignIconView fill="#ff3300" glyphName="ACCOUNT_KEY" layoutX="297.0" layoutY="200.0" size="18" AnchorPane.rightAnchor="35.0" />
             <FontAwesomeIconView fill="#40aa03" glyphName="QUESTION" layoutX="301.8571424484253" layoutY="150.0" size="18" AnchorPane.rightAnchor="37.85714340209961" />

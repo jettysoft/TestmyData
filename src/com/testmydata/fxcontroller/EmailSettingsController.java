@@ -17,6 +17,7 @@ import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.EncryptAndDecrypt;
 import com.testmydata.util.FileIOOperations;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.StaticImages;
 import com.testmydata.util.ValidateRealEmail;
 
 import javafx.beans.value.ChangeListener;
@@ -56,6 +57,7 @@ public class EmailSettingsController implements Initializable {
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 		emaillabel.setEffect(ds);
+		homeicon.setImage(StaticImages.homeicon.getImage());
 
 		passTxt.focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override

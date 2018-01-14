@@ -13,6 +13,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -58,6 +59,17 @@ public class TestReportsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		excelicon.setImage(StaticImages.excelicon.getImage());
+		pdficon.setImage(StaticImages.pdficon.getImage());
+		runicon.setImage(StaticImages.source_run.getImage());
+		excelicon1.setImage(StaticImages.excelicon.getImage());
+		pdficon1.setImage(StaticImages.pdficon.getImage());
+		runicon1.setImage(StaticImages.source_run.getImage());
+		excelicon11.setImage(StaticImages.excelicon.getImage());
+		pdficon11.setImage(StaticImages.pdficon.getImage());
+		runicon11.setImage(StaticImages.source_run.getImage());
+
 		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
 
 		testtype.getItems().clear();

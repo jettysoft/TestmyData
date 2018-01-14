@@ -46,7 +46,7 @@ public class WelcomePageFXHelper {
 		String Screenpath = "";
 
 		if (sname.equalsIgnoreCase("homepage")) {
-			Screenpath = "/com/testmydata/fxml/HomePage.fxml";
+			Screenpath = "/com/testmydata/fxmlnew/HomePage.fxml";
 		} else if (sname.equalsIgnoreCase("registration")) {
 			Screenpath = "/com/testmydata/fxml/Registration.fxml";
 		}

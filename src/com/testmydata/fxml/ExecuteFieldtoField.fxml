@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -20,12 +19,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ExecuteFieldtoFieldController">
    <children>
-      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -53,9 +49,6 @@
             <JFXComboBox fx:id="cyclecombo" focusColor="#0083ff" labelFloat="true" layoutX="240.0" layoutY="40.0" prefWidth="200.0" unFocusColor="#7c04c6" AnchorPane.leftAnchor="240.0" />
             <JFXComboBox fx:id="tscombo" focusColor="#0083ff" labelFloat="true" layoutX="460.0" layoutY="40.0" prefWidth="200.0" unFocusColor="#0083ff" />
             <ImageView fx:id="runicon" fitHeight="25.0" fitWidth="25.0" layoutX="670.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/run.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -76,34 +69,22 @@
                </font>
             </JFXTextField>
             <JFXTextField fx:id="statustext" editable="false" focusColor="WHITE" layoutX="620.0" layoutY="70.0" prefWidth="300.0" unFocusColor="WHITE" />
-            <ImageView fx:id="excelicon" fitHeight="25.0" fitWidth="25.0" layoutX="1100.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/excel.png" />
-               </image>
+            <ImageView fx:id="excelicon" fitHeight="25.0" fitWidth="25.0" layoutX="1100.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="pdficon" fitHeight="23.0" fitWidth="25.0" layoutX="1130.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/pdf.png" />
-               </image>
+            <ImageView fx:id="pdficon" fitHeight="23.0" fitWidth="25.0" layoutX="1130.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="processicon" fitHeight="25.0" fitWidth="25.0" layoutX="709.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="/com/testmydata/fximages/processing.gif" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="searchicon" fitHeight="25.0" fitWidth="25.0" layoutX="970.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="20.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/search.png" />
-               </image>
+            <ImageView fx:id="searchicon" fitHeight="25.0" fitWidth="25.0" layoutX="970.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -156,9 +137,6 @@
                </font>
             </JFXTextField>
             <ImageView fx:id="closeicon" fitHeight="25.0" fitWidth="25.0" layoutX="1044.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

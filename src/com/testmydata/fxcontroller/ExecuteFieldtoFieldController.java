@@ -21,6 +21,7 @@ import com.testmydata.util.CustomComparator;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -80,8 +81,14 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setreleasecombo();
-
 		setdatesinitially();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		runicon.setImage(StaticImages.source_execute.getImage());
+		processicon.setImage(StaticImages.source_run.getImage());
+		pdficon.setImage(StaticImages.pdficon.getImage());
+		excelicon.setImage(StaticImages.excelicon.getImage());
+		closeicon.setImage(StaticImages.wrong_tick.getImage());
+		searchicon.setImage(StaticImages.searchicon.getImage());
 
 		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
 		Label lbl = new Label("    Execute");

@@ -20,6 +20,7 @@ import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.EncryptAndDecrypt;
 import com.testmydata.util.QADefaultServerDetails;
+import com.testmydata.util.StaticImages;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -65,6 +66,9 @@ public class QAServerSettingsController implements Initializable {
 
 		setexistingservers();
 		setexistingmodules();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		greentick1.setImage(StaticImages.green_tick.getImage());
+		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
 
 		fexistingservercombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override

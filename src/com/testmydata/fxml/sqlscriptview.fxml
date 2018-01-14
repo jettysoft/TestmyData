@@ -2,19 +2,14 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ShowSqlScriptController">
    <children>
       <ImageView fx:id="closeicon" fitHeight="25.0" fitWidth="25.0" layoutX="525.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-         <image>
-            <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-         </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

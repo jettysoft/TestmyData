@@ -12,7 +12,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -21,12 +20,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewFieldtoFieldController">
    <children>
-      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -76,7 +72,7 @@
                   <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
                </effect>
             </AnchorPane>
-            <JFXTextArea fx:id="sqlscripttextarea" focusColor="#40aa03" layoutX="400.0" layoutY="190.0" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; If count = 0 then PASS, if count &gt; 0 then FAIL)" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
+            <JFXTextArea fx:id="sqlscripttextarea" focusColor="#40aa03" layoutX="400.0" layoutY="190.0" prefHeight="95.0" prefWidth="300.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -92,9 +88,6 @@
                </font>
             </JFXButton>
             <ImageView fx:id="searchicon" fitHeight="25.0" fitWidth="25.0" layoutX="970.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/search.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -144,15 +137,12 @@
                </font>
             </JFXTextField>
             <ImageView fx:id="closeicon" fitHeight="25.0" fitWidth="25.0" layoutX="1044.0" layoutY="-44.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <FontAwesomeIconView fill="#f8340d" glyphName="SEARCH" layoutX="1125.7142868041992" layoutY="127.0" size="15" AnchorPane.rightAnchor="20.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="621.0" layoutY="10.0" text="Filter Test Cases" textFill="#0033cc" underline="true" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="621.0" layoutY="10.0" text="Filter Test Cases" textFill="#162a4c" underline="true" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
