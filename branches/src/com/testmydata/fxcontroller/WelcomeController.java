@@ -16,6 +16,7 @@ import com.testmydata.dao.DAO;
 import com.testmydata.fxhelpers.WelcomePageFXHelper;
 import com.testmydata.main.WelcomePage;
 import com.testmydata.util.EncryptAndDecrypt;
+import com.testmydata.util.StaticImages;
 import com.testmydata.util.TrademenException;
 
 import javafx.beans.value.ChangeListener;
@@ -65,6 +66,9 @@ public class WelcomeController implements Initializable {
 
 		validate.setEffect(ds);
 		already_registered.setEffect(ds);
+
+		imageView.setImage(StaticImages.green_tick.getImage());
+		wrongimageView.setImage(StaticImages.wrong_tick.getImage());
 
 		reg_key_text.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
 

@@ -16,6 +16,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.StaticImages;
 import com.testmydata.util.ValidateRealEmail;
 
 import javafx.application.Platform;
@@ -35,7 +36,7 @@ import javafx.stage.Stage;
 public class AddUserController implements Initializable {
 	Stage myStage;
 	@FXML
-	private ImageView homeicon, wrongtick, greentick, wrongtick1, greentick1;
+	private ImageView homeicon, wrongtick, greentick, wrongtick1, greentick1, pleasewait;
 	@FXML
 	private JFXComboBox<String> usercombo;
 	@FXML
@@ -60,6 +61,12 @@ public class AddUserController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingusers();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		wrongtick.setImage(StaticImages.wrong_tick.getImage());
+		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
+		greentick.setImage(StaticImages.green_tick.getImage());
+		greentick1.setImage(StaticImages.green_tick.getImage());
+		pleasewait.setImage(StaticImages.source_run.getImage());
 
 		emailtext.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (!newValue) { // when focus lost

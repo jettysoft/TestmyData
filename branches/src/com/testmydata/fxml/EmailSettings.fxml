@@ -8,7 +8,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -17,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.EmailSettingsController">
    <children>
-      <AnchorPane prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="emaillabel" alignment="CENTER" contentDisplay="CENTER" layoutX="160.0" layoutY="7.0" text="Email Settings" textFill="WHITE">
                <font>
@@ -25,9 +24,6 @@
                </font>
             </Label>
             <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

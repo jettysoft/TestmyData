@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
+import com.testmydata.util.StaticImages;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class ShowSqlScriptController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		closeicon.setImage(StaticImages.wrong_tick.getImage());
 		scripttext.setText(sqlscript);
 
 		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

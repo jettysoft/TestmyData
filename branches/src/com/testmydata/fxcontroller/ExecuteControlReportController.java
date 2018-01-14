@@ -17,6 +17,7 @@ import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
+import com.testmydata.util.StaticImages;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -69,6 +70,12 @@ public class ExecuteControlReportController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingmodules();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		runicon.setImage(StaticImages.source_execute.getImage());
+		processicon.setImage(StaticImages.source_run.getImage());
+		pdficon.setImage(StaticImages.pdficon.getImage());
+		excelicon.setImage(StaticImages.excelicon.getImage());
+
 		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
 
 		module.setStyle("-fx-text-fill: #0c23ea; -fx-font-weight:bold;");

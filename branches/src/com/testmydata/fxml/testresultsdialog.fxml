@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,17 +18,10 @@
          <children>
             <StackPane fx:id="headContainer" styleClass="headContainer">
                <children>
-                  <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" style="-fx-background-color: #0033CC;" styleClass="header" text="Test Results" textAlignment="LEFT" textFill="WHITE" wrapText="true">
+                  <Label fx:id="headerLabel" maxWidth="1.7976931348623157E308" style="-fx-background-color: #162a4c;" styleClass="header" text="Test Results" textAlignment="LEFT" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
-                     <effect>
-                        <Glow level="0.2">
-                           <input>
-                              <Glow level="0.2" />
-                           </input>
-                        </Glow>
-                     </effect>
                   </Label>
                </children>
             </StackPane>
@@ -91,7 +82,4 @@
       <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints vgrow="NEVER" />
    </rowConstraints>
-   <effect>
-      <InnerShadow />
-   </effect>
 </GridPane>

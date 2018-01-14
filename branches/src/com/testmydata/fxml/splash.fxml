@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.controllSplash">
    <children>
-      <AnchorPane layoutX="74.0" layoutY="14.0" prefHeight="327.0" prefWidth="518.0" style="-fx-background-color: #0033CC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="74.0" layoutY="14.0" prefHeight="327.0" prefWidth="518.0" style="-fx-background-color: #162a4c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="imgLoading" fitHeight="65.0" fitWidth="80.0" layoutX="200.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                <image>

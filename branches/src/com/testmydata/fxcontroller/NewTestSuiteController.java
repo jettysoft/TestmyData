@@ -16,6 +16,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -72,6 +73,8 @@ public class NewTestSuiteController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setinitialdetails();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		processicon.setImage(StaticImages.source_run.getImage());
 
 		tstable.getColumns().addAll(checkbox);
 		checkbox.setCellValueFactory(new PropertyValueFactory<>("checkboxs"));

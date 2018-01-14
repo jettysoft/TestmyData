@@ -971,7 +971,7 @@ public class DAO {
 				st.close();
 
 				String createTabelSQL = "CREATE TABLE trigerstatus (id bigint(255) NOT NULL AUTO_INCREMENT, featurename varchar(200) DEFAULT null, "
-						+ "status bigint(1) DEFAULT 1, createddate datetime, PRIMARY KEY  (id))";
+						+ "status bigint(1) DEFAULT 0, createddate datetime, PRIMARY KEY  (id))";
 				Statement st1 = con.createStatement();
 				int isTableCreated = st1.executeUpdate(createTabelSQL);
 				st1.close();
@@ -992,10 +992,9 @@ public class DAO {
 	public String inserttrigertablefeatures() {
 		String returnValue = "failure";
 		try {
-			sql = "insert into trigerstatus (featurename, createddate) " + "values('income', CURRENT_TIMESTAMP), "
-					+ "('expenses', CURRENT_TIMESTAMP), " + "('projects', CURRENT_TIMESTAMP), "
-					+ "('salegoal', CURRENT_TIMESTAMP), " + "('contacts', CURRENT_TIMESTAMP), "
-					+ "('pendingorder', CURRENT_TIMESTAMP)";
+			sql = "insert into trigerstatus (featurename, createddate) " + "values('bugstable', CURRENT_TIMESTAMP), "
+					+ "('bugusers', CURRENT_TIMESTAMP), " + "('bugprojects', CURRENT_TIMESTAMP), "
+					+ "('bugsserver', CURRENT_TIMESTAMP)";
 			ps = con.prepareStatement(sql);
 
 			int status = ps.executeUpdate();
@@ -1508,7 +1507,7 @@ public class DAO {
 
 				String createTabelSQL = "CREATE TABLE " + tableName
 						+ " (id bigint(20) NOT NULL auto_increment, moduleid bigint(20) not null,"
-						+ " tsname varchar(500) default null, tcname varchar(500) default null, testcondition varchar(8000) default null, sqlscript varchar(8000) default null,"
+						+ " tsname varchar(500) default null, tcname varchar(500) default null, testcondition varchar(8000) default null, sqlscript longtext,"
 						+ " executioncount bigint(100) default 0, passcount bigint(100) default 0, failcount bigint(100) default 0, executeduserid bigint(5) default null, "
 						+ " updateduserid bigint(5) default null, createdUserId bigint(5) default NULL, createdDate datetime default NULL, updateddate datetime default null, "
 						+ " executeddate datetime default null, message varchar(100) default Not Run, queryresult varchar(100) default null, "
@@ -2524,11 +2523,11 @@ public class DAO {
 
 				String createTabelSQL = "CREATE TABLE " + tableName
 						+ " (id bigint(255) NOT NULL auto_increment, module varchar(200) default null, rulename varchar(300) default null, sdb varchar(500) default null, "
-						+ "stable varchar(500) default null, scolumn varchar(500) default null, sscript longtext default null, scolscript  longtext default null, stdb varchar(500) default null, "
-						+ "sttable varchar(500) default null, stcolumn varchar(500) default null, stscript longtext default null, stcolscript  longtext default null, "
-						+ "trdb varchar(500) default null, trtable varchar(500) default null, trcolumn varchar(500) default null, trscript longtext default null, trcolscript  longtext default null,"
+						+ "stable varchar(500) default null, scolumn varchar(500) default null, sscript longtext, scolscript  longtext, stdb varchar(500) default null, "
+						+ "sttable varchar(500) default null, stcolumn varchar(500) default null, stscript longtext, stcolscript  longtext, "
+						+ "trdb varchar(500) default null, trtable varchar(500) default null, trcolumn varchar(500) default null, trscript longtext, trcolscript  longtext,"
 						+ "ldb varchar(500) default null, ltable varchar(500) default null, lcolumn varchar(500) default null, tdb varchar(500) default null, ttable varchar(500) default null, "
-						+ "tcolumn varchar(500) default null, tscript longtext default null, tcolscript  longtext default null, createdby bigint (5) default null, updatedby bigint(5) default null, "
+						+ "tcolumn varchar(500) default null, tscript longtext, tcolscript  longtext, createdby bigint (5) default null, updatedby bigint(5) default null, "
 						+ "createdDate datetime default NULL, updatedDate datetime default NULL, PRIMARY KEY (id), UNIQUE KEY(rulename))";
 
 				st = con.createStatement();
@@ -3738,5 +3737,86 @@ public class DAO {
 			}
 		}
 		return rules;
+	}
+
+	public void createBugstable() {
+		try {
+			String isInvoiceAlreadyExisted = this.isTableAlreadyExisted("bugs");
+
+			if (isInvoiceAlreadyExisted.equals("notExisted")) {
+
+				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, tfsid bigint(5) default 0, jiraid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
+						+ " title varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
+						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, PRIMARY KEY (id))";
+				st = con.createStatement();
+				st.executeUpdate(createTabelSQL);
+				updateTrigerstatus("bugstable", 1);
+				st.close();
+			}
+
+		} catch (SQLException e) {
+			updateTrigerstatus("bugstable", 0);
+			e.printStackTrace();
+		}
+	}
+
+	public void createBugServerTable() {
+		try {
+			String isInvoiceAlreadyExisted = this.isTableAlreadyExisted("bugserver");
+
+			if (isInvoiceAlreadyExisted.equals("notExisted")) {
+
+				String createTabelSQL = "create table bugserver (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, isdefault int(1) default 0, "
+						+ " collectionurl varchar(2000) default null, isactive int(1) default 0, createdby int(10) default 0, createddate datetime, PRIMARY KEY (id))";
+				st = con.createStatement();
+				st.executeUpdate(createTabelSQL);
+				updateTrigerstatus("bugserver", 1);
+				st.close();
+			}
+
+		} catch (SQLException e) {
+			updateTrigerstatus("bugserver", 0);
+			e.printStackTrace();
+		}
+	}
+
+	public void createBugServerUsersTable() {
+		try {
+			String isInvoiceAlreadyExisted = this.isTableAlreadyExisted("bugserverusers");
+
+			if (isInvoiceAlreadyExisted.equals("notExisted")) {
+
+				String createTabelSQL = "create table bugserverusers (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, username varchar(256) default null, "
+						+ " password varchar(256) default null, userid int(10) default 0, PRIMARY KEY (id))";
+				st = con.createStatement();
+				st.executeUpdate(createTabelSQL);
+				updateTrigerstatus("bugusers", 1);
+				st.close();
+			}
+
+		} catch (SQLException e) {
+			updateTrigerstatus("bugusers", 0);
+			e.printStackTrace();
+		}
+	}
+
+	public void createBugServerProjectsTable() {
+		try {
+			String isInvoiceAlreadyExisted = this.isTableAlreadyExisted("bugserverprojects");
+
+			if (isInvoiceAlreadyExisted.equals("notExisted")) {
+
+				String createTabelSQL = "create table bugserverprojects (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, "
+						+ "projectname varchar(1000) default null, PRIMARY KEY (id))";
+				st = con.createStatement();
+				st.executeUpdate(createTabelSQL);
+				updateTrigerstatus("bugprojects", 1);
+				st.close();
+			}
+
+		} catch (SQLException e) {
+			updateTrigerstatus("bugprojects", 0);
+			e.printStackTrace();
+		}
 	}
 }

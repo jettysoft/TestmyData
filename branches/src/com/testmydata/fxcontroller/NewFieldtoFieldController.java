@@ -18,6 +18,7 @@ import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
 import com.testmydata.util.Loggedinuserdetails;
+import com.testmydata.util.StaticImages;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -77,6 +78,9 @@ public class NewFieldtoFieldController implements Initializable {
 		setexistingmodules();
 		setdatesinitially();
 		populatetestcases();
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		searchicon.setImage(StaticImages.searchicon.getImage());
+		closeicon.setImage(StaticImages.wrong_tick.getImage());
 
 		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");

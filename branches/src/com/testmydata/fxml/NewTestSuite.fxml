@@ -18,12 +18,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewTestSuiteController">
    <children>
-      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

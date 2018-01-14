@@ -12,7 +12,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -22,12 +21,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
    <children>
-      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #0033CC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="homeicon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/Home_Icon.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -46,7 +42,7 @@
             </Glow>
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="msourceanchor" layoutX="20.0" layoutY="64.0" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="64.0">
+      <AnchorPane fx:id="msourceanchor" layoutX="20.0" layoutY="64.0" prefHeight="235.0" prefWidth="250.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="64.0">
          <effect>
             <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
@@ -71,17 +67,11 @@
                </children>
             </VBox>
             <ImageView fx:id="sourcevalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="100.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="sourcecolicon" fitHeight="30.0" fitWidth="30.0" layoutX="150.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -180,33 +170,21 @@
                </children>
             </VBox>
             <ImageView fx:id="stagingvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="205.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="transvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="425.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="stagingcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="255.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="transcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="475.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -226,7 +204,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <AnchorPane fx:id="mtargetanchor" layoutX="940.0" layoutY="64.0" prefHeight="220.0" prefWidth="250.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="64.0">
+      <AnchorPane fx:id="mtargetanchor" layoutX="940.0" layoutY="64.0" prefHeight="235.0" prefWidth="250.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="64.0">
          <effect>
             <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
@@ -251,17 +229,11 @@
                </children>
             </VBox>
             <ImageView fx:id="targetvalidicon" fitHeight="30.0" fitWidth="30.0" layoutX="112.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
             <ImageView fx:id="targetcolicon" fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fximages/sqleditor_column.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -330,9 +302,6 @@
          </effect>
          <children>
             <ImageView fx:id="sourcecloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -348,9 +317,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="srunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -363,9 +329,6 @@
          </effect>
          <children>
             <ImageView fx:id="stagingcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -381,9 +344,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="strunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -396,9 +356,6 @@
          </effect>
          <children>
             <ImageView fx:id="transcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -414,9 +371,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="transrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -429,9 +383,6 @@
          </effect>
          <children>
             <ImageView fx:id="targetcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -447,9 +398,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="trunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -462,9 +410,6 @@
          </effect>
          <children>
             <ImageView fx:id="sourcecolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -480,9 +425,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="scolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -495,9 +437,6 @@
          </effect>
          <children>
             <ImageView fx:id="stagingcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -513,9 +452,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="stcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -528,9 +464,6 @@
          </effect>
          <children>
             <ImageView fx:id="transcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -546,9 +479,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="transcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -561,9 +491,6 @@
          </effect>
          <children>
             <ImageView fx:id="targetcolcloseicon" fitHeight="25.0" fitWidth="25.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/Wrong_tick.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -579,9 +506,6 @@
                </font>
             </JFXTextArea>
             <ImageView fx:id="tcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-               <image>
-                  <Image url="/com/testmydata/fximages/runtest.png" />
-               </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

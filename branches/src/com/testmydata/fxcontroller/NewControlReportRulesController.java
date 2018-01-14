@@ -18,6 +18,7 @@ import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -93,6 +94,36 @@ public class NewControlReportRulesController implements Initializable {
 		setexistingmodules();
 		rulelistservice.reset();
 		rulelistservice.start();
+
+		homeicon.setImage(StaticImages.homeicon.getImage());
+
+		sourcevalidicon.setImage(StaticImages.sqleditor.getImage());
+		stagingvalidicon.setImage(StaticImages.sqleditor.getImage());
+		transvalidicon.setImage(StaticImages.sqleditor.getImage());
+		targetvalidicon.setImage(StaticImages.sqleditor.getImage());
+
+		sourcecolicon.setImage(StaticImages.sqlcolumneditor.getImage());
+		stagingcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
+		transcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
+		targetcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
+
+		sourcecloseicon.setImage(StaticImages.closeicon.getImage());
+		stagingcloseicon.setImage(StaticImages.closeicon.getImage());
+		transcloseicon.setImage(StaticImages.closeicon.getImage());
+		targetcloseicon.setImage(StaticImages.closeicon.getImage());
+		sourcecolcloseicon.setImage(StaticImages.closeicon.getImage());
+		stagingcolcloseicon.setImage(StaticImages.closeicon.getImage());
+		transcolcloseicon.setImage(StaticImages.closeicon.getImage());
+		targetcolcloseicon.setImage(StaticImages.closeicon.getImage());
+
+		srunicon.setImage(StaticImages.source_execute.getImage());
+		strunicon.setImage(StaticImages.source_execute.getImage());
+		transrunicon.setImage(StaticImages.source_execute.getImage());
+		trunicon.setImage(StaticImages.source_execute.getImage());
+		scolrunicon.setImage(StaticImages.source_execute.getImage());
+		stcolrunicon.setImage(StaticImages.source_execute.getImage());
+		transcolrunicon.setImage(StaticImages.source_execute.getImage());
+		tcolrunicon.setImage(StaticImages.source_execute.getImage());
 
 		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
 		Label lbl = new Label(" Validation Query ");

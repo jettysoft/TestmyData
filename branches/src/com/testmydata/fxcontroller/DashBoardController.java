@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.SwingUtilities;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.testmydata.auditlog.StoreAuditLogger;
 import com.testmydata.binarybeans.ControlReportExecutionBinaryTrade;
@@ -38,8 +38,6 @@ import com.testmydata.dashboardfunction.TestSuite;
 import com.testmydata.fxhelpers.MenuItemsFXHelper;
 import com.testmydata.main.InactivityEventManager;
 import com.testmydata.main.InactivityListener;
-import com.testmydata.main.LogOut;
-import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.DockerClass;
 import com.testmydata.util.EncryptAndDecrypt;
@@ -56,18 +54,17 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.SubScene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.effect.Reflection;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -77,7 +74,15 @@ import javafx.stage.Stage;
 
 public class DashBoardController implements Initializable {
 	@FXML
-	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane;
+	private FontAwesomeIconView securedfont;
+	@FXML
+	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
+	@FXML
+	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
+			testanchor, bugsanchor, reportsanchor, settingsanchor;
+	@FXML
+	private Hyperlink newfieldtofield, newcontrolreport, testsuiteff, exeff, execr, newbugs, viewbugs, downloadreports,
+			viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
 	@FXML
 	private MenuBar mymenubar;
 	@FXML
@@ -85,8 +90,6 @@ public class DashBoardController implements Initializable {
 			testreports, adduser, changepassword, emailsettings, featuresallocation, qaserver;
 	@FXML
 	private Label clientname, companylabel, qaserverlabel, fieldlabel, crlabel, lbl_data_title;
-	@FXML
-	private JFXTextField qaservertext;
 	@FXML
 	private JFXListView<Release> list_field;
 	@FXML
@@ -96,12 +99,9 @@ public class DashBoardController implements Initializable {
 	@FXML
 	private JFXListView<Rule> list_control_data;
 	@FXML
-	private ImageView logouticon;
-	@FXML
-	private FontAwesomeIconView securedfont;
-
-	final static ImageView source_execute = new ImageView("/com/testmydata/fximages/runtest.png");
-	final static ImageView source_run = new ImageView("/com/testmydata/fximages/please_wait.gif");
+	private ImageView homeicon, logouticon, appicon, testcasesicon, newcricon, newfieldicon, testsuites,
+			newtestsuiteicon, testexecution, execricon, exefieldicon, reporticon, testreport, settings, addusericon,
+			changepasswordicon, emailsettingsicon, qaservericon;
 
 	public int localUserLevel = 0;
 	public Date activatedDate = null;
@@ -126,6 +126,23 @@ public class DashBoardController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// logouticon.setImage(StaticImages.logout.getImage());
+		// appicon.setImage(StaticImages.appicon.getImage());
+		// testcasesicon.setImage(StaticImages.testcases.getImage());
+		// newcricon.setImage(StaticImages.controlreporticon.getImage());
+		// newfieldicon.setImage(StaticImages.fieldicon.getImage());
+		// testsuites.setImage(StaticImages.testsuites.getImage());
+		// newtestsuiteicon.setImage(StaticImages.newtestsuite.getImage());
+		// testexecution.setImage(StaticImages.testexecution.getImage());
+		// execricon.setImage(StaticImages.controlreporticon.getImage());
+		// exefieldicon.setImage(StaticImages.fieldicon.getImage());
+		// reporticon.setImage(StaticImages.report.getImage());
+		// testreport.setImage(StaticImages.testreport.getImage());
+		// settings.setImage(StaticImages.settings.getImage());
+		// addusericon.setImage(StaticImages.adduser.getImage());
+		// changepasswordicon.setImage(StaticImages.changepassword.getImage());
+		// emailsettingsicon.setImage(StaticImages.emailsettings.getImage());
+		// qaservericon.setImage(StaticImages.qaserver.getImage());
 
 		// start(); //starts dock icons
 		InvoiceStaticHelper.setDash(this);
@@ -145,24 +162,35 @@ public class DashBoardController implements Initializable {
 			}
 		}
 
-		logouticon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				DashBoardController nc = new DashBoardController();
-				scu.nullifyStrings(nc);
-				ActionEvent event1 = new ActionEvent();
-				logout(event1);
+				designanchor.setVisible(false);
+				testsuiteanchor.setVisible(false);
+				testanchor.setVisible(false);
+				bugsanchor.setVisible(false);
+				reportsanchor.setVisible(false);
+				settingsanchor.setVisible(false);
 			}
 		});
 
-		clientname.setText(
-				Loggedinuserdetails.firstName.toUpperCase() + " " + Loggedinuserdetails.lastName.toUpperCase());
-		companylabel.setText(Loggedinuserdetails.companyName.toUpperCase());
+		// logouticon.addEventHandler(MouseEvent.MOUSE_CLICKED, new
+		// EventHandler<MouseEvent>() {
+		// @SuppressWarnings("static-access")
+		// @Override
+		// public void handle(MouseEvent event) {
+		// Cleanup scu = new Cleanup();
+		// DashBoardController nc = new DashBoardController();
+		// scu.nullifyStrings(nc);
+		// ActionEvent event1 = new ActionEvent();
+		// logout(event1);
+		// }
+		// });
 
-		Reflection r = new Reflection();
-		r.setFraction(0.7f);
+		// clientname.setText(
+		// Loggedinuserdetails.firstName.toUpperCase() + " " +
+		// Loggedinuserdetails.lastName.toUpperCase());
+		// companylabel.setText(Loggedinuserdetails.companyName.toUpperCase());
 
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -190,7 +218,7 @@ public class DashBoardController implements Initializable {
 		// is to loop for every 1 min (1000 * 60 sec = 60000)
 
 		lbl_data_title.setStyle(
-				"-fx-background-color:  #0033CC;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 14pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+				"-fx-background-color:  #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 14pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
 		lbl_data_title.setVisible(false);
 		list_field.setCellFactory(param -> new Cell());
 		list_data.setCellFactory(param -> new DataCell());
@@ -234,7 +262,6 @@ public class DashBoardController implements Initializable {
 				list_control_data.setItems(FXCollections.observableArrayList(newValue.getRules()));
 
 			}
-
 		});
 	}
 
@@ -308,16 +335,16 @@ public class DashBoardController implements Initializable {
 		}
 	}
 
-	private void logout(ActionEvent event) {
-		CommonFunctions.message = "Please confirm to Logout from the System...!";
-		CommonFunctions.invokeConfirmDialog(getClass());
-
-		if (CommonFunctions.selectionstatus == "yes") {
-			LogOut lock = new LogOut();
-
-			lock.exit(event);
-		}
-	}
+	// private void logout(ActionEvent event) {
+	// CommonFunctions.message = "Please confirm to Logout from the System...!";
+	// CommonFunctions.invokeConfirmDialog(getClass());
+	//
+	// if (CommonFunctions.selectionstatus == "yes") {
+	// LogOut lock = new LogOut();
+	//
+	// lock.exit(event);
+	// }
+	// }
 
 	public void runmessage(String message) {
 		CommonFunctions.message = message;
@@ -451,8 +478,12 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void controlreport() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		nowcontrolreport();
+		// myStage = (Stage) mymenubar.getScene().getWindow();
+		if (Loggedinuserdetails.newcr == 1) {
+			nowcontrolreport();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
 	public void nowcontrolreport() {
@@ -473,8 +504,12 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void fieldtofield() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		nowfieldtofield();
+		// myStage = (Stage) mymenubar.getScene().getWindow();
+		if (Loggedinuserdetails.newff == 1) {
+			nowfieldtofield();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
 	public void nowfieldtofield() {
@@ -494,9 +529,38 @@ public class DashBoardController implements Initializable {
 	}
 
 	@FXML
+	private void newtestsuite() {
+		// myStage = (Stage) mymenubar.getScene().getWindow();
+		if (Loggedinuserdetails.newts == 1) {
+			runnewtestsuite();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
+	}
+
+	public void runnewtestsuite() {
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						String screenName = "newtestsuite";
+						new MenuItemsFXHelper().initAndShowGUI(screenName);
+						NewTestSuiteController.getInstance();
+					}
+				});
+			}
+		});
+	}
+
+	@FXML
 	private void runcontrolreport() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		executecontrolreport();
+		if (Loggedinuserdetails.crexe == 1) {
+			executecontrolreport();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
 	public void executecontrolreport() {
@@ -517,8 +581,11 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void runfieldtofield() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		executefieldtofield();
+		if (Loggedinuserdetails.tsexe == 1) {
+			executefieldtofield();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
 	public void executefieldtofield() {
@@ -538,56 +605,41 @@ public class DashBoardController implements Initializable {
 	}
 
 	@FXML
-	private void newtestsuite(ActionEvent event) {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		runnewtestsuite(event);
+	private void newbug() {
+		if (Loggedinuserdetails.newbug == 1) {
+			runnewbug();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
-	public void runnewtestsuite(ActionEvent event) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "newtestsuite";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						NewTestSuiteController.getInstance();
-					}
-				});
-			}
-		});
+	public void runnewbug() {
+		runmessage("Under Implementation...");
 	}
 
 	@FXML
-	private void executetestsuites(ActionEvent event) {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		runexecutetestsuite(event);
+	private void viewbug() {
+		if (Loggedinuserdetails.viewbug == 1) {
+			runtestresults();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
-	public void runexecutetestsuite(ActionEvent event) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "executetestsuite";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						ExecuteTestSuiteController.getInstance();
-					}
-				});
-			}
-		});
+	public void runviewbug() {
+		runmessage("Under Implementation...");
 	}
 
 	@FXML
-	private void testreports(ActionEvent event) {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		runtestreports(event);
+	private void testreports() {
+		if (Loggedinuserdetails.reports == 1) {
+			runtestreports();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
-	public void runtestreports(ActionEvent event) {
+	public void runtestreports() {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -604,12 +656,28 @@ public class DashBoardController implements Initializable {
 	}
 
 	@FXML
-	private void adduser(ActionEvent event) {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		runadduser(event);
+	private void testresults() {
+		if (Loggedinuserdetails.testresults == 1) {
+			runtestresults();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
 	}
 
-	public void runadduser(ActionEvent event) {
+	public void runtestresults() {
+		runmessage("Under Implementation...");
+	}
+
+	@FXML
+	private void adduser() {
+		if (Loggedinuserdetails.adduser == 1) {
+			runadduser();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
+	}
+
+	public void runadduser() {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -625,8 +693,20 @@ public class DashBoardController implements Initializable {
 	}
 
 	@FXML
-	private void changepassword(ActionEvent event) {
-		myStage = (Stage) mymenubar.getScene().getWindow();
+	private void bugserver() {
+		if (Loggedinuserdetails.addbugserver == 1) {
+			runaddbugserver();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
+	}
+
+	public void runaddbugserver() {
+		runmessage("Under Implementation...");
+	}
+
+	@FXML
+	private void changepassword() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -639,29 +719,10 @@ public class DashBoardController implements Initializable {
 				}
 			}
 		});
-
-		// runchangepassword(event);
-	}
-
-	public void runchangepassword(ActionEvent event) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "changepassword";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						ChangePasswordController.getInstance();
-					}
-				});
-			}
-		});
 	}
 
 	@FXML
 	private void emailsettings() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -674,33 +735,16 @@ public class DashBoardController implements Initializable {
 				}
 			}
 		});
-		// runemailsettings();
-	}
-
-	public void runemailsettings() {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "emailsettings";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						EmailSettingsController.getInstance();
-					}
-				});
-			}
-		});
-	}
-
-	@FXML
-	private void featuresallocation() {
 	}
 
 	@FXML
 	private void qaserver() {
-		myStage = (Stage) mymenubar.getScene().getWindow();
-		runqaserversettings();
+		if (Loggedinuserdetails.addqa == 1) {
+			runqaserversettings();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
+
 	}
 
 	public void runqaserversettings() {
@@ -724,18 +768,17 @@ public class DashBoardController implements Initializable {
 		try {
 			if (QADefaultServerDetails.url != null && !QADefaultServerDetails.url.isEmpty()) {
 				QAServerSettingsController qas = new QAServerSettingsController();
-				qaservertext.clear();
 
 				if (QADefaultServerDetails.url.contains("jdbc:mysql://")) {
 					if (qas.validateconnection(QADefaultServerDetails.servertype,
 							QADefaultServerDetails.url.replaceAll("jdbc:mysql://", "").replaceAll("/", ""),
 							QADefaultServerDetails.username, QADefaultServerDetails.password)) {
 
-						qaservertext.setText("Connected QA Server : "
+						qaserverlabel.setText("Connected to QA Server At : "
 								+ QADefaultServerDetails.url.replaceAll("jdbc:mysql://", "").replaceAll("/", "") + " ( "
 								+ QADefaultServerDetails.servertype.toUpperCase() + " )");
 					} else {
-						qaservertext.setText("Failed to Connected QA Server : "
+						qaserverlabel.setText("Failed to Connected QA Server At : "
 								+ QADefaultServerDetails.url.replaceAll("jdbc:mysql://", "").replaceAll("/", ""));
 					}
 				} else if (QADefaultServerDetails.url.contains("jdbc:sqlserver://")) {
@@ -743,19 +786,19 @@ public class DashBoardController implements Initializable {
 							QADefaultServerDetails.url.replaceAll("jdbc:sqlserver://", ""),
 							QADefaultServerDetails.username, QADefaultServerDetails.password)) {
 
-						qaservertext.setText("Connected QA Server : "
+						qaserverlabel.setText("Connected to QA Server At : "
 								+ QADefaultServerDetails.url.replaceAll("jdbc:sqlserver://", "") + " ( "
 								+ QADefaultServerDetails.servertype.toUpperCase() + " )");
 					} else {
-						qaservertext.setText("Failed to Connected QA Server : "
+						qaserverlabel.setText("Failed to Connected QA Server At : "
 								+ QADefaultServerDetails.url.replaceAll("jdbc:sqlserver://", ""));
 					}
 				}
 
 			} else {
-				qaservertext.setText("No Default QA Server Selected");
+				qaserverlabel.setText("No Default QA Server Selected");
 			}
-			qaservertext.setStyle("-fx-text-fill: #edff00; -fx-font-weight:bold;");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -854,8 +897,8 @@ public class DashBoardController implements Initializable {
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
 		Label rec = new Label("");
-		ImageView icon_execute = new ImageView(source_execute.getImage());
-		ImageView icon_run = new ImageView(source_run.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
+		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
 		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
@@ -893,7 +936,7 @@ public class DashBoardController implements Initializable {
 			lbl_fail.setStyle(
 					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_release.setStyle(
-					"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
+					"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
 			hbox_title.getChildren().addAll(rec, lbl_release, lbl_pass, lbl_fail);
 		}
 
@@ -967,7 +1010,7 @@ public class DashBoardController implements Initializable {
 						listFieldData.setItems(FXCollections.observableArrayList(release.getCycle()));
 						label.setText(release.getName());
 						label.setStyle(
-								"-fx-background-color: #0033CC;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+								"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
 
 						FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
 						fs.releaserun(release.getName(), currentbatchid, listField, listFieldData, release);
@@ -1040,8 +1083,8 @@ public class DashBoardController implements Initializable {
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
 		Label rec = new Label("");
-		ImageView icon_execute = new ImageView(source_execute.getImage());
-		ImageView icon_run = new ImageView(source_run.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
+		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
 		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
@@ -1079,7 +1122,7 @@ public class DashBoardController implements Initializable {
 			lbl_fail.setStyle(
 					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\"; -fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_module.setStyle(
-					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
+					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 1;");
 			hbox_title.getChildren().addAll(rec, lbl_module, lbl_pass, lbl_fail);
 
 		}
@@ -1145,7 +1188,7 @@ public class DashBoardController implements Initializable {
 						listControlData.setItems(FXCollections.observableArrayList(module.getRules()));
 						label.setText(module.getModulename().toUpperCase());
 						label.setStyle(
-								"-fx-background-color: #0033CC;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+								"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
 
 						ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
 						cre.modulerun(module.getModulename(), currentbatchid, listField, listControlData, module);
@@ -1214,8 +1257,8 @@ public class DashBoardController implements Initializable {
 		Label lbl_fail = new Label("");
 		Label rec = new Label();
 		Label rec1 = new Label();
-		ImageView icon_execute = new ImageView(source_execute.getImage());
-		ImageView icon_run = new ImageView(source_run.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
+		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
 		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
@@ -1255,8 +1298,8 @@ public class DashBoardController implements Initializable {
 			lbl_fail.setStyle(
 					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_cycle.setStyle(
-					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC;");
+					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #162a4c;");
 			rec1.setStyle(
 					"-fx-background-radius: 0em;-fx-background-color: grey;-fx-alignment : center;-fx-opacity: 0.2;");
 
@@ -1368,8 +1411,8 @@ public class DashBoardController implements Initializable {
 				});
 
 				lbl_cycle.setStyle(
-						"-fx-background-radius: 0.5em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
-				rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC");
+						"-fx-background-radius: 0.5em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
+				rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #162a4c");
 
 				lbl_cycle.setText(cycle.getCyname());
 				lbl_pass.setText(cycle.getPass() + "%");
@@ -1404,14 +1447,14 @@ public class DashBoardController implements Initializable {
 					lbl_fail_testSuite.setStyle(
 							"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 					lbl_testSuite.setStyle(
-							"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
+							"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
 
 					lbl_testSuite.setText(testSuite.getTsname());
 					lbl_pass_testSuite.setText(testSuite.getPass() + "%");
 					lbl_fail_testSuite.setText(testSuite.getFail() + "%");
 
-					ImageView icon_execute1 = new ImageView(source_execute.getImage());
-					ImageView icon_run1 = new ImageView(source_run.getImage());
+					ImageView icon_execute1 = new ImageView(StaticImages.source_execute.getImage());
+					ImageView icon_run1 = new ImageView(StaticImages.source_run.getImage());
 					ImageView pdficon1 = new ImageView(StaticImages.pdficon.getImage());
 					ImageView excelicon1 = new ImageView(StaticImages.excelicon.getImage());
 
@@ -1542,8 +1585,8 @@ public class DashBoardController implements Initializable {
 		Label lbl_rule = new Label("");
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
-		ImageView icon_execute = new ImageView(source_execute.getImage());
-		ImageView icon_run = new ImageView(source_run.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
+		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
 		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
 		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
 
@@ -1559,7 +1602,7 @@ public class DashBoardController implements Initializable {
 			lbl_fail.setMaxWidth(40);
 			lbl_fail.setMinWidth(40);
 			hbox_title.setSpacing(2);
-			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #0033CC");
+			rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #162a4c");
 			rec.setPadding(new Insets(1, 2, 1, 2));
 			hbox.setSpacing(5);
 			hbox.setPadding(new Insets(0, 0, 0, 5));
@@ -1581,7 +1624,7 @@ public class DashBoardController implements Initializable {
 			lbl_fail.setStyle(
 					"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 10pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
 			lbl_rule.setStyle(
-					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: black;-fx-opacity: 0.6;");
+					"-fx-background-radius: 0em;-fx-font-size: 13pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
 
 		}
 
@@ -1699,7 +1742,67 @@ public class DashBoardController implements Initializable {
 
 	public void setBlue() {
 		lbl_data_title.setStyle(
-				"-fx-background-color:  #0033CC;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 14pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
-
+				"-fx-background-color:  #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 14pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
 	}
+
+	@FXML
+	private void designbutton() {
+		designanchor.setVisible(true);
+		testsuiteanchor.setVisible(false);
+		testanchor.setVisible(false);
+		bugsanchor.setVisible(false);
+		reportsanchor.setVisible(false);
+		settingsanchor.setVisible(false);
+	}
+
+	@FXML
+	private void testsuitebutton() {
+		designanchor.setVisible(false);
+		testsuiteanchor.setVisible(true);
+		testanchor.setVisible(false);
+		bugsanchor.setVisible(false);
+		reportsanchor.setVisible(false);
+		settingsanchor.setVisible(false);
+	}
+
+	@FXML
+	private void testbutton() {
+		designanchor.setVisible(false);
+		testsuiteanchor.setVisible(false);
+		testanchor.setVisible(true);
+		bugsanchor.setVisible(false);
+		reportsanchor.setVisible(false);
+		settingsanchor.setVisible(false);
+	}
+
+	@FXML
+	private void bugsbutton() {
+		designanchor.setVisible(false);
+		testsuiteanchor.setVisible(false);
+		testanchor.setVisible(false);
+		bugsanchor.setVisible(true);
+		reportsanchor.setVisible(false);
+		settingsanchor.setVisible(false);
+	}
+
+	@FXML
+	private void reportsbutton() {
+		designanchor.setVisible(false);
+		testsuiteanchor.setVisible(false);
+		testanchor.setVisible(false);
+		bugsanchor.setVisible(false);
+		reportsanchor.setVisible(true);
+		settingsanchor.setVisible(false);
+	}
+
+	@FXML
+	private void settingsbutton() {
+		designanchor.setVisible(false);
+		testsuiteanchor.setVisible(false);
+		testanchor.setVisible(false);
+		bugsanchor.setVisible(false);
+		reportsanchor.setVisible(false);
+		settingsanchor.setVisible(true);
+	}
+
 }

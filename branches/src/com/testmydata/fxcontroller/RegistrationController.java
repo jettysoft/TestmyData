@@ -24,6 +24,7 @@ import com.testmydata.fxhelpers.LoginFXHelper;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.DBConfigJAXB;
 import com.testmydata.util.EncryptAndDecrypt;
+import com.testmydata.util.StaticImages;
 import com.testmydata.util.ValidateRealEmail;
 
 import javafx.beans.value.ChangeListener;
@@ -70,6 +71,13 @@ public class RegistrationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		wrongtick.setImage(StaticImages.wrong_tick.getImage());
+		wrongtick2.setImage(StaticImages.wrong_tick.getImage());
+		wrongtick3.setImage(StaticImages.wrong_tick.getImage());
+		greentick.setImage(StaticImages.green_tick.getImage());
+		greentick2.setImage(StaticImages.green_tick.getImage());
+		greentick3.setImage(StaticImages.green_tick.getImage());
+
 		industrycombo.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 
 		industrycombo.getItems().clear();
@@ -560,6 +568,19 @@ public class RegistrationController implements Initializable {
 								new LoginFXHelper().initAndShowGUI(screenName);
 							}
 						});
+
+						if (new DAO().gettrigerstatus("bugstable") == 0) {
+							new DAO().createBugstable();
+						}
+						if (new DAO().gettrigerstatus("bugusers") == 0) {
+							new DAO().createBugServerUsersTable();
+						}
+						if (new DAO().gettrigerstatus("bugprojects") == 0) {
+							new DAO().createBugServerProjectsTable();
+						}
+						if (new DAO().gettrigerstatus("bugserver") == 0) {
+							new DAO().createBugServerTable();
+						}
 
 						// FXMLLoader fxmlLoader = new FXMLLoader();
 						// ControllLogin rgc = (ControllLogin)
