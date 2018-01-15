@@ -33,6 +33,11 @@ public class UsersDetailsBeanBinaryTrade extends BinaryTrade {
 	private byte[] addqa;
 	private byte[] dashboard;
 	private byte[] combinedname;
+	private byte[] reports;
+	private byte[] testresults;
+	private byte[] newbug;
+	private byte[] viewbug;
+	private byte[] addbugserver;
 	private byte[] isactive;
 
 	public String getLoginStatus() {
@@ -545,6 +550,86 @@ public class UsersDetailsBeanBinaryTrade extends BinaryTrade {
 		}
 		this.isactive = new byte[Isactive.length()];
 		string2Bytes(Isactive, this.isactive);
+	}
+
+	public String getReports() {
+		try {
+			return new String(reports);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setReports(String Reports) {
+		if (Reports == null || Reports.length() == 0) {
+			return;
+		}
+		this.reports = new byte[Reports.length()];
+		string2Bytes(Reports, this.reports);
+	}
+
+	public String getTestresults() {
+		try {
+			return new String(testresults);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setTestresults(String Testresults) {
+		if (Testresults == null || Testresults.length() == 0) {
+			return;
+		}
+		this.testresults = new byte[Testresults.length()];
+		string2Bytes(Testresults, this.testresults);
+	}
+
+	public String getNewbug() {
+		try {
+			return new String(newbug);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setNewbug(String Newbug) {
+		if (Newbug == null || Newbug.length() == 0) {
+			return;
+		}
+		this.newbug = new byte[Newbug.length()];
+		string2Bytes(Newbug, this.newbug);
+	}
+
+	public String getViewbug() {
+		try {
+			return new String(viewbug);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setViewbug(String Viewbug) {
+		if (Viewbug == null || Viewbug.length() == 0) {
+			return;
+		}
+		this.viewbug = new byte[Viewbug.length()];
+		string2Bytes(Viewbug, this.viewbug);
+	}
+
+	public String getAddbugserver() {
+		try {
+			return new String(addbugserver);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setAddbugserver(String Addbugserver) {
+		if (Addbugserver == null || Addbugserver.length() == 0) {
+			return;
+		}
+		this.addbugserver = new byte[Addbugserver.length()];
+		string2Bytes(Addbugserver, this.addbugserver);
 	}
 
 	public long getId() {

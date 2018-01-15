@@ -45,14 +45,15 @@ public class AddUserController implements Initializable {
 	private JFXPasswordField securityanstext, passwordtext;
 	@FXML
 	private JFXCheckBox receiveemailcheck, newcrcheck, newffcheck, newtscheck, execrcheck, exetscheck, addusercheck,
-			addqacheck, dasboardcheck, activatecheck, deactivatecheck;
+			addqacheck, dasboardcheck, activatecheck, deactivatecheck, newbugcheck, viewbugcheck, downloadcheck,
+			viewresultscheck, bugservercheck;
 	@FXML
 	private AnchorPane passwordinformationanchor, transaprentanchor;
 	@FXML
 	private JFXButton save, update;
 	boolean passwordvalid = false, emailvalid = false;
 	static int email = 0, newcr = 0, newff = 0, newts = 0, crexe = 0, tsexe, adduser = 0, addqa = 0, dashboard = 0,
-			activestatus = 0;
+			activestatus = 0, newbug = 0, viewbug = 0, download = 0, viewresults = 0, bugserver = 0;
 	static String[] combinedname = null;
 
 	ArrayList<UsersDetailsBeanBinaryTrade> userslist = new ArrayList<UsersDetailsBeanBinaryTrade>();
@@ -179,6 +180,41 @@ public class AddUserController implements Initializable {
 				dashboard = 0;
 			}
 		});
+		newbugcheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (newbugcheck.isSelected()) {
+				newbug = 1;
+			} else {
+				newbug = 0;
+			}
+		});
+		viewbugcheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (viewbugcheck.isSelected()) {
+				viewbug = 1;
+			} else {
+				viewbug = 0;
+			}
+		});
+		downloadcheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (downloadcheck.isSelected()) {
+				download = 1;
+			} else {
+				download = 0;
+			}
+		});
+		viewresultscheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (viewresultscheck.isSelected()) {
+				viewresults = 1;
+			} else {
+				viewresults = 0;
+			}
+		});
+		bugservercheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (bugservercheck.isSelected()) {
+				bugserver = 1;
+			} else {
+				bugserver = 0;
+			}
+		});
 
 		passwordtext.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (passwordtext.getText() != null && !passwordtext.getText().trim().isEmpty()
@@ -241,7 +277,7 @@ public class AddUserController implements Initializable {
 					Loggedinuserdetails.cityprovince, Loggedinuserdetails.province, Loggedinuserdetails.postalCode,
 					Loggedinuserdetails.mainService, Loggedinuserdetails.userLevel, Loggedinuserdetails.userId, null,
 					Loggedinuserdetails.country, null, email, newcr, newff, newts, crexe, tsexe, adduser, addqa,
-					dashboard);
+					dashboard, download, viewresults, newbug, viewbug, bugserver);
 
 			if (status == "failure") {
 				runmessage("Failed to Add New User. Please Try Again...");
@@ -262,7 +298,8 @@ public class AddUserController implements Initializable {
 			String status = new DAO().updateUser(firstnametext.getText(), lastnametext.getText(),
 					usernametext.getText(), passwordtext.getText(), emailtext.getText(), securityquestiontext.getText(),
 					securityanstext.getText(), Loggedinuserdetails.userId, email, newcr, newff, newts, crexe, tsexe,
-					adduser, addqa, dashboard, activestatus, combinedname[0]);
+					adduser, addqa, dashboard, activestatus, combinedname[0], download, viewresults, newbug, viewbug,
+					bugserver);
 			if (status == "failure") {
 				runmessage("Failed to Update New User. Please Try Again...");
 			} else if (status == "error") {
@@ -364,6 +401,41 @@ public class AddUserController implements Initializable {
 				dasboardcheck.setSelected(false);
 				dashboard = 0;
 			}
+			if (selecteduserlist.get(0).getReports().equals("1")) {
+				downloadcheck.setSelected(true);
+				download = 1;
+			} else {
+				downloadcheck.setSelected(false);
+				download = 0;
+			}
+			if (selecteduserlist.get(0).getTestresults().equals("1")) {
+				viewresultscheck.setSelected(true);
+				viewresults = 1;
+			} else {
+				viewresultscheck.setSelected(false);
+				viewresults = 0;
+			}
+			if (selecteduserlist.get(0).getNewbug().equals("1")) {
+				newbugcheck.setSelected(true);
+				newbug = 1;
+			} else {
+				newbugcheck.setSelected(false);
+				newbug = 0;
+			}
+			if (selecteduserlist.get(0).getViewbug().equals("1")) {
+				viewbugcheck.setSelected(true);
+				viewbug = 1;
+			} else {
+				viewbugcheck.setSelected(false);
+				viewbug = 0;
+			}
+			if (selecteduserlist.get(0).getAddbugserver().equals("1")) {
+				bugservercheck.setSelected(true);
+				bugserver = 1;
+			} else {
+				bugservercheck.setSelected(false);
+				bugserver = 0;
+			}
 			save.setVisible(false);
 			update.setVisible(true);
 		}
@@ -417,6 +489,11 @@ public class AddUserController implements Initializable {
 		addusercheck.setSelected(false);
 		addqacheck.setSelected(false);
 		dasboardcheck.setSelected(false);
+		downloadcheck.setSelected(false);
+		viewresultscheck.setSelected(false);
+		newbugcheck.setSelected(false);
+		viewbugcheck.setSelected(false);
+		bugservercheck.setSelected(false);
 		save.setVisible(true);
 		update.setVisible(false);
 		usercombo.getSelectionModel().select(0);

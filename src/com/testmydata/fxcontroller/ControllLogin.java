@@ -28,6 +28,7 @@ import com.testmydata.fxutil.DBnameUpdateJAXB;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.EncryptAndDecrypt;
 import com.testmydata.util.FileIOOperations;
+import com.testmydata.util.StaticImages;
 import com.testmydata.vpn.VpnConnectionThread;
 
 import javafx.application.Platform;
@@ -55,9 +56,9 @@ public class ControllLogin implements Initializable {
 	@FXML
 	private ImageView imageView;
 	@FXML
-	private Text lblWelcome, lblUserLogin, lblUsername, lblPassword, lblcompanyName;
+	private Text lblWelcome, lblUsername, lblPassword, lblcompanyName;
 	@FXML
-	private Label producttype, lblsecurity, lblClose;
+	private Label producttype, lblClose, applabel;
 	@FXML
 	private Button btnLogin;
 	@FXML
@@ -81,6 +82,7 @@ public class ControllLogin implements Initializable {
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 		remembermebox.setStyle("-fx-text-fill: white; -fx-font-weight:bold;");
+		imageView.setImage(StaticImages.appicon.getImage());
 
 		txtCompanyName.lengthProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -95,17 +97,14 @@ public class ControllLogin implements Initializable {
 		});
 
 		lblWelcome.setEffect(ds);
-		lblUserLogin.setEffect(ds);
 		lblUsername.setEffect(ds);
 		lblPassword.setEffect(ds);
 		lblcompanyName.setEffect(ds);
 		producttype.setEffect(ds);
 		newUser.setEffect(ds);
 		forgotPassword.setEffect(ds);
-		lblsecurity.setEffect(ds);
 
 		Platform.runLater(() -> {
-			new FadeInRightTransition(lblUserLogin).play();
 			new FadeInLeftTransition(lblWelcome).play();
 			new FadeInLeftTransition1(lblPassword).play();
 			new FadeInLeftTransition1(lblUsername).play();
@@ -113,10 +112,10 @@ public class ControllLogin implements Initializable {
 			new FadeInLeftTransition1(txtUsername).play();
 			new FadeInLeftTransition1(txtPassword).play();
 			new FadeInLeftTransition1(txtCompanyName).play();
-			new FadeInLeftTransition(lblsecurity).play();
 			new FadeInRightTransition(producttype).play();
 			new FadeInRightTransition(btnLogin).play();
 			new FadeInRightTransition(imageView).play();
+			new FadeInLeftTransition(applabel).play();
 
 			try {
 				props = fileop.readPropertyFile("dafaultValues.properties");
