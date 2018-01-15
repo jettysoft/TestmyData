@@ -79,7 +79,7 @@ public class DashBoardController implements Initializable {
 	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
 	@FXML
 	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
-			testanchor, bugsanchor, reportsanchor, settingsanchor;
+			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor;
 	@FXML
 	private Hyperlink newfieldtofield, newcontrolreport, testsuiteff, exeff, execr, newbugs, viewbugs, downloadreports,
 			viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
@@ -678,6 +678,7 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runadduser() {
+
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

@@ -529,7 +529,7 @@ public class RegistrationController implements Initializable {
 							answer.getText().trim(), streetno.getText().trim(), city.getText().trim(),
 							province.getText().trim(), postalcode.getText().trim(), mainservice.getText().trim(),
 							userLevel, username.getText().trim(), selectedindustry, country, null, email, 1, 1, 1, 1, 1,
-							1, 1, 1);
+							1, 1, 1, 1, 1, 1, 1, 1);
 					usernames = username.getText().trim();
 
 					if (status == "failure") {

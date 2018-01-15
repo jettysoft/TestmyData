@@ -51,10 +51,10 @@ public class controllSplash implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		if (source.equals("welcome")) {
 			lblWelcome.setText("Welcome to");
-			lblsecure.setText("securing....");
+			lblsecure.setText("Securing....");
 		} else if (source.equals("login")) {
 			lblWelcome.setText("Loading");
-			lblsecure.setText("secured....");
+			lblsecure.setText("Secured....");
 		}
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(3.0f);

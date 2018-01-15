@@ -283,8 +283,8 @@ public class DAO {
 				String checkPasswordSql = null;
 
 				checkPasswordSql = "SELECT id,companyName,firstName,lastName,userId,emailId, businessAddress, cityprovince, province, "
-						+ "postalcode, mainService, country, updatedBy, userLevel, email, newcr, newff, newts, crexe, tsexe, adduser, addqa, dashboard, "
-						+ "DATE_FORMAT(createdDate, '%Y-%m-%d')as createdDate "
+						+ "postalcode, mainService, country, updatedBy, userLevel, email, newcr, newff, newts, crexe, tsexe, adduser, addqa, dashboard, reports,"
+						+ "testresults, newbug, viewbug, addbugserver, DATE_FORMAT(createdDate, '%Y-%m-%d')as createdDate "
 						+ " FROM users WHERE isActive = 1 and userActive = 1 AND userId ='" + userId
 						+ "' AND password = md5('" + password + "')";
 
@@ -313,8 +313,15 @@ public class DAO {
 					Loggedinuserdetails.newts = rs.getInt(18);
 					Loggedinuserdetails.crexe = rs.getInt(19);
 					Loggedinuserdetails.tsexe = rs.getInt(20);
-					Loggedinuserdetails.dashboard = rs.getInt(21);
-					Loggedinuserdetails.activateddate = rs.getString(22);
+					Loggedinuserdetails.adduser = rs.getInt(21);
+					Loggedinuserdetails.addqa = rs.getInt(22);
+					Loggedinuserdetails.dashboard = rs.getInt(23);
+					Loggedinuserdetails.reports = rs.getInt(24);
+					Loggedinuserdetails.testresults = rs.getInt(25);
+					Loggedinuserdetails.newbug = rs.getInt(26);
+					Loggedinuserdetails.viewbug = rs.getInt(27);
+					Loggedinuserdetails.addbugserver = rs.getInt(28);
+					Loggedinuserdetails.activateddate = rs.getString(29);
 
 					role = "Admin";
 
@@ -728,7 +735,8 @@ public class DAO {
 			String lastName, String userId, String password, String emailId, String securityQuestion, String answer,
 			String businessAddress, String cityprovince, String province, String postalCode, String mainService,
 			String userLevel, String updatedby, String industry, String country, String logoname, int email, int newcr,
-			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard) {
+			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard, int reports,
+			int testresults, int newbug, int viewbug, int addbugserver) {
 
 		String returnValue = "failure";
 		String com = companyName.replaceAll(" ", "");
@@ -753,7 +761,8 @@ public class DAO {
 						+ "userLevel varchar(2) default NULL, createdDate datetime default NULL, updatedDate datetime default NULL, updatedBy varchar(255) default NULL, isActive tinyint(1) default '0',"
 						+ "loggedIn date, industry varchar(15) default null, country varchar(200) default null, logoname varchar(300) default null, "
 						+ "email int(1) default 0, newcr int(1) default 0, newff int(1) default 0, newts int(1) default 0, crexe int(1) default 0, tsexe int(1) default 0,"
-						+ "adduser int(1) default 0, addqa int(1) default 0, dashboard int(1) default 0, userActive int(1) default 1,"
+						+ "adduser int(1) default 0, addqa int(1) default 0, dashboard int(1) default 0, reports int(1) default 0, testresults int(1) default 0, "
+						+ "newbug int(1) default 0, viewbug int(1) default 0, addbugserver int(1) default 0, userActive int(1) default 1,"
 						+ " PRIMARY KEY  (id))";
 				Statement st = con.createStatement();
 
@@ -764,7 +773,8 @@ public class DAO {
 					returnValue = addNewUser(tableName, registrationKey, companyName, firstName, lastName, userId,
 							password, emailId, securityQuestion, answer, businessAddress, cityprovince, province,
 							postalCode, mainService, userLevel, updatedby, industry, country, logoname, email, newcr,
-							newff, newts, crexe, tsexe, adduser, addqa, dashboard);
+							newff, newts, crexe, tsexe, adduser, addqa, dashboard, reports, testresults, newbug,
+							viewbug, addbugserver);
 				else
 					returnValue = "failure";
 
@@ -772,7 +782,7 @@ public class DAO {
 				returnValue = addNewUser(tableName, registrationKey, companyName, firstName, lastName, userId, password,
 						emailId, securityQuestion, answer, businessAddress, cityprovince, province, postalCode,
 						mainService, userLevel, updatedby, industry, country, logoname, email, newcr, newff, newts,
-						crexe, tsexe, adduser, addqa, dashboard);
+						crexe, tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver);
 			} else {
 				returnValue = "failure";
 			}
@@ -789,7 +799,8 @@ public class DAO {
 			String lastName, String userId, String password, String emailId, String securityQuestion, String answer,
 			String businessAddress, String cityprovince, String province, String postalCode, String mainService,
 			String userLevel, String updatedby, String industry, String country, String logoname, int email, int newcr,
-			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard) {
+			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard, int reports,
+			int testresults, int newbug, int viewbug, int addbugserver) {
 		String returnValue = "failure";
 
 		try {
@@ -805,8 +816,8 @@ public class DAO {
 				sql = "insert into " + tableName
 						+ "(companyName, firstName, lastName, userId, password, emailId, securityQuestion, answer, businessAddress, cityprovince, province, "
 						+ "postalCode, mainService, userLevel,createdDate,userActive,loggedIn, updatedBy, industry, country, logoname, email,  newcr, "
-						+ "newff,  newts,  crexe,  tsexe,  adduser,  addqa,  dashboard) "
-						+ "values(? , ? , ? , ? , md5(?) , ? , ? , ? , ? , ? , ? , ? , ? , ? , CURRENT_TIMESTAMP , 1 , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						+ "newff,  newts,  crexe,  tsexe,  adduser,  addqa,  dashboard, reports, testresults, newbug, viewbug, addbugserver) "
+						+ "values(? , ? , ? , ? , md5(?) , ? , ? , ? , ? , ? , ? , ? , ? , ? , CURRENT_TIMESTAMP , 1 , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 				ps = con.prepareStatement(sql);
 				ps.setString(1, companyName);
@@ -838,6 +849,11 @@ public class DAO {
 				ps.setInt(26, adduser);
 				ps.setInt(27, addqa);
 				ps.setInt(28, dashboard);
+				ps.setInt(29, reports);
+				ps.setInt(30, testresults);
+				ps.setInt(31, newbug);
+				ps.setInt(32, viewbug);
+				ps.setInt(33, addbugserver);
 
 				int status = ps.executeUpdate();
 
@@ -861,13 +877,14 @@ public class DAO {
 
 	public String updateUser(String firstName, String lastName, String userId, String password, String emailId,
 			String securityQuestion, String answer, String updatedby, int email, int newcr, int newff, int newts,
-			int crexe, int tsexe, int adduser, int addqa, int dashboard, int activestatus, String id) {
+			int crexe, int tsexe, int adduser, int addqa, int dashboard, int activestatus, String id, int reports,
+			int testresults, int newbug, int viewbug, int addbugserver) {
 		String returnValue = "failure";
 
 		try {
 			sql = "update users set firstName = ?, lastName = ?, userId = ?, password = md5(?), emailId = ?, securityQuestion = ?, answer = ?, "
 					+ "updatedDate = CURRENT_TIMESTAMP, userActive = ?, updatedBy = ?, email = ?,  newcr = ?, newff = ?,  newts = ?,  "
-					+ "crexe = ?,  tsexe =?,  adduser =?,  addqa =?,  dashboard = ? where id = ?";
+					+ "crexe = ?,  tsexe =?,  adduser =?,  addqa =?,  dashboard = ?, reports = ?, testresults = ?, newbug = ?, viewbug = ?, addbugserver = ? where id = ?";
 
 			ps = con.prepareStatement(sql);
 			ps.setString(1, firstName);
@@ -889,6 +906,11 @@ public class DAO {
 			ps.setInt(17, addqa);
 			ps.setInt(18, dashboard);
 			ps.setString(19, id);
+			ps.setInt(20, reports);
+			ps.setInt(21, testresults);
+			ps.setInt(22, newbug);
+			ps.setInt(23, viewbug);
+			ps.setInt(24, addbugserver);
 
 			int status = ps.executeUpdate();
 
@@ -3606,7 +3628,8 @@ public class DAO {
 		ArrayList<UsersDetailsBeanBinaryTrade> userlist = new ArrayList<UsersDetailsBeanBinaryTrade>();
 		try {
 			sql = "select id, firstName, lastName, userId, emailId, securityQuestion, answer, userActive, email, newcr, newff, newts, crexe, "
-					+ "tsexe, adduser, addqa, dashboard from users where id = '" + id + "'";
+					+ "tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver from users where id = '"
+					+ id + "'";
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
@@ -3628,6 +3651,11 @@ public class DAO {
 				udbt.setAdduser(rs.getString(15));
 				udbt.setAddqa(rs.getString(16));
 				udbt.setDashboard(rs.getString(17));
+				udbt.setReports(rs.getString(18));
+				udbt.setTestresults(rs.getString(19));
+				udbt.setNewbug(rs.getString(20));
+				udbt.setViewbug(rs.getString(21));
+				udbt.setAddbugserver(rs.getString(22));
 
 				userlist.add(udbt);
 			}
