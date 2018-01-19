@@ -5,18 +5,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
 import com.testmydata.binarybeans.FieldtoFieldBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.dao.DAO;
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
+import com.testmydata.util.ComboBoxFilter;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
+import com.testmydata.util.GetDBTables;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.StaticImages;
 
@@ -30,6 +33,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,19 +48,23 @@ public class NewFieldtoFieldController implements Initializable {
 
 	private static NewFieldtoFieldController userHome = null;
 	@FXML
-	private ImageView homeicon, searchicon, closeicon;
+	private JFXTabPane testcasestab;
 	@FXML
-	private JFXComboBox<String> modulecombo;
+	private ImageView homeicon, executeicon, saveicon, updateicon, viewicon, refreshicon, refreshicon1;
+	@FXML
+	private JFXComboBox<String> modulecombo, targetdbcombo, targettablecombo, targetjoincombo, targetwherecombo,
+			mappingdbcombo, mappingtablecombo, mappingtargetjoincombo, mappingsourcejoincombo, operatorcombo,
+			sourcedbcombo, sourcetablecombo, sourcejoincombo, sourcewherecombo;
 	@FXML
 	private JFXTextField tsnametext, tcnametext, searchtext;
 	@FXML
-	private JFXTextArea tctextarea, sqlscripttextarea;
+	private JFXTextArea tctextarea, sqlscripttextarea, resultstextarea;
 	@FXML
-	private AnchorPane searchanchor;
+	private Label statuslabel, refreshlbl, refreshlbl1;
+	@FXML
+	private AnchorPane actionanchor1, actionanchor2;
 	@FXML
 	private JFXDatePicker startdate, enddate;
-	@FXML
-	private JFXButton test, save, show, update, searchbuttonlabel;
 	@FXML
 	private TableView<FieldtoFieldBinaryTrade> tctable;
 	@FXML
@@ -71,19 +79,175 @@ public class NewFieldtoFieldController implements Initializable {
 	Stage myStage;
 	ArrayList<ModulesBinaryTrade> moduleslist = new ArrayList<ModulesBinaryTrade>();
 	ArrayList<FieldtoFieldBinaryTrade> testcaselist = new ArrayList<FieldtoFieldBinaryTrade>();
+	ArrayList<ControlReportHelperBinaryTrade> dblist = new ArrayList<ControlReportHelperBinaryTrade>();
+	ArrayList<ControlReportHelperBinaryTrade> tablelist = new ArrayList<ControlReportHelperBinaryTrade>();
+	ArrayList<ControlReportHelperBinaryTrade> columnlist = new ArrayList<ControlReportHelperBinaryTrade>();
 	static String testcaseid = null;
+	private String[] operators = { "=", "!=", ">", "<", "<>" };
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingmodules();
 		setdatesinitially();
 		populatetestcases();
-		homeicon.setImage(StaticImages.homeicon.getImage());
-		searchicon.setImage(StaticImages.searchicon.getImage());
-		closeicon.setImage(StaticImages.wrong_tick.getImage());
 
-		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
-		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		executeicon.setImage(StaticImages.source_execute.getImage());
+		saveicon.setImage(StaticImages.save.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
+		viewicon.setImage(StaticImages.view.getImage());
+		refreshicon.setImage(StaticImages.refresh.getImage());
+		refreshicon1.setImage(StaticImages.refresh.getImage());
+
+		updateicon.setVisible(false);
+
+		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
+		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
+
+		ComboBoxFilter.autoCompleteComboBoxPlus(modulecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(targetdbcombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(targettablecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(targetjoincombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(targetwherecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(mappingdbcombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(mappingtablecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(mappingtargetjoincombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(mappingsourcejoincombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(operatorcombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(sourcedbcombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(sourcetablecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(sourcejoincombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+		ComboBoxFilter.autoCompleteComboBoxPlus(sourcewherecombo,
+				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
+
+		setdb();
+
+		Label exelbl = new Label("   Execute ");
+		exelbl.setStyle(StaticImages.lblStyle);
+		exelbl.setMinWidth(60);
+		exelbl.setLayoutX(65);
+		exelbl.setLayoutY(15);
+		exelbl.setVisible(false);
+		actionanchor1.getChildren().add(exelbl);
+
+		executeicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				exelbl.setVisible(true);
+			}
+		});
+		executeicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				exelbl.setVisible(false);
+			}
+		});
+
+		Label savelbl = new Label("   Save ");
+		savelbl.setStyle(StaticImages.lblStyle);
+		savelbl.setMinWidth(45);
+		savelbl.setLayoutX(105);
+		savelbl.setLayoutY(15);
+		savelbl.setVisible(false);
+		actionanchor1.getChildren().add(savelbl);
+
+		saveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(true);
+			}
+		});
+		saveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(false);
+			}
+		});
+
+		Label updatelbl = new Label("   Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(50);
+		updatelbl.setLayoutX(105);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
+
+		Label viewlbl = new Label("   View ");
+		viewlbl.setStyle(StaticImages.lblStyle);
+		viewlbl.setMinWidth(50);
+		viewlbl.setLayoutX(470);
+		viewlbl.setLayoutY(25);
+		viewlbl.setVisible(false);
+		actionanchor2.getChildren().add(viewlbl);
+
+		viewicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				viewlbl.setVisible(true);
+			}
+		});
+		viewicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				viewlbl.setVisible(false);
+			}
+		});
+
+		refreshlbl.setStyle(StaticImages.lblStyle);
+
+		refreshicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl.setVisible(true);
+			}
+		});
+		refreshicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl.setVisible(false);
+			}
+		});
+
+		refreshlbl1.setStyle(StaticImages.lblStyle);
+
+		refreshicon1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl1.setVisible(true);
+			}
+		});
+		refreshicon1.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl1.setVisible(false);
+			}
+		});
 
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		module.setCellValueFactory(new PropertyValueFactory<>("modulename"));
@@ -186,20 +350,170 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		searchicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		executeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				searchanchor.setVisible(true);
-				searchbuttonlabel.setVisible(true);
+
 			}
 		});
 
-		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		saveicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				searchtext.clear();
-				searchanchor.setVisible(false);
-				searchbuttonlabel.setVisible(false);
+
+			}
+		});
+
+		targetdbcombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT DB")) {
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
+						if (tablelist != null && tablelist.size() > 0) {
+							targettablecombo.getItems().clear();
+							targettablecombo.getItems().add("SELECT TABLE");
+							targettablecombo.getSelectionModel().select(0);
+							for (int i = 0; i < tablelist.size(); i++) {
+								targettablecombo.getItems().add(tablelist.get(i).getTablenames());
+							}
+						}
+					}
+				}
+			}
+		});
+
+		mappingdbcombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT DB")) {
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
+						if (tablelist != null && tablelist.size() > 0) {
+							mappingtablecombo.getItems().clear();
+							mappingtablecombo.getItems().add("SELECT TABLE");
+							mappingtablecombo.getSelectionModel().select(0);
+							for (int i = 0; i < tablelist.size(); i++) {
+								mappingtablecombo.getItems().add(tablelist.get(i).getTablenames());
+							}
+						}
+					}
+				}
+			}
+		});
+
+		sourcedbcombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT DB")) {
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
+						if (tablelist != null && tablelist.size() > 0) {
+							sourcetablecombo.getItems().clear();
+							sourcetablecombo.getItems().add("SELECT TABLE");
+							sourcetablecombo.getSelectionModel().select(0);
+							for (int i = 0; i < tablelist.size(); i++) {
+								sourcetablecombo.getItems().add(tablelist.get(i).getTablenames());
+							}
+						}
+					}
+				}
+			}
+		});
+
+		targettablecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT TABLE")) {
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit,
+								targetdbcombo.getSelectionModel().getSelectedItem());
+						if (columnlist != null && columnlist.size() > 0) {
+							targetjoincombo.getItems().clear();
+							targetjoincombo.getItems().add("SELECT COLUMN");
+							targetjoincombo.getSelectionModel().select(0);
+
+							targetwherecombo.getItems().clear();
+							targetwherecombo.getItems().add("SELECT COLUMN");
+							targetwherecombo.getSelectionModel().select(0);
+							for (int i = 0; i < columnlist.size(); i++) {
+								targetjoincombo.getItems().add(columnlist.get(i).getColumnnames());
+								targetwherecombo.getItems().add(columnlist.get(i).getColumnnames());
+							}
+						}
+					}
+				}
+			}
+		});
+
+		mappingtablecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT TABLE")) {
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit,
+								mappingdbcombo.getSelectionModel().getSelectedItem());
+						if (columnlist != null && columnlist.size() > 0) {
+							mappingtargetjoincombo.getItems().clear();
+							mappingtargetjoincombo.getItems().add("SELECT COLUMN");
+							mappingtargetjoincombo.getSelectionModel().select(0);
+
+							mappingsourcejoincombo.getItems().clear();
+							mappingsourcejoincombo.getItems().add("SELECT COLUMN");
+							mappingsourcejoincombo.getSelectionModel().select(0);
+
+							operatorcombo.getItems().addAll(operators);
+							operatorcombo.getSelectionModel().select(0);
+							for (int i = 0; i < columnlist.size(); i++) {
+								mappingtargetjoincombo.getItems().add(columnlist.get(i).getColumnnames());
+								mappingsourcejoincombo.getItems().add(columnlist.get(i).getColumnnames());
+							}
+						}
+					}
+				}
+			}
+		});
+
+		sourcetablecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT TABLE")) {
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit,
+								sourcedbcombo.getSelectionModel().getSelectedItem());
+						if (columnlist != null && columnlist.size() > 0) {
+							sourcejoincombo.getItems().clear();
+							sourcejoincombo.getItems().add("SELECT COLUMN");
+							sourcejoincombo.getSelectionModel().select(0);
+
+							sourcewherecombo.getItems().clear();
+							sourcewherecombo.getItems().add("SELECT COLUMN");
+							sourcewherecombo.getSelectionModel().select(0);
+							for (int i = 0; i < columnlist.size(); i++) {
+								sourcejoincombo.getItems().add(columnlist.get(i).getColumnnames());
+								sourcewherecombo.getItems().add(columnlist.get(i).getColumnnames());
+							}
+						}
+					}
+				}
 			}
 		});
 
@@ -327,8 +641,8 @@ public class NewFieldtoFieldController implements Initializable {
 		tcnametext.clear();
 		tctextarea.clear();
 		sqlscripttextarea.clear();
-		save.setVisible(true);
-		update.setVisible(false);
+		saveicon.setVisible(true);
+		updateicon.setVisible(false);
 	}
 
 	@FXML
@@ -475,8 +789,8 @@ public class NewFieldtoFieldController implements Initializable {
 					tctextarea.setText(person.getTestcondition());
 					sqlscripttextarea.setText(person.getSqlscript());
 					testcaseid = person.getId();
-					save.setVisible(false);
-					update.setVisible(true);
+					saveicon.setVisible(false);
+					updateicon.setVisible(true);
 
 				}
 			});
@@ -533,5 +847,59 @@ public class NewFieldtoFieldController implements Initializable {
 				setGraphic(cellButton);
 			}
 		}
+	}
+
+	private void setdb() {
+		targetdbcombo.getItems().clear();
+		targetdbcombo.getItems().add("SELECT DB");
+
+		mappingdbcombo.getItems().clear();
+		mappingdbcombo.getItems().add("SELECT DB");
+
+		sourcedbcombo.getItems().clear();
+		sourcedbcombo.getItems().add("SELECT DB");
+
+		if (dblist != null) {
+			dblist.clear();
+		}
+		dblist = GetDBTables.dblist;
+
+		if (dblist != null && dblist.size() > 0) {
+			for (int i = 0; i < dblist.size(); i++) {
+				targetdbcombo.getItems().add(dblist.get(i).getDbnames());
+			}
+
+			for (int i = 0; i < dblist.size(); i++) {
+				mappingdbcombo.getItems().add(dblist.get(i).getDbnames());
+			}
+
+			for (int i = 0; i < dblist.size(); i++) {
+				sourcedbcombo.getItems().add(dblist.get(i).getDbnames());
+			}
+		}
+		targetdbcombo.getSelectionModel().select("SELECT DB");
+		mappingdbcombo.getSelectionModel().select("SELECT DB");
+		sourcedbcombo.getSelectionModel().select("SELECT DB");
+
+	}
+
+	private void sqlautoeditor() {
+		if (targetwherecombo.getSelectionModel().getSelectedIndex() > 0
+				&& sourcewherecombo.getSelectionModel().getSelectedIndex() > 0) {
+			String sdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
+			String mdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3);
+			String tdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
+					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
+			sqlscripttextarea
+					.setText("SELECT COUNT(1) FROM " + targetdbcombo.getSelectionModel().getSelectedItem().toUpperCase()
+							+ "." + targettablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + tdb
+							+ " INNER JOIN " + mappingdbcombo.getSelectionModel().getSelectedItem().toUpperCase());
+		}
+
 	}
 }

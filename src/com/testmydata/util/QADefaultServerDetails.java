@@ -32,6 +32,7 @@ public class QADefaultServerDetails {
 				classname = qaserverlist.get(0).getClassname();
 				servertype = qaserverlist.get(0).getServertype();
 			}
+			GetDBTables.getdblist();
 		}
 	}
 

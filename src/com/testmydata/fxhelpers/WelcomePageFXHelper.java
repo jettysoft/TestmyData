@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.fxutil.UndecoratorScene;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -11,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -68,8 +68,8 @@ public class WelcomePageFXHelper {
 		// undecoratorScene.setFadeInTransition();
 		stage.setScene(undecoratorScene);
 		stage.toFront();
-		Image image = new Image("/com/testmydata/fximages/crown.png");
-		stage.getIcons().addAll(image);
+		// Image image = new Image("/com/testmydata/fximages/crown.png");
+		stage.getIcons().addAll(StaticImages.appicon.getImage());
 		stage.show();
 		stage.setFullScreen(true);
 		// stage.initStyle(StageStyle.UNDECORATED);

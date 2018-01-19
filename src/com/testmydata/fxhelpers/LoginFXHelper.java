@@ -3,6 +3,7 @@ package com.testmydata.fxhelpers;
 import java.io.IOException;
 
 import com.testmydata.fxutil.UndecoratorController;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -66,9 +66,8 @@ public class LoginFXHelper {
 		// stage.setTitle("Login");
 		UndecoratorController.getInstance("close");
 		stage.initStyle(StageStyle.UNDECORATED);
-		Image image = new Image("/com/testmydata/fximages/crown.png");
 
-		stage.getIcons().addAll(image);
+		stage.getIcons().addAll(StaticImages.appicon.getImage());
 
 		root.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override

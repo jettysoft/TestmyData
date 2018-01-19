@@ -1,0 +1,42 @@
+ 
+.text-area {
+    -fx-background-color: rgba(53,89,119,0.4);
+    -fx-focus-color: transparent;
+    -fx-text-inner-color : #162a4c;	
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar:horizontal:hover .track ,
+.text-area .scroll-bar:horizontal:pressed .track ,
+.text-area .scroll-bar:vertical:hover .track,
+.text-area .scroll-bar:vertical:pressed .track{
+     -fx-background-color: derive(#ffd88c,40%);
+
+	 -fx-opacity: 0.1;
+	 -fx-background-radius: 0em;
+
+}
+
+/* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+.text-area .scroll-bar .thumb:hover,
+.text-area .scroll-bar .thumb:pressed{
+    -fx-background-color: derive(#ffd88c,10%);
+}
+
+.text-area .increment-button:hover ,.text-area .decrement-button:hover {
+    -fx-background-color:derive(#ffd88c,100%);
+	-fx-border-color:derive(#ffd88c,80%);	
+	-fx-padding:1px;
+}

@@ -49,6 +49,8 @@ public class QAServerSettingsController implements Initializable {
 	@FXML
 	private JFXCheckBox deafultcheckbox;
 	Stage myStage;
+	// private String[] servers = { "SELECT SERVER", "MY SQL", "MSSQL",
+	// "POSTGRESQL" };
 	private String[] servers = { "SELECT SERVER", "MY SQL", "MSSQL" };
 
 	private static String classname = null, dburl = null, formatedurl = null;
@@ -200,16 +202,16 @@ public class QAServerSettingsController implements Initializable {
 		boolean result = true;
 		if (fhosttext.getText() == null || fhosttext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Field to Field Host IP...");
+			runmessage("Please Enter Host IP...");
 		} else if (fusernametext.getText() == null || fusernametext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Field to Field User Name...");
+			runmessage("Please Enter User Name...");
 		} else if (fpasswordtext.getText() == null || fpasswordtext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Field to Field Password...");
+			runmessage("Please Enter Password...");
 		} else if (fservercombo.getSelectionModel().getSelectedItem().equals("SELECT SERVER")) {
 			result = false;
-			runmessage("Please Select Field to Field Server...");
+			runmessage("Please Select Server...");
 		}
 		return result;
 	}
@@ -244,6 +246,7 @@ public class QAServerSettingsController implements Initializable {
 			result = false;
 		}
 		return result;
+
 	}
 
 	// Saving to DB
@@ -316,6 +319,9 @@ public class QAServerSettingsController implements Initializable {
 		} else if (servertype.equals("MSSQL")) {
 			classname = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 			dburl = "jdbc:sqlserver://" + hostname;
+		} else if (servertype.equals("POSTGRESQL")) {
+			classname = "org.postgresql.Driver";
+			dburl = "jdbc:postgresql://" + hostname + "/";
 		}
 	}
 
@@ -326,6 +332,9 @@ public class QAServerSettingsController implements Initializable {
 			formatedurl = formatedurl.replaceAll("/", "");
 		} else if (servertype.equals("MSSQL")) {
 			formatedurl = url.replaceAll("jdbc:sqlserver://", "");
+		} else if (servertype.equals("POSTGRESQL")) {
+			formatedurl = url.replaceAll("jdbc:postgresql://", "");
+			formatedurl = formatedurl.replaceAll("/", "");
 		}
 		return formatedurl;
 	}

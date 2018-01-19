@@ -9,7 +9,6 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.QAServerSettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/TextFieldColors.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.QAServerSettingsController">
    <children>
       <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,29 +31,24 @@
                </font>
             </Label>
          </children>
-         <effect>
-            <Glow level="0.2">
-               <input>
-                  <Glow level="0.2" />
-               </input>
-            </Glow>
-         </effect>
       </AnchorPane>
       <AnchorPane layoutX="30.0" layoutY="69.0" prefHeight="337.0" prefWidth="350.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="69.0">
          <effect>
             <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
-            <JFXTextField fx:id="fhosttext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" AnchorPane.leftAnchor="15.0">
+            <JFXComboBox fx:id="fexistingservercombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
+            <JFXTextField fx:id="fhosttext" focusColor="#162a4c" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" AnchorPane.leftAnchor="15.0">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="fusernametext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="192.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter User Name" AnchorPane.leftAnchor="15.0">
+            <JFXTextField fx:id="fusernametext" focusColor="#162a4c" labelFloat="true" layoutX="15.0" layoutY="192.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter User Name" AnchorPane.leftAnchor="15.0">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </JFXTextField>
+            <JFXPasswordField fx:id="fpasswordtext" labelFloat="true" layoutX="15.0" layoutY="242.0" prefWidth="300.0" />
             <FontAwesomeIconView fill="#40aa03" glyphName="BARCODE" layoutX="298.0" layoutY="164.0" size="15" />
             <MaterialDesignIconView fill="#40aa03" glyphName="KEG" layoutX="298.0" layoutY="214.0" size="15" />
             <MaterialDesignIconView fill="#40aa03" glyphName="POLL" layoutX="298.0" layoutY="264.0" size="15" />
@@ -76,7 +70,6 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="fexistingservercombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
             <Label layoutX="15.0" layoutY="35.0" text="Update Existing" textFill="#f21111">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -92,12 +85,11 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXCheckBox fx:id="deafultcheckbox" checkedColor="#38c910" layoutX="16.0" layoutY="343.0" text="Set as Default  Server" textFill="#0c23ea" unCheckedColor="#eb1d1d">
+            <JFXCheckBox fx:id="deafultcheckbox" checkedColor="#38c910" layoutX="16.0" layoutY="343.0" text="Set as Default  Server" textFill="#162a4c" unCheckedColor="#eb1d1d">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXCheckBox>
-            <JFXPasswordField fx:id="fpasswordtext" labelFloat="true" layoutX="15.0" layoutY="242.0" prefWidth="300.0" />
          </children>
       </AnchorPane>
       <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="59.0" layoutY="56.0" opacity="0.85" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #40AA03;" text="Add New Server" textFill="WHITE">
@@ -118,9 +110,10 @@
             <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
          </effect>
          <children>
-            <JFXTextField fx:id="modulenametext" focusColor="#0d96f1" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Module Name" AnchorPane.leftAnchor="15.0">
+            <JFXComboBox fx:id="existingmodulescombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
+            <JFXTextField fx:id="modulenametext" focusColor="#162a4c" labelFloat="true" layoutX="15.0" layoutY="142.0" prefHeight="25.0" prefWidth="300.0" promptText="Enter Module Name" AnchorPane.leftAnchor="15.0">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </JFXTextField>
             <FontAwesomeIconView fill="#40aa03" glyphName="BARCODE" layoutX="298.0" layoutY="164.0" size="15" />
@@ -134,7 +127,6 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="existingmodulescombo" focusColor="#0083ff" labelFloat="true" layoutX="15.0" layoutY="52.0" prefWidth="300.0" unFocusColor="#40aa03" />
             <Label layoutX="15.0" layoutY="35.0" text="Update Existing" textFill="#f21111">
                <font>
                   <Font name="System Bold" size="12.0" />

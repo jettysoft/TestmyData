@@ -10,6 +10,7 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
@@ -87,6 +88,7 @@
                   <Font size="11.0" />
                </font>
             </Hyperlink>
+            <Pane layoutX="100.0" layoutY="-8.0" maxHeight="2.0" minHeight="1.0" prefHeight="3.0" prefWidth="47.0" style="-fx-background-color: #f2e35e; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="testsuiteanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
@@ -96,6 +98,7 @@
                   <Font size="11.0" />
                </font>
             </Hyperlink>
+            <Pane layoutX="195.0" layoutY="-8.0" maxHeight="2.0" minHeight="1.0" prefHeight="3.0" prefWidth="60.0" style="-fx-background-color: #f2e35e; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="testanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
@@ -223,5 +226,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <AnchorPane id="AnchorPane" fx:id="subscreenanchor" layoutX="20.0" layoutY="119.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
    </children>
 </AnchorPane>

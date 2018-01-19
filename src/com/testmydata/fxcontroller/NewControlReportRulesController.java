@@ -16,6 +16,7 @@ import com.testmydata.dao.DAO;
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
+import com.testmydata.util.GetDBTables;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.StaticImages;
@@ -439,7 +440,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT DB")) {
-						tablelist = new DAO().getQAServerTables(newFruit);
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
 						if (tablelist != null && tablelist.size() > 0) {
 							stablebox.getItems().clear();
 							stablebox.getItems().add("SELECT TABLE");
@@ -458,7 +462,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT DB")) {
-						tablelist = new DAO().getQAServerTables(newFruit);
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
 						if (tablelist != null && tablelist.size() > 0) {
 							sttablebox.getItems().clear();
 							sttablebox.getItems().add("SELECT TABLE");
@@ -477,7 +484,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT DB")) {
-						tablelist = new DAO().getQAServerTables(newFruit);
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
 						if (tablelist != null && tablelist.size() > 0) {
 							trtablebox.getItems().clear();
 							trtablebox.getItems().add("SELECT TABLE");
@@ -496,7 +506,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT DB")) {
-						tablelist = new DAO().getQAServerTables(newFruit);
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
 						if (tablelist != null && tablelist.size() > 0) {
 							ltablebox.getItems().clear();
 							ltablebox.getItems().add("SELECT TABLE");
@@ -515,7 +528,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT DB")) {
-						tablelist = new DAO().getQAServerTables(newFruit);
+						if (tablelist != null) {
+							tablelist.clear();
+						}
+						tablelist = GetDBTables.gettablelist(newFruit);
 						if (tablelist != null && tablelist.size() > 0) {
 							ttablebox.getItems().clear();
 							ttablebox.getItems().add("SELECT TABLE");
@@ -534,8 +550,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT TABLE")) {
-						columnlist = new DAO().getQAServerColumns(newFruit,
-								sdbbox.getSelectionModel().getSelectedItem());
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit, sdbbox.getSelectionModel().getSelectedItem());
 						if (columnlist != null && columnlist.size() > 0) {
 							scolumnbox.getItems().clear();
 							scolumnbox.getItems().add("SELECT COLUMN");
@@ -554,8 +572,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT TABLE")) {
-						columnlist = new DAO().getQAServerColumns(newFruit,
-								stdbbox.getSelectionModel().getSelectedItem());
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit, stdbbox.getSelectionModel().getSelectedItem());
 						if (columnlist != null && columnlist.size() > 0) {
 							stcolumnbox.getItems().clear();
 							stcolumnbox.getItems().add("SELECT COLUMN");
@@ -574,8 +594,11 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT TABLE")) {
-						columnlist = new DAO().getQAServerColumns(newFruit,
-								trdbbox.getSelectionModel().getSelectedItem());
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit, trdbbox.getSelectionModel().getSelectedItem());
+
 						if (columnlist != null && columnlist.size() > 0) {
 							trcolumnbox.getItems().clear();
 							trcolumnbox.getItems().add("SELECT COLUMN");
@@ -594,8 +617,10 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT TABLE")) {
-						columnlist = new DAO().getQAServerColumns(newFruit,
-								ldbbox.getSelectionModel().getSelectedItem());
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit, ldbbox.getSelectionModel().getSelectedItem());
 						if (columnlist != null && columnlist.size() > 0) {
 							lcolumnbox.getItems().clear();
 							lcolumnbox.getItems().add("SELECT COLUMN");
@@ -614,8 +639,11 @@ public class NewControlReportRulesController implements Initializable {
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
 					if (!newFruit.equals("SELECT TABLE")) {
-						columnlist = new DAO().getQAServerColumns(newFruit,
-								tdbbox.getSelectionModel().getSelectedItem());
+						if (columnlist != null) {
+							columnlist.clear();
+						}
+						columnlist = GetDBTables.getcolumnlist(newFruit, tdbbox.getSelectionModel().getSelectedItem());
+
 						if (columnlist != null && columnlist.size() > 0) {
 							tcolumnbox.getItems().clear();
 							tcolumnbox.getItems().add("SELECT COLUMN");
@@ -975,7 +1003,11 @@ public class NewControlReportRulesController implements Initializable {
 		tdbbox.getItems().clear();
 		tdbbox.getItems().add("SELECT DB");
 
-		dblist = new DAO().getQAServerDB();
+		if (dblist != null) {
+			dblist.clear();
+		}
+		dblist = GetDBTables.dblist;
+
 		if (dblist != null && dblist.size() > 0) {
 			for (int i = 0; i < dblist.size(); i++) {
 				sdbbox.getItems().add(dblist.get(i).getDbnames());
