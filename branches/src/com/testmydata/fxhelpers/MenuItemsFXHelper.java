@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.fxutil.UndecoratorScene;
+import com.testmydata.util.StaticImages;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
@@ -11,7 +12,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -44,16 +44,14 @@ public class MenuItemsFXHelper {
 		// This method is invoked on the JavaFX thread
 		String Screenpath = "";
 
-		if (sname.equalsIgnoreCase("newinvoice")) {
-			Screenpath = "/com/testmydata/fxml/NewInvoice.fxml";
-		} else if (sname.equalsIgnoreCase("changepassword")) {
+		if (sname.equalsIgnoreCase("changepassword")) {
 			Screenpath = "/com/testmydata/fxml/ChangePassword.fxml";
 		} else if (sname.equalsIgnoreCase("emailsettings")) {
 			Screenpath = "/com/testmydata/fxml/EmailSettings.fxml";
 		} else if (sname.equalsIgnoreCase("qaserversettings")) {
 			Screenpath = "/com/testmydata/fxml/qaserver.fxml";
 		} else if (sname.equalsIgnoreCase("newfieldtofield")) {
-			Screenpath = "/com/testmydata/fxml/newfieldtofield.fxml";
+			Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
 		} else if (sname.equalsIgnoreCase("executefieldtofield")) {
 			Screenpath = "/com/testmydata/fxml/ExecuteFieldtoField.fxml";
 		} else if (sname.equalsIgnoreCase("newtestsuite")) {
@@ -87,8 +85,7 @@ public class MenuItemsFXHelper {
 
 		stage.setScene(undecoratorScene);
 		stage.toFront();
-		Image image = new Image("/com/testmydata/fximages/crown.png");
-		stage.getIcons().addAll(image);
+		stage.getIcons().addAll(StaticImages.appicon.getImage());
 		stage.show();
 		stage.setFullScreen(true);
 		// stage.initStyle(StageStyle.UNDECORATED);

@@ -528,10 +528,12 @@ public class AddUserController implements Initializable {
 						public void run() {
 							try {
 								if (emailvalid) {
+									wrongtick1.setVisible(false);
 									greentick1.setVisible(true);
 									transaprentanchor.setVisible(false);
 								} else {
 									emailtext.clear();
+									greentick1.setVisible(false);
 									wrongtick1.setVisible(true);
 									transaprentanchor.setVisible(false);
 

@@ -1,24 +1,26 @@
-.tab-pane *.tab-header-area *.tab-header-background {
-  -fx-background-color: #0033CC;
+.jfx-tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:  #162a4c;
 }
 
-.tab-pane {
-  -fx-tab-min-width:200px;
+.jfx-tab-pane {
+  -fx-tab-min-width:150px;
   -fx-tab-max-width:300px;
   -fx-tab-min-height:25px;
   -fx-tab-max-height:30px;
 }
 
-.tab {
-  -fx-font-family: Arial;
-  -fx-font-size: 13;
-  -fx-font-weight: bold; 
-  -fx-text-fill: #000000;
-   -fx-background-color:white;  
+
+.jfx.jfx-tab-pane .tab:selected {
+    -fx-background-color: #5d82a0;   
+ }
+
+.jfx-tab-pane .tab-label{
+	 -fx-background-color:#162a4c; 
+	-fx-font-family: Calibri; 
+	 -fx-text-fill: #ffffff;
+	 -fx-font-size: 12;	  	
 }
 
-.tab:selected {
-    -fx-background-color: #40aa03;
-    -fx-text-fill: #ffffff;
-    -fx-font-weight: bold;
+.jfx-tab-pane .tab-selected-line {
+     -fx-stroke-width: 2pt;
 }

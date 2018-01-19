@@ -79,7 +79,7 @@ public class DashBoardController implements Initializable {
 	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
 	@FXML
 	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
-			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor;
+			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor;
 	@FXML
 	private Hyperlink newfieldtofield, newcontrolreport, testsuiteff, exeff, execr, newbugs, viewbugs, downloadreports,
 			viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
@@ -126,24 +126,6 @@ public class DashBoardController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// logouticon.setImage(StaticImages.logout.getImage());
-		// appicon.setImage(StaticImages.appicon.getImage());
-		// testcasesicon.setImage(StaticImages.testcases.getImage());
-		// newcricon.setImage(StaticImages.controlreporticon.getImage());
-		// newfieldicon.setImage(StaticImages.fieldicon.getImage());
-		// testsuites.setImage(StaticImages.testsuites.getImage());
-		// newtestsuiteicon.setImage(StaticImages.newtestsuite.getImage());
-		// testexecution.setImage(StaticImages.testexecution.getImage());
-		// execricon.setImage(StaticImages.controlreporticon.getImage());
-		// exefieldicon.setImage(StaticImages.fieldicon.getImage());
-		// reporticon.setImage(StaticImages.report.getImage());
-		// testreport.setImage(StaticImages.testreport.getImage());
-		// settings.setImage(StaticImages.settings.getImage());
-		// addusericon.setImage(StaticImages.adduser.getImage());
-		// changepasswordicon.setImage(StaticImages.changepassword.getImage());
-		// emailsettingsicon.setImage(StaticImages.emailsettings.getImage());
-		// qaservericon.setImage(StaticImages.qaserver.getImage());
-
 		// start(); //starts dock icons
 		InvoiceStaticHelper.setDash(this);
 		// Order is most important
@@ -153,6 +135,7 @@ public class DashBoardController implements Initializable {
 		QADefaultServerDetails qasd = new QADefaultServerDetails();
 		qasd.setqadefaultserver();
 		setqaserver();
+
 		if (Loggedinuserdetails.dashboard == 1) {
 			if (Loggedinuserdetails.newff == 1) {
 				loadfieldtofield();
@@ -204,14 +187,24 @@ public class DashBoardController implements Initializable {
 						countforonehour = 0;
 					}
 				} else {
-					CommonFunctions.message = "Secured Connection Lost. Please Restart Test My Data...!";
-					CommonFunctions.invokeAlertBox(getClass());
-					timer.cancel();
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								CommonFunctions.message = "Secured Connection Lost. Please Restart Test My Data...!";
+								CommonFunctions.invokeAlertBox(getClass());
+								timer.cancel();
 
-					StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "Security", "", "", true,
-							"VPN connection lost", "");
+								StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "Security", "", "",
+										true, "VPN connection lost", "");
 
-					System.exit(0);
+								System.exit(0);
+							} finally {
+
+							}
+						}
+					});
+
 				}
 			}
 		}, 5000, 30000); // First 1000 is to start after 1 sec, Second 60000
@@ -793,6 +786,18 @@ public class DashBoardController implements Initializable {
 					} else {
 						qaserverlabel.setText("Failed to Connected QA Server At : "
 								+ QADefaultServerDetails.url.replaceAll("jdbc:sqlserver://", ""));
+					}
+				} else if (QADefaultServerDetails.url.contains("jdbc:postgresql://")) {
+					if (qas.validateconnection(QADefaultServerDetails.servertype,
+							QADefaultServerDetails.url.replaceAll("jdbc:postgresql://", "").replaceAll("/", ""),
+							QADefaultServerDetails.username, QADefaultServerDetails.password)) {
+
+						qaserverlabel.setText("Connected to QA Server At : "
+								+ QADefaultServerDetails.url.replaceAll("jdbc:postgresql://", "").replaceAll("/", "")
+								+ " ( " + QADefaultServerDetails.servertype.toUpperCase() + " )");
+					} else {
+						qaserverlabel.setText("Failed to Connected QA Server At : "
+								+ QADefaultServerDetails.url.replaceAll("jdbc:postgresql://", "").replaceAll("/", ""));
 					}
 				}
 

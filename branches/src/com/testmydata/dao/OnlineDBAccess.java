@@ -32,11 +32,24 @@ public class OnlineDBAccess {
 				con = DriverManager.getConnection(url, EncryptAndDecrypt.decryptData(dbuser),
 						EncryptAndDecrypt.decryptData(dbpassword));
 			}
+
 		} catch (Exception ex) {
 			con = null;
 			ex.printStackTrace();
 		}
 		return con;
 	}
+	// Test for connection directly
+	// public static void main(String[] args) {
+	// dbName = null;
+	// dbUserName = EncryptAndDecrypt.encryptData("postgres");
+	// dbPassword = EncryptAndDecrypt.encryptData("Test@123");
+	// dbClassName = "org.postgresql.Driver";
+	// dbURL1 = "jdbc:postgresql://40.121.159.64:5432/";
+	//
+	// OnlineDBAccess ob = new OnlineDBAccess();
+	// System.out.println("State :" + ob.getfConnection(dbURL1, dbUserName,
+	// dbPassword, dbClassName));
+	// }
 
 }
