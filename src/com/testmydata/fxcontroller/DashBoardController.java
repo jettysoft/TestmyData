@@ -3,6 +3,7 @@ package com.testmydata.fxcontroller;
 import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
@@ -71,6 +73,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -80,7 +83,7 @@ public class DashBoardController implements Initializable {
 	@FXML
 	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
 	@FXML
-	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
+	public AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
 			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor;
 	@FXML
 	private Hyperlink newfieldtofield, newcontrolreport, projectsetup, testsuiteff, exeff, execr, newbugs, viewbugs,
@@ -148,12 +151,8 @@ public class DashBoardController implements Initializable {
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				designanchor.setVisible(false);
-				testsuiteanchor.setVisible(false);
-				testanchor.setVisible(false);
-				bugsanchor.setVisible(false);
-				reportsanchor.setVisible(false);
-				settingsanchor.setVisible(false);
+				subscreenanchor.setVisible(false);
+				subscreenanchor.getChildren().clear();
 			}
 		});
 
@@ -530,18 +529,35 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void nowfieldtofield() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "newfieldtofield";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-					}
-				});
+				String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+				// fxmlLoader.setController(this);
+				try {
+					subscreenanchor.setVisible(true);
+					subscreenanchor.getChildren().clear();
+					Region root = (Region) fxmlLoader.load();
+
+					subscreenanchor.getChildren().setAll(root);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
+		// EventQueue.invokeLater(new Runnable() {
+		// @Override
+		// public void run() {
+		// SwingUtilities.invokeLater(new Runnable() {
+		// @Override
+		// public void run() {
+		// String screenName = "newfieldtofield";
+		// new MenuItemsFXHelper().initAndShowGUI(screenName);
+		// }
+		// });
+		// }
+		// });
 	}
 
 	@FXML

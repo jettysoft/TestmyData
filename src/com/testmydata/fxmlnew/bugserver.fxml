@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTabPane fx:id="testcasestab" focusTraversable="false" layoutX="10.0" layoutY="10.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="TFS Setup">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;">
+                     <children>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="refreshicon1" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
+                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="6.0" text="Label" textFill="#40aa03" visible="false" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets left="1.0" right="1.0" />
+                           </opaqueInsets>
+                        </AnchorPane>
+                        <JFXTextField fx:id="tfsurltext" focusColor="#40aa03" layoutX="100.0" layoutY="120.0" prefWidth="300.0" promptText="Specify TFS URL" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                           <font>
+                              <Font name="Calibri Bold" size="12.5" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="tfsprojectnametext" focusColor="#40aa03" layoutX="100.0" layoutY="170.0" prefWidth="300.0" promptText="Specify Project Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                           <font>
+                              <Font name="Calibri Bold" size="12.5" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="tfsusernametext" focusColor="#40aa03" layoutX="100.0" layoutY="220.0" prefWidth="300.0" promptText="Enter User Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                           <font>
+                              <Font name="Calibri Bold" size="12.5" />
+                           </font>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="tfspasswordtext" focusColor="#40aa03" layoutX="100.0" layoutY="270.0" prefWidth="300.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                           <font>
+                              <Font name="Calibri Bold" size="12.5" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXCheckBox layoutX="100.0" layoutY="313.0" text="Set as Default Bug Tracking System" unCheckedColor="#bebec4" />
+                        <JFXComboBox fx:id="tfsurlscombo" focusColor="#40aa03" layoutX="100.0" layoutY="51.0" prefWidth="300.0" unFocusColor="#bebec4" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="JIRA Setup">
+               <content>
+                  <AnchorPane fx:id="actionanchor2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" />
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+      <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1003.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+   </children>
+</AnchorPane>
