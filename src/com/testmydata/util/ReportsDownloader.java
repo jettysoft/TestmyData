@@ -181,7 +181,7 @@ public class ReportsDownloader {
 					cell.setAsActiveCell();
 
 					if (cloumncount == reportlist.size()) {
-						m = cloumncount;
+						m += cloumncount;
 						break;
 					}
 				}

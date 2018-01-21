@@ -18,12 +18,14 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.SwingUtilities;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.testmydata.auditlog.StoreAuditLogger;
 import com.testmydata.binarybeans.ControlReportExecutionBinaryTrade;
 import com.testmydata.binarybeans.LocalUserLevelBeanBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
+import com.testmydata.binarybeans.ProjectsBeanBinaryTrade;
 import com.testmydata.binarybeans.QAServerDetailsBinaryTrade;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
@@ -81,8 +83,10 @@ public class DashBoardController implements Initializable {
 	private AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
 			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor;
 	@FXML
-	private Hyperlink newfieldtofield, newcontrolreport, testsuiteff, exeff, execr, newbugs, viewbugs, downloadreports,
-			viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
+	private Hyperlink newfieldtofield, newcontrolreport, projectsetup, testsuiteff, exeff, execr, newbugs, viewbugs,
+			downloadreports, viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
+	@FXML
+	private JFXComboBox<String> exisitingprojectscombo;
 	@FXML
 	private MenuBar mymenubar;
 	@FXML
@@ -109,6 +113,7 @@ public class DashBoardController implements Initializable {
 	SubScene ss;
 	private static UsersDetailsBeanBinaryTrade currentUsersDetailsBeanBinaryTree;
 	private static DashBoardController userHome = null;
+	static String[] selectedproject = null;
 
 	private static int statuspanecount = 0, countforonehour = 0, userLevel = 0;
 
@@ -121,6 +126,7 @@ public class DashBoardController implements Initializable {
 	ArrayList<ControlReportExecutionBinaryTrade> rulenamelist = new ArrayList<ControlReportExecutionBinaryTrade>();
 	static ArrayList<String> reportcolumnlist = new ArrayList<String>();
 	static ArrayList<String> crcolumnlist = new ArrayList<String>();
+	static ArrayList<ProjectsBeanBinaryTrade> projectslist = new ArrayList<ProjectsBeanBinaryTrade>();
 
 	DecimalFormat df2 = new DecimalFormat("#.##");
 
@@ -136,14 +142,8 @@ public class DashBoardController implements Initializable {
 		qasd.setqadefaultserver();
 		setqaserver();
 
-		if (Loggedinuserdetails.dashboard == 1) {
-			if (Loggedinuserdetails.newff == 1) {
-				loadfieldtofield();
-			}
-			if (Loggedinuserdetails.newcr == 1) {
-				loadcontrolreports();
-			}
-		}
+		setexistingprojects();
+		setdashboardpanels();
 
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
@@ -157,23 +157,26 @@ public class DashBoardController implements Initializable {
 			}
 		});
 
-		// logouticon.addEventHandler(MouseEvent.MOUSE_CLICKED, new
-		// EventHandler<MouseEvent>() {
-		// @SuppressWarnings("static-access")
-		// @Override
-		// public void handle(MouseEvent event) {
-		// Cleanup scu = new Cleanup();
-		// DashBoardController nc = new DashBoardController();
-		// scu.nullifyStrings(nc);
-		// ActionEvent event1 = new ActionEvent();
-		// logout(event1);
-		// }
-		// });
-
-		// clientname.setText(
-		// Loggedinuserdetails.firstName.toUpperCase() + " " +
-		// Loggedinuserdetails.lastName.toUpperCase());
-		// companylabel.setText(Loggedinuserdetails.companyName.toUpperCase());
+		exisitingprojectscombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("Select Project")) {
+						selectedproject = exisitingprojectscombo.getSelectionModel().getSelectedItem().split("-");
+						Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
+						new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
+								Integer.toString(Loggedinuserdetails.id));
+						setdashboardpanels();
+					} else {
+						selectedproject = "0-0".split("-");
+						Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
+						new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
+								Integer.toString(Loggedinuserdetails.id));
+						setdashboardpanels();
+					}
+				}
+			}
+		});
 
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
@@ -268,6 +271,27 @@ public class DashBoardController implements Initializable {
 
 	public void runmethodBeforeScreenopens() {
 
+	}
+
+	private void setdashboardpanels() {
+		if (Loggedinuserdetails.dashboard == 1) {
+			if (Loggedinuserdetails.newff == 1) {
+				loadfieldtofield();
+			}
+			if (Loggedinuserdetails.newcr == 1) {
+				loadcontrolreports();
+			}
+		}
+
+		if ((releaselist != null && releaselist.size() > 0) || (moduleslist != null && moduleslist.size() > 0)) {
+			selectionpane.setVisible(true);
+			resultspane.setVisible(true);
+			chartspane.setVisible(true);
+		} else {
+			selectionpane.setVisible(false);
+			resultspane.setVisible(false);
+			chartspane.setVisible(false);
+		}
 	}
 
 	private void importantmethods() {
@@ -514,7 +538,31 @@ public class DashBoardController implements Initializable {
 					public void run() {
 						String screenName = "newfieldtofield";
 						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						NewFieldtoFieldController.getInstance();
+					}
+				});
+			}
+		});
+	}
+
+	@FXML
+	private void projectsetup() {
+		// myStage = (Stage) mymenubar.getScene().getWindow();
+		if (Loggedinuserdetails.projectaccess == 1) {
+			nowprojectaccess();
+		} else {
+			runmessage("Access Denied. Contact your Manager...");
+		}
+	}
+
+	public void nowprojectaccess() {
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						String screenName = "projectsetup";
+						new MenuItemsFXHelper().initAndShowGUI(screenName);
 					}
 				});
 			}
@@ -814,7 +862,7 @@ public class DashBoardController implements Initializable {
 		if (releaselist != null && releaselist.size() > 0) {
 			releaselist.clear();
 		}
-		releaselist = new DAO().getreleases("testsuites");
+		releaselist = new DAO().getreleases("testsuites", Loggedinuserdetails.defaultproject);
 		if (releaselist != null && releaselist.size() > 0) {
 			for (int i = 0; i < releaselist.size(); i++) {
 				// load the releases to list pane
@@ -825,7 +873,7 @@ public class DashBoardController implements Initializable {
 				if (cyclelist != null && cyclelist.size() > 0) {
 					cyclelist.clear();
 				}
-				cyclelist = new DAO().getcycles(releaselist.get(i).getRelease());
+				cyclelist = new DAO().getcycles(releaselist.get(i).getRelease(), Loggedinuserdetails.defaultproject);
 
 				if (cyclelist != null && cyclelist.size() > 0) {
 					Cycle[] cycles = new Cycle[cyclelist.size()];
@@ -838,7 +886,7 @@ public class DashBoardController implements Initializable {
 							tslist.clear();
 						}
 						tslist = new DAO().gettestsuitesonly(cyclelist.get(j).getCycle(),
-								releaselist.get(i).getRelease());
+								releaselist.get(i).getRelease(), Loggedinuserdetails.defaultproject);
 						if (tslist != null && tslist.size() > 0) {
 							TestSuite[] suites = new TestSuite[tslist.size()];
 							for (int k = 0; k < tslist.size(); k++) {
@@ -864,7 +912,7 @@ public class DashBoardController implements Initializable {
 		if (moduleslist != null && moduleslist.size() > 0) {
 			moduleslist.clear();
 		}
-		moduleslist = new DAO().getModuleDetails("modules", "moduleonly");
+		moduleslist = new DAO().getModuleDetails("modules", "moduleonly", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				Module module = new Module();
@@ -875,7 +923,8 @@ public class DashBoardController implements Initializable {
 				if (rulenamelist != null && rulenamelist.size() > 0) {
 					rulenamelist.clear();
 				}
-				rulenamelist = new DAO().getrulenames(moduleslist.get(i).getModulename());
+				rulenamelist = new DAO().getrulenames(moduleslist.get(i).getModulename(),
+						Loggedinuserdetails.defaultproject);
 
 				if (rulenamelist != null && rulenamelist.size() > 0) {
 					Rule[] rules = new Rule[rulenamelist.size()];
@@ -1811,4 +1860,19 @@ public class DashBoardController implements Initializable {
 		settingsanchor.setVisible(true);
 	}
 
+	private void setexistingprojects() {
+		if (exisitingprojectscombo.getItems().size() > 0) {
+			exisitingprojectscombo.getItems().clear();
+		}
+		exisitingprojectscombo.getItems().add("Select Project");
+
+		projectslist = new DAO().getprojectnames();
+		if (projectslist != null && projectslist.size() > 0) {
+			for (int i = 0; i < projectslist.size(); i++) {
+				exisitingprojectscombo.getItems().add(projectslist.get(i).getName());
+			}
+		}
+		exisitingprojectscombo.getSelectionModel().select(Loggedinuserdetails.defaultproject);
+		exisitingprojectscombo.setStyle("-fx-text-fill: white");
+	}
 }

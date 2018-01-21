@@ -500,7 +500,7 @@ public class ExecuteControlReportController implements Initializable {
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("QA Modules");
 		modulecombo.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules", "all");
+		moduleslist = new DAO().getModuleDetails("modules", "all", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulecombo.getItems().add(moduleslist.get(i).getModulename());
@@ -513,7 +513,7 @@ public class ExecuteControlReportController implements Initializable {
 		setdefaultrules();
 
 		rulenamelist.clear();
-		rulenamelist = new DAO().getrulenames(module);
+		rulenamelist = new DAO().getrulenames(module, Loggedinuserdetails.defaultproject);
 		if (rulenamelist != null && rulenamelist.size() > 0) {
 			for (int i = 0; i < rulenamelist.size(); i++) {
 				rulecombo.getItems().add(rulenamelist.get(i).getName());
@@ -534,11 +534,11 @@ public class ExecuteControlReportController implements Initializable {
 				removePreviousRulesfromtable();
 
 				if (executed) {
-					ruleslist = new DAO().getrulesAfterexecution(batchid);
+					ruleslist = new DAO().getrulesAfterexecution(batchid, Loggedinuserdetails.defaultproject);
 					executed = false;
 					showtablenow(ruleslist);
 				} else {
-					ruleslist = new DAO().getrulesBeforeexecution();
+					ruleslist = new DAO().getrulesBeforeexecution(Loggedinuserdetails.defaultproject);
 					passcount = 0;
 					failcount = 0;
 				}

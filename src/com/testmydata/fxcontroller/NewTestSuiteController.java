@@ -228,7 +228,7 @@ public class NewTestSuiteController implements Initializable {
 		testsuitecombo.getItems().clear();
 		testsuitecombo.getItems().add("Select Test Suite");
 		testsuitecombo.getSelectionModel().select(0);
-		testsuitelist = new DAO().gettestsuites("testsuites", null);
+		testsuitelist = new DAO().gettestsuites("testsuites", null, Loggedinuserdetails.defaultproject);
 		if (testsuitelist != null && testsuitelist.size() > 0) {
 			for (int i = 0; i < testsuitelist.size(); i++) {
 				testsuitecombo.getItems()
@@ -244,7 +244,7 @@ public class NewTestSuiteController implements Initializable {
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("Select QA Modules");
 		modulecombo.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules", "all");
+		moduleslist = new DAO().getModuleDetails("modules", "all", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulecombo.getItems().add(moduleslist.get(i).getModulename());
@@ -258,7 +258,7 @@ public class NewTestSuiteController implements Initializable {
 		tscombo.getItems().clear();
 		tscombo.getItems().add("Select Test Scenario");
 		tscombo.getSelectionModel().select(0);
-		tsnamelist = new DAO().getTSNameDetails("testcases", selectedmodule);
+		tsnamelist = new DAO().getTSNameDetails("testcases", selectedmodule, Loggedinuserdetails.defaultproject);
 		loadtestscenariosservice.reset();
 		loadtestscenariosservice.start();
 
@@ -591,7 +591,7 @@ public class NewTestSuiteController implements Initializable {
 
 	private void showslectedsuitedetails() {
 		String[] selection = testsuitecombo.getSelectionModel().getSelectedItem().split("-");
-		testsuitelistbyid = new DAO().gettestsuites("testsuites", selection[0]);
+		testsuitelistbyid = new DAO().gettestsuites("testsuites", selection[0], Loggedinuserdetails.defaultproject);
 		selectedlist = new DAO().gettestsuitedetails(selection[0]);
 
 		if (testsuitelistbyid != null && testsuitelistbyid.size() > 0) {

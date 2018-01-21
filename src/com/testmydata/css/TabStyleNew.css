@@ -10,8 +10,8 @@
 }
 
 
-.jfx.jfx-tab-pane .tab:selected {
-    -fx-background-color: #5d82a0;   
+.jfx-tab-pane .tab:selected {
+    -fx-background-color: #162a4c;   
  }
 
 .jfx-tab-pane .tab-label{

@@ -33,6 +33,7 @@ public class StaticImages {
 	public final static ImageView save = new ImageView("/com/testmydata/fximages/save.png");
 	public final static ImageView view = new ImageView("/com/testmydata/fximages/binocular.png");
 	public final static ImageView refresh = new ImageView("/com/testmydata/fximages/refresh.png");
+	public final static ImageView closeproject = new ImageView("/com/testmydata/fximages/closeproject.png");
 
 	public static String lblStyle = "-fx-background-color: linear-gradient(#f7f79e,#f2f271);  -fx-text-alignment :center; -fx-background-radius: 2; "
 			+ " -fx-background-insets: 0; -fx-text-fill: #162a4c; -fx-font-weight: normal; -fx-border-clor: #162a4c;";

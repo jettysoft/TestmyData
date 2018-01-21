@@ -44,16 +44,16 @@ public class AddUserController implements Initializable {
 	@FXML
 	private JFXPasswordField securityanstext, passwordtext;
 	@FXML
-	private JFXCheckBox receiveemailcheck, newcrcheck, newffcheck, newtscheck, execrcheck, exetscheck, addusercheck,
-			addqacheck, dasboardcheck, activatecheck, deactivatecheck, newbugcheck, viewbugcheck, downloadcheck,
-			viewresultscheck, bugservercheck;
+	private JFXCheckBox receiveemailcheck, newcrcheck, projectcheck, newffcheck, newtscheck, execrcheck, exetscheck,
+			addusercheck, addqacheck, dasboardcheck, activatecheck, deactivatecheck, newbugcheck, viewbugcheck,
+			downloadcheck, viewresultscheck, bugservercheck;
 	@FXML
 	private AnchorPane passwordinformationanchor, transaprentanchor;
 	@FXML
 	private JFXButton save, update;
 	boolean passwordvalid = false, emailvalid = false;
-	static int email = 0, newcr = 0, newff = 0, newts = 0, crexe = 0, tsexe, adduser = 0, addqa = 0, dashboard = 0,
-			activestatus = 0, newbug = 0, viewbug = 0, download = 0, viewresults = 0, bugserver = 0;
+	static int email = 0, newcr = 0, newff = 0, newproject = 0, newts = 0, crexe = 0, tsexe, adduser = 0, addqa = 0,
+			dashboard = 0, activestatus = 0, newbug = 0, viewbug = 0, download = 0, viewresults = 0, bugserver = 0;
 	static String[] combinedname = null;
 
 	ArrayList<UsersDetailsBeanBinaryTrade> userslist = new ArrayList<UsersDetailsBeanBinaryTrade>();
@@ -129,6 +129,13 @@ public class AddUserController implements Initializable {
 				newcr = 1;
 			} else {
 				newcr = 0;
+			}
+		});
+		projectcheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+			if (projectcheck.isSelected()) {
+				newproject = 1;
+			} else {
+				newproject = 0;
 			}
 		});
 		newffcheck.focusedProperty().addListener((arg0, oldValue, newValue) -> {
@@ -277,7 +284,7 @@ public class AddUserController implements Initializable {
 					Loggedinuserdetails.cityprovince, Loggedinuserdetails.province, Loggedinuserdetails.postalCode,
 					Loggedinuserdetails.mainService, Loggedinuserdetails.userLevel, Loggedinuserdetails.userId, null,
 					Loggedinuserdetails.country, null, email, newcr, newff, newts, crexe, tsexe, adduser, addqa,
-					dashboard, download, viewresults, newbug, viewbug, bugserver);
+					dashboard, download, viewresults, newbug, viewbug, bugserver, newproject);
 
 			if (status == "failure") {
 				runmessage("Failed to Add New User. Please Try Again...");
@@ -299,7 +306,7 @@ public class AddUserController implements Initializable {
 					usernametext.getText(), passwordtext.getText(), emailtext.getText(), securityquestiontext.getText(),
 					securityanstext.getText(), Loggedinuserdetails.userId, email, newcr, newff, newts, crexe, tsexe,
 					adduser, addqa, dashboard, activestatus, combinedname[0], download, viewresults, newbug, viewbug,
-					bugserver);
+					bugserver, newproject);
 			if (status == "failure") {
 				runmessage("Failed to Update New User. Please Try Again...");
 			} else if (status == "error") {
@@ -358,6 +365,13 @@ public class AddUserController implements Initializable {
 			} else {
 				newffcheck.setSelected(false);
 				newff = 0;
+			}
+			if (selecteduserlist.get(0).getProjectaccess().equals("1")) {
+				projectcheck.setSelected(true);
+				newproject = 1;
+			} else {
+				projectcheck.setSelected(false);
+				newproject = 0;
 			}
 			if (selecteduserlist.get(0).getNewts().equals("1")) {
 				newtscheck.setSelected(true);
@@ -483,6 +497,7 @@ public class AddUserController implements Initializable {
 		receiveemailcheck.setSelected(false);
 		newcrcheck.setSelected(false);
 		newffcheck.setSelected(false);
+		projectcheck.setSelected(false);
 		newtscheck.setSelected(false);
 		execrcheck.setSelected(false);
 		exetscheck.setSelected(false);

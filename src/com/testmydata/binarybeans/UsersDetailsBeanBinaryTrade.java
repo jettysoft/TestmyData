@@ -38,6 +38,8 @@ public class UsersDetailsBeanBinaryTrade extends BinaryTrade {
 	private byte[] newbug;
 	private byte[] viewbug;
 	private byte[] addbugserver;
+	private byte[] projectaccess;
+	private byte[] selectedproject;
 	private byte[] isactive;
 
 	public String getLoginStatus() {
@@ -630,6 +632,38 @@ public class UsersDetailsBeanBinaryTrade extends BinaryTrade {
 		}
 		this.addbugserver = new byte[Addbugserver.length()];
 		string2Bytes(Addbugserver, this.addbugserver);
+	}
+
+	public String getProjectaccess() {
+		try {
+			return new String(projectaccess);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setProjectaccess(String Projectaccess) {
+		if (Projectaccess == null || Projectaccess.length() == 0) {
+			return;
+		}
+		this.projectaccess = new byte[Projectaccess.length()];
+		string2Bytes(Projectaccess, this.projectaccess);
+	}
+
+	public String getSelectedproject() {
+		try {
+			return new String(selectedproject);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setSelectedproject(String Selectedproject) {
+		if (Selectedproject == null || Selectedproject.length() == 0) {
+			return;
+		}
+		this.selectedproject = new byte[Selectedproject.length()];
+		string2Bytes(Selectedproject, this.selectedproject);
 	}
 
 	public long getId() {
