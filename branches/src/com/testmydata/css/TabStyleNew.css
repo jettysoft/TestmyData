@@ -1,5 +1,5 @@
 .jfx-tab-pane *.tab-header-area *.tab-header-background {
-  -fx-background-color:  #162a4c;
+  -fx-background-color:  #ffffff;
 }
 
 .jfx-tab-pane {
@@ -11,16 +11,19 @@
 
 
 .jfx-tab-pane .tab:selected {
-    -fx-background-color: #162a4c;   
+    -fx-background-color: #ffffff;   
  }
 
 .jfx-tab-pane .tab-label{
-	 -fx-background-color:#162a4c; 
+	 -fx-background-color:#ffffff; 
 	-fx-font-family: Calibri; 
-	 -fx-text-fill: #ffffff;
-	 -fx-font-size: 12;	  	
+	 -fx-text-fill: #162a4c;
+	 -fx-font-size: 12;
+	 -fx-font-weight: bold;	  	
 }
 
 .jfx-tab-pane .tab-selected-line {
-     -fx-stroke-width: 2pt;
+	  -fx-stroke: green; 
+     -fx-stroke-width: 1.5pt;
+   
 }

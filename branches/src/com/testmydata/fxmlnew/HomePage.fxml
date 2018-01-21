@@ -76,7 +76,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="designanchor" layoutX="71.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="designanchor" layoutX="71.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="110.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="newfieldtofield" layoutX="20.0" onAction="#fieldtofield" text="Field to Field" textFill="#ffed4f">

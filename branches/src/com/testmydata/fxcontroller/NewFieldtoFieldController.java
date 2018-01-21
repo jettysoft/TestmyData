@@ -14,8 +14,6 @@ import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
 import com.testmydata.binarybeans.FieldtoFieldBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
-import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.ComboBoxFilter;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
@@ -31,7 +29,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -50,7 +47,7 @@ public class NewFieldtoFieldController implements Initializable {
 	@FXML
 	private JFXTabPane testcasestab;
 	@FXML
-	private ImageView homeicon, executeicon, saveicon, updateicon, viewicon, refreshicon, refreshicon1;
+	private ImageView executeicon, saveicon, updateicon, viewicon, refreshicon, refreshicon1, closeicon;
 	@FXML
 	private JFXComboBox<String> modulecombo, targetdbcombo, targettablecombo, targetjoincombo, targetwherecombo,
 			mappingdbcombo, mappingtablecombo, mappingtargetjoincombo, mappingsourcejoincombo, operatorcombo,
@@ -120,13 +117,13 @@ public class NewFieldtoFieldController implements Initializable {
 		setexistingmodules();
 		setdb();
 
-		homeicon.setImage(StaticImages.homeicon.getImage());
 		executeicon.setImage(StaticImages.source_execute.getImage());
 		saveicon.setImage(StaticImages.save.getImage());
 		updateicon.setImage(StaticImages.save.getImage());
 		viewicon.setImage(StaticImages.view.getImage());
 		refreshicon.setImage(StaticImages.refresh.getImage());
 		refreshicon1.setImage(StaticImages.refresh.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 
 		updateicon.setVisible(false);
 
@@ -135,6 +132,13 @@ public class NewFieldtoFieldController implements Initializable {
 
 		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
 		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
+
+		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+
+			}
+		});
 
 		Label exelbl = new Label("   Execute ");
 		exelbl.setStyle(StaticImages.lblStyle);
@@ -202,7 +206,7 @@ public class NewFieldtoFieldController implements Initializable {
 		Label viewlbl = new Label("   View ");
 		viewlbl.setStyle(StaticImages.lblStyle);
 		viewlbl.setMinWidth(50);
-		viewlbl.setLayoutX(470);
+		viewlbl.setLayoutX(450);
 		viewlbl.setLayoutY(25);
 		viewlbl.setVisible(false);
 		actionanchor2.getChildren().add(viewlbl);
@@ -565,20 +569,21 @@ public class NewFieldtoFieldController implements Initializable {
 		});
 
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
-			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				NewFieldtoFieldController nc = new NewFieldtoFieldController();
-				scu.nullifyStrings(nc);
-
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
-			}
-		});
+		// homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new
+		// EventHandler<MouseEvent>() {
+		// @SuppressWarnings("static-access")
+		// @Override
+		// public void handle(MouseEvent event) {
+		// Cleanup scu = new Cleanup();
+		// NewFieldtoFieldController nc = new NewFieldtoFieldController();
+		// scu.nullifyStrings(nc);
+		//
+		// Node source = (Node) event.getSource();
+		// myStage = (Stage) source.getScene().getWindow();
+		// myStage.close();
+		// UndecoratorController.getInstance(null);
+		// }
+		// });
 	}
 
 	// Method used to get data from previous class

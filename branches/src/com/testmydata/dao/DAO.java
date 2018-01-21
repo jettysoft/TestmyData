@@ -3813,7 +3813,7 @@ public class DAO {
 
 				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, tfsid bigint(5) default 0, jiraid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
 						+ " title varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
-						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, PRIMARY KEY (id))";
+						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugstable", 1);
@@ -3873,7 +3873,7 @@ public class DAO {
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
 				String createTabelSQL = "create table bugserverprojects (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, "
-						+ "projectname varchar(1000) default null, PRIMARY KEY (id))";
+						+ "projectname varchar(1000) default null,  projectid bigint(10) default 0, PRIMARY KEY (id))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugprojects", 1);
