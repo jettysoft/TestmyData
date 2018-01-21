@@ -87,22 +87,6 @@ public class NewFieldtoFieldController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setexistingmodules();
-		setdatesinitially();
-		populatetestcases();
-
-		homeicon.setImage(StaticImages.homeicon.getImage());
-		executeicon.setImage(StaticImages.source_execute.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		viewicon.setImage(StaticImages.view.getImage());
-		refreshicon.setImage(StaticImages.refresh.getImage());
-		refreshicon1.setImage(StaticImages.refresh.getImage());
-
-		updateicon.setVisible(false);
-
-		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
-		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
 
 		ComboBoxFilter.autoCompleteComboBoxPlus(modulecombo,
 				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
@@ -133,7 +117,24 @@ public class NewFieldtoFieldController implements Initializable {
 		ComboBoxFilter.autoCompleteComboBoxPlus(sourcewherecombo,
 				(typedText, iba) -> iba.toString().toLowerCase().contains(typedText.toLowerCase()));
 
+		setexistingmodules();
 		setdb();
+
+		homeicon.setImage(StaticImages.homeicon.getImage());
+		executeicon.setImage(StaticImages.source_execute.getImage());
+		saveicon.setImage(StaticImages.save.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
+		viewicon.setImage(StaticImages.view.getImage());
+		refreshicon.setImage(StaticImages.refresh.getImage());
+		refreshicon1.setImage(StaticImages.refresh.getImage());
+
+		updateicon.setVisible(false);
+
+		setdatesinitially();
+		populatetestcases();
+
+		startdate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
+		enddate.setStyle("-fx-text-fill: black; -fx-font-weight:normal;");
 
 		Label exelbl = new Label("   Execute ");
 		exelbl.setStyle(StaticImages.lblStyle);
@@ -353,14 +354,26 @@ public class NewFieldtoFieldController implements Initializable {
 		executeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-
+				test();
 			}
 		});
 
 		saveicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-
+				save();
+			}
+		});
+		updateicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				update();
+			}
+		});
+		refreshicon1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				resetmappings();
 			}
 		});
 
@@ -453,6 +466,7 @@ public class NewFieldtoFieldController implements Initializable {
 								targetwherecombo.getItems().add(columnlist.get(i).getColumnnames());
 							}
 						}
+						sqlautoeditor();
 					}
 				}
 			}
@@ -484,6 +498,7 @@ public class NewFieldtoFieldController implements Initializable {
 								mappingsourcejoincombo.getItems().add(columnlist.get(i).getColumnnames());
 							}
 						}
+						sqlautoeditor();
 					}
 				}
 			}
@@ -512,6 +527,38 @@ public class NewFieldtoFieldController implements Initializable {
 								sourcewherecombo.getItems().add(columnlist.get(i).getColumnnames());
 							}
 						}
+						sqlautoeditor();
+					}
+				}
+			}
+		});
+
+		targetwherecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT TABLE")) {
+						sqlautoeditor();
+					}
+				}
+			}
+		});
+		operatorcombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					sqlautoeditor();
+				} else {
+					sqlautoeditor();
+				}
+			}
+		});
+		sourcewherecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+				if (newFruit != null) {
+					if (!newFruit.equals("SELECT TABLE")) {
+						sqlautoeditor();
 					}
 				}
 			}
@@ -547,10 +594,11 @@ public class NewFieldtoFieldController implements Initializable {
 
 	// Method to display the Results
 	public void showresult(String result, String status, String message) {
-		CommonFunctions.queryresult = result;
-		CommonFunctions.teststatus = status;
-		CommonFunctions.message = message;
-		CommonFunctions.invokeTestResultsDialog(getClass());
+		CommonFunctions.queryresult = "No of Cells not Matching :" + result;
+		CommonFunctions.teststatus = "Status :" + status;
+		CommonFunctions.message = "System Message :" + message;
+		resultstextarea.setText(result + "\n\n" + status + "\n\n" + message);
+		// CommonFunctions.invokeTestResultsDialog(getClass());
 	}
 
 	// Code to control Modules Combo Box
@@ -558,7 +606,7 @@ public class NewFieldtoFieldController implements Initializable {
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("QA Modules");
 		modulecombo.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules", "all");
+		moduleslist = new DAO().getModuleDetails("modules", "all", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulecombo.getItems().add(moduleslist.get(i).getModulename());
@@ -591,12 +639,11 @@ public class NewFieldtoFieldController implements Initializable {
 		}
 	}
 
-	@FXML
 	private void save() {
 		if (validatefields()) {
 			String result = new DAO().createtestcasestable("testcases", Loggedinuserdetails.id,
 					modulecombo.getSelectionModel().getSelectedItem(), tsnametext.getText(), tcnametext.getText(),
-					tctextarea.getText(), sqlscripttextarea.getText());
+					tctextarea.getText(), sqlscripttextarea.getText(), Loggedinuserdetails.defaultproject);
 
 			if (result.equals("success")) {
 				setdefault();
@@ -612,7 +659,8 @@ public class NewFieldtoFieldController implements Initializable {
 
 	private boolean validatefields() {
 		boolean result = true;
-		if (modulecombo.getSelectionModel().getSelectedItem().equals("QA Modules")) {
+		if (modulecombo.getSelectionModel().getSelectedItem() == null
+				|| modulecombo.getSelectionModel().getSelectedItem().equals("QA Modules")) {
 			result = false;
 			runmessage("Please Select QA Module for the Test Case...");
 		} else if (tsnametext.getText() == null || tsnametext.getText().isEmpty()) {
@@ -643,6 +691,10 @@ public class NewFieldtoFieldController implements Initializable {
 		sqlscripttextarea.clear();
 		saveicon.setVisible(true);
 		updateicon.setVisible(false);
+		resultstextarea.setText("");
+		statuslabel.setText("");
+		targetwherecombo.getSelectionModel().select(0);
+		sourcewherecombo.getSelectionModel().select(0);
 	}
 
 	@FXML
@@ -666,7 +718,7 @@ public class NewFieldtoFieldController implements Initializable {
 		try {
 
 			testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-					enddate.getValue().toString(), null);
+					enddate.getValue().toString(), null, Loggedinuserdetails.defaultproject);
 			if (testcaselist == null || testcaselist.size() == 0) {
 				searchtext.setDisable(true);
 				removePrevioustestcasesfromtable();
@@ -849,6 +901,25 @@ public class NewFieldtoFieldController implements Initializable {
 		}
 	}
 
+	private void resetmappings() {
+		GetDBTables.getdblist();
+		setdb();
+		targettablecombo.getItems().clear();
+		mappingtablecombo.getItems().clear();
+		sourcetablecombo.getItems().clear();
+		targetjoincombo.getItems().clear();
+		mappingtargetjoincombo.getItems().clear();
+		mappingsourcejoincombo.getItems().clear();
+		sourcejoincombo.getItems().clear();
+		targetwherecombo.getItems().clear();
+		operatorcombo.getItems().clear();
+		sourcewherecombo.getItems().clear();
+		sqlscripttextarea.setText("");
+		resultstextarea.setText("");
+		tcnametext.setText("");
+		tctextarea.setText("");
+	}
+
 	private void setdb() {
 		targetdbcombo.getItems().clear();
 		targetdbcombo.getItems().add("SELECT DB");
@@ -884,21 +955,44 @@ public class NewFieldtoFieldController implements Initializable {
 	}
 
 	private void sqlautoeditor() {
-		if (targetwherecombo.getSelectionModel().getSelectedIndex() > 0
-				&& sourcewherecombo.getSelectionModel().getSelectedIndex() > 0) {
-			String sdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
-			String mdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3);
-			String tdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
-					+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
-			sqlscripttextarea
-					.setText("SELECT COUNT(1) FROM " + targetdbcombo.getSelectionModel().getSelectedItem().toUpperCase()
-							+ "." + targettablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + tdb
-							+ " INNER JOIN " + mappingdbcombo.getSelectionModel().getSelectedItem().toUpperCase());
+		if (targetjoincombo.getSelectionModel().getSelectedIndex() > 0
+				&& mappingtargetjoincombo.getSelectionModel().getSelectedIndex() > 0
+				&& mappingsourcejoincombo.getSelectionModel().getSelectedIndex() > 0
+				&& sourcejoincombo.getSelectionModel().getSelectedIndex() > 0) {
+
+			if (targetwherecombo.getSelectionModel().getSelectedIndex() > 0
+					&& sourcewherecombo.getSelectionModel().getSelectedIndex() > 0) {
+				statuslabel.setText("");
+				String sdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
+				String mdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3);
+				String tdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
+						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
+				sqlscripttextarea.setText("SELECT COUNT(1) FROM "
+						+ targetdbcombo.getSelectionModel().getSelectedItem().toUpperCase() + "."
+						+ targettablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + tdb
+						+ " INNER JOIN " + mappingdbcombo.getSelectionModel().getSelectedItem().toUpperCase() + "."
+						+ mappingtablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + mdb + " ON "
+						+ tdb + "." + targetjoincombo.getSelectionModel().getSelectedItem().toUpperCase() + " = " + mdb
+						+ "." + mappingtargetjoincombo.getSelectionModel().getSelectedItem().toUpperCase()
+						+ "  INNER JOIN " + sourcedbcombo.getSelectionModel().getSelectedItem().toUpperCase() + "."
+						+ sourcetablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + sdb + " ON "
+						+ mdb + "." + mappingsourcejoincombo.getSelectionModel().getSelectedItem().toUpperCase() + " = "
+						+ sdb + "." + sourcejoincombo.getSelectionModel().getSelectedItem().toUpperCase() + " WHERE "
+						+ tdb + "." + targetwherecombo.getSelectionModel().getSelectedItem().toUpperCase() + " "
+						+ operatorcombo.getSelectionModel().getSelectedItem() + " " + sdb + "."
+						+ sourcewherecombo.getSelectionModel().getSelectedItem().toUpperCase());
+			} else {
+				sqlscripttextarea.setText("");
+				statuslabel.setText("Select Where Clause Columns...");
+			}
+		} else {
+			sqlscripttextarea.setText("");
+			statuslabel.setText("Select Join Columns...");
 		}
 
 	}

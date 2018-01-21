@@ -132,27 +132,27 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="newtscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="119.0" text="New Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="newtscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="139.0" text="New Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="execrcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="159.0" text="Execute Control Report" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="execrcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="169.0" text="Execute Control Report" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="exetscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="189.0" text="Execute Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="exetscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="199.0" text="Execute Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="addusercheck" checkedColor="#40aa03" layoutX="13.0" layoutY="396.0" text="New User" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="addusercheck" checkedColor="#40aa03" layoutX="13.0" layoutY="379.0" text="New User" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="addqacheck" checkedColor="#40aa03" layoutX="13.0" layoutY="426.0" text="QA Server" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="addqacheck" checkedColor="#40aa03" layoutX="13.0" layoutY="409.0" text="QA Server" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
-            <JFXCheckBox fx:id="dasboardcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="469.0" text="View Dash Board Reports" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="dasboardcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="439.0" text="View Dash Board Reports" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXCheckBox>
@@ -166,17 +166,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="downloadcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="299.0" text="Download (Reports)" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="downloadcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="289.0" text="Download (Reports)" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="viewresultscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="329.0" text="View Results" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="viewresultscheck" checkedColor="#40aa03" layoutX="14.0" layoutY="319.0" text="View Results" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="bugservercheck" checkedColor="#40aa03" layoutX="13.0" layoutY="366.0" text="Bug Server" textFill="#162a4c" unCheckedColor="#dad8d8">
+            <JFXCheckBox fx:id="bugservercheck" checkedColor="#40aa03" layoutX="13.0" layoutY="349.0" text="Bug Server" textFill="#162a4c" unCheckedColor="#dad8d8">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="projectcheck" checkedColor="#40aa03" layoutX="14.0" layoutY="109.0" text="Project Setup" textFill="#162a4c" unCheckedColor="#dad8d8">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

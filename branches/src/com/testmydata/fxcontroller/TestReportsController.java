@@ -11,6 +11,7 @@ import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.dao.DAO;
 import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
+import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 import com.testmydata.util.StaticImages;
@@ -519,9 +520,11 @@ public class TestReportsController implements Initializable {
 		}
 
 		if (type.equals("Test Suite")) {
-			batchidlist = new DAO().getbatchids("fieldresults", QADefaultServerDetails.id);
+			batchidlist = new DAO().getbatchids("fieldresults", QADefaultServerDetails.id,
+					Loggedinuserdetails.defaultproject);
 		} else if (type.equals("Control Reports")) {
-			batchidlist = new DAO().getbatchids("crresults", QADefaultServerDetails.id);
+			batchidlist = new DAO().getbatchids("crresults", QADefaultServerDetails.id,
+					Loggedinuserdetails.defaultproject);
 		}
 
 		if (batchidlist != null && batchidlist.size() > 0) {
@@ -551,9 +554,9 @@ public class TestReportsController implements Initializable {
 		}
 
 		if (testtype.getSelectionModel().getSelectedItem().equals("Test Suite")) {
-			testotmodulelist = new DAO().gettestormodule("fieldresults", batchid);
+			testotmodulelist = new DAO().gettestormodule("fieldresults", batchid, Loggedinuserdetails.defaultproject);
 		} else if (testtype.getSelectionModel().getSelectedItem().equals("Control Reports")) {
-			testotmodulelist = new DAO().gettestormodule("crresults", batchid);
+			testotmodulelist = new DAO().gettestormodule("crresults", batchid, Loggedinuserdetails.defaultproject);
 		}
 
 		if (testotmodulelist != null && testotmodulelist.size() > 0) {
@@ -565,7 +568,7 @@ public class TestReportsController implements Initializable {
 	}
 
 	private void settestsuites() {
-		testsuitelist = new DAO().gettestsuites();
+		testsuitelist = new DAO().gettestsuites(Loggedinuserdetails.defaultproject);
 		if (testsuitelist != null && testsuitelist.size() > 0) {
 			for (int i = 0; i < testsuitelist.size(); i++) {
 				testtype1.getItems().add(testsuitelist.get(i).toString());
@@ -585,7 +588,7 @@ public class TestReportsController implements Initializable {
 		if (batchidlist1 != null && batchidlist1.size() > 0) {
 			batchidlist1.clear();
 		}
-		batchidlist1 = new DAO().getbatchids1(type, QADefaultServerDetails.id);
+		batchidlist1 = new DAO().getbatchids1(type, QADefaultServerDetails.id, Loggedinuserdetails.defaultproject);
 
 		if (batchidlist1 != null && batchidlist1.size() > 0) {
 			for (int i = 0; i < batchidlist1.size(); i++) {
@@ -602,7 +605,7 @@ public class TestReportsController implements Initializable {
 		releasecombo.getSelectionModel().select(0);
 
 		releaselist.clear();
-		releaselist = new DAO().getreleases("testsuites");
+		releaselist = new DAO().getreleases("testsuites", Loggedinuserdetails.defaultproject);
 		if (releaselist != null && releaselist.size() > 0) {
 			for (int i = 0; i < releaselist.size(); i++) {
 				releasecombo.getItems().add(releaselist.get(i).getRelease());
@@ -626,7 +629,7 @@ public class TestReportsController implements Initializable {
 	private void setcyclecombo(String release) {
 		setdefaultcycle();
 		cyclelist.clear();
-		cyclelist = new DAO().getcycles(release);
+		cyclelist = new DAO().getcycles(release, Loggedinuserdetails.defaultproject);
 		if (cyclelist != null && cyclelist.size() > 0) {
 			for (int i = 0; i < cyclelist.size(); i++) {
 				cyclecombo.getItems().add(cyclelist.get(i).getCycle());
@@ -637,7 +640,7 @@ public class TestReportsController implements Initializable {
 
 	private void settscombo(String release, String cycle) {
 		settestsuite();
-		tslist = new DAO().gettestsuitesonly(cycle, release);
+		tslist = new DAO().gettestsuitesonly(cycle, release, Loggedinuserdetails.defaultproject);
 		if (tslist != null && tslist.size() > 0) {
 			for (int i = 0; i < tslist.size(); i++) {
 				tscombo.getItems().add(tslist.get(i).getTestsuitename());
@@ -962,33 +965,38 @@ public class TestReportsController implements Initializable {
 									rd.download("Test Suite", 0, "Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),
 													reportfieldcolumnlist.size(),
-													releasecombo.getSelectionModel().getSelectedItem(), null, null));
+													releasecombo.getSelectionModel().getSelectedItem(), null, null,
+													Loggedinuserdetails.defaultproject));
 								} else if (downloadno == 14) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),
 													reportfieldcolumnlist.size(),
 													releasecombo.getSelectionModel().getSelectedItem(),
-													cyclecombo.getSelectionModel().getSelectedItem(), null));
+													cyclecombo.getSelectionModel().getSelectedItem(), null,
+													Loggedinuserdetails.defaultproject));
 								} else if (downloadno == 15) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/PDF", "pdf", reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),
 													reportfieldcolumnlist.size(),
 													releasecombo.getSelectionModel().getSelectedItem(),
 													cyclecombo.getSelectionModel().getSelectedItem(),
-													tscombo.getSelectionModel().getSelectedItem()));
+													tscombo.getSelectionModel().getSelectedItem(),
+													Loggedinuserdetails.defaultproject));
 								} else if (downloadno == 16) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/Excel", "excel",
 											reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),
 													reportfieldcolumnlist.size(),
-													releasecombo.getSelectionModel().getSelectedItem(), null, null));
+													releasecombo.getSelectionModel().getSelectedItem(), null, null,
+													Loggedinuserdetails.defaultproject));
 								} else if (downloadno == 17) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/Excel", "excel",
 											reportfieldcolumnlist,
 											new DAO().getReleasefieldresults(fieldreplacer(),
 													reportfieldcolumnlist.size(),
 													releasecombo.getSelectionModel().getSelectedItem(),
-													cyclecombo.getSelectionModel().getSelectedItem(), null));
+													cyclecombo.getSelectionModel().getSelectedItem(), null,
+													Loggedinuserdetails.defaultproject));
 								} else if (downloadno == 18) {
 									rd.download("Test Suite", 0, "Reports/TestSuites/Excel", "excel",
 											reportfieldcolumnlist,
@@ -996,7 +1004,8 @@ public class TestReportsController implements Initializable {
 													reportfieldcolumnlist.size(),
 													releasecombo.getSelectionModel().getSelectedItem(),
 													cyclecombo.getSelectionModel().getSelectedItem(),
-													tscombo.getSelectionModel().getSelectedItem()));
+													tscombo.getSelectionModel().getSelectedItem(),
+													Loggedinuserdetails.defaultproject));
 								}
 
 							} finally {

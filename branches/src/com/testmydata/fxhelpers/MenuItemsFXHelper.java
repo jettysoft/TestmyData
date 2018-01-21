@@ -66,6 +66,8 @@ public class MenuItemsFXHelper {
 			Screenpath = "/com/testmydata/fxml/testreports.fxml";
 		} else if (sname.equalsIgnoreCase("adduser")) {
 			Screenpath = "/com/testmydata/fxml/AddUser.fxml";
+		} else if (sname.equalsIgnoreCase("projectsetup")) {
+			Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
 		}
 
 		// Parent root = FXMLLoader.load(getClass().getResource(Screenpath));

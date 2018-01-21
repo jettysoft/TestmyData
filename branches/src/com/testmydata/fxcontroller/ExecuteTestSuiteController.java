@@ -156,7 +156,7 @@ public class ExecuteTestSuiteController implements Initializable {
 	}
 
 	private void showexistingsuites() {
-		testsuitelist = new DAO().gettestsuites("testsuites", null);
+		testsuitelist = new DAO().gettestsuites("testsuites", null, Loggedinuserdetails.defaultproject);
 
 		if (testsuitelist != null && testsuitelist.size() > 0) {
 			removePrevioustestsuitesfromtable();

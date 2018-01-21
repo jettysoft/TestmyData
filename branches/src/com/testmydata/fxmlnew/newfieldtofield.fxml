@@ -39,32 +39,37 @@
             <content>
               <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="20.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                           <effect>
+                              <InnerShadow color="#bdbdbd" height="32.0" radius="15.5" width="32.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="64.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="20.0">
                            <children>
                               <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="10.0" prefWidth="360.0" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="tsnametext" focusColor="#40aa03" layoutX="20.0" layoutY="50.0" prefWidth="360.0" promptText="Specify Test Scenario" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
-                                    <Font name="Calibri Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.5" />
                                  </font>
                               </JFXTextField>
                               <JFXTextField fx:id="tcnametext" focusColor="#40aa03" layoutX="20.0" layoutY="90.0" prefWidth="360.0" promptText="Specify Test Case" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
-                                    <Font name="Calibri Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.5" />
                                  </font>
                               </JFXTextField>
                               <JFXTextArea fx:id="tctextarea" focusColor="#40aa03" layoutX="20.0" layoutY="5.0" prefHeight="70.0" prefWidth="360.0" promptText="Specify Test Condition" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" wrapText="true" AnchorPane.bottomAnchor="10.0">
                                  <font>
-                                    <Font name="Calibri Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.5" />
                                  </font>
                               </JFXTextArea>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="20.0" layoutY="36.0" text="Test Case Details" textFill="#162a4c">
+                        <Label layoutX="20.0" layoutY="46.0" text="Test Case Details" textFill="#162a4c">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="430.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0">
+                        <AnchorPane layoutX="430.0" layoutY="64.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0">
                            <children>
                               <JFXComboBox fx:id="targetdbcombo" focusColor="#40aa03" layoutX="14.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#bebec4" />
                               <JFXComboBox fx:id="mappingdbcombo" focusColor="#40aa03" layoutX="254.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#bebec4" />
@@ -114,7 +119,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="430.0" layoutY="36.0" text="Mapping Set" textFill="#162a4c">
+                        <Label layoutX="430.0" layoutY="46.0" text="Mapping Set" textFill="#162a4c">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
@@ -123,7 +128,7 @@
                            <children>
                               <JFXTextArea fx:id="sqlscripttextarea" focusColor="#f7f6f2" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <font>
-                                    <Font name="Calibri" size="12.0" />
+                                    <Font name="Calibri" size="12.5" />
                                  </font>
                               </JFXTextArea>
                            </children>
@@ -137,7 +142,7 @@
                            <children>
                               <JFXTextArea fx:id="resultstextarea" editable="false" focusColor="#f7f6f2" prefHeight="95.0" prefWidth="350.0" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <font>
-                                    <Font name="Calibri Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="15.0" />
                                  </font>
                               </JFXTextArea>
                            </children>

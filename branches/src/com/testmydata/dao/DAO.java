@@ -18,6 +18,7 @@ import com.testmydata.binarybeans.DBConfigBinaryTade;
 import com.testmydata.binarybeans.FieldtoFieldBinaryTrade;
 import com.testmydata.binarybeans.LocalUserLevelBeanBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
+import com.testmydata.binarybeans.ProjectsBeanBinaryTrade;
 import com.testmydata.binarybeans.QAServerDetailsBinaryTrade;
 import com.testmydata.binarybeans.TestScenariosBinaryTrade;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
@@ -284,7 +285,7 @@ public class DAO {
 
 				checkPasswordSql = "SELECT id,companyName,firstName,lastName,userId,emailId, businessAddress, cityprovince, province, "
 						+ "postalcode, mainService, country, updatedBy, userLevel, email, newcr, newff, newts, crexe, tsexe, adduser, addqa, dashboard, reports,"
-						+ "testresults, newbug, viewbug, addbugserver, DATE_FORMAT(createdDate, '%Y-%m-%d')as createdDate "
+						+ "testresults, newbug, viewbug, addbugserver, DATE_FORMAT(createdDate, '%Y-%m-%d')as createdDate, projectaccess, defaultproject  "
 						+ " FROM users WHERE isActive = 1 and userActive = 1 AND userId ='" + userId
 						+ "' AND password = md5('" + password + "')";
 
@@ -322,6 +323,8 @@ public class DAO {
 					Loggedinuserdetails.viewbug = rs.getInt(27);
 					Loggedinuserdetails.addbugserver = rs.getInt(28);
 					Loggedinuserdetails.activateddate = rs.getString(29);
+					Loggedinuserdetails.projectaccess = rs.getInt(30);
+					Loggedinuserdetails.defaultproject = rs.getInt(31);
 
 					role = "Admin";
 
@@ -736,7 +739,7 @@ public class DAO {
 			String businessAddress, String cityprovince, String province, String postalCode, String mainService,
 			String userLevel, String updatedby, String industry, String country, String logoname, int email, int newcr,
 			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard, int reports,
-			int testresults, int newbug, int viewbug, int addbugserver) {
+			int testresults, int newbug, int viewbug, int addbugserver, int projectaccess) {
 
 		String returnValue = "failure";
 		String com = companyName.replaceAll(" ", "");
@@ -762,7 +765,7 @@ public class DAO {
 						+ "loggedIn date, industry varchar(15) default null, country varchar(200) default null, logoname varchar(300) default null, "
 						+ "email int(1) default 0, newcr int(1) default 0, newff int(1) default 0, newts int(1) default 0, crexe int(1) default 0, tsexe int(1) default 0,"
 						+ "adduser int(1) default 0, addqa int(1) default 0, dashboard int(1) default 0, reports int(1) default 0, testresults int(1) default 0, "
-						+ "newbug int(1) default 0, viewbug int(1) default 0, addbugserver int(1) default 0, userActive int(1) default 1,"
+						+ "newbug int(1) default 0, viewbug int(1) default 0, addbugserver int(1) default 0, projectaccess int(1) default 0, defaultproject int(1) default 0, userActive int(1) default 1,"
 						+ " PRIMARY KEY  (id))";
 				Statement st = con.createStatement();
 
@@ -774,7 +777,7 @@ public class DAO {
 							password, emailId, securityQuestion, answer, businessAddress, cityprovince, province,
 							postalCode, mainService, userLevel, updatedby, industry, country, logoname, email, newcr,
 							newff, newts, crexe, tsexe, adduser, addqa, dashboard, reports, testresults, newbug,
-							viewbug, addbugserver);
+							viewbug, addbugserver, projectaccess);
 				else
 					returnValue = "failure";
 
@@ -782,7 +785,8 @@ public class DAO {
 				returnValue = addNewUser(tableName, registrationKey, companyName, firstName, lastName, userId, password,
 						emailId, securityQuestion, answer, businessAddress, cityprovince, province, postalCode,
 						mainService, userLevel, updatedby, industry, country, logoname, email, newcr, newff, newts,
-						crexe, tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver);
+						crexe, tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver,
+						projectaccess);
 			} else {
 				returnValue = "failure";
 			}
@@ -800,7 +804,7 @@ public class DAO {
 			String businessAddress, String cityprovince, String province, String postalCode, String mainService,
 			String userLevel, String updatedby, String industry, String country, String logoname, int email, int newcr,
 			int newff, int newts, int crexe, int tsexe, int adduser, int addqa, int dashboard, int reports,
-			int testresults, int newbug, int viewbug, int addbugserver) {
+			int testresults, int newbug, int viewbug, int addbugserver, int projectaccess) {
 		String returnValue = "failure";
 
 		try {
@@ -816,8 +820,8 @@ public class DAO {
 				sql = "insert into " + tableName
 						+ "(companyName, firstName, lastName, userId, password, emailId, securityQuestion, answer, businessAddress, cityprovince, province, "
 						+ "postalCode, mainService, userLevel,createdDate,userActive,loggedIn, updatedBy, industry, country, logoname, email,  newcr, "
-						+ "newff,  newts,  crexe,  tsexe,  adduser,  addqa,  dashboard, reports, testresults, newbug, viewbug, addbugserver) "
-						+ "values(? , ? , ? , ? , md5(?) , ? , ? , ? , ? , ? , ? , ? , ? , ? , CURRENT_TIMESTAMP , 1 , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+						+ "newff,  newts,  crexe,  tsexe,  adduser,  addqa,  dashboard, reports, testresults, newbug, viewbug, addbugserver, projectaccess) "
+						+ "values(? , ? , ? , ? , md5(?) , ? , ? , ? , ? , ? , ? , ? , ? , ? , CURRENT_TIMESTAMP , 1 , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 				ps = con.prepareStatement(sql);
 				ps.setString(1, companyName);
@@ -854,6 +858,7 @@ public class DAO {
 				ps.setInt(31, newbug);
 				ps.setInt(32, viewbug);
 				ps.setInt(33, addbugserver);
+				ps.setInt(34, projectaccess);
 
 				int status = ps.executeUpdate();
 
@@ -878,13 +883,14 @@ public class DAO {
 	public String updateUser(String firstName, String lastName, String userId, String password, String emailId,
 			String securityQuestion, String answer, String updatedby, int email, int newcr, int newff, int newts,
 			int crexe, int tsexe, int adduser, int addqa, int dashboard, int activestatus, String id, int reports,
-			int testresults, int newbug, int viewbug, int addbugserver) {
+			int testresults, int newbug, int viewbug, int addbugserver, int projectaccess) {
 		String returnValue = "failure";
 
 		try {
 			sql = "update users set firstName = ?, lastName = ?, userId = ?, password = md5(?), emailId = ?, securityQuestion = ?, answer = ?, "
 					+ "updatedDate = CURRENT_TIMESTAMP, userActive = ?, updatedBy = ?, email = ?,  newcr = ?, newff = ?,  newts = ?,  "
-					+ "crexe = ?,  tsexe =?,  adduser =?,  addqa =?,  dashboard = ?, reports = ?, testresults = ?, newbug = ?, viewbug = ?, addbugserver = ? where id = ?";
+					+ "crexe = ?,  tsexe =?,  adduser =?,  addqa =?,  dashboard = ?, reports = ?, testresults = ?, newbug = ?, viewbug = ?, "
+					+ "addbugserver = ?, projectaccess =?  where id = ?";
 
 			ps = con.prepareStatement(sql);
 			ps.setString(1, firstName);
@@ -905,12 +911,13 @@ public class DAO {
 			ps.setInt(16, adduser);
 			ps.setInt(17, addqa);
 			ps.setInt(18, dashboard);
-			ps.setString(19, id);
-			ps.setInt(20, reports);
-			ps.setInt(21, testresults);
-			ps.setInt(22, newbug);
-			ps.setInt(23, viewbug);
-			ps.setInt(24, addbugserver);
+			ps.setInt(19, reports);
+			ps.setInt(20, testresults);
+			ps.setInt(21, newbug);
+			ps.setInt(22, viewbug);
+			ps.setInt(23, addbugserver);
+			ps.setInt(24, projectaccess);
+			ps.setString(25, id);
 
 			int status = ps.executeUpdate();
 
@@ -1310,7 +1317,7 @@ public class DAO {
 		return qa;
 	}
 
-	public String createmodulestable(String tableName, long userId, String modulename) {
+	public String createmodulestable(String tableName, long userId, String modulename, int projectid) {
 
 		String returnValue = "failure";
 
@@ -1321,17 +1328,18 @@ public class DAO {
 
 				String createTabelSQL = "CREATE TABLE " + tableName
 						+ " (id bigint(20) NOT NULL auto_increment, module varchar(200) not null,"
-						+ "createdUserId bigint(20) default NULL, createdDate datetime default NULL, updateddate datetime default null, status tinyint(1) default 1, PRIMARY KEY (id),  UNIQUE KEY(module))";
+						+ "createdUserId bigint(20) default NULL, createdDate datetime default NULL, updateddate datetime default null, "
+						+ "status tinyint(1) default 1, projectid bigint(10) default 0, PRIMARY KEY (id),  UNIQUE KEY(module))";
 
 				st = con.createStatement();
 				int isTableCreated = st.executeUpdate(createTabelSQL);
 
 				if (isTableCreated == 0)
-					returnValue = insertmoduledetails(tableName, userId, modulename);
+					returnValue = insertmoduledetails(tableName, userId, modulename, projectid);
 				else
 					returnValue = "failure";
 			} else if (checktable.equals("existed")) {
-				returnValue = insertmoduledetails(tableName, userId, modulename);
+				returnValue = insertmoduledetails(tableName, userId, modulename, projectid);
 			} else {
 				returnValue = "failure";
 			}
@@ -1343,7 +1351,7 @@ public class DAO {
 		return returnValue;
 	}
 
-	public String insertmoduledetails(String tableName, long userId, String modulename) {
+	public String insertmoduledetails(String tableName, long userId, String modulename, int projectid) {
 		String result = "failure";
 		try {
 			String checkduplicates = "select module from modules where module = '" + modulename + "'";
@@ -1353,10 +1361,11 @@ public class DAO {
 				result = "duplicate";
 			} else {
 				sql = "insert into " + tableName
-						+ " (module, createdUserId, createdDate) values( ?, ?, CURRENT_TIMESTAMP)";
+						+ " (module, createdUserId, createdDate, projectid) values( ?, ?, CURRENT_TIMESTAMP, ?)";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, modulename);
 				ps.setLong(2, userId);
+				ps.setInt(3, projectid);
 				int status = ps.executeUpdate();
 				if (status == 1) {
 					result = "success";
@@ -1372,15 +1381,16 @@ public class DAO {
 		return result;
 	}
 
-	public String updatemoduledetails(String tableName, long userId, String modulename, int id) {
+	public String updatemoduledetails(String tableName, long userId, String modulename, int id, int projectid) {
 		String result = "failure";
 		try {
 			sql = "update " + tableName
-					+ " set module = ?, createdUserId = ?, updateddate = CURRENT_TIMESTAMP where id = ?";
+					+ " set module = ?, createdUserId = ?, updateddate = CURRENT_TIMESTAMP, projectid = ? where id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, modulename);
 			ps.setLong(2, userId);
-			ps.setInt(3, id);
+			ps.setInt(3, projectid);
+			ps.setInt(4, id);
 			int status = ps.executeUpdate();
 			if (status == 1) {
 				result = "success";
@@ -1391,14 +1401,14 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<ModulesBinaryTrade> getModuleDetails(String tableName, String required) {
+	public ArrayList<ModulesBinaryTrade> getModuleDetails(String tableName, String required, int projectid) {
 
 		ArrayList<ModulesBinaryTrade> mb = new ArrayList<ModulesBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tableName);
 		try {
 			if (checktable.equals("existed")) {
 				if (required.equals("moduleonly")) {
-					sql = "select  distinct(module) from " + tableName;
+					sql = "select  distinct(module) from " + tableName + " where projectid = '" + projectid + "'";
 
 					st = con.createStatement();
 					rs = st.executeQuery(sql);
@@ -1412,7 +1422,8 @@ public class DAO {
 					rs.close();
 					st.close();
 				} else {
-					sql = "select id, module, createdUserId, createdDate, updateddate from " + tableName;
+					sql = "select id, module, createdUserId, createdDate, updateddate from " + tableName
+							+ " where projectid = '" + projectid + "'";
 
 					st = con.createStatement();
 					rs = st.executeQuery(sql);
@@ -1518,7 +1529,7 @@ public class DAO {
 	}
 
 	public String createtestcasestable(String tableName, long userId, String moduleid, String tsname, String tcname,
-			String testcondition, String sqlscript) {
+			String testcondition, String sqlscript, int projectid) {
 
 		String returnValue = "failure";
 
@@ -1533,18 +1544,19 @@ public class DAO {
 						+ " executioncount bigint(100) default 0, passcount bigint(100) default 0, failcount bigint(100) default 0, executeduserid bigint(5) default null, "
 						+ " updateduserid bigint(5) default null, createdUserId bigint(5) default NULL, createdDate datetime default NULL, updateddate datetime default null, "
 						+ " executeddate datetime default null, message varchar(100) default Not Run, queryresult varchar(100) default null, "
-						+ " teststatus varchar(10) default null, status tinyint(1) default 1, PRIMARY KEY (id), UNIQUE KEY(tcname))";
+						+ " teststatus varchar(10) default null, status tinyint(1) default 1, projectid bigint(10) default 0, PRIMARY KEY (id), UNIQUE KEY(tcname))";
 
 				st = con.createStatement();
 				int isTableCreated = st.executeUpdate(createTabelSQL);
 
 				if (isTableCreated == 0)
-					returnValue = inserttestcases(tableName, userId, moduleid, tsname, tcname, testcondition,
-							sqlscript);
+					returnValue = inserttestcases(tableName, userId, moduleid, tsname, tcname, testcondition, sqlscript,
+							projectid);
 				else
 					returnValue = "failure";
 			} else if (checktable.equals("existed")) {
-				returnValue = inserttestcases(tableName, userId, moduleid, tsname, tcname, testcondition, sqlscript);
+				returnValue = inserttestcases(tableName, userId, moduleid, tsname, tcname, testcondition, sqlscript,
+						projectid);
 			} else {
 				returnValue = "failure";
 			}
@@ -1557,7 +1569,7 @@ public class DAO {
 	}
 
 	public String inserttestcases(String tableName, long userId, String modulename, String tsname, String tcname,
-			String testcondition, String sqlscript) {
+			String testcondition, String sqlscript, int projectid) {
 		String result = "failure";
 		try {
 
@@ -1566,7 +1578,7 @@ public class DAO {
 			rs = st.executeQuery(id);
 			while (rs.next()) {
 				sql = "insert into " + tableName
-						+ " (moduleid, tsname, tcname, testcondition, sqlscript, createdUserId, createdDate) values( ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+						+ " (moduleid, tsname, tcname, testcondition, sqlscript, createdUserId, createdDate, projectid) values( ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, rs.getString(1));
 				ps.setString(2, tsname);
@@ -1574,6 +1586,7 @@ public class DAO {
 				ps.setString(4, testcondition);
 				ps.setString(5, sqlscript);
 				ps.setLong(6, userId);
+				ps.setInt(7, projectid);
 				int status = ps.executeUpdate();
 				if (status == 1) {
 					result = "success";
@@ -1657,7 +1670,7 @@ public class DAO {
 	}
 
 	public ArrayList<FieldtoFieldBinaryTrade> getTestCasesDetails(String tableName, String startdate, String enddate,
-			String release) {
+			String release, int projectid) {
 
 		ArrayList<FieldtoFieldBinaryTrade> ff = new ArrayList<FieldtoFieldBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tableName);
@@ -1675,7 +1688,7 @@ public class DAO {
 							+ "tsd.selecteditems) where ts.`type` = 'modules' and ts.`release` = '" + release
 							+ "' and DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= " + "'" + startdate
 							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') <= '" + enddate
-							+ "' and tc.status = 1  group by tc.id union all "
+							+ "' and tc.status = 1 and tc.projectid = '" + projectid + "' group by tc.id union all "
 							+ "select tc.id, (select module from modules where  id = tc.moduleid)as module, tc.tsname, tc.tcname, tc.testcondition, tc.sqlscript, tc.executioncount, tc.passcount, "
 							+ "tc.failcount, (select userId from users where id = tc.executeduserid)as executedby, (select userId from users where id = "
 							+ "tc.updateduserid)as updatedby,  (select userId from users where id = tc.createdUserId)as createdby, DATE_FORMAT(tc.createdDate, "
@@ -1685,7 +1698,8 @@ public class DAO {
 							+ "join testcases tc on tc.tsname = tsd.selecteditems where ts.`type` = 'testscenario' and ts.`release` = '"
 							+ release + "' and " + "DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= '" + startdate
 							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') <= '" + enddate + "' "
-							+ "and tc.status = 1 group by tc.id union all select tc.id, (select module from modules where  id = tc.moduleid)as module, tc.tsname, tc.tcname, tc.testcondition, tc.sqlscript, "
+							+ "and tc.status = 1 and tc.projectid = '" + projectid
+							+ "' group by tc.id union all select tc.id, (select module from modules where  id = tc.moduleid)as module, tc.tsname, tc.tcname, tc.testcondition, tc.sqlscript, "
 							+ "tc.executioncount, tc.passcount, tc.failcount, (select userId from users where id = tc.executeduserid)as executedby, "
 							+ "(select userId from users where id = tc.updateduserid)as updatedby,  (select userId from users where id = tc.createdUserId)as createdby, "
 							+ "DATE_FORMAT(tc.createdDate, '%Y-%m-%d')as createdDate, DATE_FORMAT(tc.updateddate, '%Y-%m-%d') as updateddate, "
@@ -1694,14 +1708,16 @@ public class DAO {
 							+ "on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
 							+ release + "' and DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= '" + startdate
 							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') " + "<= '" + enddate
-							+ "' and tc.status = 1 group by tc.id ) result group by tcname, cycle, tsname";
+							+ "' and tc.status = 1 and tc.projectid = '" + projectid
+							+ "' group by tc.id ) result group by tcname, cycle, tsname";
 				} else {
 					sql = "select id, (select module from modules where id = moduleid)as modulename, tsname, tcname, testcondition, sqlscript, executioncount, "
 							+ "passcount, failcount, (select userId from users where id = executeduserid)as executedby, (select userId from users where "
 							+ "id = updateduserid)as updatedby, (select userId from users where id = createdUserId)as createdby, DATE_FORMAT(createdDate, '%Y-%m-%d'), "
 							+ "DATE_FORMAT(updateddate, '%Y-%m-%d'), DATE_FORMAT(executeddate, '%Y-%m-%d'), message, queryresult, teststatus from "
-							+ tableName + " " + "where DATE_FORMAT(createdDate, '%Y-%m-%d') >= '" + startdate
-							+ "' and DATE_FORMAT(createdDate, '%Y-%m-%d') <= '" + enddate + "' and status = 1";
+							+ tableName + " where DATE_FORMAT(createdDate, '%Y-%m-%d') >= '" + startdate
+							+ "' and DATE_FORMAT(createdDate, '%Y-%m-%d') <= '" + enddate
+							+ "' and status = 1 and projectid = '" + projectid + "'";
 				}
 				// } else if (module == null && tsname != null) {
 				// sql = "select id, (select module from modules where id =
@@ -1842,17 +1858,18 @@ public class DAO {
 		return ff;
 	}
 
-	public ArrayList<TestScenariosBinaryTrade> getTSNameDetails(String tableName, String module) {
+	public ArrayList<TestScenariosBinaryTrade> getTSNameDetails(String tableName, String module, int projectid) {
 
 		ArrayList<TestScenariosBinaryTrade> ts = new ArrayList<TestScenariosBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tableName);
 		try {
 			if (checktable.equals("existed")) {
 				if (module == null) {
-					sql = "select distinct(tsname) from " + tableName;
+					sql = "select distinct(tsname) from " + tableName + " where projectid = '" + projectid + "'";
 				} else {
 					sql = "select distinct(tsname) from " + tableName
-							+ " where moduleid = (select id from modules where module = '" + module + "')";
+							+ " where moduleid = (select id from modules where module = '" + module
+							+ "') and projectid = '" + projectid + "'";
 				}
 
 				st = con.createStatement();
@@ -2218,7 +2235,7 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<TestSuiteBinaryTrade> gettestsuites(String tablename, String id) {
+	public ArrayList<TestSuiteBinaryTrade> gettestsuites(String tablename, String id, int projectid) {
 		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tablename);
 		try {
@@ -2241,7 +2258,8 @@ public class DAO {
 							+ "where tc.teststatus = 'Fail') when ts.type = 'testcase' then (select count(1) from testsuites ts join testsuitedetails tsd "
 							+ "on tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where tc.teststatus = 'Fail') when ts.type = 'testscenario' "
 							+ "then (select count(1) from testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on "
-							+ "tc.tsname = tsd.selecteditems where tc.teststatus = 'Fail') end from testsuites ts where ts.status =1 ";
+							+ "tc.tsname = tsd.selecteditems where tc.teststatus = 'Fail') end from testsuites ts where ts.status =1 and ts.projectid = '"
+							+ projectid + "'";
 				} else {
 					String checktype1 = "select type from testsuites where id = '" + id + "' ";
 					st1 = con.createStatement();
@@ -2534,7 +2552,7 @@ public class DAO {
 			String scolumn, String stdb, String sttable, String stcolumn, String trdb, String trtable, String trcolumn,
 			String ldb, String ltable, String lcolumn, String tdb, String ttable, String tcolumn, String sscript,
 			String stscript, String transscript, String tscript, long createdby, String scolscript, String stcolscript,
-			String transcolscript, String tcolscript) {
+			String transcolscript, String tcolscript, int projectid) {
 
 		String returnValue = "failure";
 
@@ -2550,7 +2568,7 @@ public class DAO {
 						+ "trdb varchar(500) default null, trtable varchar(500) default null, trcolumn varchar(500) default null, trscript longtext, trcolscript  longtext,"
 						+ "ldb varchar(500) default null, ltable varchar(500) default null, lcolumn varchar(500) default null, tdb varchar(500) default null, ttable varchar(500) default null, "
 						+ "tcolumn varchar(500) default null, tscript longtext, tcolscript  longtext, createdby bigint (5) default null, updatedby bigint(5) default null, "
-						+ "createdDate datetime default NULL, updatedDate datetime default NULL, PRIMARY KEY (id), UNIQUE KEY(rulename))";
+						+ "createdDate datetime default NULL, updatedDate datetime default NULL, projectid bigint(10) default 0, PRIMARY KEY (id), UNIQUE KEY(rulename))";
 
 				st = con.createStatement();
 				int isTableCreated = st.executeUpdate(createTabelSQL);
@@ -2559,13 +2577,14 @@ public class DAO {
 					returnValue = insertControlReportRules(tableName, module, rulename, sdb, stable, scolumn, stdb,
 							sttable, stcolumn, trdb, trtable, trcolumn, ldb, ltable, lcolumn, tdb, ttable, tcolumn,
 							sscript, stscript, transscript, tscript, createdby, scolscript, stcolscript, transcolscript,
-							tcolscript);
+							tcolscript, projectid);
 				else
 					returnValue = "failure";
 			} else if (checktable.equals("existed")) {
 				returnValue = insertControlReportRules(tableName, module, rulename, sdb, stable, scolumn, stdb, sttable,
 						stcolumn, trdb, trtable, trcolumn, ldb, ltable, lcolumn, tdb, ttable, tcolumn, sscript,
-						stscript, transscript, tscript, createdby, scolscript, stcolscript, transcolscript, tcolscript);
+						stscript, transscript, tscript, createdby, scolscript, stcolscript, transcolscript, tcolscript,
+						projectid);
 			} else {
 				returnValue = "failure";
 			}
@@ -2581,14 +2600,14 @@ public class DAO {
 			String scolumn, String stdb, String sttable, String stcolumn, String trdb, String trtable, String trcolumn,
 			String ldb, String ltable, String lcolumn, String tdb, String ttable, String tcolumn, String sscript,
 			String stscript, String transscript, String tscript, long createdby, String scolscript, String stcolscript,
-			String transcolscript, String tcolscript) {
+			String transcolscript, String tcolscript, int projectid) {
 		String result = "failure";
 		try {
 
 			sql = "insert into " + tableName
 					+ " (module, rulename, sdb, stable, scolumn, stdb, sttable, stcolumn, trdb, trtable, trcolumn, ldb, ltable, lcolumn, "
-					+ "tdb, ttable, tcolumn, createdby, sscript, stscript, trscript, tscript, scolscript, stcolscript, trcolscript, tcolscript, createddate) "
-					+ "values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+					+ "tdb, ttable, tcolumn, createdby, sscript, stscript, trscript, tscript, scolscript, stcolscript, trcolscript, tcolscript, createddate, projectid) "
+					+ "values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, module);
 			ps.setString(2, rulename);
@@ -2616,6 +2635,7 @@ public class DAO {
 			ps.setString(24, stcolscript);
 			ps.setString(25, transcolscript);
 			ps.setString(26, tcolscript);
+			ps.setInt(27, projectid);
 
 			int status1 = ps.executeUpdate();
 			if (status1 == 1) {
@@ -2684,7 +2704,7 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<ControlReportRulesBinaryTrade> getControlReportRules(String id) {
+	public ArrayList<ControlReportRulesBinaryTrade> getControlReportRules(String id, int projectid) {
 		ArrayList<ControlReportRulesBinaryTrade> rulelist = new ArrayList<ControlReportRulesBinaryTrade>();
 		String checktable = isTableAlreadyExisted("controlreportrules");
 		if (checktable.equals("existed")) {
@@ -2693,13 +2713,14 @@ public class DAO {
 					sql = "select id, module, rulename, sdb, stable, scolumn, stdb, sttable, stcolumn, trdb, trtable, trcolumn, ldb, ltable, "
 							+ "lcolumn, tdb, ttable, tcolumn, (select userId from users where id = createdby)as createdby, "
 							+ "(select userId from users where id = updatedby)as updatedby, DATE_FORMAT(createdDate, '%Y-%m-%d'), DATE_FORMAT(updatedDate, '%Y-%m-%d'), sscript, "
-							+ "stscript, trscript, tscript, scolscript, stcolscript, trcolscript, tcolscript from controlreportrules";
+							+ "stscript, trscript, tscript, scolscript, stcolscript, trcolscript, tcolscript from controlreportrules where projectid = '"
+							+ projectid + "'";
 				} else {
 					sql = "select id, module, rulename, sdb, stable, scolumn, stdb, sttable, stcolumn, trdb, trtable, trcolumn, ldb, ltable, "
 							+ "lcolumn, tdb, ttable, tcolumn, (select userId from users where id = createdby)as createdby, "
 							+ "(select userId from users where id = updatedby)as updatedby, DATE_FORMAT(createdDate, '%Y-%m-%d'), DATE_FORMAT(updatedDate, '%Y-%m-%d'), sscript,"
 							+ " stscript, trscript, tscript, scolscript, stcolscript, trcolscript, tcolscript from controlreportrules where id = '"
-							+ id + "'";
+							+ id + "' and projectid = '" + projectid + "'";
 				}
 
 				st = con.createStatement();
@@ -2736,6 +2757,7 @@ public class DAO {
 					crbt.setSttotrcol(rs.getString(28));
 					crbt.setTrtolcol(rs.getString(29));
 					crbt.setLtotcol(rs.getString(30));
+
 					rulelist.add(crbt);
 				}
 				rs.close();
@@ -2751,14 +2773,14 @@ public class DAO {
 		return rulelist;
 	}
 
-	public ArrayList<TestSuiteBinaryTrade> getreleases(String tableName) {
+	public ArrayList<TestSuiteBinaryTrade> getreleases(String tableName, int projectid) {
 
 		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
 		String checktable = isTableAlreadyExisted(tableName);
 		try {
 			if (checktable.equals("existed")) {
 
-				sql = "select distinct(`release`) from " + tableName;
+				sql = "select distinct(`release`) from " + tableName + " where projectid = '" + projectid + "'";
 
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
@@ -2782,12 +2804,13 @@ public class DAO {
 		return ts;
 	}
 
-	public ArrayList<TestSuiteBinaryTrade> getcycles(String release) {
+	public ArrayList<TestSuiteBinaryTrade> getcycles(String release, int projectid) {
 
 		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
 
 		try {
-			sql = "select distinct(`cycle`) from testsuites where `release` = '" + release + "'";
+			sql = "select distinct(`cycle`) from testsuites where `release` = '" + release + "' and projectid = '"
+					+ projectid + "'";
 
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
@@ -2809,13 +2832,13 @@ public class DAO {
 		return ts;
 	}
 
-	public ArrayList<TestSuiteBinaryTrade> gettestsuitesonly(String cycle, String release) {
+	public ArrayList<TestSuiteBinaryTrade> gettestsuitesonly(String cycle, String release, int projectid) {
 
 		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
 
 		try {
 			sql = "select distinct(`suitename`) from testsuites where `release` = '" + release + "' and cycle = '"
-					+ cycle + "'";
+					+ cycle + "' and projectid = '" + projectid + "'";
 
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
@@ -2837,12 +2860,13 @@ public class DAO {
 		return ts;
 	}
 
-	public ArrayList<ControlReportExecutionBinaryTrade> getrulenames(String module) {
+	public ArrayList<ControlReportExecutionBinaryTrade> getrulenames(String module, int projectid) {
 
 		ArrayList<ControlReportExecutionBinaryTrade> ts = new ArrayList<ControlReportExecutionBinaryTrade>();
 
 		try {
-			sql = "select distinct(`rulename`) from controlreportrules where `module` = '" + module + "'";
+			sql = "select distinct(`rulename`) from controlreportrules where `module` = '" + module
+					+ "' and projectid = '" + projectid + "'";
 
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
@@ -2882,12 +2906,12 @@ public class DAO {
 		}
 	}
 
-	public ArrayList<ControlReportExecutionBinaryTrade> getrulesBeforeexecution() {
+	public ArrayList<ControlReportExecutionBinaryTrade> getrulesBeforeexecution(int projectid) {
 		String checktable2 = isTableAlreadyExisted("controlreportrules");
 		ArrayList<ControlReportExecutionBinaryTrade> crbt = new ArrayList<ControlReportExecutionBinaryTrade>();
 		try {
 			if (checktable2.equals("existed")) {
-				sql = "select id, module, rulename from controlreportrules";
+				sql = "select id, module, rulename from controlreportrules where projectid = '" + projectid + "'";
 
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
@@ -2929,7 +2953,7 @@ public class DAO {
 		return crbt;
 	}
 
-	public ArrayList<ControlReportExecutionBinaryTrade> getrulesAfterexecution(int batchid) {
+	public ArrayList<ControlReportExecutionBinaryTrade> getrulesAfterexecution(int batchid, int projectid) {
 		String checktable1 = isTableAlreadyExisted("crresults");
 		String checktable2 = isTableAlreadyExisted("controlreportrules");
 		ArrayList<ControlReportExecutionBinaryTrade> crbt = new ArrayList<ControlReportExecutionBinaryTrade>();
@@ -2941,13 +2965,15 @@ public class DAO {
 								+ "cr.ltotdiff, cr.sourcecount, cr.stagingcount, cr.transcount, cr.loadingcount, cr.targetcount, cr.result, "
 								+ "(select userId from users where id = cr.executeduserid) as executeduserid, cr.executeddate, cr.sourcecolvalue, cr.stagingcolvalue, cr.transcolvalue, cr.loadingcolvalue, cr.targetcolvalue"
 								+ " from crresults cr join controlreportrules crr "
-								+ "on cr.ruleid =  crr.id where cr.batchid = (select max(crs.batchid) from crresults crs) order by cr.batchid";
+								+ "on cr.ruleid =  crr.id where cr.batchid = (select max(crs.batchid) from crresults crs) and crr.projectid = '"
+								+ projectid + "' order by cr.batchid";
 					} else {
 						sql = "select crr.id, crr.module, crr.rulename, cr.message, cr.stost, cr.sttotr, cr.trtol, cr.ltot, cr.stostdiff, cr.sttotrdiff, cr.trtoldiff, "
 								+ "cr.ltotdiff, cr.sourcecount, cr.stagingcount, cr.transcount, cr.loadingcount, cr.targetcount, cr.result, "
 								+ "(select userId from users where id = cr.executeduserid) as executeduserid, cr.executeddate, cr.sourcecolvalue, cr.stagingcolvalue, cr.transcolvalue, cr.loadingcolvalue, cr.targetcolvalue"
 								+ " from crresults cr join controlreportrules crr on cr.ruleid =  crr.id "
-								+ " where cr.batchid = " + batchid + " order by cr.batchid";
+								+ " where cr.batchid = " + batchid + " and crr.projectid = '" + projectid
+								+ "' order by cr.batchid";
 					}
 					st = con.createStatement();
 					rs = st.executeQuery(sql);
@@ -2989,7 +3015,7 @@ public class DAO {
 				}
 			} else {
 				createcontrolreportresultstable();
-				getrulesAfterexecution(batchid);
+				getrulesAfterexecution(batchid, projectid);
 			}
 
 		} catch (Exception e) {
@@ -3465,12 +3491,99 @@ public class DAO {
 		return reportsbean;
 	}
 
-	public ArrayList<String> getbatchids(String tablename, int serverid) {
+	public ArrayList<String> getbatchids(String tablename, int serverid, int projectid) {
 		ArrayList<String> returnvalue = new ArrayList<>();
 		String checktable = isTableAlreadyExisted(tablename);
 		try {
 			if (checktable.equals("existed")) {
-				sql = "select distinct(batchid) from " + tablename + " where serverid = " + serverid
+				if (tablename.equals("fieldresults")) {
+					sql = "select distinct(batchid) from " + tablename
+							+ " fr inner join testcases tc on tc.id = fr.testcaseid where serverid = " + serverid
+							+ " and tc.projectid = '" + projectid + "' order by batchid desc";
+				} else if (tablename.equals("crresults")) {
+					sql = "select distinct(batchid) from " + tablename
+							+ " cr inner join controlreportrules crr on crr.id = cr.ruleid where serverid = " + serverid
+							+ " and crr.projectid = '" + projectid + "' order by batchid desc";
+				}
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					returnvalue.add(rs.getString(1));
+				}
+				rs.close();
+				st.close();
+			} else {
+				returnvalue = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnvalue = null;
+		}
+		return returnvalue;
+	}
+
+	public ArrayList<String> gettestormodule(String tablename, String batchid, int projectid) {
+		ArrayList<String> returnvalue = new ArrayList<>();
+		String checktable = isTableAlreadyExisted(tablename);
+		try {
+			if (checktable.equals("existed")) {
+				if (tablename.equals("fieldresults")) {
+					sql = "select concat(fr.testcaseid,'-',tc.tcname) from " + tablename
+							+ " fr inner join testcases tc on tc.id = fr.testcaseid where fr.batchid = " + batchid
+							+ " and tc.projectid = " + projectid;
+				} else if (tablename.equals("crresults")) {
+					sql = "select concat(cr.moduleid,'-',m.module) from " + tablename
+							+ " cr left join modules m on cr.moduleid = m.id where cr.batchid = " + batchid
+							+ " and  m.projectid = " + projectid;
+				}
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					returnvalue.add(rs.getString(1));
+				}
+				rs.close();
+				st.close();
+			} else {
+				returnvalue = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnvalue = null;
+		}
+		return returnvalue;
+	}
+
+	public ArrayList<String> gettestsuites(int projectid) {
+		ArrayList<String> returnvalue = new ArrayList<>();
+		String checktable = isTableAlreadyExisted("testsuites");
+		try {
+			if (checktable.equals("existed")) {
+				sql = "select suitename from testsuites where projectid = '" + projectid + "'";
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					returnvalue.add(rs.getString(1));
+				}
+				rs.close();
+				st.close();
+			} else {
+				returnvalue = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnvalue = null;
+		}
+		return returnvalue;
+	}
+
+	public ArrayList<String> getbatchids1(String testsuitename, int serverid, int projectid) {
+		ArrayList<String> returnvalue = new ArrayList<>();
+		String checktable = isTableAlreadyExisted("fieldresults");
+		try {
+			if (checktable.equals("existed")) {
+				sql = "select distinct(batchid) from fieldresults where testsuiteid = (select id from testsuites where suitename = '"
+						+ testsuitename + "' and projectid = '" + projectid + "') and serverid = " + serverid
 						+ " order by batchid desc";
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
@@ -3489,100 +3602,25 @@ public class DAO {
 		return returnvalue;
 	}
 
-	public ArrayList<String> gettestormodule(String tablename, String batchid) {
-		ArrayList<String> returnvalue = new ArrayList<>();
-		String checktable = isTableAlreadyExisted(tablename);
-		try {
-			if (checktable.equals("existed")) {
-				if (tablename.equals("fieldresults")) {
-					sql = "select concat(fr.testcaseid,'-',(select tcname from testcases where id = fr.testcaseid))as testcasename from "
-							+ tablename + " fr where fr.batchid = " + batchid;
-				} else if (tablename.equals("crresults")) {
-					sql = "select distinct(concat(cr.moduleid,'-', (select module from modules where id = cr.moduleid)))as module from "
-							+ tablename + " cr where cr.batchid = " + batchid;
-				}
-				st = con.createStatement();
-				rs = st.executeQuery(sql);
-				while (rs.next()) {
-					returnvalue.add(rs.getString(1));
-				}
-				rs.close();
-				st.close();
-			} else {
-				returnvalue = null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnvalue = null;
-		}
-		return returnvalue;
-	}
-
-	public ArrayList<String> gettestsuites() {
-		ArrayList<String> returnvalue = new ArrayList<>();
-		String checktable = isTableAlreadyExisted("testsuites");
-		try {
-			if (checktable.equals("existed")) {
-				sql = "select suitename from testsuites";
-				st = con.createStatement();
-				rs = st.executeQuery(sql);
-				while (rs.next()) {
-					returnvalue.add(rs.getString(1));
-				}
-				rs.close();
-				st.close();
-			} else {
-				returnvalue = null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnvalue = null;
-		}
-		return returnvalue;
-	}
-
-	public ArrayList<String> getbatchids1(String testsuitename, int serverid) {
-		ArrayList<String> returnvalue = new ArrayList<>();
-		String checktable = isTableAlreadyExisted("fieldresults");
-		try {
-			if (checktable.equals("existed")) {
-				sql = "select distinct(batchid) from fieldresults where testsuiteid = (select id from testsuites where suitename = '"
-						+ testsuitename + "') and serverid = " + serverid + " order by batchid desc";
-				st = con.createStatement();
-				rs = st.executeQuery(sql);
-				while (rs.next()) {
-					returnvalue.add(rs.getString(1));
-				}
-				rs.close();
-				st.close();
-			} else {
-				returnvalue = null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			returnvalue = null;
-		}
-		return returnvalue;
-	}
-
 	public ArrayList<String> getReleasefieldresults(String columns, int countsize, String release, String cycle,
-			String testsuite) {
+			String testsuite, int projectid) {
 
 		ArrayList<String> reportsbean = new ArrayList<String>();
 		try {
 			if (release != null && cycle == null && testsuite == null) {
 				sql = "select " + columns
 						+ " from fieldresults fr join testsuites ts on fr.testsuiteid = ts.id join testcases tc on tc.id = fr.testcaseid where fr.release = '"
-						+ release + "' order by batchid desc limit 1";
+						+ release + "' and tc.projectid = '" + projectid + "' order by batchid desc limit 1";
 			} else if (release != null && cycle != null && testsuite == null) {
 				sql = "select " + columns
 						+ " from fieldresults fr join testsuites ts on fr.testsuiteid = ts.id join testcases tc on tc.id = fr.testcaseid where fr.release = '"
-						+ release + "' and fr.cycle = '" + cycle + "' order by batchid desc limit 1";
+						+ release + "' and fr.cycle = '" + cycle + "' and tc.projectid = '" + projectid
+						+ "' order by batchid desc limit 1";
 			} else if (release != null && cycle != null && testsuite != null) {
 				sql = "select " + columns
 						+ " from fieldresults fr join testsuites ts on fr.testsuiteid = ts.id join testcases tc on tc.id = fr.testcaseid where fr.release = '"
 						+ release + "' and fr.cycle = '" + cycle + "' and ts.suitename = '" + testsuite
-						+ "' order by batchid desc limit 1";
+						+ "' and tc.projectid = '" + projectid + "' order by batchid desc limit 1";
 			}
 
 			st = con.createStatement();
@@ -3846,5 +3884,148 @@ public class DAO {
 			updateTrigerstatus("bugprojects", 0);
 			e.printStackTrace();
 		}
+	}
+
+	public String createprojectstable(String tableName, String name, String owner, long createdby) {
+
+		String returnValue = "failure";
+
+		try {
+			String checktable = this.isTableAlreadyExisted(tableName);
+
+			if (checktable.equals("notExisted")) {
+
+				String createTabelSQL = "CREATE TABLE " + tableName
+						+ " (projectid bigint(10) NOT NULL auto_increment,  name varchar(256) default null, owner varchar(200) default null, testcases bigint(255) default 0, "
+						+ " executedcount bigint(255) default 0, nonexecutedcount bigint(255) default 0, ffpass bigint(255) default 0, fffail bigint(255) default 0, dataquality double default 0, "
+						+ " crrules bigint(255) default 0, rulesexecuted bigint(255) default 0, rulesnonexecuted bigint(255) default 0, crpass bigint(255) default 0, crfail bigint(255) default 0, "
+						+ " controlreportquaility double, createddate datetime, createdby bigint(20) default 0, updateddate datetime, updatedby bigint(20) default 0, isactive TINYINT(1) default 1, "
+						+ " PRIMARY KEY (projectid), UNIQUE KEY(name))";
+
+				st = con.createStatement();
+				int isTableCreated = st.executeUpdate(createTabelSQL);
+
+				if (isTableCreated == 0)
+					returnValue = insertprojects(tableName, name, owner, createdby);
+				else
+					returnValue = "failure";
+			} else if (checktable.equals("existed")) {
+				returnValue = insertprojects(tableName, name, owner, createdby);
+			} else {
+				returnValue = "failure";
+			}
+			st.close();
+		} catch (Exception e) {
+			returnValue = "error";
+			e.printStackTrace();
+		}
+		return returnValue;
+	}
+
+	public String insertprojects(String tableName, String name, String owner, long createdby) {
+		String result = "failure";
+		try {
+
+			sql = "insert into " + tableName
+					+ " (name, owner, createdby, createddate) values( ?, ?, ?, CURRENT_TIMESTAMP )";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, owner);
+			ps.setLong(3, createdby);
+
+			int status1 = ps.executeUpdate();
+			if (status1 == 1) {
+				result = "success";
+			} else {
+				result = "duplicate";
+			}
+			ps.close();
+
+		} catch (Exception e) {
+			result = "failure";
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public String updateprojects(String tableName, int projectid, String name, String owner, long updatedby,
+			int isactive) {
+		String result = "failure";
+		try {
+
+			sql = "update " + tableName
+					+ " set name = ?, owner = ?, updatedby = ?, updateddate = CURRENT_TIMESTAMP, isactive = ? where projectid = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, owner);
+			ps.setLong(3, updatedby);
+			ps.setInt(4, isactive);
+			ps.setInt(5, projectid);
+
+			int status1 = ps.executeUpdate();
+			if (status1 == 1) {
+				result = "success";
+			}
+			ps.close();
+
+		} catch (Exception e) {
+			result = "failure";
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public ArrayList<ProjectsBeanBinaryTrade> getprojectnames() {
+		ArrayList<ProjectsBeanBinaryTrade> plist = new ArrayList<ProjectsBeanBinaryTrade>();
+		try {
+
+			String checktable = isTableAlreadyExisted("projects");
+			if (checktable.equals("existed")) {
+				sql = "select concat(projectid,'-',name) from projects";
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					ProjectsBeanBinaryTrade pbt = new ProjectsBeanBinaryTrade();
+					pbt.setName(rs.getString(1));
+					plist.add(pbt);
+				}
+				rs.close();
+				st.close();
+			} else {
+				plist = null;
+			}
+		} catch (Exception e) {
+			plist = null;
+		}
+		return plist;
+	}
+
+	public ArrayList<ProjectsBeanBinaryTrade> getprojectDetails(int status, int projectid) {
+		ArrayList<ProjectsBeanBinaryTrade> plist = new ArrayList<ProjectsBeanBinaryTrade>();
+		try {
+
+			String checktable = isTableAlreadyExisted("projects");
+			if (checktable.equals("existed")) {
+				if (status == 1) {
+					sql = "select name, owner from projects where projectid = '" + projectid + "'";
+				}
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					ProjectsBeanBinaryTrade pbt = new ProjectsBeanBinaryTrade();
+					pbt.setName(rs.getString(1));
+					pbt.setOwner(rs.getString(2));
+					plist.add(pbt);
+				}
+				rs.close();
+				st.close();
+			} else {
+				plist = null;
+			}
+		} catch (Exception e) {
+			plist = null;
+		}
+		return plist;
 	}
 }

@@ -1088,7 +1088,7 @@ public class NewControlReportRulesController implements Initializable {
 		modulebox.getItems().clear();
 		modulebox.getItems().add("QA Modules");
 		modulebox.getSelectionModel().select(0);
-		moduleslist = new DAO().getModuleDetails("modules", "all");
+		moduleslist = new DAO().getModuleDetails("modules", "all", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				modulebox.getItems().add(moduleslist.get(i).getModulename());
@@ -1113,7 +1113,8 @@ public class NewControlReportRulesController implements Initializable {
 					tcolumnbox.getSelectionModel().getSelectedItem(), sourcesqltextarea.getText(),
 					stagingsqltextarea.getText(), transsqltextarea.getText(), targetsqltextarea.getText(),
 					Long.parseLong(Integer.toString(Loggedinuserdetails.id)), sourcecolsqltextarea.getText(),
-					stagingcolsqltextarea.getText(), transcolsqltextarea.getText(), targetcolsqltextarea.getText());
+					stagingcolsqltextarea.getText(), transcolsqltextarea.getText(), targetcolsqltextarea.getText(),
+					Loggedinuserdetails.defaultproject);
 
 			if (result.equals("success")) {
 				setdefaults();
@@ -1253,7 +1254,7 @@ public class NewControlReportRulesController implements Initializable {
 
 	private void populateControlReportRules() {
 		try {
-			ruleslist = new DAO().getControlReportRules(null);
+			ruleslist = new DAO().getControlReportRules(null, Loggedinuserdetails.defaultproject);
 			if (ruleslist == null || ruleslist.size() == 0) {
 				searchtext.setDisable(true);
 				removerulesfromtable();

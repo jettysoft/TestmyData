@@ -19,6 +19,7 @@ import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.EncryptAndDecrypt;
+import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.StaticImages;
 
@@ -363,7 +364,7 @@ public class QAServerSettingsController implements Initializable {
 		existingmodulescombo.getItems().add("QA Modules");
 		existingmodulescombo.getSelectionModel().select(0);
 		moduleslist.clear();
-		moduleslist = new DAO().getModuleDetails("modules", "all");
+		moduleslist = new DAO().getModuleDetails("modules", "all", Loggedinuserdetails.defaultproject);
 		if (moduleslist != null && moduleslist.size() > 0) {
 			for (int i = 0; i < moduleslist.size(); i++) {
 				existingmodulescombo.getItems()
@@ -387,7 +388,7 @@ public class QAServerSettingsController implements Initializable {
 	private void msave() {
 		if (validatemfields()) {
 			String result = new DAO().createmodulestable("modules", currentUsersDetailsBeanBinaryTree.getId(),
-					modulenametext.getText());
+					modulenametext.getText(), Loggedinuserdetails.defaultproject);
 			if (result.equals("success")) {
 				setmdefaults();
 				runmessage("Successfully Module Added...");
@@ -403,7 +404,7 @@ public class QAServerSettingsController implements Initializable {
 	private void mupdate() {
 		if (validatemfields()) {
 			String result = new DAO().updatemoduledetails("modules", currentUsersDetailsBeanBinaryTree.getId(),
-					modulenametext.getText(), 1);
+					modulenametext.getText(), 1, Loggedinuserdetails.defaultproject);
 			if (result.equals("success")) {
 				setmdefaults();
 				runmessage("Successfully Module Updated...");

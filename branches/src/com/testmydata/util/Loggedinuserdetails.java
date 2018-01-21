@@ -7,6 +7,6 @@ public class Loggedinuserdetails {
 
 	public static int id = 0, isActive = 0, email = 0, newcr = 0, newff = 0, newts = 0, crexe = 0, tsexe = 0,
 			adduser = 0, addqa = 0, dashboard = 0, reports = 0, testresults = 0, newbug = 0, viewbug = 0,
-			addbugserver = 0;
+			addbugserver = 0, projectaccess = 0, defaultproject = 0;
 
 }

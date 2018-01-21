@@ -512,7 +512,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 		setdefaultcycle();
 
 		releaselist.clear();
-		releaselist = new DAO().getreleases("testsuites");
+		releaselist = new DAO().getreleases("testsuites", Loggedinuserdetails.defaultproject);
 		if (releaselist != null && releaselist.size() > 0) {
 			for (int i = 0; i < releaselist.size(); i++) {
 				releasecombo.getItems().add(releaselist.get(i).getRelease());
@@ -524,7 +524,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	private void setcyclecombo(String release) {
 		setdefaultcycle();
 		cyclelist.clear();
-		cyclelist = new DAO().getcycles(release);
+		cyclelist = new DAO().getcycles(release, Loggedinuserdetails.defaultproject);
 		if (cyclelist != null && cyclelist.size() > 0) {
 			for (int i = 0; i < cyclelist.size(); i++) {
 				cyclecombo.getItems().add(cyclelist.get(i).getCycle());
@@ -536,7 +536,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	private void settscombo(String release, String cycle) {
 		settestsuite();
 		tslist.clear();
-		tslist = new DAO().gettestsuitesonly(cycle, release);
+		tslist = new DAO().gettestsuitesonly(cycle, release, Loggedinuserdetails.defaultproject);
 		if (tslist != null && tslist.size() > 0) {
 			for (int i = 0; i < tslist.size(); i++) {
 				tscombo.getItems().add(tslist.get(i).getTestsuitename());
@@ -598,7 +598,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				removePrevioustestcasesfromtable();
 
 				testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-						enddate.getValue().toString(), release);
+						enddate.getValue().toString(), release, Loggedinuserdetails.defaultproject);
 			}
 
 			if (testcaselist == null || testcaselist.size() == 0) {
@@ -808,7 +808,8 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	@SuppressWarnings("unchecked")
 	private void showtablenow() {
 		testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-				enddate.getValue().toString(), releasecombo.getSelectionModel().getSelectedItem());
+				enddate.getValue().toString(), releasecombo.getSelectionModel().getSelectedItem(),
+				Loggedinuserdetails.defaultproject);
 
 		if (releasecombo.getSelectionModel().getSelectedIndex() > 0
 				&& cyclecombo.getSelectionModel().getSelectedIndex() == 0

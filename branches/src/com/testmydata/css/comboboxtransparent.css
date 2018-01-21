@@ -1,0 +1,27 @@
+.combo-box
+ {
+  -fx-text-fill: white;
+  -fx-min-width: 125;
+  -fx-min-height: 50;
+  -fx-background-color: #162a4c;
+
+ }
+.combo-box-popup .list-view
+ {
+  -fx-text-fill: white;
+   -fx-background-color: -fx-box-border, -fx-control-inner-background;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+ }
+.combo-box-popup .list-view .list-cell
+ {
+-fx-background-color: #162a4c;
+-fx-text-fill: white;
+-fx-font-family: Calibri;
+ }
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-text-fill: #ffed4f;
+}
+.combo-box .cell:selected {
+    -fx-text-fill: #ffed4f;
+}
