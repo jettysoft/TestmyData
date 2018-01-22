@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.testmydata.util.CommonFunctions;
+import com.testmydata.util.StaticImages;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,23 +13,26 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DialogController implements Initializable {
 	@FXML
-	private Label detailsLabel, headerLabel;
+	private Label detailsLabel;
 	@FXML
 	private Button okButton;
+	@FXML
+	private ImageView appicon;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		appicon.setImage(StaticImages.appicon.getImage());
 		detailsLabel.setText(CommonFunctions.message);
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-		headerLabel.setEffect(ds);
 		okButton.setEffect(ds);
 	}
 
