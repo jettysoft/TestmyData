@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -13,7 +12,6 @@ import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
 import com.testmydata.binarybeans.ControlReportRulesBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.GetDBTables;
@@ -32,7 +30,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -50,10 +47,13 @@ public class NewControlReportRulesController implements Initializable {
 	private static NewControlReportRulesController userHome = null;
 	Stage myStage;
 	@FXML
-	private ImageView homeicon, sourcevalidicon, stagingvalidicon, transvalidicon, targetvalidicon, sourcecloseicon,
+	private ImageView closeicon, sourcevalidicon, stagingvalidicon, transvalidicon, targetvalidicon, sourcecloseicon,
 			stagingcloseicon, transcloseicon, targetcloseicon, srunicon, strunicon, transrunicon, trunicon,
 			sourcecolicon, stagingcolicon, transcolicon, targetcolicon, sourcecolcloseicon, scolrunicon,
-			stagingcolcloseicon, stcolrunicon, transcolcloseicon, transcolrunicon, targetcolcloseicon, tcolrunicon;
+			stagingcolcloseicon, stcolrunicon, transcolcloseicon, transcolrunicon, targetcolcloseicon, tcolrunicon,
+			saveicon, updateicon, refreshicon;
+	@FXML
+	private Label refreshlbl;
 	@FXML
 	private JFXComboBox<String> sdbbox, stablebox, scolumnbox, stdbbox, sttablebox, stcolumnbox, trdbbox, trtablebox,
 			trcolumnbox, ldbbox, ltablebox, lcolumnbox, tdbbox, ttablebox, tcolumnbox, modulebox;
@@ -62,10 +62,9 @@ public class NewControlReportRulesController implements Initializable {
 	@FXML
 	private JFXTextArea sourcesqltextarea, stagingsqltextarea, transsqltextarea, targetsqltextarea,
 			sourcecolsqltextarea, stagingcolsqltextarea, transcolsqltextarea, targetcolsqltextarea;
+
 	@FXML
-	private JFXButton createrule, updaterule;
-	@FXML
-	private AnchorPane sourceanchor, staginganchor, transanchor, targetanchor, msourceanchor, etlanchor, mtargetanchor,
+	private AnchorPane actionanchor1, actionanchor2, sourceanchor, staginganchor, transanchor, targetanchor, etlanchor,
 			sourcecolanchor, stagingcolanchor, transcolanchor, targetcolanchor;
 	@FXML
 	private TableView<ControlReportRulesBinaryTrade> rulestable;
@@ -85,7 +84,7 @@ public class NewControlReportRulesController implements Initializable {
 	ArrayList<ModulesBinaryTrade> moduleslist = new ArrayList<ModulesBinaryTrade>();
 	ArrayList<ControlReportRulesBinaryTrade> ruleslist = new ArrayList<ControlReportRulesBinaryTrade>();
 
-	private static String lblStyle = null, ruleid = null;
+	private static String ruleid = null;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -95,8 +94,11 @@ public class NewControlReportRulesController implements Initializable {
 		setexistingmodules();
 		rulelistservice.reset();
 		rulelistservice.start();
+		updateicon.setVisible(false);
 
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
+		saveicon.setImage(StaticImages.save.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
 
 		sourcevalidicon.setImage(StaticImages.sqleditor.getImage());
 		stagingvalidicon.setImage(StaticImages.sqleditor.getImage());
@@ -126,101 +128,88 @@ public class NewControlReportRulesController implements Initializable {
 		transcolrunicon.setImage(StaticImages.source_execute.getImage());
 		tcolrunicon.setImage(StaticImages.source_execute.getImage());
 
-		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
-		Label lbl = new Label(" Validation Query ");
-		lbl.setStyle(lblStyle);
-		lbl.setMinWidth(80);
-		lbl.setLayoutX(135);
-		lbl.setLayoutY(190);
-		lbl.setVisible(false);
-		msourceanchor.getChildren().add(lbl);
+		refreshlbl.setStyle(StaticImages.lblStyle);
+		refreshicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl.setVisible(true);
+			}
+		});
+		refreshicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refreshlbl.setVisible(false);
+			}
+		});
 
-		Label slbl = new Label(" Source-Staging ");
-		slbl.setStyle(lblStyle);
-		slbl.setMinWidth(80);
-		slbl.setLayoutX(5);
-		slbl.setLayoutY(190);
-		slbl.setVisible(false);
-		msourceanchor.getChildren().add(slbl);
+		Label lbl = new Label(" Source-Staging Row Count Validation ");
+		lbl.setStyle(StaticImages.lblStyle);
+		lbl.setMinWidth(170);
+		lbl.setLayoutX(240);
+		lbl.setLayoutY(115);
+		lbl.setVisible(false);
+		etlanchor.getChildren().add(lbl);
 
 		sourcevalidicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				lbl.setVisible(true);
-				slbl.setVisible(true);
-				sourcecolicon.setVisible(false);
 			}
 		});
 		sourcevalidicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				lbl.setVisible(false);
-				slbl.setVisible(false);
-				sourcecolicon.setVisible(true);
 			}
 		});
 
-		Label scollbl = new Label(" Column Validation ");
-		scollbl.setStyle(lblStyle);
-		scollbl.setMinWidth(100);
-		scollbl.setLayoutX(30);
-		scollbl.setLayoutY(190);
+		Label scollbl = new Label(" Source-Staging Column Sum Validation ");
+		scollbl.setStyle(StaticImages.lblStyle);
+		scollbl.setMinWidth(150);
+		scollbl.setLayoutX(240);
+		scollbl.setLayoutY(165);
 		scollbl.setVisible(false);
-		msourceanchor.getChildren().add(scollbl);
+		etlanchor.getChildren().add(scollbl);
 
 		sourcecolicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				scollbl.setVisible(true);
-				sourcevalidicon.setVisible(false);
 			}
 		});
 		sourcecolicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				scollbl.setVisible(false);
-				sourcevalidicon.setVisible(true);
 			}
 		});
 
-		Label stlbl = new Label(" Staging-Transformation ");
-		stlbl.setStyle(lblStyle);
-		stlbl.setMinWidth(100);
-		stlbl.setLayoutX(55);
-		stlbl.setLayoutY(203);
+		Label stlbl = new Label(" Staging-Transformation Row Count Validation ");
+		stlbl.setStyle(StaticImages.lblStyle);
+		stlbl.setMinWidth(160);
+		stlbl.setLayoutX(480);
+		stlbl.setLayoutY(115);
 		stlbl.setVisible(false);
 		etlanchor.getChildren().add(stlbl);
-
-		Label stlbl1 = new Label(" Validation Query ");
-		stlbl1.setStyle(lblStyle);
-		stlbl1.setMinWidth(80);
-		stlbl1.setLayoutX(240);
-		stlbl1.setLayoutY(203);
-		stlbl1.setVisible(false);
-		etlanchor.getChildren().add(stlbl1);
 
 		stagingvalidicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-				stlbl1.setVisible(true);
 				stlbl.setVisible(true);
-				stagingcolicon.setVisible(false);
 			}
 		});
 		stagingvalidicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-				stlbl1.setVisible(false);
 				stlbl.setVisible(false);
-				stagingcolicon.setVisible(true);
 			}
 		});
 
-		Label stcollbl = new Label(" Column Validation ");
-		stcollbl.setStyle(lblStyle);
-		stcollbl.setMinWidth(100);
-		stcollbl.setLayoutX(135);
-		stcollbl.setLayoutY(203);
+		Label stcollbl = new Label(" Staging-Transformation Column Sum Validation ");
+		stcollbl.setStyle(StaticImages.lblStyle);
+		stcollbl.setMinWidth(160);
+		stcollbl.setLayoutX(480);
+		stcollbl.setLayoutY(165);
 		stcollbl.setVisible(false);
 		etlanchor.getChildren().add(stcollbl);
 
@@ -228,55 +217,41 @@ public class NewControlReportRulesController implements Initializable {
 			@Override
 			public void handle(MouseEvent t) {
 				stcollbl.setVisible(true);
-				stagingvalidicon.setVisible(false);
 			}
 		});
 		stagingcolicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				stcollbl.setVisible(false);
-				stagingvalidicon.setVisible(true);
 			}
 		});
 
-		Label trtlbl = new Label(" Transformation-Loading ");
-		trtlbl.setStyle(lblStyle);
-		trtlbl.setMinWidth(100);
-		trtlbl.setLayoutX(275);
-		trtlbl.setLayoutY(203);
+		Label trtlbl = new Label(" Transformation-Loading Row Count Validation ");
+		trtlbl.setStyle(StaticImages.lblStyle);
+		trtlbl.setMinWidth(160);
+		trtlbl.setLayoutX(720);
+		trtlbl.setLayoutY(115);
 		trtlbl.setVisible(false);
 		etlanchor.getChildren().add(trtlbl);
-
-		Label trtlbl1 = new Label(" Validation Query ");
-		trtlbl1.setStyle(lblStyle);
-		trtlbl1.setMinWidth(80);
-		trtlbl1.setLayoutX(460);
-		trtlbl1.setLayoutY(203);
-		trtlbl1.setVisible(false);
-		etlanchor.getChildren().add(trtlbl1);
 
 		transvalidicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				trtlbl.setVisible(true);
-				trtlbl1.setVisible(true);
-				transcolicon.setVisible(false);
 			}
 		});
 		transvalidicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				trtlbl.setVisible(false);
-				trtlbl1.setVisible(false);
-				transcolicon.setVisible(true);
 			}
 		});
 
-		Label trcoltlbl = new Label(" Column Validation ");
-		trcoltlbl.setStyle(lblStyle);
-		trcoltlbl.setMinWidth(100);
-		trcoltlbl.setLayoutX(360);
-		trcoltlbl.setLayoutY(203);
+		Label trcoltlbl = new Label(" Transformation-Loading Column Sum Validation ");
+		trcoltlbl.setStyle(StaticImages.lblStyle);
+		trcoltlbl.setMinWidth(160);
+		trcoltlbl.setLayoutX(720);
+		trcoltlbl.setLayoutY(165);
 		trcoltlbl.setVisible(false);
 		etlanchor.getChildren().add(trcoltlbl);
 
@@ -284,90 +259,98 @@ public class NewControlReportRulesController implements Initializable {
 			@Override
 			public void handle(MouseEvent t) {
 				trcoltlbl.setVisible(true);
-				transvalidicon.setVisible(false);
 			}
 		});
 		transcolicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				trcoltlbl.setVisible(false);
-				transvalidicon.setVisible(true);
 			}
 		});
 
-		Label ttlbl = new Label(" Loading-Target ");
-		ttlbl.setStyle(lblStyle);
-		ttlbl.setMinWidth(100);
-		ttlbl.setLayoutX(5);
-		ttlbl.setLayoutY(190);
+		Label ttlbl = new Label(" Loading-Target Row Count Validation ");
+		ttlbl.setStyle(StaticImages.lblStyle);
+		ttlbl.setMinWidth(150);
+		ttlbl.setLayoutX(900);
+		ttlbl.setLayoutY(150);
 		ttlbl.setVisible(false);
-		mtargetanchor.getChildren().add(ttlbl);
-
-		Label ttlbl1 = new Label(" Validation Query ");
-		ttlbl1.setStyle(lblStyle);
-		ttlbl1.setMinWidth(80);
-		ttlbl1.setLayoutX(147);
-		ttlbl1.setLayoutY(190);
-		ttlbl1.setVisible(false);
-		mtargetanchor.getChildren().add(ttlbl1);
+		etlanchor.getChildren().add(ttlbl);
 
 		targetvalidicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				ttlbl.setVisible(true);
-				ttlbl1.setVisible(true);
-				targetcolicon.setVisible(false);
 			}
 		});
 		targetvalidicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				ttlbl.setVisible(false);
-				ttlbl1.setVisible(false);
-				targetcolicon.setVisible(true);
 			}
 		});
 
-		Label ttcollbl1 = new Label(" Column Validation ");
-		ttcollbl1.setStyle(lblStyle);
-		ttcollbl1.setMinWidth(100);
-		ttcollbl1.setLayoutX(40);
-		ttcollbl1.setLayoutY(190);
+		Label ttcollbl1 = new Label(" Loading-Target Column Sum Validation ");
+		ttcollbl1.setStyle(StaticImages.lblStyle);
+		ttcollbl1.setMinWidth(150);
+		ttcollbl1.setLayoutX(900);
+		ttcollbl1.setLayoutY(200);
 		ttcollbl1.setVisible(false);
-		mtargetanchor.getChildren().add(ttcollbl1);
+		etlanchor.getChildren().add(ttcollbl1);
 
 		targetcolicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				ttcollbl1.setVisible(true);
-				targetvalidicon.setVisible(false);
 			}
 		});
 		targetcolicon.setOnMouseExited(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
 				ttcollbl1.setVisible(false);
-				targetvalidicon.setVisible(true);
 			}
 		});
 
-		sdbbox.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
-		stdbbox.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
-		trdbbox.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
-		ldbbox.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
-		tdbbox.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
+		Label savelbl = new Label("   Save ");
+		savelbl.setStyle(StaticImages.lblStyle);
+		savelbl.setMinWidth(45);
+		savelbl.setLayoutX(105);
+		savelbl.setLayoutY(15);
+		savelbl.setVisible(false);
+		actionanchor1.getChildren().add(savelbl);
 
-		stablebox.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
-		sttablebox.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
-		trtablebox.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
-		ltablebox.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
-		ttablebox.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
+		saveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(true);
+			}
+		});
+		saveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(false);
+			}
+		});
 
-		scolumnbox.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
-		stcolumnbox.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
-		trcolumnbox.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
-		lcolumnbox.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
-		tcolumnbox.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
+		Label updatelbl = new Label("   Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(50);
+		updatelbl.setLayoutX(105);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
 
 		id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -936,7 +919,7 @@ public class NewControlReportRulesController implements Initializable {
 			}
 		});
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@SuppressWarnings("static-access")
 			@Override
 			public void handle(MouseEvent event) {
@@ -944,10 +927,6 @@ public class NewControlReportRulesController implements Initializable {
 				NewControlReportRulesController nc = new NewControlReportRulesController();
 				scu.nullifyStrings(nc);
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
 			}
 		});
 	}
@@ -1391,8 +1370,8 @@ public class NewControlReportRulesController implements Initializable {
 		targetcolsqltextarea.clear();
 		rulenametext.clear();
 
-		updaterule.setVisible(false);
-		createrule.setVisible(true);
+		updateicon.setVisible(false);
+		saveicon.setVisible(true);
 	}
 
 	public class ModifyButtonCell extends TableCell<ControlReportRulesBinaryTrade, Boolean> {
@@ -1433,8 +1412,8 @@ public class NewControlReportRulesController implements Initializable {
 					stagingcolsqltextarea.setText(crrbt.getSttotrcol());
 					transcolsqltextarea.setText(crrbt.getTrtolcol());
 					targetcolsqltextarea.setText(crrbt.getLtotcol());
-					createrule.setVisible(false);
-					updaterule.setVisible(true);
+					saveicon.setVisible(false);
+					updateicon.setVisible(true);
 				}
 			});
 		}

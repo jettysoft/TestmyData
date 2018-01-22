@@ -503,17 +503,21 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void nowcontrolreport() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "newcontrolreport";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						NewControlReportRulesController.getInstance();
-					}
-				});
+				String Screenpath = "/com/testmydata/fxmlnew/NewControlReportRule.fxml";
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+				// fxmlLoader.setController(this);
+				try {
+					subscreenanchor.setVisible(true);
+					subscreenanchor.getChildren().clear();
+					Region root = (Region) fxmlLoader.load();
+
+					subscreenanchor.getChildren().setAll(root);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -546,18 +550,6 @@ public class DashBoardController implements Initializable {
 				}
 			}
 		});
-		// EventQueue.invokeLater(new Runnable() {
-		// @Override
-		// public void run() {
-		// SwingUtilities.invokeLater(new Runnable() {
-		// @Override
-		// public void run() {
-		// String screenName = "newfieldtofield";
-		// new MenuItemsFXHelper().initAndShowGUI(screenName);
-		// }
-		// });
-		// }
-		// });
 	}
 
 	@FXML

@@ -234,6 +234,6 @@
          </cursor>
       </ImageView>
       <AnchorPane id="AnchorPane" fx:id="subscreenanchor" layoutX="20.0" layoutY="119.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-      <JFXComboBox fx:id="exisitingprojectscombo" focusColor="#162a4c" layoutX="691.0" prefWidth="200.0" stylesheets="@../css/comboboxtransparent.css" unFocusColor="#162a4c" AnchorPane.leftAnchor="691.0" />
+      <JFXComboBox fx:id="exisitingprojectscombo" focusColor="WHITE" layoutX="691.0" prefWidth="200.0" unFocusColor="WHITE" AnchorPane.leftAnchor="691.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

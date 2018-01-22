@@ -38,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -664,23 +665,53 @@ public class NewFieldtoFieldController implements Initializable {
 
 	private boolean validatefields() {
 		boolean result = true;
+		StringBuffer message = new StringBuffer();
 		if (modulecombo.getSelectionModel().getSelectedItem() == null
 				|| modulecombo.getSelectionModel().getSelectedItem().equals("QA Modules")) {
 			result = false;
-			runmessage("Please Select QA Module for the Test Case...");
-		} else if (tsnametext.getText() == null || tsnametext.getText().isEmpty()) {
-			result = false;
-			runmessage("Please Enter Test Scenario Name...");
-		} else if (tcnametext.getText() == null || tcnametext.getText().isEmpty()) {
-			result = false;
-			runmessage("Please Enter Test Case Name...");
-		} else if (tctextarea.getText() == null || tctextarea.getText().isEmpty()) {
-			result = false;
-			runmessage("Please Specify Test Condition or Mapping Rule...");
-		} else if (sqlscripttextarea.getText() == null || sqlscripttextarea.getText().isEmpty()) {
-			result = false;
-			runmessage("Please Enter SQL Script.\n\nNote: For Best Result Please Test Sql Script before saving...");
+			modulecombo.setUnFocusColor(Color.RED);
+			message.append("Please Select QA Module for the Test Case...\n\n");
+		} else {
+			modulecombo.setUnFocusColor(Color.rgb(190, 190, 196));
 		}
+
+		if (tsnametext.getText() == null || tsnametext.getText().isEmpty()) {
+			result = false;
+			tsnametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Test Scenario Name...\n\n");
+		} else {
+			tsnametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (tcnametext.getText() == null || tcnametext.getText().isEmpty()) {
+			result = false;
+			tcnametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Test Case Name...\n\n");
+		} else {
+			tcnametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (tctextarea.getText() == null || tctextarea.getText().isEmpty()) {
+			result = false;
+			tctextarea.setUnFocusColor(Color.RED);
+			message.append("Please Specify Test Condition or Mapping Rule...\n\n");
+		} else {
+			tctextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (sqlscripttextarea.getText() == null || sqlscripttextarea.getText().isEmpty()) {
+			result = false;
+			sqlscripttextarea.setUnFocusColor(Color.RED);
+			message.append(
+					"Please Enter SQL Script.\n\nNote: For Best Result Please Test Sql Script before saving...\n\n");
+		} else {
+			sqlscripttextarea.setUnFocusColor(Color.rgb(247, 246, 242));
+		}
+
+		if (result == false) {
+			runmessage(message.toString());
+		}
+
 		return result;
 	}
 
@@ -848,7 +879,7 @@ public class NewFieldtoFieldController implements Initializable {
 					testcaseid = person.getId();
 					saveicon.setVisible(false);
 					updateicon.setVisible(true);
-
+					testcasestab.getSelectionModel().select(0);
 				}
 			});
 		}

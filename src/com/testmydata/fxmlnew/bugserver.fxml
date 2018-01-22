@@ -9,20 +9,21 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1180.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.BugServerController">
    <children>
       <JFXTabPane fx:id="testcasestab" focusTraversable="false" layoutX="10.0" layoutY="10.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <tabs>
             <Tab closable="false" text="TFS Setup">
                <content>
-                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;">
                      <children>
-                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
@@ -33,7 +34,11 @@
                            <opaqueInsets>
                               <Insets left="1.0" right="1.0" />
                            </opaqueInsets>
+                           <effect>
+                              <InnerShadow color="#bec0c4" height="77.09" radius="18.7725" width="0.0" />
+                           </effect>
                         </AnchorPane>
+                        <JFXComboBox fx:id="tfsurlscombo" focusColor="#40aa03" layoutX="100.0" layoutY="51.0" prefWidth="300.0" unFocusColor="#bebec4" />
                         <JFXTextField fx:id="tfsurltext" focusColor="#40aa03" layoutX="100.0" layoutY="120.0" prefWidth="300.0" promptText="Specify TFS URL" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                            <font>
                               <Font name="Calibri Bold" size="12.5" />
@@ -55,14 +60,13 @@
                            </font>
                         </JFXPasswordField>
                         <JFXCheckBox layoutX="100.0" layoutY="313.0" text="Set as Default Bug Tracking System" unCheckedColor="#bebec4" />
-                        <JFXComboBox fx:id="tfsurlscombo" focusColor="#40aa03" layoutX="100.0" layoutY="51.0" prefWidth="300.0" unFocusColor="#bebec4" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
             <Tab closable="false" text="JIRA Setup">
                <content>
-                  <AnchorPane fx:id="actionanchor2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" />
                </content>
             </Tab>
          </tabs>
@@ -70,6 +74,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTabPane>
-      <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1003.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
+      <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Bug Tracking Server" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

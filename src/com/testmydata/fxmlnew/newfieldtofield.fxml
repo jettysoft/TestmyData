@@ -22,7 +22,7 @@
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Field to Field Tests" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Field to Field Test" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -118,7 +118,7 @@
                         </Label>
                         <AnchorPane layoutX="20.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="284.0">
                            <children>
-                              <JFXTextArea fx:id="sqlscripttextarea" focusColor="#f7f6f2" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <JFXTextArea fx:id="sqlscripttextarea" focusColor="#f7f6f2" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font>
@@ -146,7 +146,7 @@
                         </Label>
                         <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <effect>
-                              <InnerShadow choke="0.14" color="#a8a1a1" height="50.0" radius="12.0" width="0.0" />
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
                            </effect>
                            <children>
                               <ImageView fx:id="executeicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
@@ -170,7 +170,7 @@
                      <children>
                         <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <effect>
-                              <InnerShadow choke="0.14" color="#a8a1a1" height="50.0" radius="12.0" width="0.0" />
+                              <InnerShadow choke="0.14" color="#bec0c4" height="60.0" radius="14.5" width="0.0" />
                            </effect>
                            <children>
                               <JFXTextField fx:id="searchtext" focusColor="#40aa03" layoutX="540.0" layoutY="18.0" prefWidth="150.0" promptText="Search by Test Case" stylesheets="@../css/TextFieldColors.css" unFocusColor="#b2b2bc">

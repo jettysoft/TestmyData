@@ -62,7 +62,7 @@
             <FontAwesomeIconView fill="#40aa03" glyphName="USER" layoutX="406.0" layoutY="113.0" size="15" />
             <FontAwesomeIconView fill="#f8340d" glyphName="LOCK" layoutX="406.0" layoutY="153.0" size="15" text="" />
             <MaterialDesignIconView fill="#0083ff" glyphName="FACTORY" layoutX="405.0" layoutY="193.0" size="15" />
-            <JFXCheckBox fx:id="remembermebox" checkedColor="#40aa03" layoutX="122.0" layoutY="208.0" text="Remember Me" textFill="WHITE" unCheckedColor="WHITE" />
+            <JFXCheckBox fx:id="remembermebox" checkedColor="#40aa03" layoutX="122.0" layoutY="218.0" text="Remember Me" textFill="WHITE" unCheckedColor="WHITE" />
             <Label fx:id="applabel" layoutX="65.0" layoutY="10.0" text="Test My Data" textFill="WHITE">
                <font>
                   <Font size="28.0" />
