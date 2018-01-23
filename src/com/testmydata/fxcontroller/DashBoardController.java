@@ -84,7 +84,7 @@ public class DashBoardController implements Initializable {
 	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
 	@FXML
 	public AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
-			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor;
+			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor,mainanchor;
 	@FXML
 	private Hyperlink newfieldtofield, newcontrolreport, projectsetup, testsuiteff, exeff, execr, newbugs, viewbugs,
 			downloadreports, viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
@@ -136,6 +136,7 @@ public class DashBoardController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// start(); //starts dock icons
+		subscreenanchor.setVisible(false);
 		InvoiceStaticHelper.setDash(this);
 		// Order is most important
 		invokeInactivityListener();
@@ -510,11 +511,9 @@ public class DashBoardController implements Initializable {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 				// fxmlLoader.setController(this);
 				try {
-					subscreenanchor.setVisible(true);
-					subscreenanchor.getChildren().clear();
+					subscreenanchor.setVisible(false);
 					Region root = (Region) fxmlLoader.load();
-
-					subscreenanchor.getChildren().setAll(root);
+					mainanchor.getChildren().add(root);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -536,15 +535,17 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				subscreenanchor.setVisible(false);
 				String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 				// fxmlLoader.setController(this);
 				try {
-					subscreenanchor.setVisible(true);
-					subscreenanchor.getChildren().clear();
+					
 					Region root = (Region) fxmlLoader.load();
+					mainanchor.getChildren().add(root);
+					
 
-					subscreenanchor.getChildren().setAll(root);
+					//subscreenanchor.getChildren().setAll(root);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -563,6 +564,26 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void nowprojectaccess() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				subscreenanchor.setVisible(false);
+				String Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+				// fxmlLoader.setController(this);
+				try {
+					
+					Region root = (Region) fxmlLoader.load();
+					mainanchor.getChildren().add(root);
+					
+
+					//subscreenanchor.getChildren().setAll(root);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		/*
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -575,6 +596,7 @@ public class DashBoardController implements Initializable {
 				});
 			}
 		});
+		*/
 	}
 
 	@FXML

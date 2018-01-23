@@ -34,7 +34,7 @@ public class ProjectsController implements Initializable {
 	@FXML
 	private JFXTextField projectnametext, searchtext;
 	@FXML
-	private ImageView homeicon, saveicon, updateicon, refreshicon1, refreshicon;
+	private ImageView  closeicon,saveicon, updateicon, refreshicon1, refreshicon;
 	@FXML
 	private AnchorPane actionanchor1, actionanchor2;
 	@FXML
@@ -45,12 +45,11 @@ public class ProjectsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		homeicon.setImage(StaticImages.homeicon.getImage());
 		saveicon.setImage(StaticImages.save.getImage());
 		updateicon.setImage(StaticImages.save.getImage());
 		refreshicon1.setImage(StaticImages.refresh.getImage());
 		refreshicon.setImage(StaticImages.refresh.getImage());
-
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		updateicon.setVisible(false);
 
 		setexistingusers();
@@ -185,7 +184,13 @@ public class ProjectsController implements Initializable {
 				refresh();
 			}
 		});
-
+		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				refresh();
+			}
+		});
+/*
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@SuppressWarnings("static-access")
 			@Override
@@ -200,7 +205,9 @@ public class ProjectsController implements Initializable {
 				UndecoratorController.getInstance(null);
 			}
 		});
+		*/
 	}
+	
 
 	private void runmessage(String message) {
 		CommonFunctions.message = message;

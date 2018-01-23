@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+   
+
+.combo-box-popup .list-view .list-cell:hover{
+    -fx-background-color: #a0bac2;
+}
+
+.combo-box .cell{
+    -fx-font: 18px "Calibri";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+.combo-box .cell:selected{
+    -fx-text-fill: black;
+    -fx-font: 18px "Calibri";
+    -fx-opacity: 1;
+}

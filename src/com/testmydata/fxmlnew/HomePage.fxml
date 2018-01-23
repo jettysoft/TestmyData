@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
+<AnchorPane fx:id="mainanchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
    <children>
       <FontAwesomeIconView fx:id="securedfont" fill="#40aa03" glyphName="LOCK" layoutY="15.0" size="15" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0" />
       <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="55.0" layoutY="25.0" size="25" text="|" />
@@ -234,6 +234,6 @@
          </cursor>
       </ImageView>
       <AnchorPane id="AnchorPane" fx:id="subscreenanchor" layoutX="20.0" layoutY="119.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-      <JFXComboBox fx:id="exisitingprojectscombo" focusColor="WHITE" layoutX="691.0" prefWidth="200.0" unFocusColor="WHITE" AnchorPane.leftAnchor="691.0" AnchorPane.topAnchor="10.0" />
+      <JFXComboBox fx:id="exisitingprojectscombo" focusColor="WHITE" layoutX="691.0" prefWidth="200.0" unFocusColor="WHITE" stylesheets="@../css/report.css"  AnchorPane.leftAnchor="691.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>
