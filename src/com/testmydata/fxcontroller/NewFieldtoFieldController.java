@@ -605,7 +605,8 @@ public class NewFieldtoFieldController implements Initializable {
 		CommonFunctions.queryresult = "No of Cells not Matching :" + result;
 		CommonFunctions.teststatus = "Status :" + status;
 		CommonFunctions.message = "System Message :" + message;
-		resultstextarea.setText(result + "\n\n" + status + "\n\n" + message);
+		resultstextarea.setText("No of Cells not Matching :  " + result + "\n\n" + "Status :  " + status + "\n\n"
+				+ "System Message :  " + message);
 		// CommonFunctions.invokeTestResultsDialog(getClass());
 	}
 
@@ -723,7 +724,6 @@ public class NewFieldtoFieldController implements Initializable {
 	}
 
 	private void setdefault() {
-		tsnametext.clear();
 		tcnametext.clear();
 		tctextarea.clear();
 		sqlscripttextarea.clear();
@@ -1004,12 +1004,12 @@ public class NewFieldtoFieldController implements Initializable {
 				String sdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
 						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
 						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
-				String mdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1) + ""
-						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
-						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3);
-				String tdb = sourcedbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
-						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
-						+ sourcedbcombo.getSelectionModel().getSelectedItem().charAt(1);
+				String mdb = mappingdbcombo.getSelectionModel().getSelectedItem().charAt(1) + ""
+						+ mappingdbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+						+ mappingdbcombo.getSelectionModel().getSelectedItem().charAt(3);
+				String tdb = targetdbcombo.getSelectionModel().getSelectedItem().charAt(2) + ""
+						+ targetdbcombo.getSelectionModel().getSelectedItem().charAt(3) + ""
+						+ targetdbcombo.getSelectionModel().getSelectedItem().charAt(1);
 				sqlscripttextarea.setText("SELECT COUNT(1) FROM "
 						+ targetdbcombo.getSelectionModel().getSelectedItem().toUpperCase() + "."
 						+ targettablecombo.getSelectionModel().getSelectedItem().toUpperCase() + " " + tdb
