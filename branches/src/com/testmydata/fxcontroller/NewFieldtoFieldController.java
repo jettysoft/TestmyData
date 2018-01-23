@@ -137,6 +137,8 @@ public class NewFieldtoFieldController implements Initializable {
 		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
+				AnchorPane pane =  (AnchorPane)((ImageView) t.getSource()).getParent().getParent().getParent();
+			    pane.getChildren().remove(pane.getChildren().size()-1);
 
 			}
 		});
