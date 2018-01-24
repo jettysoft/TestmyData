@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.ProjectsBeanBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
@@ -20,7 +19,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -187,7 +185,11 @@ public class ProjectsController implements Initializable {
 		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-				refresh();
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
+
+				ProjectsController nc = new ProjectsController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 /*

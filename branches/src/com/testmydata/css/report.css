@@ -5,7 +5,7 @@
 .mainFxmlClass {
 
 }
-.chart-pie-label { /*this is what you need for labels*/
+.chart-pie-label { 
     -fx-text-fill:  black;
     -fx-opacity: 0.6;
 }
@@ -51,20 +51,8 @@
     -fx-background-color:  #E3E3E3;
     -fx-background-radius: 1em;
 }
-.combo-box-popup .list-view .list-cell:hover{
-    -fx-background-color: #a0bac2;
-}
 
-.combo-box .cell{
-    -fx-font: 18px "Calibri";
-    -fx-text-fill: black;
-    -fx-opacity: 0.6;
-}
-.combo-box .cell:selected{
-    -fx-text-fill: black;
-    -fx-font: 18px "Calibri";
-    -fx-opacity: 1;
-}
+
 
 
 
