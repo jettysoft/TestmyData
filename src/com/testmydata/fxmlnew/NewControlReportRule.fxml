@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"  prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,7 +26,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0" >
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
             <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -58,7 +58,7 @@
                               <Font name="Calibri Bold" size="12.0" />
                            </font>
                         </JFXTextField>
-                        <AnchorPane fx:id="etlanchor" prefHeight="220.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
+                        <AnchorPane fx:id="etlanchor" prefHeight="220.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;-fx-background-radius: 1em;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="100.0">
                            <effect>
                               <InnerShadow blurType="THREE_PASS_BOX" color="#bdbdbd" height="35.94" radius="15.94" width="31.86" />
                            </effect>
@@ -240,7 +240,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="srunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="srunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -264,7 +264,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="strunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="strunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -288,7 +288,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="transrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="transrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -312,7 +312,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="trunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="trunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -336,7 +336,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="scolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="scolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -360,7 +360,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="stcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="stcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -384,7 +384,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="transcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="transcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -408,7 +408,7 @@
                                           <Font name="Courier New" size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <ImageView fx:id="tcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+                                    <ImageView fx:id="tcolrunicon" fitHeight="25.0" fitWidth="25.0" layoutX="771.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>

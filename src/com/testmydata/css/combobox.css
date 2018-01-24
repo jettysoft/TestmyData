@@ -1,20 +1,55 @@
-/*
- * Empty Stylesheet file.
- */
+.combo-box-popup .list-view {
+    
+    -fx-padding: 10;
+    -fx-background-color:  #162a4c;
+    -fx-background-radius: 1em;
+}
+ 
 
-   
+.combo-box-popup .list-view .list-cell:filled {
+    -fx-padding: 5;
+    -fx-background-insets: 1;
+}
 
-.combo-box-popup .list-view .list-cell:hover{
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color:  #162a4c;
+    -fx-text-fill: yellow;
+    -fx-background-radius: 0.5em;
+    -fx-padding: 5;
+    -fx-background-insets: 1;
+    
+}
+.combo-box-popup .list-view .list-cell:selected {
+    
+    -fx-padding: 5;
     -fx-background-color: #a0bac2;
+    -fx-background-radius: 0.5em;
+    -fx-background-insets: 1;
 }
 
+
+
+.combo-box{
+    -jfx-focus-color:white;
+    -jfx-unfocus-color:white;
+     -fx-text-fill: white;
+}
+.combo-box:hover{
+    -jfx-focus-color:yellow;
+    -jfx-unfocus-color:yellow;
+     -fx-text-fill: yellow;
+}
+
+
+.combo-box:hover .cell{
+    -fx-text-fill: yellow;
+    -fx-font: 14px "Calibri";
+    -fx-background-color: transparent;
+}
 .combo-box .cell{
-    -fx-font: 18px "Calibri";
     -fx-text-fill: white;
-    -fx-opacity: 1;
+    -fx-font: 14px "Calibri";
+    -fx-background-color: transparent;
 }
-.combo-box .cell:selected{
-    -fx-text-fill: black;
-    -fx-font: 18px "Calibri";
-    -fx-opacity: 1;
-}
+
+

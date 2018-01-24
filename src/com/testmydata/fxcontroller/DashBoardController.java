@@ -151,9 +151,8 @@ public class DashBoardController implements Initializable {
 
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				subscreenanchor.setVisible(false);
-				subscreenanchor.getChildren().clear();
+			public void handle(MouseEvent t) {
+				
 			}
 		});
 
@@ -1027,6 +1026,8 @@ public class DashBoardController implements Initializable {
 
 		@Override
 		protected void updateItem(Release release, boolean empty) {
+			try{				
+			
 			super.updateItem(release, empty);
 			setText(null);
 			setGraphic(null);
@@ -1156,8 +1157,9 @@ public class DashBoardController implements Initializable {
 				});
 				setGraphic(hbox);
 			}
+			}catch(NullPointerException ne){}
 		}
-
+		
 	}
 
 	static class ControlCell extends ListCell<Module> {
@@ -1901,8 +1903,9 @@ public class DashBoardController implements Initializable {
 			for (int i = 0; i < projectslist.size(); i++) {
 				exisitingprojectscombo.getItems().add(projectslist.get(i).getName());
 			}
+			
 		}
 		exisitingprojectscombo.getSelectionModel().select(Loggedinuserdetails.defaultproject);
-		exisitingprojectscombo.setStyle("-fx-text-fill: white");
+	
 	}
 }
