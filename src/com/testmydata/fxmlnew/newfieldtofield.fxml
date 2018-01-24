@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"  prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewFieldtoFieldController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewFieldtoFieldController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0" >
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
         <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -156,7 +156,7 @@
                               <ImageView fx:id="executeicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="refreshicon1" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
                               <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                               <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="6.0" text="Label" textFill="#40aa03" visible="false" />
                            </children>
@@ -186,7 +186,7 @@
                               <JFXDatePicker fx:id="enddate" defaultColor="#F8340D" layoutX="220.0" layoutY="10.0" promptText="Select End Date" style="-fx-background-color: #ffffff;" />
                               <JFXDatePicker fx:id="startdate" defaultColor="#40AA03" layoutX="40.0" layoutY="10.0" promptText="Select Start Date" style="-fx-background-color: #ffffff;" />
                               <ImageView fx:id="viewicon" fitHeight="25.0" fitWidth="25.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="refreshicon" fitHeight="25.0" fitWidth="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="1125.0" layoutY="25.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>

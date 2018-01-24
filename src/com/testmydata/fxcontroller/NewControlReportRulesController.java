@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
@@ -39,6 +40,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -54,6 +57,8 @@ public class NewControlReportRulesController implements Initializable {
 			saveicon, updateicon, refreshicon;
 	@FXML
 	private Label refreshlbl;
+	@FXML
+	private JFXTabPane rulestab;
 	@FXML
 	private JFXComboBox<String> sdbbox, stablebox, scolumnbox, stdbbox, sttablebox, stcolumnbox, trdbbox, trtablebox,
 			trcolumnbox, ldbbox, ltablebox, lcolumnbox, tdbbox, ttablebox, tcolumnbox, modulebox;
@@ -85,6 +90,7 @@ public class NewControlReportRulesController implements Initializable {
 	ArrayList<ControlReportRulesBinaryTrade> ruleslist = new ArrayList<ControlReportRulesBinaryTrade>();
 
 	private static String ruleid = null;
+	static Rectangle s1, st1, tl1, lt1, c1, cst1, ctl1, clt1;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -99,6 +105,7 @@ public class NewControlReportRulesController implements Initializable {
 		closeicon.setImage(StaticImages.closeicon.getImage());
 		saveicon.setImage(StaticImages.save.getImage());
 		updateicon.setImage(StaticImages.save.getImage());
+		refreshicon.setImage(StaticImages.refresh.getImage());
 
 		sourcevalidicon.setImage(StaticImages.sqleditor.getImage());
 		stagingvalidicon.setImage(StaticImages.sqleditor.getImage());
@@ -128,6 +135,55 @@ public class NewControlReportRulesController implements Initializable {
 		transcolrunicon.setImage(StaticImages.source_execute.getImage());
 		tcolrunicon.setImage(StaticImages.source_execute.getImage());
 
+		s1 = getdesign();
+		st1 = getdesign();
+		tl1 = getdesign();
+		lt1 = getdesign();
+		c1 = getdesign();
+		cst1 = getdesign();
+		ctl1 = getdesign();
+		clt1 = getdesign();
+
+		s1.setLayoutX(208);
+		s1.setLayoutY(113);
+		etlanchor.getChildren().add(s1);
+		s1.setVisible(false);
+
+		st1.setLayoutX(448);
+		st1.setLayoutY(113);
+		etlanchor.getChildren().add(st1);
+		st1.setVisible(false);
+
+		tl1.setLayoutX(688);
+		tl1.setLayoutY(113);
+		etlanchor.getChildren().add(tl1);
+		tl1.setVisible(false);
+
+		lt1.setLayoutX(928);
+		lt1.setLayoutY(113);
+		etlanchor.getChildren().add(lt1);
+		lt1.setVisible(false);
+
+		c1.setLayoutX(208);
+		c1.setLayoutY(163);
+		etlanchor.getChildren().add(c1);
+		c1.setVisible(false);
+
+		cst1.setLayoutX(448);
+		cst1.setLayoutY(163);
+		etlanchor.getChildren().add(cst1);
+		cst1.setVisible(false);
+
+		ctl1.setLayoutX(688);
+		ctl1.setLayoutY(163);
+		etlanchor.getChildren().add(ctl1);
+		ctl1.setVisible(false);
+
+		clt1.setLayoutX(928);
+		clt1.setLayoutY(163);
+		etlanchor.getChildren().add(clt1);
+		clt1.setVisible(false);
+
 		refreshlbl.setStyle(StaticImages.lblStyle);
 		refreshicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -139,6 +195,12 @@ public class NewControlReportRulesController implements Initializable {
 			@Override
 			public void handle(MouseEvent t) {
 				refreshlbl.setVisible(false);
+			}
+		});
+		refreshicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				populateControlReportRules();
 			}
 		});
 
@@ -330,6 +392,12 @@ public class NewControlReportRulesController implements Initializable {
 				savelbl.setVisible(false);
 			}
 		});
+		saveicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				createrule();
+			}
+		});
 
 		Label updatelbl = new Label("   Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
@@ -349,6 +417,12 @@ public class NewControlReportRulesController implements Initializable {
 			@Override
 			public void handle(MouseEvent t) {
 				updatelbl.setVisible(false);
+			}
+		});
+		updateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updaterule();
 			}
 		});
 
@@ -1077,7 +1151,6 @@ public class NewControlReportRulesController implements Initializable {
 		modulebox.setStyle("-fx-text-fill: green; -fx-font-weight:bold;");
 	}
 
-	@FXML
 	private void createrule() {
 		if (validateselections()) {
 
@@ -1110,7 +1183,6 @@ public class NewControlReportRulesController implements Initializable {
 		}
 	}
 
-	@FXML
 	private void updaterule() {
 		if (validateselections() && ruleid != null) {
 			String result = new DAO().updateControlReportRule(modulebox.getSelectionModel().getSelectedItem(),
@@ -1147,86 +1219,235 @@ public class NewControlReportRulesController implements Initializable {
 		CommonFunctions.invokeAlertBox(getClass());
 	}
 
+	private Rectangle getdesign() {
+		Rectangle r = new Rectangle();
+		r.setLayoutX(25);
+		r.setLayoutY(25);
+		r.setStyle("-fx-fill: transparent; -fx-stroke : red; -fx-stroke-width : 3;");
+
+		return r;
+	}
+
 	private boolean validateselections() {
+
 		boolean result = true;
+		StringBuffer message = new StringBuffer();
+		if (rulenametext.getText() == null || rulenametext.getText().isEmpty()) {
+			result = false;
+			rulenametext.setUnFocusColor(Color.RED);
+			message.append("Please Specify Rule Name...\n");
+		} else {
+			rulenametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
 		if (sdbbox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Source Database...");
 			result = false;
-		} else if (stablebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Source Table...");
+			sdbbox.setUnFocusColor(Color.RED);
+			message.append("Please Select Source Database...\n");
+		} else {
+			sdbbox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (stablebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (sourcesqltextarea.getText() == null || sourcesqltextarea.getText().isEmpty()) {
-			runmessage("Provide Script to cross check valid records migrated from Source to Staging...");
+			stablebox.setUnFocusColor(Color.RED);
+			message.append("Please Select Source Table...\n");
+		} else {
+			stablebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (sourcesqltextarea.getText() == null || sourcesqltextarea.getText().isEmpty()) {
 			result = false;
-		} else if (scolumnbox.getSelectionModel().getSelectedIndex() > 0
+			s1.setVisible(true);
+			sourcesqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check valid records migrated from Source to Staging...\n");
+		} else {
+			s1.setVisible(false);
+			sourcesqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (scolumnbox.getSelectionModel().getSelectedIndex() > 0
 				&& (sourcecolsqltextarea.getText() == null || sourcecolsqltextarea.getText().isEmpty())) {
-			runmessage("Provide Script to cross check Column Value migrated from Source to Staging...");
 			result = false;
-		} else if (stdbbox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Staging Database...");
+			c1.setVisible(true);
+			sourcecolsqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check Column Value migrated from Source to Staging...\n");
+		} else {
+			c1.setVisible(false);
+			sourcecolsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (stdbbox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (sttablebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Staging Table...");
+			stdbbox.setUnFocusColor(Color.RED);
+			message.append("Please Select Staging Database...\n");
+		} else {
+			stdbbox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (sttablebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (stagingsqltextarea.getText() == null || stagingsqltextarea.getText().isEmpty()) {
-			runmessage("Provide Script to cross check valid records migrated from Staging to Transformation...");
+			sttablebox.setUnFocusColor(Color.RED);
+			message.append("Please Select Staging Table...\n");
+		} else {
+			sttablebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (stagingsqltextarea.getText() == null || stagingsqltextarea.getText().isEmpty()) {
 			result = false;
-		} else if (stcolumnbox.getSelectionModel().getSelectedIndex() > 0
+			st1.setVisible(true);
+			stagingsqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check valid records migrated from Staging to Transformation...\n");
+		} else {
+			st1.setVisible(false);
+			stagingsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (stcolumnbox.getSelectionModel().getSelectedIndex() > 0
 				&& (stagingcolsqltextarea.getText() == null || stagingcolsqltextarea.getText().isEmpty())) {
-			runmessage("Provide Script to cross check Column Value migrated from Staging to Transformation...");
 			result = false;
-		} else if (trdbbox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Transformation Database...");
+			cst1.setVisible(true);
+			stagingcolsqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check Column Value migrated from Staging to Transformation...\n");
+		} else {
+			cst1.setVisible(false);
+			stagingcolsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (trdbbox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (trtablebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Transformation Table...");
+			trdbbox.setUnFocusColor(Color.RED);
+			message.append("Please Select Transformation Database...\n");
+		} else {
+			trdbbox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (trtablebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (transsqltextarea.getText() == null || transsqltextarea.getText().isEmpty()) {
-			runmessage("Provide Script to cross check valid records migrated from Transformation to Loading...");
+			trtablebox.setUnFocusColor(Color.RED);
+			message.append("Please Select Transformation Table...\n");
+		} else {
+			trtablebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (transsqltextarea.getText() == null || transsqltextarea.getText().isEmpty()) {
 			result = false;
-		} else if (trcolumnbox.getSelectionModel().getSelectedIndex() > 0
+			transsqltextarea.setUnFocusColor(Color.RED);
+			tl1.setVisible(true);
+			message.append("Provide Script to cross check valid records migrated from Transformation to Loading...\n");
+		} else {
+			tl1.setVisible(false);
+			transsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (trcolumnbox.getSelectionModel().getSelectedIndex() > 0
 				&& (transcolsqltextarea.getText() == null || transcolsqltextarea.getText().isEmpty())) {
-			runmessage("Provide Script to cross check Column Value migrated from Transformation to Loading...");
 			result = false;
-		} else if (ldbbox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Loading Database...");
+			ctl1.setVisible(true);
+			transcolsqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check Column Value migrated from Transformation to Loading...\n");
+		} else {
+			ctl1.setVisible(false);
+			transcolsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (ldbbox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (ltablebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Loading Table...");
+			ldbbox.setUnFocusColor(Color.RED);
+			message.append("Please Select Loading Database...\n");
+		} else {
+			ldbbox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (ltablebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (targetsqltextarea.getText() == null || targetsqltextarea.getText().isEmpty()) {
-			runmessage("Provide Script to cross check valid records migrated from Loading to Target...");
+			ltablebox.setUnFocusColor(Color.RED);
+			message.append("Please Select Loading Table...\n");
+		} else {
+			ltablebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (targetsqltextarea.getText() == null || targetsqltextarea.getText().isEmpty()) {
 			result = false;
-		} else if (lcolumnbox.getSelectionModel().getSelectedIndex() > 0
+			targetsqltextarea.setUnFocusColor(Color.RED);
+			lt1.setVisible(true);
+			message.append("Provide Script to cross check valid records migrated from Loading to Target...\n");
+		} else {
+			lt1.setVisible(false);
+			targetsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (lcolumnbox.getSelectionModel().getSelectedIndex() > 0
 				&& (targetcolsqltextarea.getText() == null || targetcolsqltextarea.getText().isEmpty())) {
-			runmessage("Provide Script to cross check Column Value migrated from Loading to Target...");
 			result = false;
-		} else if (tdbbox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Target Database...");
+			clt1.setVisible(true);
+			targetcolsqltextarea.setUnFocusColor(Color.RED);
+			message.append("Provide Script to cross check Column Value migrated from Loading to Target...\n");
+		} else {
+			clt1.setVisible(false);
+			targetcolsqltextarea.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (tdbbox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (ttablebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select Target Table...");
+			tdbbox.setUnFocusColor(Color.RED);
+			message.append("Please Select Target Database...\n");
+		} else {
+			tdbbox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (ttablebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (modulebox.getSelectionModel().getSelectedIndex() == 0) {
-			runmessage("Please Select QA Module...");
+			ttablebox.setUnFocusColor(Color.RED);
+			message.append("Please Select Target Table...\n");
+		} else {
+			ttablebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (modulebox.getSelectionModel().getSelectedIndex() == 0) {
 			result = false;
-		} else if (rulenametext.getText() == null || rulenametext.getText().isEmpty()) {
-			runmessage("Please Specify Rule Name...");
-			result = false;
-		} else if (scolumnbox.getSelectionModel().getSelectedIndex() != 0) {
+			modulebox.setUnFocusColor(Color.RED);
+			message.append("Please Select QA Module...\n");
+		} else {
+			modulebox.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (scolumnbox.getSelectionModel().getSelectedIndex() != 0) {
 			if (stcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
-				runmessage("Please Select Staging Column...");
 				result = false;
-			} else if (trcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
-				runmessage("Please Select Transformation Column...");
-				result = false;
-			} else if (lcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
-				runmessage("Please Select Loading Column...");
-				result = false;
-			} else if (tcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
-				runmessage("Please Select Target Column...");
-				result = false;
+				stcolumnbox.setUnFocusColor(Color.RED);
+				message.append("Please Select Staging Column...\n");
+			} else {
+				stcolumnbox.setUnFocusColor(Color.rgb(190, 190, 196));
 			}
+
+			if (trcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
+				result = false;
+				trcolumnbox.setUnFocusColor(Color.RED);
+				message.append("Please Select Transformation Column...\n");
+			} else {
+				trcolumnbox.setUnFocusColor(Color.rgb(190, 190, 196));
+			}
+
+			if (lcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
+				result = false;
+				lcolumnbox.setUnFocusColor(Color.RED);
+				message.append("Please Select Loading Column...\n");
+			} else {
+				lcolumnbox.setUnFocusColor(Color.rgb(190, 190, 196));
+			}
+
+			if (tcolumnbox.getSelectionModel().getSelectedIndex() == 0) {
+				result = false;
+				tcolumnbox.setUnFocusColor(Color.RED);
+				message.append("Please Select Target Column...\n");
+			} else {
+				tcolumnbox.setUnFocusColor(Color.rgb(190, 190, 196));
+			}
+		}
+
+		if (result == false) {
+			runmessage(message.toString());
 		}
 
 		return result;
@@ -1415,6 +1636,7 @@ public class NewControlReportRulesController implements Initializable {
 					targetcolsqltextarea.setText(crrbt.getLtotcol());
 					saveicon.setVisible(false);
 					updateicon.setVisible(true);
+					rulestab.getSelectionModel().select(0);
 				}
 			});
 		}
@@ -1468,4 +1690,5 @@ public class NewControlReportRulesController implements Initializable {
 			}
 		}
 	}
+
 }

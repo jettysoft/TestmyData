@@ -84,7 +84,7 @@ public class DashBoardController implements Initializable {
 	private JFXButton designbutton, testsuitebutton, testbutton, bugsbutton, reportsbutton, settingsbutton;
 	@FXML
 	public AnchorPane dashboardanchor, dashpane, selectionpane, resultspane, chartspane, designanchor, testsuiteanchor,
-			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, subscreenanchor,mainanchor;
+			testanchor, bugsanchor, reportsanchor, settingsanchor, adduseranchor, mainanchor;
 	@FXML
 	private Hyperlink newfieldtofield, newcontrolreport, projectsetup, testsuiteff, exeff, execr, newbugs, viewbugs,
 			downloadreports, viewresults, bugserver, changepasswordlink, emailsettingslink, qaserverlink;
@@ -136,7 +136,7 @@ public class DashBoardController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// start(); //starts dock icons
-		subscreenanchor.setVisible(false);
+
 		InvoiceStaticHelper.setDash(this);
 		// Order is most important
 		invokeInactivityListener();
@@ -152,7 +152,7 @@ public class DashBoardController implements Initializable {
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-				
+
 			}
 		});
 
@@ -510,7 +510,6 @@ public class DashBoardController implements Initializable {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 				// fxmlLoader.setController(this);
 				try {
-					subscreenanchor.setVisible(false);
 					Region root = (Region) fxmlLoader.load();
 					mainanchor.getChildren().add(root);
 				} catch (IOException e) {
@@ -534,17 +533,16 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				subscreenanchor.setVisible(false);
+
 				String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 				// fxmlLoader.setController(this);
 				try {
-					
+
 					Region root = (Region) fxmlLoader.load();
 					mainanchor.getChildren().add(root);
-					
 
-					//subscreenanchor.getChildren().setAll(root);
+					// subscreenanchor.getChildren().setAll(root);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -566,36 +564,29 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				subscreenanchor.setVisible(false);
 				String Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 				// fxmlLoader.setController(this);
 				try {
-					
+
 					Region root = (Region) fxmlLoader.load();
 					mainanchor.getChildren().add(root);
-					
 
-					//subscreenanchor.getChildren().setAll(root);
+					// subscreenanchor.getChildren().setAll(root);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		});
 		/*
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "projectsetup";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-					}
-				});
-			}
-		});
-		*/
+		 * EventQueue.invokeLater(new Runnable() {
+		 * 
+		 * @Override public void run() { SwingUtilities.invokeLater(new
+		 * Runnable() {
+		 * 
+		 * @Override public void run() { String screenName = "projectsetup"; new
+		 * MenuItemsFXHelper().initAndShowGUI(screenName); } }); } });
+		 */
 	}
 
 	@FXML
@@ -1026,140 +1017,143 @@ public class DashBoardController implements Initializable {
 
 		@Override
 		protected void updateItem(Release release, boolean empty) {
-			try{				
-			
-			super.updateItem(release, empty);
-			setText(null);
-			setGraphic(null);
-			hbox.getChildren().clear();
-			if (release != null && !empty) {
-				lbl_release.setText(release.getName());
-				lbl_pass.setText(release.getPass() + "%");
-				lbl_fail.setText(release.getFail() + "%");
+			try {
 
-				if (release.IsExecute()) {
-					hbox.getChildren().addAll(hbox_title, icon_run); // true
-				} else {
-					if (release.getBatchId() == new DAO().getmaxbatchid()) {
-						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon); // false
+				super.updateItem(release, empty);
+				setText(null);
+				setGraphic(null);
+				hbox.getChildren().clear();
+				if (release != null && !empty) {
+					lbl_release.setText(release.getName());
+					lbl_pass.setText(release.getPass() + "%");
+					lbl_fail.setText(release.getFail() + "%");
+
+					if (release.IsExecute()) {
+						hbox.getChildren().addAll(hbox_title, icon_run); // true
 					} else {
-						hbox.getChildren().addAll(hbox_title, icon_execute); // 1min
+						if (release.getBatchId() == new DAO().getmaxbatchid()) {
+							hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon); // false
+						} else {
+							hbox.getChildren().addAll(hbox_title, icon_execute); // 1min
+
+						}
 
 					}
 
-				}
-
-				for (int i = 0; i < release.getCycle().length; i++) {
-					Cycle cycle = release.getCycle()[i];
-					cycle.setRelease(release);
-					for (int j = 0; j < cycle.getTestsuites().length; j++) {
-						TestSuite testSuite = cycle.getTestsuites()[j];
-						testSuite.setCycle(cycle);
+					for (int i = 0; i < release.getCycle().length; i++) {
+						Cycle cycle = release.getCycle()[i];
+						cycle.setRelease(release);
+						for (int j = 0; j < cycle.getTestsuites().length; j++) {
+							TestSuite testSuite = cycle.getTestsuites()[j];
+							testSuite.setCycle(cycle);
+						}
 					}
-				}
-				icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@SuppressWarnings("unchecked")
-					@Override
-					public void handle(MouseEvent event) {
+					icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@SuppressWarnings("unchecked")
+						@Override
+						public void handle(MouseEvent event) {
 
-						int currentbatchid = new DAO().getmaxbatchid() + 1;
-						release.setBatchId(currentbatchid);
+							int currentbatchid = new DAO().getmaxbatchid() + 1;
+							release.setBatchId(currentbatchid);
 
-						for (int i = 0; i < release.getCycle().length; i++) {
-							Cycle cycle = release.getCycle()[i];
-							cycle.setIsExecute(true); // means processing
-							cycle.setRelease(release);
-							cycle.setBatchId(currentbatchid);
-							for (int j = 0; j < cycle.getTestsuites().length; j++) {
-								TestSuite testSuite = cycle.getTestsuites()[j];
-								testSuite.setIsExecute(true);
-								testSuite.setBatchId(currentbatchid);
-								testSuite.setCycle(cycle);
+							for (int i = 0; i < release.getCycle().length; i++) {
+								Cycle cycle = release.getCycle()[i];
+								cycle.setIsExecute(true); // means processing
+								cycle.setRelease(release);
+								cycle.setBatchId(currentbatchid);
+								for (int j = 0; j < cycle.getTestsuites().length; j++) {
+									TestSuite testSuite = cycle.getTestsuites()[j];
+									testSuite.setIsExecute(true);
+									testSuite.setBatchId(currentbatchid);
+									testSuite.setCycle(cycle);
+								}
 							}
+							JFXListView<Release> listField = (JFXListView<Release>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_field");
+							JFXListView<Cycle> listFieldData = (JFXListView<Cycle>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_data");
+							JFXListView<Rule> listControl = (JFXListView<Rule>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_control_data");
+							AnchorPane pane = (AnchorPane) ((ImageView) event.getSource()).getScene()
+									.lookup("#resultspane");
+							Label label = (Label) ((ImageView) event.getSource()).getScene().lookup("#lbl_data_title");
+
+							pane.setVisible(true);
+							listControl.setVisible(false);
+							listFieldData.setVisible(true);
+							listControl.getItems().clear();
+							listFieldData.getItems().clear();
+							listFieldData.refresh();
+							listFieldData.setItems(FXCollections.observableArrayList(release.getCycle()));
+							label.setText(release.getName());
+							label.setStyle(
+									"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+
+							FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
+							fs.releaserun(release.getName(), currentbatchid, listField, listFieldData, release);
+
+							if (hbox.getChildren().size() == 4) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+
+							} else if (hbox.getChildren().size() == 2) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+							}
+
 						}
-						JFXListView<Release> listField = (JFXListView<Release>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_field");
-						JFXListView<Cycle> listFieldData = (JFXListView<Cycle>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_data");
-						JFXListView<Rule> listControl = (JFXListView<Rule>) ((ImageView) event.getSource()).getScene()
-								.lookup("#list_control_data");
-						AnchorPane pane = (AnchorPane) ((ImageView) event.getSource()).getScene()
-								.lookup("#resultspane");
-						Label label = (Label) ((ImageView) event.getSource()).getScene().lookup("#lbl_data_title");
+					});
 
-						pane.setVisible(true);
-						listControl.setVisible(false);
-						listFieldData.setVisible(true);
-						listControl.getItems().clear();
-						listFieldData.getItems().clear();
-						listFieldData.refresh();
-						listFieldData.setItems(FXCollections.observableArrayList(release.getCycle()));
-						label.setText(release.getName());
-						label.setStyle(
-								"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+					pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
+							if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+								reportcolumnlist.addAll(effc.addcolumnsforreport());
+							}
 
-						FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
-						fs.releaserun(release.getName(), currentbatchid, listField, listFieldData, release);
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Test Suite", release.getBatchId(), "Reports/TestSuites/PDF", "pdf",
+									reportcolumnlist,
+									new DAO().getfieldresults(release.getBatchId(), 0, 0,
+											effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
+											QADefaultServerDetails.id));
 
-						if (hbox.getChildren().size() == 4) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-
-						} else if (hbox.getChildren().size() == 2) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
 						}
+					});
 
-					}
-				});
+					excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
+							if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+								reportcolumnlist.addAll(effc.addcolumnsforreport());
+							}
 
-				pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Test Suite", release.getBatchId(), "Reports/TestSuites/Excel", "excel",
+									reportcolumnlist,
+									new DAO().getfieldresults(release.getBatchId(), 0, 0,
+											effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
+											QADefaultServerDetails.id));
 						}
-						ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
-						if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
-							reportcolumnlist.addAll(effc.addcolumnsforreport());
-						}
-
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Test Suite", release.getBatchId(), "Reports/TestSuites/PDF", "pdf",
-								reportcolumnlist,
-								new DAO().getfieldresults(release.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
-										reportcolumnlist.size(), null, QADefaultServerDetails.id));
-
-					}
-				});
-
-				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
-						if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
-							reportcolumnlist.addAll(effc.addcolumnsforreport());
-						}
-
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Test Suite", release.getBatchId(), "Reports/TestSuites/Excel", "excel",
-								reportcolumnlist,
-								new DAO().getfieldresults(release.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
-										reportcolumnlist.size(), null, QADefaultServerDetails.id));
-					}
-				});
-				setGraphic(hbox);
+					});
+					setGraphic(hbox);
+				}
+			} catch (NullPointerException ne) {
 			}
-			}catch(NullPointerException ne){}
 		}
-		
+
 	}
 
 	static class ControlCell extends ListCell<Module> {
@@ -1903,9 +1897,9 @@ public class DashBoardController implements Initializable {
 			for (int i = 0; i < projectslist.size(); i++) {
 				exisitingprojectscombo.getItems().add(projectslist.get(i).getName());
 			}
-			
+
 		}
 		exisitingprojectscombo.getSelectionModel().select(Loggedinuserdetails.defaultproject);
-	
+
 	}
 }

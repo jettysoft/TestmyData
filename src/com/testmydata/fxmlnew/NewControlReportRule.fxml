@@ -33,7 +33,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <JFXTabPane fx:id="testcasestab" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+      <JFXTabPane fx:id="rulestab" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
          <tabs>
             <Tab closable="false" text="New Rule">
                <content>
@@ -94,17 +94,17 @@
                               </ImageView>
                               <Label layoutX="310.0" layoutY="33.0" text="Staging" textFill="#46719a" underline="true">
                                  <font>
-                                    <Font name="Courier New Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </Label>
                               <Label layoutX="525.0" layoutY="33.0" text="Transformation" textFill="#46719a" underline="true">
                                  <font>
-                                    <Font name="Courier New Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </Label>
                               <Label layoutX="785.0" layoutY="33.0" text="Loading" textFill="#46719a" underline="true">
                                  <font>
-                                    <Font name="Courier New Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </Label>
                               <VBox layoutX="240.0" layoutY="178.0" prefHeight="160.0" prefWidth="210.0" AnchorPane.topAnchor="40.0">
@@ -215,12 +215,12 @@
                               </VBox>
                               <Label layoutX="70.0" layoutY="33.0" text="Source" textFill="#f8340d" underline="true">
                                  <font>
-                                    <Font name="Courier New Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </Label>
                               <Label layoutX="1030.0" layoutY="33.0" text="Target" textFill="#40aa03" underline="true">
                                  <font>
-                                    <Font name="Courier New Bold" size="12.0" />
+                                    <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </Label>
                               <AnchorPane fx:id="sourceanchor" layoutY="200.0" prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
