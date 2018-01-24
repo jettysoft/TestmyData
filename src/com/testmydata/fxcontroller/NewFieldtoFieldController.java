@@ -14,6 +14,7 @@ import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
 import com.testmydata.binarybeans.FieldtoFieldBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.dao.DAO;
+import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.ComboBoxFilter;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
@@ -137,9 +138,11 @@ public class NewFieldtoFieldController implements Initializable {
 		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-				AnchorPane pane =  (AnchorPane)((ImageView) t.getSource()).getParent().getParent().getParent();
-			    pane.getChildren().remove(pane.getChildren().size()-1);
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
 
+				NewFieldtoFieldController nc = new NewFieldtoFieldController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 

@@ -920,13 +920,14 @@ public class NewControlReportRulesController implements Initializable {
 		});
 		// closing screen when clicks on home icon
 		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				NewControlReportRulesController nc = new NewControlReportRulesController();
-				scu.nullifyStrings(nc);
+			public void handle(MouseEvent t) {
 
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
+
+				NewControlReportRulesController nc = new NewControlReportRulesController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
