@@ -386,6 +386,12 @@ public class NewFieldtoFieldController implements Initializable {
 				resetmappings();
 			}
 		});
+		refreshicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				populatetestcases();
+			}
+		});
 
 		targetdbcombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -629,7 +635,7 @@ public class NewFieldtoFieldController implements Initializable {
 
 	@FXML
 	private void test() {
-		if (sqlscripttextarea != null && !sqlscripttextarea.equals("")) {
+		if (sqlscripttextarea != null && !sqlscripttextarea.getText().isEmpty()) {
 			String result = new DAO().getTestResult(sqlscripttextarea.getText());
 			if (result.equals("conerror")) {
 				runmessage("Unable to Connect to the QA Server. Please check QA Server settings...");
@@ -647,7 +653,8 @@ public class NewFieldtoFieldController implements Initializable {
 				showresult("", "FAILED", result);
 			}
 		} else {
-
+			resultstextarea.clear();
+			runmessage("Please provide Test Script...");
 		}
 	}
 

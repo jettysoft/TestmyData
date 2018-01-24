@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"  prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0"  xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ProjectsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ProjectsController">
    <children>
-      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;"  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
            
-            <Label fx:id="productheader" alignment="CENTER" contentDisplay="CENTER" layoutX="530.0" layoutY="10.0" text="Project" textFill="BLACK" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="474.0">
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="530.0" layoutY="10.0" text="Project" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0" >
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
         <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -35,7 +35,7 @@
                <content>
                   <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="40.0">
                            <children>
                               <JFXComboBox fx:id="ownercombo" focusColor="#40aa03" layoutX="50.0" layoutY="150.0" prefWidth="360.0" unFocusColor="#bebec4" AnchorPane.leftAnchor="50.0" />
                               <JFXTextField fx:id="projectnametext" focusColor="#40aa03" layoutX="50.0" layoutY="200.0" prefWidth="360.0" promptText="Enter Project Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" AnchorPane.leftAnchor="50.0">
@@ -48,17 +48,6 @@
                                     <Font name="System Bold" size="11.0" />
                                  </font>
                               </Label>
-                              <AnchorPane layoutX="-23.0" layoutY="13.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
-                                 <effect>
-                                    <InnerShadow choke="0.14" color="#bdbdbd" />
-                                 </effect>
-                                 <children>
-                                    <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="refreshicon1" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
-                                    <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
-                                 </children>
-                              </AnchorPane>
                               <JFXComboBox fx:id="exisitingprojectscombo" focusColor="#40aa03" layoutX="50.0" layoutY="60.0" prefWidth="360.0" unFocusColor="#bebec4" />
                               <Label layoutX="50.0" layoutY="43.0" text="Select Project to Update" textFill="#0083ff">
                                  <font>
@@ -80,6 +69,15 @@
                               <InnerShadow color="#bdbdbd" radius="12.715" width="31.86" />
                            </effect>
                         </AnchorPane>
+                        <AnchorPane prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bdbdbd" radius="4.75" width="0.0" />
+                           </effect>
+                           <children>
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -88,19 +86,19 @@
                <content>
                   <AnchorPane fx:id="actionanchor2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <effect>
-                              <InnerShadow choke="0.14" color="#a8a1a1" />
+                              <InnerShadow choke="0.14" color="#bdbdbd" height="40.0" radius="9.5" width="0.0" />
                            </effect>
                            <children>
-                              <JFXTextField fx:id="searchtext" focusColor="#40aa03" layoutX="30.0" layoutY="18.0" prefWidth="150.0" promptText="Search by Projects" stylesheets="@../css/TextFieldColors.css" unFocusColor="#b2b2bc">
+                              <JFXTextField fx:id="searchtext" focusColor="#40aa03" layoutX="30.0" layoutY="5.0" prefWidth="150.0" promptText="Search by Projects" stylesheets="@../css/TextFieldColors.css" unFocusColor="#b2b2bc">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </JFXTextField>
-                              <FontAwesomeIconView accessibleRole="BUTTON" fill="#162a4c" glyphName="SEARCH" layoutX="168.0" layoutY="33.0" />
-                              <ImageView fx:id="refreshicon" fitHeight="25.0" fitWidth="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
-                              <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="1125.0" layoutY="25.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
+                              <FontAwesomeIconView accessibleRole="BUTTON" fill="#162a4c" glyphName="SEARCH" layoutX="168.0" layoutY="20.0" />
+                              <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="1125.0" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
                      </children>

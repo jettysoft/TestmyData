@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewFieldtoFieldController">
+   <children>
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="New Test Suite" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXTabPane fx:id="testcasestab" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="New Test Suite">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="315.0">
+                           <children>
+                              <JFXTextField fx:id="relasetext" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="200.0" promptText="Specify Release" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="cycletext" focusColor="#40aa03" layoutX="260.0" layoutY="20.0" prefWidth="200.0" promptText="Specify Cycle" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tsnametext" focusColor="#40aa03" layoutX="500.0" layoutY="20.0" prefWidth="200.0" promptText="Specify Test Suite" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="tscombo" focusColor="#40aa03" layoutX="260.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
+                              <JFXComboBox fx:id="tccombo" focusColor="#162a4c" layoutX="500.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="10.0" layoutY="36.0" text="New Suite" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutY="54.0" maxWidth="300.0" prefHeight="120.0" prefWidth="300.0" style="-fx-border-color: #d4d4d8;" AnchorPane.rightAnchor="10.0">
+                           <children>
+                              <JFXComboBox fx:id="sourcedbcombo" focusColor="#40aa03" layoutX="50.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#fa4e04" AnchorPane.rightAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="880.0" layoutY="36.0" text="Update Old Suite" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <children>
+                              <ImageView fx:id="addicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="clearicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </AnchorPane>
+                        <TableView fx:id="tstable" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="180.0">
+                           <columns>
+                              <TableColumn fx:id="items" editable="false" prefWidth="800.0" text="Selected Items for Test Suite" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Test Suites">
+               <content>
+                  <AnchorPane fx:id="actionanchor11" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <JFXTextField fx:id="searchtext" focusColor="#40aa03" layoutX="40.0" layoutY="5.0" prefWidth="150.0" promptText="Search Test Suites" stylesheets="@../css/TextFieldColors.css" unFocusColor="#b2b2bc">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <FontAwesomeIconView accessibleRole="BUTTON" fill="#162a4c" glyphName="SEARCH" layoutX="180.0" layoutY="20.0" />
+                              <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="10.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                        <TableView fx:id="testsuites" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                           <columns>
+                              <TableColumn fx:id="id" editable="false" prefWidth="100.0" text="ID" />
+                              <TableColumn fx:id="testsuitename" editable="false" prefWidth="200.0" text="Test Suite Name" />
+                              <TableColumn fx:id="testitems" editable="false" prefWidth="800.0" text="Test Items" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
