@@ -76,6 +76,8 @@
                            <children>
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
                      </children>
