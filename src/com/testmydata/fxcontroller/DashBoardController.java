@@ -63,6 +63,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.SubScene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -111,15 +112,14 @@ public class DashBoardController implements Initializable {
 			changepasswordicon, emailsettingsicon, qaservericon;
 
 	public int localUserLevel = 0;
+	
 	public Date activatedDate = null;
 	Stage myStage;
 	SubScene ss;
 	private static UsersDetailsBeanBinaryTrade currentUsersDetailsBeanBinaryTree;
 	private static DashBoardController userHome = null;
 	static String[] selectedproject = null;
-
 	private static int statuspanecount = 0, countforonehour = 0, userLevel = 0;
-
 	private ArrayList<LocalUserLevelBeanBinaryTrade> localUserLevelArrayList = new ArrayList<LocalUserLevelBeanBinaryTrade>();
 	ArrayList<QAServerDetailsBinaryTrade> serverlist = new ArrayList<QAServerDetailsBinaryTrade>();
 	ArrayList<TestSuiteBinaryTrade> releaselist = new ArrayList<TestSuiteBinaryTrade>();
@@ -506,12 +506,26 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String Screenpath = "/com/testmydata/fxmlnew/NewControlReportRule.fxml";
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
-				// fxmlLoader.setController(this);
+				
 				try {
-					Region root = (Region) fxmlLoader.load();
-					mainanchor.getChildren().add(root);
+					boolean exist = false;
+					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+						Node node = mainanchor.getChildren().get(i);
+						if(node.getId()!=null &&"controlpane".equals(node.getId())){
+							exist = true;
+							if(i!=mainanchor.getChildren().size()-1){
+							mainanchor.getChildren().remove(i);
+							mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+					}					
+					if(!exist){
+						String Screenpath = "/com/testmydata/fxmlnew/NewControlReportRule.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -534,15 +548,29 @@ public class DashBoardController implements Initializable {
 			@Override
 			public void run() {
 
-				String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
-				// fxmlLoader.setController(this);
+				
 				try {
-
-					Region root = (Region) fxmlLoader.load();
-					mainanchor.getChildren().add(root);
-
-					// subscreenanchor.getChildren().setAll(root);
+					boolean exist = false;
+					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+						Node node = mainanchor.getChildren().get(i);
+						if(node.getId()!=null &&"fieldpane".equals(node.getId())){
+							exist = true;
+							if(i!=mainanchor.getChildren().size()-1){
+							mainanchor.getChildren().remove(i);
+							mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+						
+					}
+					
+					if(!exist){
+						String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -564,15 +592,29 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+				
 				// fxmlLoader.setController(this);
 				try {
-
-					Region root = (Region) fxmlLoader.load();
-					mainanchor.getChildren().add(root);
-
-					// subscreenanchor.getChildren().setAll(root);
+					boolean exist = false;
+					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+						Node node = mainanchor.getChildren().get(i);
+						if(node.getId()!=null &&"projectspane".equals(node.getId())){
+							exist = true;
+							if(i!=mainanchor.getChildren().size()-1){
+							mainanchor.getChildren().remove(i);
+							mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+						
+					}
+					
+					if(!exist){
+						String Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

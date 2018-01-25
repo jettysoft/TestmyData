@@ -34,7 +34,7 @@ public class ProjectsController implements Initializable {
 	@FXML
 	private ImageView  closeicon,saveicon, updateicon, refreshicon1, refreshicon;
 	@FXML
-	private AnchorPane actionanchor1, actionanchor2;
+	private AnchorPane projectspane,actionanchor1, actionanchor2;
 	@FXML
 	private Label refreshlbl, refreshlbl1;
 	static String[] selectedowner = null, selectedproject = null;

@@ -31,15 +31,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -69,7 +72,7 @@ public class NewControlReportRulesController implements Initializable {
 			sourcecolsqltextarea, stagingcolsqltextarea, transcolsqltextarea, targetcolsqltextarea;
 
 	@FXML
-	private AnchorPane actionanchor1, actionanchor2, sourceanchor, staginganchor, transanchor, targetanchor, etlanchor,
+	private AnchorPane controlpane,actionanchor1, actionanchor2, sourceanchor, staginganchor, transanchor, targetanchor, etlanchor,
 			sourcecolanchor, stagingcolanchor, transcolanchor, targetcolanchor;
 	@FXML
 	private TableView<ControlReportRulesBinaryTrade> rulestable;
@@ -464,9 +467,25 @@ public class NewControlReportRulesController implements Initializable {
 		ttable.setStyle("-fx-text-fill: #0C23EA; -fx-font-weight:bold;");
 		tcolumn.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 
+		final Button mod_Button = new Button();
+		final ImageView modif_icon = new ImageView();
+		StackPane mod_pane = new StackPane();
+		Tooltip tp = new Tooltip("Modify");
+		mod_pane.setAlignment(Pos.CENTER);
+		tp.setStyle(StaticImages.lblStyle);
+		modif_icon.setImage(StaticImages.refresh.getImage());
+		modif_icon.setFitHeight(20.0);
+		modif_icon.setFitWidth(20.0);
+		mod_Button.setMinWidth(20.0);
+		mod_Button.setMinHeight(20.0);
+		mod_Button.setStyle("-fx-background-color: transparent");
+		Tooltip.install(mod_Button, tp);
+		mod_pane.getChildren().addAll(modif_icon,mod_Button);
+		modifybutton.setGraphic(mod_pane);
+		modifybutton.setText("");
 		modifybutton.setSortable(false);
 		modifybutton.setCellValueFactory(new PropertyValueFactory<>("buttons"));
-		modifybutton.setPrefWidth(85);
+		modifybutton.setPrefWidth(30);
 		modifybutton.setResizable(false);
 		modifybutton.setCellFactory(
 				new Callback<TableColumn<ControlReportRulesBinaryTrade, Boolean>, TableCell<ControlReportRulesBinaryTrade, Boolean>>() {
@@ -477,10 +496,25 @@ public class NewControlReportRulesController implements Initializable {
 					}
 				});
 		rulestable.getColumns().add(modifybutton);
-
+		StackPane pane = new StackPane();
+		final ImageView delet_icon = new ImageView();
+		Tooltip del_tp = new Tooltip("Delete");
+		final Button cellButton = new Button();
+		pane.setAlignment(Pos.CENTER);
+		del_tp.setStyle(StaticImages.lblStyle);
+		delet_icon.setImage(StaticImages.delete.getImage());
+		delet_icon.setFitHeight(20);
+		delet_icon.setFitWidth(20);
+		cellButton.setMinWidth(20.0);
+		cellButton.setMinHeight(20.0);
+		cellButton.setStyle("-fx-background-color: transparent");
+		Tooltip.install(cellButton, del_tp);
+        pane.getChildren().addAll(delet_icon,cellButton);
+        deletebutton.setGraphic(pane);
+        deletebutton.setText("");
 		deletebutton.setSortable(false);
 		deletebutton.setCellValueFactory(new PropertyValueFactory<>("buttons1"));
-		deletebutton.setPrefWidth(85);
+		deletebutton.setPrefWidth(30);
 		deletebutton.setResizable(false);
 		deletebutton.setCellFactory(
 				new Callback<TableColumn<ControlReportRulesBinaryTrade, Boolean>, TableCell<ControlReportRulesBinaryTrade, Boolean>>() {
@@ -1597,12 +1631,22 @@ public class NewControlReportRulesController implements Initializable {
 	}
 
 	public class ModifyButtonCell extends TableCell<ControlReportRulesBinaryTrade, Boolean> {
-		final Button cellButton = new Button("Modify");
+		final Button cellButton = new Button();
+		final ImageView modif_icon = new ImageView();
+		StackPane pane = new StackPane();
+		Tooltip tp = new Tooltip("Modify");
 
 		ModifyButtonCell() {
-			cellButton.setStyle(
-					"-fx-background-color: linear-gradient(#277CD2, #0C23EA); -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: white;");
-			cellButton.setPrefWidth(85);
+			pane.setAlignment(Pos.CENTER);
+			tp.setStyle(StaticImages.lblStyle);
+			modif_icon.setImage(StaticImages.refresh.getImage());
+			modif_icon.setFitHeight(20.0);
+			modif_icon.setFitWidth(20.0);
+			cellButton.setMinWidth(20.0);
+			cellButton.setMinHeight(20.0);
+			cellButton.setStyle("-fx-background-color: transparent");
+			Tooltip.install(cellButton, tp);
+	        pane.getChildren().addAll(modif_icon,cellButton);
 			cellButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -1646,18 +1690,28 @@ public class NewControlReportRulesController implements Initializable {
 		protected void updateItem(Boolean t, boolean empty) {
 			super.updateItem(t, empty);
 			if (!empty) {
-				setGraphic(cellButton);
+				setGraphic(pane);
 			}
 		}
 	}
 
 	public class DeleteButtonCell extends TableCell<ControlReportRulesBinaryTrade, Boolean> {
-		final Button cellButton = new Button("Delete");
+		final Button cellButton = new Button();
+		StackPane pane = new StackPane();
+		final ImageView delet_icon = new ImageView();
+		Tooltip tp = new Tooltip("Delete");
 
 		DeleteButtonCell() {
-			cellButton.setStyle(
-					"-fx-background-color: linear-gradient(#FA3F3F, #F8340D); -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: white;");
-			cellButton.setPrefWidth(85);
+			pane.setAlignment(Pos.CENTER);
+			tp.setStyle(StaticImages.lblStyle);
+			delet_icon.setImage(StaticImages.delete.getImage());
+			delet_icon.setFitHeight(20);
+			delet_icon.setFitWidth(20);
+			cellButton.setMinWidth(20.0);
+			cellButton.setMinHeight(20.0);
+			cellButton.setStyle("-fx-background-color: transparent");
+			Tooltip.install(cellButton, tp);
+	        pane.getChildren().addAll(delet_icon,cellButton);
 			cellButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -1686,7 +1740,7 @@ public class NewControlReportRulesController implements Initializable {
 		protected void updateItem(Boolean t, boolean empty) {
 			super.updateItem(t, empty);
 			if (!empty) {
-				setGraphic(cellButton);
+				setGraphic(pane);
 			}
 		}
 	}
