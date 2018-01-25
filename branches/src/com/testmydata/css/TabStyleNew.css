@@ -23,7 +23,7 @@
 }
 
 .jfx-tab-pane .tab-selected-line {
-	  -fx-stroke: green; 
+	  -fx-border-color: green; 
      -fx-stroke-width: 1.5pt;
    
 }

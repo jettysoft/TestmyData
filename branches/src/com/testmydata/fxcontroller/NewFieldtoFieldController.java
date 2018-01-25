@@ -27,18 +27,23 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -61,7 +66,7 @@ public class NewFieldtoFieldController implements Initializable {
 	@FXML
 	private Label statuslabel, refreshlbl, refreshlbl1;
 	@FXML
-	private AnchorPane actionanchor1, actionanchor2;
+	private AnchorPane actionanchor1, actionanchor2,fieldpane;
 	@FXML
 	private JFXDatePicker startdate, enddate;
 	@FXML
@@ -140,7 +145,7 @@ public class NewFieldtoFieldController implements Initializable {
 			public void handle(MouseEvent t) {
 				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
 				pane.getChildren().remove(pane.getChildren().size() - 1);
-
+			
 				NewFieldtoFieldController nc = new NewFieldtoFieldController();
 				Cleanup.nullifyStrings(nc);
 			}
@@ -278,9 +283,26 @@ public class NewFieldtoFieldController implements Initializable {
 		createdby.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 		createddate.setStyle("-fx-text-fill: blue; -fx-font-weight:bold;");
 
+		final Button mod_Button = new Button();
+		final ImageView modif_icon = new ImageView();
+		StackPane mod_pane = new StackPane();
+		Tooltip tp = new Tooltip("Modify");
+		mod_pane.setAlignment(Pos.CENTER);
+		tp.setStyle(StaticImages.lblStyle);
+		modif_icon.setImage(StaticImages.refresh.getImage());
+		modif_icon.setFitHeight(20.0);
+		modif_icon.setFitWidth(20.0);
+		mod_Button.setMinWidth(20.0);
+		mod_Button.setMinHeight(20.0);
+		mod_Button.setStyle("-fx-background-color: transparent");
+		Tooltip.install(mod_Button, tp);
+		mod_pane.getChildren().addAll(modif_icon,mod_Button);
+		modifybutton.setGraphic(mod_pane);
+		modifybutton.setText("");
+		
 		modifybutton.setSortable(false);
 		modifybutton.setCellValueFactory(new PropertyValueFactory<>("buttons"));
-		modifybutton.setPrefWidth(85);
+		modifybutton.setPrefWidth(30);
 		modifybutton.setResizable(false);
 		modifybutton.setCellFactory(
 				new Callback<TableColumn<FieldtoFieldBinaryTrade, Boolean>, TableCell<FieldtoFieldBinaryTrade, Boolean>>() {
@@ -292,10 +314,28 @@ public class NewFieldtoFieldController implements Initializable {
 				});
 		tctable.getColumns().add(modifybutton);
 
+		StackPane pane = new StackPane();
+		final ImageView delet_icon = new ImageView();
+		Tooltip del_tp = new Tooltip("Delete");
+		final Button cellButton = new Button();
+		pane.setAlignment(Pos.CENTER);
+		del_tp.setStyle(StaticImages.lblStyle);
+		delet_icon.setImage(StaticImages.delete.getImage());
+		delet_icon.setFitHeight(20);
+		delet_icon.setFitWidth(20);
+		cellButton.setMinWidth(20.0);
+		cellButton.setMinHeight(20.0);
+		cellButton.setStyle("-fx-background-color: transparent");
+		Tooltip.install(cellButton, del_tp);
+        pane.getChildren().addAll(delet_icon,cellButton);
+        deletebutton.setGraphic(pane);
+        deletebutton.setText("");
+        
 		deletebutton.setSortable(false);
 		deletebutton.setCellValueFactory(new PropertyValueFactory<>("buttons1"));
-		deletebutton.setPrefWidth(85);
+		deletebutton.setPrefWidth(30);
 		deletebutton.setResizable(false);
+				
 		deletebutton.setCellFactory(
 				new Callback<TableColumn<FieldtoFieldBinaryTrade, Boolean>, TableCell<FieldtoFieldBinaryTrade, Boolean>>() {
 					@Override
@@ -872,12 +912,22 @@ public class NewFieldtoFieldController implements Initializable {
 	}
 
 	public class ModifyButtonCell extends TableCell<FieldtoFieldBinaryTrade, Boolean> {
-		final Button cellButton = new Button("Modify");
-
+		final Button cellButton = new Button();
+		final ImageView modif_icon = new ImageView();
+		StackPane pane = new StackPane();
+		Tooltip tp = new Tooltip("Modify");
+		
 		ModifyButtonCell() {
-			cellButton.setStyle(
-					"-fx-background-color: linear-gradient(#277CD2, #0C23EA); -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: white;");
-			cellButton.setPrefWidth(85);
+			pane.setAlignment(Pos.CENTER);
+			tp.setStyle(StaticImages.lblStyle);
+			modif_icon.setImage(StaticImages.refresh.getImage());
+			modif_icon.setFitHeight(20.0);
+			modif_icon.setFitWidth(20.0);
+			cellButton.setMinWidth(20.0);
+			cellButton.setMinHeight(20.0);
+			cellButton.setStyle("-fx-background-color: transparent");
+			Tooltip.install(cellButton, tp);
+	        pane.getChildren().addAll(modif_icon,cellButton);
 			cellButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -894,6 +944,7 @@ public class NewFieldtoFieldController implements Initializable {
 					testcasestab.getSelectionModel().select(0);
 				}
 			});
+			
 		}
 
 		// Display button if the row is not empty
@@ -901,18 +952,27 @@ public class NewFieldtoFieldController implements Initializable {
 		protected void updateItem(Boolean t, boolean empty) {
 			super.updateItem(t, empty);
 			if (!empty) {
-				setGraphic(cellButton);
+				setGraphic(pane);
 			}
 		}
 	}
 
 	public class DeleteButtonCell extends TableCell<FieldtoFieldBinaryTrade, Boolean> {
-		final Button cellButton = new Button("Delete");
-
+		StackPane pane = new StackPane();
+		final ImageView delet_icon = new ImageView();
+		Tooltip tp = new Tooltip("Delete");
+		final Button cellButton = new Button();
 		DeleteButtonCell() {
-			cellButton.setStyle(
-					"-fx-background-color: linear-gradient(#FA3F3F, #F8340D); -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: white;");
-			cellButton.setPrefWidth(85);
+			pane.setAlignment(Pos.CENTER);
+			tp.setStyle(StaticImages.lblStyle);
+			delet_icon.setImage(StaticImages.delete.getImage());
+			delet_icon.setFitHeight(20);
+			delet_icon.setFitWidth(20);
+			cellButton.setMinWidth(20.0);
+			cellButton.setMinHeight(20.0);
+			cellButton.setStyle("-fx-background-color: transparent");
+			Tooltip.install(cellButton, tp);
+	        pane.getChildren().addAll(delet_icon,cellButton);
 			cellButton.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -937,6 +997,7 @@ public class NewFieldtoFieldController implements Initializable {
 					}
 				}
 			});
+			
 		}
 
 		// Display button if the row is not empty
@@ -944,7 +1005,7 @@ public class NewFieldtoFieldController implements Initializable {
 		protected void updateItem(Boolean t, boolean empty) {
 			super.updateItem(t, empty);
 			if (!empty) {
-				setGraphic(cellButton);
+				setGraphic(pane);
 			}
 		}
 	}
