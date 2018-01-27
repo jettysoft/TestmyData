@@ -11,7 +11,8 @@
 
 
 .jfx-tab-pane .tab:selected {
-    -fx-background-color: #ffffff;   
+    -fx-background-color: #ffffff;
+       -fx-text-fill: green;    
  }
 
 .jfx-tab-pane .tab-label{
@@ -23,7 +24,7 @@
 }
 
 .jfx-tab-pane .tab-selected-line {
-	  -fx-border-color: green; 
+	  -fx-border-color: green;	
      -fx-stroke-width: 1.5pt;
    
 }

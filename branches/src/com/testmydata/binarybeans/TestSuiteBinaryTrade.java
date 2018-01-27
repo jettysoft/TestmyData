@@ -9,8 +9,8 @@ public class TestSuiteBinaryTrade extends BinaryTrade {
 	private BooleanProperty checkboxs;
 
 	public TestSuiteBinaryTrade() {
+		data = new byte[2];
 		this.checkboxs = new SimpleBooleanProperty(true);
-
 	}
 
 	public boolean isCheckboxs() {
@@ -23,6 +23,29 @@ public class TestSuiteBinaryTrade extends BinaryTrade {
 
 	public BooleanProperty checkboxsProperty() {
 		return checkboxs;
+	}
+	public boolean isButtons() {
+		return data[0] == 1 ? true : false;
+	}
+
+	public void setButtons(boolean buttons) {
+		data[0] = (byte) (buttons ? 1 : 0);
+	}
+
+	public BooleanProperty buttonsProperty() {
+		return new SimpleBooleanProperty(isButtons());
+	}
+
+	public boolean isButtons1() {
+		return data[1] == 1 ? true : false;
+	}
+
+	public void setButtons1(boolean buttons1) {
+		data[1] = (byte) (buttons1 ? 1 : 0);
+	}
+
+	public BooleanProperty buttons1Property() {
+		return new SimpleBooleanProperty(isButtons1());
 	}
 
 	public String getId() {

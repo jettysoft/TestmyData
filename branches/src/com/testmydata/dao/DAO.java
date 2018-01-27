@@ -2258,7 +2258,8 @@ public class DAO {
 							+ "where tc.teststatus = 'Fail') when ts.type = 'testcase' then (select count(1) from testsuites ts join testsuitedetails tsd "
 							+ "on tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where tc.teststatus = 'Fail') when ts.type = 'testscenario' "
 							+ "then (select count(1) from testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on "
-							+ "tc.tsname = tsd.selecteditems where tc.teststatus = 'Fail') end from testsuites ts where ts.status =1 and ts.projectid = '"
+							+ "tc.tsname = tsd.selecteditems where tc.teststatus = 'Fail') end, "
+							+ "(select GROUP_CONCAT(selecteditems) from testsuitedetails where suiteid = ts.id) from testsuites ts where ts.status =1 and ts.projectid = '"
 							+ projectid + "'";
 				} else {
 					String checktype1 = "select type from testsuites where id = '" + id + "' ";
@@ -2304,6 +2305,9 @@ public class DAO {
 					tsb.setTestcasescount(rs.getString(7));
 					tsb.setPasscount(rs.getString(8));
 					tsb.setFailcount(rs.getString(9));
+					if(id == null){
+						tsb.setSelecteditems(rs.getString(10));
+					}
 
 					if (rs.getInt(7) == 0) {
 						tsb.setPassper("0");
@@ -2333,26 +2337,26 @@ public class DAO {
 		return ts;
 	}
 
-	public ArrayList<TestSuiteBinaryTrade> gettestsuitedetails(String id) {
-		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
-		try {
-			sql = "select selecteditems from testsuitedetails where suiteid = '" + id + "'";
-			st = con.createStatement();
-			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				TestSuiteBinaryTrade td = new TestSuiteBinaryTrade();
-				td.setSelecteditems(rs.getString(1));
-
-				ts.add(td);
-			}
-			rs.close();
-			st.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			ts = null;
-		}
-		return ts;
-	}
+//	public ArrayList<TestSuiteBinaryTrade> gettestsuitedetails(String id) {
+//		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
+//		try {
+//			sql = "select selecteditems from testsuitedetails where suiteid = '" + id + "'";
+//			st = con.createStatement();
+//			rs = st.executeQuery(sql);
+//			while (rs.next()) {
+//				TestSuiteBinaryTrade td = new TestSuiteBinaryTrade();
+//				td.setSelecteditems(rs.getString(1));
+//
+//				ts.add(td);
+//			}
+//			rs.close();
+//			st.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			ts = null;
+//		}
+//		return ts;
+//	}
 
 	public ArrayList<FieldtoFieldBinaryTrade> getSqlScriptforTestSuites(String id, String type) {
 

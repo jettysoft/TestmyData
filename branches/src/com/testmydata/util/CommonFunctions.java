@@ -556,6 +556,7 @@ public class CommonFunctions {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.setAlwaysOnTop(true);
 		stage.showAndWait();
+
 	}
 
 	public static void invokeTestResultsDialog(Class<?> className) {

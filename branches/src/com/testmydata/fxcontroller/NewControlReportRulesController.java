@@ -473,7 +473,7 @@ public class NewControlReportRulesController implements Initializable {
 		Tooltip tp = new Tooltip("Modify");
 		mod_pane.setAlignment(Pos.CENTER);
 		tp.setStyle(StaticImages.lblStyle);
-		modif_icon.setImage(StaticImages.refresh.getImage());
+		modif_icon.setImage(StaticImages.modify.getImage());
 		modif_icon.setFitHeight(20.0);
 		modif_icon.setFitWidth(20.0);
 		mod_Button.setMinWidth(20.0);
@@ -1639,7 +1639,7 @@ public class NewControlReportRulesController implements Initializable {
 		ModifyButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			modif_icon.setImage(StaticImages.refresh.getImage());
+			modif_icon.setImage(StaticImages.modify.getImage());
 			modif_icon.setFitHeight(20.0);
 			modif_icon.setFitWidth(20.0);
 			cellButton.setMinWidth(20.0);

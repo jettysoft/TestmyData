@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewFieldtoFieldController">
+<AnchorPane fx:id="newtestsuitepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewTestSuiteController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="New Test Suite" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="New Test Suite" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -37,7 +37,7 @@
                <content>
                   <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="315.0">
+                        <AnchorPane fx:id="suiteanchor" layoutX="20.0" layoutY="54.0" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                            <children>
                               <JFXTextField fx:id="relasetext" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="200.0" promptText="Specify Release" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
@@ -57,19 +57,11 @@
                               <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" />
                               <JFXComboBox fx:id="tscombo" focusColor="#40aa03" layoutX="260.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
                               <JFXComboBox fx:id="tccombo" focusColor="#162a4c" layoutX="500.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
+                              <ImageView fx:id="addicon" fitHeight="20.0" fitWidth="20.0" layoutX="730.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="clearicon" fitHeight="20.0" fitWidth="20.0" layoutX="765.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
                         <Label layoutX="10.0" layoutY="36.0" text="New Suite" textFill="#162a4c">
-                           <font>
-                              <Font name="System Bold" size="11.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane layoutY="54.0" maxWidth="300.0" prefHeight="120.0" prefWidth="300.0" style="-fx-border-color: #d4d4d8;" AnchorPane.rightAnchor="10.0">
-                           <children>
-                              <JFXComboBox fx:id="sourcedbcombo" focusColor="#40aa03" layoutX="50.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#fa4e04" AnchorPane.rightAnchor="50.0" />
-                           </children>
-                        </AnchorPane>
-                        <Label layoutX="880.0" layoutY="36.0" text="Update Old Suite" textFill="#162a4c">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
@@ -79,10 +71,9 @@
                               <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
                            </effect>
                            <children>
-                              <ImageView fx:id="addicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="clearicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="processicon" fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                            </children>
                            <opaqueInsets>
                               <Insets />
