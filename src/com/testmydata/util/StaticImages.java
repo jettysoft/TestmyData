@@ -36,7 +36,12 @@ public class StaticImages {
 	public final static ImageView closeproject = new ImageView("/com/testmydata/fximages/closeproject.png");
 	public final static ImageView modify = new ImageView("/com/testmydata/fximages/modify.png");
 	public final static ImageView delete = new ImageView("/com/testmydata/fximages/delete.png");
+	public final static ImageView add = new ImageView("/com/testmydata/fximages/add.png");
+	public final static ImageView clear = new ImageView("/com/testmydata/fximages/clear.png");
 
-	public static String lblStyle = "-fx-background-color: linear-gradient(#f7f79e,#f2f271);  -fx-text-alignment :center; -fx-background-radius: 2; "
+	public static String lblStyleold = "-fx-background-color: linear-gradient(#f7f79e,#f2f271);  -fx-text-alignment :center; -fx-background-radius: 2; "
 			+ " -fx-background-insets: 0; -fx-text-fill: #162a4c; -fx-font-weight: normal; -fx-border-clor: #162a4c;";
+	
+	public static String lblStyle = "-fx-background-color: #000000; -fx-opacity: 0.8;  -fx-text-alignment :center; -fx-background-radius: 2; "
+			+ " -fx-background-insets: 0; -fx-text-fill: #ffffff; -fx-font-weight: normal; -fx-border-clor: #ffffff;";
 }

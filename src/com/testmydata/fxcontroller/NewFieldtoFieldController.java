@@ -27,12 +27,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -289,7 +287,7 @@ public class NewFieldtoFieldController implements Initializable {
 		Tooltip tp = new Tooltip("Modify");
 		mod_pane.setAlignment(Pos.CENTER);
 		tp.setStyle(StaticImages.lblStyle);
-		modif_icon.setImage(StaticImages.refresh.getImage());
+		modif_icon.setImage(StaticImages.modify.getImage());
 		modif_icon.setFitHeight(20.0);
 		modif_icon.setFitWidth(20.0);
 		mod_Button.setMinWidth(20.0);
@@ -618,24 +616,7 @@ public class NewFieldtoFieldController implements Initializable {
 					}
 				}
 			}
-		});
-
-		// closing screen when clicks on home icon
-		// homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new
-		// EventHandler<MouseEvent>() {
-		// @SuppressWarnings("static-access")
-		// @Override
-		// public void handle(MouseEvent event) {
-		// Cleanup scu = new Cleanup();
-		// NewFieldtoFieldController nc = new NewFieldtoFieldController();
-		// scu.nullifyStrings(nc);
-		//
-		// Node source = (Node) event.getSource();
-		// myStage = (Stage) source.getScene().getWindow();
-		// myStage.close();
-		// UndecoratorController.getInstance(null);
-		// }
-		// });
+		});		
 	}
 
 	// Method used to get data from previous class
@@ -920,7 +901,7 @@ public class NewFieldtoFieldController implements Initializable {
 		ModifyButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			modif_icon.setImage(StaticImages.refresh.getImage());
+			modif_icon.setImage(StaticImages.modify.getImage());
 			modif_icon.setFitHeight(20.0);
 			modif_icon.setFitWidth(20.0);
 			cellButton.setMinWidth(20.0);

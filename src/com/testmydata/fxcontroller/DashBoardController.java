@@ -546,9 +546,7 @@ public class DashBoardController implements Initializable {
 	public void nowfieldtofield() {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {
-
-				
+			public void run() {				
 				try {
 					boolean exist = false;
 					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
@@ -560,10 +558,8 @@ public class DashBoardController implements Initializable {
 							mainanchor.getChildren().add(node);
 							}
 							break;
-						}
-						
-					}
-					
+						}						
+					}					
 					if(!exist){
 						String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
@@ -591,8 +587,7 @@ public class DashBoardController implements Initializable {
 	public void nowprojectaccess() {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {
-				
+			public void run() {				
 				// fxmlLoader.setController(this);
 				try {
 					boolean exist = false;
@@ -619,21 +614,11 @@ public class DashBoardController implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		});
-		/*
-		 * EventQueue.invokeLater(new Runnable() {
-		 * 
-		 * @Override public void run() { SwingUtilities.invokeLater(new
-		 * Runnable() {
-		 * 
-		 * @Override public void run() { String screenName = "projectsetup"; new
-		 * MenuItemsFXHelper().initAndShowGUI(screenName); } }); } });
-		 */
+		});		
 	}
 
 	@FXML
-	private void newtestsuite() {
-		// myStage = (Stage) mymenubar.getScene().getWindow();
+	private void newtestsuite() {		
 		if (Loggedinuserdetails.newts == 1) {
 			runnewtestsuite();
 		} else {
@@ -642,19 +627,36 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runnewtestsuite() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "newtestsuite";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						NewTestSuiteController.getInstance();
+			public void run() {				
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+						Node node = mainanchor.getChildren().get(i);
+						if(node.getId()!=null &&"newtestsuitepane".equals(node.getId())){
+							exist = true;
+							if(i!=mainanchor.getChildren().size()-1){
+							mainanchor.getChildren().remove(i);
+							mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+						
 					}
-				});
+					
+					if(!exist){
+						String Screenpath = "/com/testmydata/fxmlnew/NewTestSuite.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-		});
+		});		
 	}
 
 	@FXML

@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.binarybeans.TestScenariosBinaryTrade;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
@@ -28,13 +26,14 @@ import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class NewTestSuiteController implements Initializable {
@@ -42,20 +41,22 @@ public class NewTestSuiteController implements Initializable {
 	private static NewTestSuiteController userHome = null;
 	Stage myStage;
 	@FXML
-	private ImageView homeicon, processicon;
+	private ImageView closeicon, processicon, saveicon, updateicon, refreshicon, addicon, clearicon;
 	@FXML
-	private JFXComboBox<String> testsuitecombo, modulecombo, tscombo, tccombo;
+	private JFXComboBox<String> modulecombo, tscombo, tccombo;
 	@FXML
-	private JFXButton addtestsuite, clearselection, save, update;
+	private static Label refreshlbl;
 	@FXML
-	private JFXTextField relasetext, cycletext, tsnametext;
+	private JFXTextField relasetext, cycletext, tsnametext, searchtext;
 	@FXML
-	private TableView<TestSuiteBinaryTrade> tstable;
+	private TableView<TestSuiteBinaryTrade> tstable, testsuites;
 	@FXML
-	private TableColumn<TestSuiteBinaryTrade, String> items;
+	private TableColumn<TestSuiteBinaryTrade, String> items, id, testsuitename, testitems;
 	@FXML
 	private TableColumn<TestSuiteBinaryTrade, Boolean> checkbox = new TableColumn<TestSuiteBinaryTrade, Boolean>(
 			"Select");
+	@FXML
+	private AnchorPane actionanchor1, actionanchor11, suiteanchor;
 
 	ArrayList<TestSuiteBinaryTrade> testsuitelist = new ArrayList<TestSuiteBinaryTrade>();
 	ArrayList<TestSuiteBinaryTrade> testsuitelistbyid = new ArrayList<TestSuiteBinaryTrade>();
@@ -73,8 +74,13 @@ public class NewTestSuiteController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setinitialdetails();
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		processicon.setImage(StaticImages.source_run.getImage());
+		 saveicon.setImage(StaticImages.save.getImage()); 
+		 updateicon.setImage(StaticImages.save.getImage()); 
+		 refreshicon.setImage(StaticImages.refresh.getImage()); 
+		 addicon.setImage(StaticImages.add.getImage());
+		 clearicon.setImage(StaticImages.clear.getImage());
 
 		tstable.getColumns().addAll(checkbox);
 		checkbox.setCellValueFactory(new PropertyValueFactory<>("checkboxs"));
@@ -85,7 +91,122 @@ public class NewTestSuiteController implements Initializable {
 		items.setCellValueFactory(new PropertyValueFactory<>("selecteditems"));
 
 		items.setStyle("-fx-text-fill: green; -fx-font-weight:bold;");
+		
+		id.setCellValueFactory(new PropertyValueFactory<>("id"));
+		testsuitename.setCellValueFactory(new PropertyValueFactory<>("testsuitename"));
+		testitems.setCellValueFactory(new PropertyValueFactory<>("selectiontype"));
+		
+		id.setStyle("-fx-text-fill: green; -fx-font-weight:bold;");
+		testsuitename.setStyle("-fx-text-fill: #162a4c; -fx-font-weight:bold;");		
+		
+		Label savelbl = new Label("   Save ");
+		savelbl.setStyle(StaticImages.lblStyle);
+		savelbl.setMinWidth(45);
+		savelbl.setLayoutX(65);
+		savelbl.setLayoutY(15);
+		savelbl.setVisible(false);
+		actionanchor1.getChildren().add(savelbl);
 
+		saveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(true);
+			}
+		});
+		saveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(false);
+			}
+		});
+		saveicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				save();
+			}
+		});
+
+		Label updatelbl = new Label(" Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(50);
+		updatelbl.setLayoutX(65);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
+		updateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				update();
+			}
+		});
+		
+		Label addlbl = new Label(" Add Selection Criteria to Test Suite ");
+		addlbl.setStyle(StaticImages.lblStyle);
+		addlbl.setMinWidth(120);
+		addlbl.setLayoutX(755);
+		addlbl.setLayoutY(100);
+		addlbl.setVisible(false);
+		suiteanchor.getChildren().add(addlbl);
+
+		addicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				addlbl.setVisible(true);
+			}
+		});
+		addicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				addlbl.setVisible(false);
+			}
+		});
+		addicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				addtestsuite();				
+			}
+		});
+		
+		Label clearlbl = new Label(" Clear Selection Criteria from Test Suite ");
+		clearlbl.setStyle(StaticImages.lblStyle);
+		clearlbl.setMinWidth(120);
+		clearlbl.setLayoutX(780);
+		clearlbl.setLayoutY(100);
+		clearlbl.setVisible(false);
+		suiteanchor.getChildren().add(clearlbl);
+
+		clearicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				clearlbl.setVisible(true);
+			}
+		});
+		clearicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				clearlbl.setVisible(false);
+			}
+		});
+		clearicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				clearselection();				
+			}
+		});
+		
 		relasetext.lengthProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -119,28 +240,29 @@ public class NewTestSuiteController implements Initializable {
 			}
 		});
 
-		testsuitecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
-				try {
-					if (!newFruit.equals("Select Test Suite")) {
-						setdefaultcombo();
-						showslectedsuitedetails();
-						save.setVisible(false);
-						update.setVisible(true);
-					} else {
-						setdefaultcombo();
-						tsnametext.clear();
-						relasetext.clear();
-						cycletext.clear();
-
-						save.setVisible(true);
-						update.setVisible(false);
-					}
-				} catch (NullPointerException ne) {
-				}
-			}
-		});
+//		testsuitecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//			@Override
+//			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
+//				try {
+//					if (!newFruit.equals("Select Test Suite")) {
+//						setdefaultcombo();
+//						showslectedsuitedetails();
+//						save.setVisible(false);
+//						update.setVisible(true);
+//					} else {
+//						setdefaultcombo();
+//						tsnametext.clear();
+//						relasetext.clear();
+//						cycletext.clear();
+//
+//						save.setVisible(true);
+//						update.setVisible(false);
+//					}
+//				} catch (NullPointerException ne) {
+//				}
+//			}
+//		});
+		
 		modulecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
@@ -202,18 +324,14 @@ public class NewTestSuiteController implements Initializable {
 		});
 
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		closeicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
+			
 				NewTestSuiteController nc = new NewTestSuiteController();
-				scu.nullifyStrings(nc);
-
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -224,22 +342,22 @@ public class NewTestSuiteController implements Initializable {
 		return userHome;
 	}
 
-	private void addexistingsuites() {
-		testsuitecombo.getItems().clear();
-		testsuitecombo.getItems().add("Select Test Suite");
-		testsuitecombo.getSelectionModel().select(0);
-		testsuitelist = new DAO().gettestsuites("testsuites", null, Loggedinuserdetails.defaultproject);
-		if (testsuitelist != null && testsuitelist.size() > 0) {
-			for (int i = 0; i < testsuitelist.size(); i++) {
-				testsuitecombo.getItems()
-						.add(testsuitelist.get(i).getId() + "-" + testsuitelist.get(i).getTestsuitename());
-			}
-		}
-		testsuitecombo.setStyle("-fx-text-fill: green; -fx-font-weight:bold;");
-	}
+//	private void addexistingsuites() {
+//		testsuitecombo.getItems().clear();
+//		testsuitecombo.getItems().add("Select Test Suite");
+//		testsuitecombo.getSelectionModel().select(0);
+//		testsuitelist = new DAO().gettestsuites("testsuites", null, Loggedinuserdetails.defaultproject);
+//		if (testsuitelist != null && testsuitelist.size() > 0) {
+//			for (int i = 0; i < testsuitelist.size(); i++) {
+//				testsuitecombo.getItems()
+//						.add(testsuitelist.get(i).getId() + "-" + testsuitelist.get(i).getTestsuitename());
+//			}
+//		}
+//		testsuitecombo.setStyle("-fx-text-fill: green; -fx-font-weight:bold;");
+//	}
 
 	private void setinitialdetails() {
-		addexistingsuites();
+		populatetestsuites();
 
 		modulecombo.getItems().clear();
 		modulecombo.getItems().add("Select QA Modules");
@@ -344,11 +462,10 @@ public class NewTestSuiteController implements Initializable {
 		CommonFunctions.invokeAlertBox(getClass());
 	}
 
-	@FXML
 	private void addtestsuite() {
-		if (modulecombo.getSelectionModel().getSelectedIndex() != 0
-				|| tscombo.getSelectionModel().getSelectedIndex() != 0
-				|| tccombo.getSelectionModel().getSelectedIndex() != 0) {
+		if (modulecombo.getSelectionModel().getSelectedIndex() > 0
+				|| tscombo.getSelectionModel().getSelectedIndex() > 0
+				|| tccombo.getSelectionModel().getSelectedIndex() > 0) {
 			addtestcase.reset();
 			addtestcase.start();
 		} else {
@@ -388,7 +505,16 @@ public class NewTestSuiteController implements Initializable {
 						public void run() {
 							try {
 								// FX Stuff done here
-								if (!selectedlist.contains(sb.toString())) {
+								boolean duplicate = false;
+								for(int i =0; i < selectedlist.size(); i++){
+									if(selectedlist.get(i).getSelecteditems().contains(sb.toString())){
+										duplicate = true;
+										break;
+									}else{
+										duplicate = false;
+									}
+								}
+								if (!duplicate) {
 									TestSuiteBinaryTrade tsbt = new TestSuiteBinaryTrade();
 									tsbt.setSelecteditems(sb.toString());
 									selectedlist.add(tsbt);
@@ -417,7 +543,7 @@ public class NewTestSuiteController implements Initializable {
 
 			for (int i = 0; i < arrayListData.size(); i++) {
 				TestSuiteBinaryTrade tsbt = arrayListData.get(i);
-				tsbt.setSelecteditems(arrayListData.get(i).getSelecteditems());
+					tsbt.setSelecteditems(arrayListData.get(i).getSelecteditems());
 
 				data.add(tsbt);
 				tstable.setItems(data);
@@ -426,17 +552,46 @@ public class NewTestSuiteController implements Initializable {
 			tstable.refresh();
 
 		} else {
-			removetestsuitefromtable();
+			removeselectionfromtable();
 		}
 	}
 
-	private void removetestsuitefromtable() {
+	private void removeselectionfromtable() {
 		if (tstable != null) {
 			for (int i = tstable.getItems().size() - 1; i >= 0; i--) {
 				tstable.getItems().remove(i);
 			}
 		}
 		selectedlist.clear();
+	}
+	
+	private void populateTestsuitesTable(ArrayList<TestSuiteBinaryTrade> arrayListData) {
+		if (arrayListData != null && arrayListData.size() > 0) {
+			ObservableList<TestSuiteBinaryTrade> data = FXCollections.observableArrayList();
+
+			for (int i = 0; i < arrayListData.size(); i++) {
+				TestSuiteBinaryTrade tsbt = arrayListData.get(i);
+				tsbt.setId(arrayListData.get(i).getId());
+				tsbt.setTestsuitename(arrayListData.get(i).getTestsuitename());
+				tsbt.setSelecteditems(arrayListData.get(i).getSelecteditems());
+
+				data.add(tsbt);
+				testsuites.setItems(data);
+				testsuites.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+			}
+			testsuites.refresh();
+
+		} else {
+			removetestsuitefromtable();
+		}
+	}
+
+	private void removetestsuitefromtable() {
+		if (testsuites != null) {
+			for (int i = testsuites.getItems().size() - 1; i >= 0; i--) {
+				testsuites.getItems().remove(i);
+			}
+		}		
 	}
 
 	private void setdefaultcombo() {
@@ -445,7 +600,6 @@ public class NewTestSuiteController implements Initializable {
 		tccombo.getSelectionModel().select(0);
 	}
 
-	@FXML
 	private void clearselection() {
 		wipemodulestext = true;
 		wipetstext = true;
@@ -458,10 +612,10 @@ public class NewTestSuiteController implements Initializable {
 		setdefaultcombo();
 		tscombo.setVisible(false);
 		tccombo.setVisible(false);
-		removetestsuitefromtable();
-		update.setVisible(false);
-		save.setVisible(true);
-		testsuitecombo.getSelectionModel().select(0);
+		removeselectionfromtable();
+		updateicon.setVisible(false);
+		saveicon.setVisible(true);	
+		slectedtestsuiteid = null;
 	}
 
 	private boolean validatefields() {
@@ -482,7 +636,7 @@ public class NewTestSuiteController implements Initializable {
 		return result;
 	}
 
-	@FXML
+
 	private void save() {
 		if (validatefields()) {
 			selectedlist.clear();
@@ -501,7 +655,7 @@ public class NewTestSuiteController implements Initializable {
 			if (result.equals("success")) {
 				runmessage("Test Suite Created Successfully...");
 				clearselection();
-				addexistingsuites();
+				populatetestsuites();
 			} else if (result.equals("duplicate")) {
 				runmessage("Given Suite Name Already Exists. Please Try New Suite Name..");
 			} else {
@@ -511,12 +665,14 @@ public class NewTestSuiteController implements Initializable {
 		}
 	}
 
-	@FXML
+	
 	private void update() {
 		if (validatefields()) {
-			processicon.setVisible(true);
-			updateservice.reset();
-			updateservice.start();
+			if(slectedtestsuiteid != null){
+				processicon.setVisible(true);
+				updateservice.reset();
+				updateservice.start();
+			}
 		}
 	}
 
@@ -528,17 +684,17 @@ public class NewTestSuiteController implements Initializable {
 				@Override
 				protected Void call() throws Exception {
 					// Background work
-					String[] selection = testsuitecombo.getSelectionModel().getSelectedItem().split("-");
+					
 					String result1 = new DAO().updatetabledata("testsuites", "suitename", tsnametext.getText(), "id",
-							selection[0]);
-					String result2 = new DAO().updatetabledata("testsuites", "type", selectedtype, "id", selection[0]);
+							slectedtestsuiteid);
+					String result2 = new DAO().updatetabledata("testsuites", "type", selectedtype, "id", slectedtestsuiteid);
 					String result3 = new DAO().updatetabledata("testsuites", "updatedby",
-							Integer.toString(Loggedinuserdetails.id), "id", selection[0]);
-					String result4 = new DAO().updatetabledata("testsuites", "updateddate", "", "id", selection[0]);
+							Integer.toString(Loggedinuserdetails.id), "id", slectedtestsuiteid);
+					String result4 = new DAO().updatetabledata("testsuites", "updateddate", "", "id", slectedtestsuiteid);
 					String result5 = new DAO().updatetabledata("testsuites", "release", relasetext.getText(), "id",
-							selection[0]);
+							slectedtestsuiteid);
 					String result6 = new DAO().updatetabledata("testsuites", "cycle", cycletext.getText(), "id",
-							selection[0]);
+							slectedtestsuiteid);
 					final CountDownLatch latch = new CountDownLatch(1);
 					Platform.runLater(new Runnable() {
 						@Override
@@ -548,7 +704,7 @@ public class NewTestSuiteController implements Initializable {
 								if (result1.equals("success") && result2.equals("success") && result3.equals("success")
 										&& result4.equals("success") && result5.equals("success")
 										&& result6.equals("success")) {
-									String result = new DAO().delete("testsuitedetails", "suiteid", selection[0]);
+									String result = new DAO().delete("testsuitedetails", "suiteid", slectedtestsuiteid);
 									if (result.equals("success")) {
 										selectedlist.clear();
 
@@ -561,13 +717,13 @@ public class NewTestSuiteController implements Initializable {
 										}
 
 										String result11 = new DAO().inserttestsuitedetails("testsuitedetails",
-												Integer.parseInt(selection[0]), selectedlist);
+												Integer.parseInt(slectedtestsuiteid), selectedlist);
 										if (result11.equals("success")) {
 											runmessage("Test Suite Updated Successfully...");
-											update.setVisible(false);
-											save.setVisible(true);
+											updateicon.setVisible(false);
+											saveicon.setVisible(true);
 											clearselection();
-											addexistingsuites();
+											populatetestsuites();
 										} else {
 											runmessage("Failed to Update. Please Try Again...");
 										}
@@ -589,19 +745,11 @@ public class NewTestSuiteController implements Initializable {
 		}
 	};
 
-	private void showslectedsuitedetails() {
-		String[] selection = testsuitecombo.getSelectionModel().getSelectedItem().split("-");
-		testsuitelistbyid = new DAO().gettestsuites("testsuites", selection[0], Loggedinuserdetails.defaultproject);
-		selectedlist = new DAO().gettestsuitedetails(selection[0]);
+	private void populatetestsuites() {		
+		testsuitelistbyid = new DAO().gettestsuites("testsuites", null, Loggedinuserdetails.defaultproject);		
 
 		if (testsuitelistbyid != null && testsuitelistbyid.size() > 0) {
-			relasetext.setText(testsuitelistbyid.get(0).getRelease());
-			cycletext.setText(testsuitelistbyid.get(0).getCycle());
-			tsnametext.setText(testsuitelistbyid.get(0).getTestsuitename());
-			selectedtype = testsuitelistbyid.get(0).getSelectiontype();
-		}
-		if (selectedlist != null && selectedlist.size() > 0) {
-			populateTable(selectedlist);
-		}
+			populateTestsuitesTable(testsuitelistbyid);
+		}		
 	}
 }
