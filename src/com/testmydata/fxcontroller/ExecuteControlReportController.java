@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.ControlReportExecutionBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
@@ -25,10 +24,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -37,26 +36,24 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ExecuteControlReportController implements Initializable {
 
 	private static ExecuteControlReportController userHome = null;
-	Stage myStage;
 	@FXML
-	private ImageView homeicon, runicon, processicon, pdficon, excelicon;
+	private ImageView closeicon, runicon, processicon, pdficon, excelicon;
 	@FXML
 	private JFXComboBox<String> modulecombo, rulecombo;
 	@FXML
-	private JFXTextField statustext, totaltext, passedtext, failedtext;
+	private JFXTextField statustext, totaltext, passedtext, failedtext, searchtext;
 	@FXML
 	private TableView<ControlReportExecutionBinaryTrade> crtable;
 	@FXML
 	private TableColumn<ControlReportExecutionBinaryTrade, String> module, rulename, stost, sttotr, trtol, ltot,
 			rulestatus, sourcecount, stagingcount, transcount, loadingcount, targetcount;
 	@FXML
-	private AnchorPane selectionanchor;
+	private AnchorPane actionanchor1;
 
 	ArrayList<ModulesBinaryTrade> moduleslist = new ArrayList<ModulesBinaryTrade>();
 	ArrayList<ControlReportExecutionBinaryTrade> ruleslist = new ArrayList<ControlReportExecutionBinaryTrade>();
@@ -65,21 +62,15 @@ public class ExecuteControlReportController implements Initializable {
 
 	static boolean executed = false;
 	static int batchid = 0, counttestcases = 0, it = 0, passcount = 0, failcount = 0, noofthreads = 0, batchsize = 0;
-	private static String lblStyle = null;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingmodules();
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		runicon.setImage(StaticImages.source_execute.getImage());
 		processicon.setImage(StaticImages.source_run.getImage());
 		pdficon.setImage(StaticImages.pdficon.getImage());
 		excelicon.setImage(StaticImages.excelicon.getImage());
-
-		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
-
-		module.setStyle("-fx-text-fill: #0c23ea; -fx-font-weight:bold;");
-		rulename.setStyle("-fx-text-fill: #40aa03; -fx-font-weight:bold;");
 
 		module.setCellValueFactory(new PropertyValueFactory<>("module"));
 		rulename.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -93,6 +84,75 @@ public class ExecuteControlReportController implements Initializable {
 		loadingcount.setCellValueFactory(new PropertyValueFactory<>("loadingcount"));
 		targetcount.setCellValueFactory(new PropertyValueFactory<>("targetcount"));
 		rulestatus.setCellValueFactory(new PropertyValueFactory<>("rulestatus"));
+
+		Label lbl = new Label(" Execute ");
+		lbl.setStyle(StaticImages.lblStyle);
+		lbl.setMinWidth(50);
+		lbl.setLayoutY(15);
+		lbl.setLayoutX(65);
+		lbl.setVisible(false);
+		actionanchor1.getChildren().add(lbl);
+
+		runicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				lbl.setVisible(true);
+			}
+		});
+		runicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				lbl.setVisible(false);
+			}
+		});
+		runicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				run();
+			}
+		});
+
+		Label excellbl = new Label(" Excel Report ");
+		excellbl.setStyle(StaticImages.lblStyle);
+		excellbl.setMinWidth(65);
+		excellbl.setLayoutY(15);
+		excellbl.setLayoutX(105);
+		excellbl.setVisible(false);
+		actionanchor1.getChildren().add(excellbl);
+
+		excelicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				excellbl.setVisible(true);
+			}
+		});
+		excelicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				excellbl.setVisible(false);
+			}
+		});
+
+		Label pdflbl = new Label("  PDF Report ");
+		pdflbl.setStyle(StaticImages.lblStyle);
+		pdflbl.setMinWidth(65);
+		pdflbl.setLayoutY(15);
+		pdflbl.setLayoutX(145);
+		pdflbl.setVisible(false);
+		actionanchor1.getChildren().add(pdflbl);
+
+		pdficon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				pdflbl.setVisible(true);
+			}
+		});
+		pdficon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				pdflbl.setVisible(false);
+			}
+		});
 
 		modulecombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -395,48 +455,6 @@ public class ExecuteControlReportController implements Initializable {
 			}
 		});
 
-		Label excellbl = new Label("  Excel Report");
-		excellbl.setStyle(lblStyle);
-		excellbl.setMinWidth(85);
-		excellbl.setLayoutY(70);
-		excellbl.setLayoutX(1080);
-		excellbl.setVisible(false);
-		selectionanchor.getChildren().add(excellbl);
-
-		excelicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				excellbl.setVisible(true);
-			}
-		});
-		excelicon.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				excellbl.setVisible(false);
-			}
-		});
-
-		Label pdflbl = new Label("  PDF Report");
-		pdflbl.setStyle(lblStyle);
-		pdflbl.setMinWidth(80);
-		pdflbl.setLayoutY(70);
-		pdflbl.setLayoutX(1110);
-		pdflbl.setVisible(false);
-		selectionanchor.getChildren().add(pdflbl);
-
-		pdficon.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				pdflbl.setVisible(true);
-			}
-		});
-		pdficon.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				pdflbl.setVisible(false);
-			}
-		});
-
 		pdficon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -473,19 +491,61 @@ public class ExecuteControlReportController implements Initializable {
 			}
 		});
 
-		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		searchtext.setOnAction(new EventHandler<ActionEvent>() {
+			@SuppressWarnings("unchecked")
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				ExecuteControlReportController nc = new ExecuteControlReportController();
-				scu.nullifyStrings(nc);
+			public void handle(ActionEvent event) {
+				String enteredString = searchtext.getText().toString();
+				if (enteredString != null) {
+					if (enteredString.length() >= 1) {
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+						if (modulecombo.getSelectionModel().getSelectedIndex() > 0
+								&& rulecombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData1 = filterByDescription(ruleslist,
+									modulecombo.getSelectionModel().getSelectedItem());
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData = filterByDescription(
+									filteredData1, enteredString);
+							populateTable(filteredData);
+						} else if (modulecombo.getSelectionModel().getSelectedIndex() > 0
+								&& rulecombo.getSelectionModel().getSelectedIndex() > 0) {
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData2 = filterByDescription(ruleslist,
+									modulecombo.getSelectionModel().getSelectedItem());
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData1 = filterByDescription(
+									filteredData2, rulecombo.getSelectionModel().getSelectedItem());
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData = filterByDescription(
+									filteredData1, enteredString);
+							populateTable(filteredData);
+						}
+
+					} else if (!(enteredString.length() >= 1)) {
+						if (modulecombo.getSelectionModel().getSelectedIndex() > 0
+								&& rulecombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData1 = filterByDescription(ruleslist,
+									modulecombo.getSelectionModel().getSelectedItem());
+
+							populateTable(filteredData1);
+						} else if (modulecombo.getSelectionModel().getSelectedIndex() > 0
+								&& rulecombo.getSelectionModel().getSelectedIndex() > 0) {
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData2 = filterByDescription(ruleslist,
+									modulecombo.getSelectionModel().getSelectedItem());
+							ArrayList<ControlReportExecutionBinaryTrade> filteredData1 = filterByDescription(
+									filteredData2, rulecombo.getSelectionModel().getSelectedItem());
+							populateTable(filteredData1);
+						}
+					}
+				}
+			}
+		});
+
+		// closing screen when clicks on home icon
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
+
+				ExecuteControlReportController nc = new ExecuteControlReportController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -608,15 +668,16 @@ public class ExecuteControlReportController implements Initializable {
 	@SuppressWarnings("rawtypes")
 	private ArrayList filterByDescription(ArrayList<ControlReportExecutionBinaryTrade> unFiltered, String str) {
 
-		ArrayList<ControlReportExecutionBinaryTrade> expens = new ArrayList<ControlReportExecutionBinaryTrade>();
+		ArrayList<ControlReportExecutionBinaryTrade> rules = new ArrayList<ControlReportExecutionBinaryTrade>();
 		for (ControlReportExecutionBinaryTrade bean : unFiltered) {
 			if (bean.getModule() != null && bean.getModule().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				rules.add(bean);
 			} else if (bean.getName() != null && bean.getName().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				rules.add(bean);
 			}
+
 		}
-		return expens;
+		return rules;
 	}
 
 	private void resetcounts(String totalcount) {

@@ -1686,8 +1686,6 @@ public class DAO {
 							+ "ts.id as testsuiteid from testsuites ts "
 							+ "join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on tc.moduleid = (select id from modules where module = "
 							+ "tsd.selecteditems) where ts.`type` = 'modules' and ts.`release` = '" + release
-							+ "' and DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= " + "'" + startdate
-							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') <= '" + enddate
 							+ "' and tc.status = 1 and tc.projectid = '" + projectid + "' group by tc.id union all "
 							+ "select tc.id, (select module from modules where  id = tc.moduleid)as module, tc.tsname, tc.tcname, tc.testcondition, tc.sqlscript, tc.executioncount, tc.passcount, "
 							+ "tc.failcount, (select userId from users where id = tc.executeduserid)as executedby, (select userId from users where id = "
@@ -1696,9 +1694,7 @@ public class DAO {
 							+ "executeddate, tc.message, tc.queryresult, tc.teststatus, ts.`release`, ts.`cycle`, ts.suitename, ts.id as testsuiteid "
 							+ "from testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id "
 							+ "join testcases tc on tc.tsname = tsd.selecteditems where ts.`type` = 'testscenario' and ts.`release` = '"
-							+ release + "' and " + "DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= '" + startdate
-							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') <= '" + enddate + "' "
-							+ "and tc.status = 1 and tc.projectid = '" + projectid
+							+ release + "' and tc.status = 1 and tc.projectid = '" + projectid
 							+ "' group by tc.id union all select tc.id, (select module from modules where  id = tc.moduleid)as module, tc.tsname, tc.tcname, tc.testcondition, tc.sqlscript, "
 							+ "tc.executioncount, tc.passcount, tc.failcount, (select userId from users where id = tc.executeduserid)as executedby, "
 							+ "(select userId from users where id = tc.updateduserid)as updatedby,  (select userId from users where id = tc.createdUserId)as createdby, "
@@ -1706,9 +1702,7 @@ public class DAO {
 							+ "DATE_FORMAT(tc.executeddate, '%Y-%m-%d')as executeddate, tc.message, tc.queryresult, tc.teststatus, ts.`release`, ts.`cycle`, "
 							+ "ts.suitename, ts.id as testsuiteid  from testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc "
 							+ "on tc.tcname = tsd.selecteditems where ts.`type` = 'testcase' and ts.`release` = '"
-							+ release + "' and DATE_FORMAT(tc.createdDate, '%Y-%m-%d') >= '" + startdate
-							+ "' and  DATE_FORMAT(tc.createdDate, '%Y-%m-%d') " + "<= '" + enddate
-							+ "' and tc.status = 1 and tc.projectid = '" + projectid
+							+ release + "' and tc.status = 1 and tc.projectid = '" + projectid
 							+ "' group by tc.id ) result group by tcname, cycle, tsname";
 				} else {
 					sql = "select id, (select module from modules where id = moduleid)as modulename, tsname, tcname, testcondition, sqlscript, executioncount, "
@@ -2092,7 +2086,7 @@ public class DAO {
 	}
 
 	public String createtestsuite(String tableName, long userId, String suitename, String type, String release,
-			String cycle, ArrayList<TestSuiteBinaryTrade> selecteditems) {
+			String cycle, ArrayList<TestSuiteBinaryTrade> selecteditems, int projectid) {
 
 		String returnValue = "failure";
 
@@ -2110,11 +2104,13 @@ public class DAO {
 				int isTableCreated = st.executeUpdate(createTabelSQL);
 
 				if (isTableCreated == 0)
-					returnValue = inserttestsuite(tableName, userId, suitename, type, release, cycle, selecteditems);
+					returnValue = inserttestsuite(tableName, userId, suitename, type, release, cycle, selecteditems,
+							projectid);
 				else
 					returnValue = "failure";
 			} else if (checktable.equals("existed")) {
-				returnValue = inserttestsuite(tableName, userId, suitename, type, release, cycle, selecteditems);
+				returnValue = inserttestsuite(tableName, userId, suitename, type, release, cycle, selecteditems,
+						projectid);
 			} else {
 				returnValue = "failure";
 			}
@@ -2127,18 +2123,19 @@ public class DAO {
 	}
 
 	public String inserttestsuite(String tableName, long userId, String suitename, String type, String release,
-			String cycle, ArrayList<TestSuiteBinaryTrade> selecteditems) {
+			String cycle, ArrayList<TestSuiteBinaryTrade> selecteditems, int projectid) {
 		String result = "failure";
 		try {
 
 			sql = "insert into " + tableName
-					+ " (suitename, `type`, createdby, `release`, cycle, createdDate) values( ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
+					+ " (suitename, `type`, createdby, `release`, cycle, createdDate, projectid) values( ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, suitename);
 			ps.setString(2, type);
 			ps.setLong(3, userId);
 			ps.setString(4, release);
 			ps.setString(5, cycle);
+			ps.setInt(6, projectid);
 
 			int status1 = ps.executeUpdate();
 			if (status1 == 1) {
@@ -2219,14 +2216,12 @@ public class DAO {
 	}
 
 	public String delete(String tablename, String wherecolumn, String columnvalue) {
-		String result = "failure";
+		String result = "success";
 		try {
 			sql = "delete from " + tablename + " where `" + wherecolumn + "` = '" + columnvalue + "'";
 			ps = con.prepareStatement(sql);
-			int status1 = ps.executeUpdate();
-			if (status1 == 1) {
-				result = "success";
-			}
+			ps.executeUpdate();
+
 			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2259,7 +2254,7 @@ public class DAO {
 							+ "on tsd.suiteid = ts.id join testcases tc on tc.tcname = tsd.selecteditems where tc.teststatus = 'Fail') when ts.type = 'testscenario' "
 							+ "then (select count(1) from testsuites ts join testsuitedetails tsd on tsd.suiteid = ts.id join testcases tc on "
 							+ "tc.tsname = tsd.selecteditems where tc.teststatus = 'Fail') end, "
-							+ "(select GROUP_CONCAT(selecteditems) from testsuitedetails where suiteid = ts.id) from testsuites ts where ts.status =1 and ts.projectid = '"
+							+ "(select GROUP_CONCAT(selecteditems) from testsuitedetails where suiteid = ts.id) as selecteditems from testsuites ts where ts.status =1 and ts.projectid = '"
 							+ projectid + "'";
 				} else {
 					String checktype1 = "select type from testsuites where id = '" + id + "' ";
@@ -2305,7 +2300,7 @@ public class DAO {
 					tsb.setTestcasescount(rs.getString(7));
 					tsb.setPasscount(rs.getString(8));
 					tsb.setFailcount(rs.getString(9));
-					if(id == null){
+					if (id == null) {
 						tsb.setSelecteditems(rs.getString(10));
 					}
 
@@ -2337,26 +2332,28 @@ public class DAO {
 		return ts;
 	}
 
-//	public ArrayList<TestSuiteBinaryTrade> gettestsuitedetails(String id) {
-//		ArrayList<TestSuiteBinaryTrade> ts = new ArrayList<TestSuiteBinaryTrade>();
-//		try {
-//			sql = "select selecteditems from testsuitedetails where suiteid = '" + id + "'";
-//			st = con.createStatement();
-//			rs = st.executeQuery(sql);
-//			while (rs.next()) {
-//				TestSuiteBinaryTrade td = new TestSuiteBinaryTrade();
-//				td.setSelecteditems(rs.getString(1));
-//
-//				ts.add(td);
-//			}
-//			rs.close();
-//			st.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			ts = null;
-//		}
-//		return ts;
-//	}
+	// public ArrayList<TestSuiteBinaryTrade> gettestsuitedetails(String id) {
+	// ArrayList<TestSuiteBinaryTrade> ts = new
+	// ArrayList<TestSuiteBinaryTrade>();
+	// try {
+	// sql = "select selecteditems from testsuitedetails where suiteid = '" + id
+	// + "'";
+	// st = con.createStatement();
+	// rs = st.executeQuery(sql);
+	// while (rs.next()) {
+	// TestSuiteBinaryTrade td = new TestSuiteBinaryTrade();
+	// td.setSelecteditems(rs.getString(1));
+	//
+	// ts.add(td);
+	// }
+	// rs.close();
+	// st.close();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// ts = null;
+	// }
+	// return ts;
+	// }
 
 	public ArrayList<FieldtoFieldBinaryTrade> getSqlScriptforTestSuites(String id, String type) {
 
@@ -4031,5 +4028,27 @@ public class DAO {
 			plist = null;
 		}
 		return plist;
+	}
+
+	public String getModuleorTS(String selectclause, String whereclause, String whereclauseanswer) {
+		String result = null;
+		try {
+			sql = "select " + selectclause + " from testcases ts where " + whereclause + " = '" + whereclauseanswer
+					+ "' limit 1";
+
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				result = rs.getString(1);
+			}
+			rs.close();
+			st.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = null;
+		}
+		return result;
 	}
 }

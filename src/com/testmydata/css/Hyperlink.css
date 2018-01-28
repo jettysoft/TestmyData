@@ -1,0 +1,13 @@
+.hyperlink, .hyperlink:active, .hyperlink:unfocus  {   
+    -fx-text-fill : #ffed4f;
+    -fx-underline : false;
+    -fx-border-radius : 0em;
+    -fx-background-color :  #162a4c;  
+}
+
+.hyperlink:hover {
+	-fx-text-fill : #ffffff;	
+	-fx-underline : true;
+	-fx-border-radius : 0em;
+	-fx-background-color :  #162a4c;	  
+}

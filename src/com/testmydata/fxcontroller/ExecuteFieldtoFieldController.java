@@ -7,14 +7,11 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.FieldtoFieldBinaryTrade;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
@@ -34,7 +31,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -44,30 +40,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ExecuteFieldtoFieldController implements Initializable {
 
 	private static ExecuteFieldtoFieldController userHome = null;
-	Stage myStage;
+
 	@FXML
-	private ImageView homeicon, closeicon, searchicon, excelicon, pdficon, runicon, processicon;
+	private ImageView closeicon, excelicon, pdficon, runicon, processicon;
 	@FXML
 	private JFXComboBox<String> releasecombo, cyclecombo, tscombo;
 	@FXML
 	private JFXTextField totaltext, passedtext, failedtext, searchtext, statustext;
-	@FXML
-	private JFXButton searchbuttonlabel;
-	@FXML
-	private JFXDatePicker startdate, enddate;
 	@FXML
 	private TableView<FieldtoFieldBinaryTrade> tctable;
 	@FXML
 	private TableColumn<FieldtoFieldBinaryTrade, String> release, cycle, testsuite, id, module, testscenario, testcase,
 			sqlscript, messages, queryresult, teststatus;
 	@FXML
-	private AnchorPane searchanchor, selectionanchor;
+	private AnchorPane actionanchor1;
 	private static int passcount = 0, failcount = 0, batchid = 0, it = 0, counttestcases = 0;
 
 	ArrayList<TestSuiteBinaryTrade> releaselist = new ArrayList<TestSuiteBinaryTrade>();
@@ -76,28 +67,23 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	ArrayList<FieldtoFieldBinaryTrade> testcaselist = new ArrayList<FieldtoFieldBinaryTrade>();
 	ArrayList<String> reportcolumnlist = new ArrayList<String>();
 
-	private static String lblStyle = null;
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setreleasecombo();
-		setdatesinitially();
-		homeicon.setImage(StaticImages.homeicon.getImage());
+
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		runicon.setImage(StaticImages.source_execute.getImage());
 		processicon.setImage(StaticImages.source_run.getImage());
 		pdficon.setImage(StaticImages.pdficon.getImage());
 		excelicon.setImage(StaticImages.excelicon.getImage());
-		closeicon.setImage(StaticImages.wrong_tick.getImage());
-		searchicon.setImage(StaticImages.searchicon.getImage());
 
-		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
-		Label lbl = new Label("    Execute");
-		lbl.setStyle(lblStyle);
-		lbl.setMinWidth(70);
-		lbl.setLayoutY(75);
-		lbl.setLayoutX(650);
+		Label lbl = new Label(" Execute ");
+		lbl.setStyle(StaticImages.lblStyle);
+		lbl.setMinWidth(50);
+		lbl.setLayoutY(15);
+		lbl.setLayoutX(65);
 		lbl.setVisible(false);
-		selectionanchor.getChildren().add(lbl);
+		actionanchor1.getChildren().add(lbl);
 
 		runicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -118,34 +104,13 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label searchlbl = new Label("     Search");
-		searchlbl.setStyle(lblStyle);
-		searchlbl.setMinWidth(70);
-		searchlbl.setLayoutY(25);
-		searchlbl.setLayoutX(35);
-		searchlbl.setVisible(false);
-		selectionanchor.getChildren().add(searchlbl);
-
-		searchicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				searchlbl.setVisible(true);
-			}
-		});
-		searchicon.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent t) {
-				searchlbl.setVisible(false);
-			}
-		});
-
-		Label excellbl = new Label("  Excel Report");
-		excellbl.setStyle(lblStyle);
-		excellbl.setMinWidth(85);
-		excellbl.setLayoutY(70);
-		excellbl.setLayoutX(1080);
+		Label excellbl = new Label(" Excel Report ");
+		excellbl.setStyle(StaticImages.lblStyle);
+		excellbl.setMinWidth(65);
+		excellbl.setLayoutY(15);
+		excellbl.setLayoutX(105);
 		excellbl.setVisible(false);
-		selectionanchor.getChildren().add(excellbl);
+		actionanchor1.getChildren().add(excellbl);
 
 		excelicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -160,13 +125,13 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label pdflbl = new Label("  PDF Report");
-		pdflbl.setStyle(lblStyle);
-		pdflbl.setMinWidth(85);
-		pdflbl.setLayoutY(70);
-		pdflbl.setLayoutX(1105);
+		Label pdflbl = new Label("  PDF Report ");
+		pdflbl.setStyle(StaticImages.lblStyle);
+		pdflbl.setMinWidth(65);
+		pdflbl.setLayoutY(15);
+		pdflbl.setLayoutX(145);
 		pdflbl.setVisible(false);
-		selectionanchor.getChildren().add(pdflbl);
+		actionanchor1.getChildren().add(pdflbl);
 
 		pdficon.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -402,17 +367,71 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				});
 
 		searchtext.setOnAction(new EventHandler<ActionEvent>() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void handle(ActionEvent event) {
 				String enteredString = searchtext.getText().toString();
-				if (enteredString != null && !enteredString.isEmpty()) {
+				if (enteredString != null) {
 					if (enteredString.length() >= 1) {
-						@SuppressWarnings("unchecked")
-						ArrayList<FieldtoFieldBinaryTrade> filteredData = filterByDescription(testcaselist,
-								enteredString);
-						populateTable(filteredData);
-					} else if (enteredString != null && enteredString.length() == 0) {
-						populateTable(testcaselist);
+						if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() == 0
+								&& tscombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData = filterByDescription(filteredData1,
+									enteredString);
+							populateTable(filteredData);
+						} else if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() > 0
+								&& tscombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData2 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(filteredData2,
+									cyclecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData = filterByDescription(filteredData1,
+									enteredString);
+							populateTable(filteredData);
+						} else if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() > 0
+								&& tscombo.getSelectionModel().getSelectedIndex() > 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData3 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData2 = filterByDescription(filteredData3,
+									cyclecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(filteredData2,
+									tscombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData = filterByDescription(filteredData1,
+									enteredString);
+							populateTable(filteredData);
+						}
+					} else if (!(enteredString.length() >= 1)) {
+						if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() == 0
+								&& tscombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+
+							populateTable(filteredData1);
+						} else if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() > 0
+								&& tscombo.getSelectionModel().getSelectedIndex() == 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData2 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(filteredData2,
+									cyclecombo.getSelectionModel().getSelectedItem());
+
+							populateTable(filteredData1);
+						} else if (releasecombo.getSelectionModel().getSelectedIndex() > 0
+								&& cyclecombo.getSelectionModel().getSelectedIndex() > 0
+								&& tscombo.getSelectionModel().getSelectedIndex() > 0) {
+							ArrayList<FieldtoFieldBinaryTrade> filteredData3 = filterByDescription(testcaselist,
+									releasecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData2 = filterByDescription(filteredData3,
+									cyclecombo.getSelectionModel().getSelectedItem());
+							ArrayList<FieldtoFieldBinaryTrade> filteredData1 = filterByDescription(filteredData2,
+									tscombo.getSelectionModel().getSelectedItem());
+							populateTable(filteredData1);
+						}
 					}
 				}
 			}
@@ -453,36 +472,17 @@ public class ExecuteFieldtoFieldController implements Initializable {
 								null, QADefaultServerDetails.id));
 			}
 		});
-		searchicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				searchanchor.setVisible(true);
-				searchbuttonlabel.setVisible(true);
-			}
-		});
-
-		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				searchtext.clear();
-				searchanchor.setVisible(false);
-				searchbuttonlabel.setVisible(false);
-			}
-		});
 
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
-			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				ExecuteFieldtoFieldController nc = new ExecuteFieldtoFieldController();
-				scu.nullifyStrings(nc);
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+			@Override
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
+
+				ExecuteFieldtoFieldController nc = new ExecuteFieldtoFieldController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -490,11 +490,6 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	// Method used to get data from previous class
 	public static ExecuteFieldtoFieldController getInstance() {
 		return userHome;
-	}
-
-	private void setdatesinitially() {
-		startdate.setValue(CommonFunctions.getdateforpicker(3660));
-		enddate.setValue(CommonFunctions.getdateforpicker(0));
 	}
 
 	// Method to display the Messages
@@ -597,8 +592,8 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			if (release != null) {
 				removePrevioustestcasesfromtable();
 
-				testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-						enddate.getValue().toString(), release, Loggedinuserdetails.defaultproject);
+				testcaselist = new DAO().getTestCasesDetails("testcases", null, null, release,
+						Loggedinuserdetails.defaultproject);
 			}
 
 			if (testcaselist == null || testcaselist.size() == 0) {
@@ -650,33 +645,33 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	@SuppressWarnings("rawtypes")
 	private ArrayList filterByDescription(ArrayList<FieldtoFieldBinaryTrade> unFiltered, String str) {
 
-		ArrayList<FieldtoFieldBinaryTrade> expens = new ArrayList<FieldtoFieldBinaryTrade>();
+		ArrayList<FieldtoFieldBinaryTrade> suites = new ArrayList<FieldtoFieldBinaryTrade>();
 		for (FieldtoFieldBinaryTrade bean : unFiltered) {
 			if (bean.getModulename() != null && bean.getModulename().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getTsname() != null && bean.getTsname().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getTcname() != null && bean.getTcname().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getSqlscript() != null && bean.getSqlscript().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getQueryresult() != null
 					&& bean.getQueryresult().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getTeststatus() != null && bean.getTeststatus().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getRelease() != null && bean.getRelease().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getCycle() != null && bean.getCycle().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getTestsuitename() != null
 					&& bean.getTestsuitename().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			} else if (bean.getId() != null && bean.getId().toLowerCase().contains(str.toLowerCase())) {
-				expens.add(bean);
+				suites.add(bean);
 			}
 		}
-		return expens;
+		return suites;
 	}
 
 	private void removePrevioustestcasesfromtable() {
@@ -711,6 +706,9 @@ public class ExecuteFieldtoFieldController implements Initializable {
 		if (tctable.getItems().size() > 0) {
 			resetcounts(Integer.toString(tctable.getItems().size()));
 
+			runicon.setVisible(false);
+			processicon.setVisible(true);
+
 			service.reset();
 			service.start();
 
@@ -718,7 +716,7 @@ public class ExecuteFieldtoFieldController implements Initializable {
 		} else {
 			resetcounts(Integer.toString(tctable.getItems().size()));
 			runmessage(
-					"Please Select Test Cases for Execution.\n\nNote : Please Choose Release or Cycles or Test Suites or By Date Range from Search...");
+					"Please Select Test Cases for Execution.\n\nNote : Please Choose Release or Cycles or Test Suites...");
 		}
 	}
 
@@ -793,8 +791,10 @@ public class ExecuteFieldtoFieldController implements Initializable {
 						});
 						latch.await();
 					}
-					statustext.setText("Execution Completed.");
+					statustext.setText("Execution Completed");
 
+					processicon.setVisible(false);
+					runicon.setVisible(true);
 					excelicon.setVisible(true);
 					pdficon.setVisible(true);
 
@@ -807,9 +807,8 @@ public class ExecuteFieldtoFieldController implements Initializable {
 
 	@SuppressWarnings("unchecked")
 	private void showtablenow() {
-		testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-				enddate.getValue().toString(), releasecombo.getSelectionModel().getSelectedItem(),
-				Loggedinuserdetails.defaultproject);
+		testcaselist = new DAO().getTestCasesDetails("testcases", null, null,
+				releasecombo.getSelectionModel().getSelectedItem(), Loggedinuserdetails.defaultproject);
 
 		if (releasecombo.getSelectionModel().getSelectedIndex() > 0
 				&& cyclecombo.getSelectionModel().getSelectedIndex() == 0

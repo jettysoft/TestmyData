@@ -112,7 +112,7 @@ public class DashBoardController implements Initializable {
 			changepasswordicon, emailsettingsicon, qaservericon;
 
 	public int localUserLevel = 0;
-	
+
 	public Date activatedDate = null;
 	Stage myStage;
 	SubScene ss;
@@ -506,21 +506,21 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				
+
 				try {
 					boolean exist = false;
-					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
 						Node node = mainanchor.getChildren().get(i);
-						if(node.getId()!=null &&"controlpane".equals(node.getId())){
+						if (node.getId() != null && "controlpane".equals(node.getId())) {
 							exist = true;
-							if(i!=mainanchor.getChildren().size()-1){
-							mainanchor.getChildren().remove(i);
-							mainanchor.getChildren().add(node);
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
 							}
 							break;
 						}
-					}					
-					if(!exist){
+					}
+					if (!exist) {
 						String Screenpath = "/com/testmydata/fxmlnew/NewControlReportRule.fxml";
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 						Region root = (Region) fxmlLoader.load();
@@ -546,27 +546,27 @@ public class DashBoardController implements Initializable {
 	public void nowfieldtofield() {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {				
+			public void run() {
 				try {
 					boolean exist = false;
-					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
 						Node node = mainanchor.getChildren().get(i);
-						if(node.getId()!=null &&"fieldpane".equals(node.getId())){
+						if (node.getId() != null && "fieldpane".equals(node.getId())) {
 							exist = true;
-							if(i!=mainanchor.getChildren().size()-1){
-							mainanchor.getChildren().remove(i);
-							mainanchor.getChildren().add(node);
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
 							}
 							break;
-						}						
-					}					
-					if(!exist){
+						}
+					}
+					if (!exist) {
 						String Screenpath = "/com/testmydata/fxmlnew/newfieldtofield.fxml";
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 						Region root = (Region) fxmlLoader.load();
 						mainanchor.getChildren().add(root);
 					}
-					
+
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -587,24 +587,24 @@ public class DashBoardController implements Initializable {
 	public void nowprojectaccess() {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {				
+			public void run() {
 				// fxmlLoader.setController(this);
 				try {
 					boolean exist = false;
-					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
 						Node node = mainanchor.getChildren().get(i);
-						if(node.getId()!=null &&"projectspane".equals(node.getId())){
+						if (node.getId() != null && "projectspane".equals(node.getId())) {
 							exist = true;
-							if(i!=mainanchor.getChildren().size()-1){
-							mainanchor.getChildren().remove(i);
-							mainanchor.getChildren().add(node);
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
 							}
 							break;
 						}
-						
+
 					}
-					
-					if(!exist){
+
+					if (!exist) {
 						String Screenpath = "/com/testmydata/fxmlnew/projects.fxml";
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 						Region root = (Region) fxmlLoader.load();
@@ -614,11 +614,11 @@ public class DashBoardController implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		});		
+		});
 	}
 
 	@FXML
-	private void newtestsuite() {		
+	private void newtestsuite() {
 		if (Loggedinuserdetails.newts == 1) {
 			runnewtestsuite();
 		} else {
@@ -629,24 +629,24 @@ public class DashBoardController implements Initializable {
 	public void runnewtestsuite() {
 		Platform.runLater(new Runnable() {
 			@Override
-			public void run() {				
+			public void run() {
 				// fxmlLoader.setController(this);
 				try {
 					boolean exist = false;
-					for(int i=mainanchor.getChildren().size()-1;i>=0;i--){
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
 						Node node = mainanchor.getChildren().get(i);
-						if(node.getId()!=null &&"newtestsuitepane".equals(node.getId())){
+						if (node.getId() != null && "newtestsuitepane".equals(node.getId())) {
 							exist = true;
-							if(i!=mainanchor.getChildren().size()-1){
-							mainanchor.getChildren().remove(i);
-							mainanchor.getChildren().add(node);
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
 							}
 							break;
 						}
-						
+
 					}
-					
-					if(!exist){
+
+					if (!exist) {
 						String Screenpath = "/com/testmydata/fxmlnew/NewTestSuite.fxml";
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 						Region root = (Region) fxmlLoader.load();
@@ -656,7 +656,7 @@ public class DashBoardController implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		});		
+		});
 	}
 
 	@FXML
@@ -669,17 +669,34 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void executecontrolreport() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "executecontrolreport";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						ExecuteControlReportController.getInstance();
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "executeexecrpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
 					}
-				});
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/ExecuteControlReport.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -694,17 +711,34 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void executefieldtofield() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "executefieldtofield";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						ExecuteFieldtoFieldController.getInstance();
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "execyeffpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
 					}
-				});
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/ExecuteFieldtoField.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -745,17 +779,34 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runtestreports() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "testreports";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						TestReportsController.getInstance();
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "downloadpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
 					}
-				});
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/testreports.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -1254,120 +1305,125 @@ public class DashBoardController implements Initializable {
 
 		@Override
 		protected void updateItem(Module module, boolean empty) {
-			super.updateItem(module, empty); // To change body of generated
-												// methods, choose Tools |
-												// Templates.
-			setText(null);
-			setGraphic(null);
-			hbox.getChildren().clear();
-			if (module != null && !empty) {
-				lbl_module.setText(module.getModulename());
-				lbl_pass.setText(module.getPass() + "%");
-				lbl_fail.setText(module.getFail() + "%");
+			try {
+				super.updateItem(module, empty); // To change body of generated
+													// methods, choose Tools |
+													// Templates.
+				setText(null);
+				setGraphic(null);
+				hbox.getChildren().clear();
+				if (module != null && !empty) {
+					lbl_module.setText(module.getModulename());
+					lbl_pass.setText(module.getPass() + "%");
+					lbl_fail.setText(module.getFail() + "%");
 
-				if (module.IsExecute()) {
-					hbox.getChildren().addAll(hbox_title, icon_run);
-				} else {
-					if (module.getBatchId() == new DAO().getcrmaxbatchid()) {
-						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					if (module.IsExecute()) {
+						hbox.getChildren().addAll(hbox_title, icon_run);
 					} else {
-						hbox.getChildren().addAll(hbox_title, icon_execute);
+						if (module.getBatchId() == new DAO().getcrmaxbatchid()) {
+							hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+						} else {
+							hbox.getChildren().addAll(hbox_title, icon_execute);
+						}
 					}
+
+					for (int j = 0; j < module.getRules().length; j++) {
+						Rule rules = module.getRules()[j];
+						rules.setModule(module);
+					}
+
+					icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@SuppressWarnings("unchecked")
+						@Override
+						public void handle(MouseEvent event) {
+
+							int currentbatchid = new DAO().getcrmaxbatchid() + 1;
+							module.setBatchId(currentbatchid);
+
+							for (int i = 0; i < module.getRules().length; i++) {
+								Rule rule = module.getRules()[i];
+								rule.setIsExecute(true);
+								rule.setBatchId(currentbatchid);
+							}
+
+							JFXListView<Module> listField = (JFXListView<Module>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_control");
+							JFXListView<Cycle> listFieldData = (JFXListView<Cycle>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_data");
+							JFXListView<Rule> listControlData = (JFXListView<Rule>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_control_data");
+							AnchorPane pane = (AnchorPane) ((ImageView) event.getSource()).getScene()
+									.lookup("#resultspane");
+							Label label = (Label) ((ImageView) event.getSource()).getScene().lookup("#lbl_data_title");
+
+							pane.setVisible(true);
+							listFieldData.setVisible(false);
+							listControlData.setVisible(true);
+							listControlData.getItems().clear();
+							listFieldData.getItems().clear();
+							listControlData.refresh();
+							listControlData.setItems(FXCollections.observableArrayList(module.getRules()));
+							label.setText(module.getModulename().toUpperCase());
+							label.setStyle(
+									"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
+
+							ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
+							cre.modulerun(module.getModulename(), currentbatchid, listField, listControlData, module);
+
+							if (hbox.getChildren().size() == 4) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+
+							} else if (hbox.getChildren().size() == 2) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+							}
+						}
+					});
+					pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/ControlReport/PDF").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteControlReportController ecr = new ExecuteControlReportController();
+							if (crcolumnlist != null || crcolumnlist.size() > 0) {
+								crcolumnlist.clear();
+							}
+							crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/PDF", "pdf",
+									crcolumnlist,
+									new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
+											crcolumnlist.size(), QADefaultServerDetails.id));
+						}
+					});
+					excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/ControlReport/Excel").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteControlReportController ecr = new ExecuteControlReportController();
+							if (crcolumnlist != null || crcolumnlist.size() > 0) {
+								crcolumnlist.clear();
+							}
+							crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/Excel", "excel",
+									crcolumnlist,
+									new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
+											crcolumnlist.size(), QADefaultServerDetails.id));
+						}
+					});
+
+					setGraphic(hbox);
 				}
-
-				for (int j = 0; j < module.getRules().length; j++) {
-					Rule rules = module.getRules()[j];
-					rules.setModule(module);
-				}
-
-				icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@SuppressWarnings("unchecked")
-					@Override
-					public void handle(MouseEvent event) {
-
-						int currentbatchid = new DAO().getcrmaxbatchid() + 1;
-						module.setBatchId(currentbatchid);
-
-						for (int i = 0; i < module.getRules().length; i++) {
-							Rule rule = module.getRules()[i];
-							rule.setIsExecute(true);
-							rule.setBatchId(currentbatchid);
-						}
-
-						JFXListView<Module> listField = (JFXListView<Module>) ((ImageView) event.getSource()).getScene()
-								.lookup("#list_control");
-						JFXListView<Cycle> listFieldData = (JFXListView<Cycle>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_data");
-						JFXListView<Rule> listControlData = (JFXListView<Rule>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_control_data");
-						AnchorPane pane = (AnchorPane) ((ImageView) event.getSource()).getScene()
-								.lookup("#resultspane");
-						Label label = (Label) ((ImageView) event.getSource()).getScene().lookup("#lbl_data_title");
-
-						pane.setVisible(true);
-						listFieldData.setVisible(false);
-						listControlData.setVisible(true);
-						listControlData.getItems().clear();
-						listFieldData.getItems().clear();
-						listControlData.refresh();
-						listControlData.setItems(FXCollections.observableArrayList(module.getRules()));
-						label.setText(module.getModulename().toUpperCase());
-						label.setStyle(
-								"-fx-background-color: #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 18pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
-
-						ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
-						cre.modulerun(module.getModulename(), currentbatchid, listField, listControlData, module);
-
-						if (hbox.getChildren().size() == 4) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-
-						} else if (hbox.getChildren().size() == 2) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-						}
-					}
-				});
-				pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/ControlReport/PDF").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteControlReportController ecr = new ExecuteControlReportController();
-						if (crcolumnlist != null || crcolumnlist.size() > 0) {
-							crcolumnlist.clear();
-						}
-						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/PDF", "pdf",
-								crcolumnlist, new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										crcolumnlist.size(), QADefaultServerDetails.id));
-					}
-				});
-				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/ControlReport/Excel").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteControlReportController ecr = new ExecuteControlReportController();
-						if (crcolumnlist != null || crcolumnlist.size() > 0) {
-							crcolumnlist.clear();
-						}
-						crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Control Report", module.getBatchId(), "Reports/ControlReport/Excel", "excel",
-								crcolumnlist, new DAO().getcrresults(module.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										crcolumnlist.size(), QADefaultServerDetails.id));
-					}
-				});
-
-				setGraphic(hbox);
+			} catch (Exception e) {
 			}
 		}
 
@@ -1432,196 +1488,44 @@ public class DashBoardController implements Initializable {
 
 		@Override
 		protected void updateItem(Cycle cycle, boolean empty) {
-			super.updateItem(cycle, empty); // To change body of generated
-											// methods, choose Tools |
-											// Templates.
-			setText(null);
-			setGraphic(null);
-			hbox.getChildren().clear();
-			hbox_title.getChildren().clear();
-			if (cycle != null && !empty) {
-				hbox_title.getChildren().addAll(rec, lbl_cycle, lbl_pass, lbl_fail);
+			try {
+				super.updateItem(cycle, empty); // To change body of generated
+												// methods, choose Tools |
+												// Templates.
+				setText(null);
+				setGraphic(null);
+				hbox.getChildren().clear();
+				hbox_title.getChildren().clear();
+				if (cycle != null && !empty) {
+					hbox_title.getChildren().addAll(rec, lbl_cycle, lbl_pass, lbl_fail);
 
-				if (cycle.IsExecute()) {
-					hbox.getChildren().addAll(hbox_title, icon_run);
-				} else {
-					if (cycle.getBatchId() == new DAO().getmaxbatchid()) {
-						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					if (cycle.IsExecute()) {
+						hbox.getChildren().addAll(hbox_title, icon_run);
 					} else {
-						hbox.getChildren().addAll(hbox_title, icon_execute);
-					}
-				}
-
-				vbox.getChildren().clear();
-				vbox.getChildren().addAll(hbox);
-				vbox.setSpacing(5);
-
-				icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@SuppressWarnings("unchecked")
-					@Override
-					public void handle(MouseEvent event) {
-
-						int currentbatchid = new DAO().getmaxbatchid() + 1;
-						cycle.setBatchId(currentbatchid);
-						cycle.setIsExecute(true);
-						for (int j = 0; j < cycle.getTestsuites().length; j++) {
-							TestSuite testSuite = cycle.getTestsuites()[j];
-							testSuite.setIsExecute(true);
-							testSuite.setBatchId(currentbatchid);
-						}
-
-						JFXListView<Release> listField = (JFXListView<Release>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_field");
-						JFXListView<Cycle> listData = (JFXListView<Cycle>) ((ImageView) event.getSource()).getScene()
-								.lookup("#list_data");
-
-						listField.refresh();
-						listData.refresh();
-
-						FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
-
-						fs.cyclerun(cycle.getRelease().getName(), cycle.getCyname(), currentbatchid, listField,
-								listData, cycle.getRelease(), cycle);
-
-						if (hbox.getChildren().size() == 4) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-
-						} else if (hbox.getChildren().size() == 2) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-						}
-					}
-				});
-
-				pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
-						if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
-							reportcolumnlist.addAll(effc.addcolumnsforreport());
-						}
-
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Test Suite", cycle.getBatchId(), "Reports/TestSuites/PDF", "pdf", reportcolumnlist,
-								new DAO().getfieldresults(cycle.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
-										reportcolumnlist.size(), null, QADefaultServerDetails.id));
-
-					}
-				});
-				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
-						if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
-							reportcolumnlist.addAll(effc.addcolumnsforreport());
-						}
-
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Test Suite", cycle.getBatchId(), "Reports/TestSuites/Excel", "excel",
-								reportcolumnlist,
-								new DAO().getfieldresults(cycle.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
-										reportcolumnlist.size(), null, QADefaultServerDetails.id));
-					}
-				});
-
-				lbl_cycle.setStyle(
-						"-fx-background-radius: 0.5em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
-				rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #162a4c");
-
-				lbl_cycle.setText(cycle.getCyname());
-				lbl_pass.setText(cycle.getPass() + "%");
-				lbl_fail.setText(cycle.getFail() + "%");
-
-				for (int i = 0; i < cycle.getTestsuites().length; i++) {
-
-					TestSuite testSuite = cycle.getTestsuites()[i];
-
-					HBox hbox_title_testSuite = new HBox();
-					HBox hbox_percent_testSuite = new HBox();
-					hbox_percent_testSuite.setPadding(new Insets(0, 0, 0, 0));
-					hbox_title_testSuite.setPadding(new Insets(0, 0, 0, 25));
-					hbox_percent_testSuite.setSpacing(2);
-					hbox_title_testSuite.setSpacing(5);
-					Label lbl_testSuite = new Label("");
-					Label lbl_pass_testSuite = new Label("");
-					Label lbl_fail_testSuite = new Label("");
-					Label rec = new Label("");
-					lbl_testSuite.setPadding(new Insets(0, 5, 0, 5));
-					lbl_testSuite.setMaxWidth(150);
-					lbl_testSuite.setMinWidth(150);
-					lbl_pass_testSuite.setPadding(new Insets(2, 0, 2, 0));
-					lbl_fail_testSuite.setPadding(new Insets(2, 0, 2, 0));
-					lbl_pass_testSuite.setMaxWidth(40);
-					lbl_pass_testSuite.setMinWidth(40);
-					lbl_fail_testSuite.setMaxWidth(40);
-					lbl_fail_testSuite.setMinWidth(40);
-					rec.setPadding(new Insets(1, 2, 1, 2));
-					lbl_pass_testSuite.setStyle(
-							"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
-					lbl_fail_testSuite.setStyle(
-							"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
-					lbl_testSuite.setStyle(
-							"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
-
-					lbl_testSuite.setText(testSuite.getTsname());
-					lbl_pass_testSuite.setText(testSuite.getPass() + "%");
-					lbl_fail_testSuite.setText(testSuite.getFail() + "%");
-
-					ImageView icon_execute1 = new ImageView(StaticImages.source_execute.getImage());
-					ImageView icon_run1 = new ImageView(StaticImages.source_run.getImage());
-					ImageView pdficon1 = new ImageView(StaticImages.pdficon.getImage());
-					ImageView excelicon1 = new ImageView(StaticImages.excelicon.getImage());
-
-					icon_execute1.setFitHeight(25.0);
-					icon_execute1.setFitWidth(25.0);
-					icon_run1.setFitHeight(25.0);
-					icon_run1.setFitWidth(25.0);
-					pdficon1.setFitHeight(25.0);
-					pdficon1.setFitWidth(20.0);
-					excelicon1.setFitHeight(25.0);
-					excelicon1.setFitWidth(23.0);
-					icon_execute1.setCursor(Cursor.HAND);
-					pdficon1.setCursor(Cursor.HAND);
-					excelicon1.setCursor(Cursor.HAND);
-					rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
-					hbox_percent_testSuite.getChildren().addAll(rec, lbl_testSuite, lbl_pass_testSuite,
-							lbl_fail_testSuite);
-
-					if (testSuite.IsExecute()) {
-						hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_run1);
-					} else {
-						if (testSuite.getBatchId() == new DAO().getmaxbatchid()) {
-							hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1, pdficon1,
-									excelicon1);
+						if (cycle.getBatchId() == new DAO().getmaxbatchid()) {
+							hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
 						} else {
-							hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1);
+							hbox.getChildren().addAll(hbox_title, icon_execute);
 						}
 					}
-					vbox.getChildren().add(hbox_title_testSuite);
 
-					icon_execute1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					vbox.getChildren().clear();
+					vbox.getChildren().addAll(hbox);
+					vbox.setSpacing(5);
+
+					icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@SuppressWarnings("unchecked")
 						@Override
 						public void handle(MouseEvent event) {
-							icon_execute1.setVisible(false);
-							pdficon1.setVisible(false);
-							excelicon1.setVisible(false);
-							icon_run1.setVisible(true);
 
-							int currentbatchid1 = new DAO().getmaxbatchid() + 1;
-							testSuite.setIsExecute(true);
-							testSuite.setBatchId(currentbatchid1);
+							int currentbatchid = new DAO().getmaxbatchid() + 1;
+							cycle.setBatchId(currentbatchid);
+							cycle.setIsExecute(true);
+							for (int j = 0; j < cycle.getTestsuites().length; j++) {
+								TestSuite testSuite = cycle.getTestsuites()[j];
+								testSuite.setIsExecute(true);
+								testSuite.setBatchId(currentbatchid);
+							}
 
 							JFXListView<Release> listField = (JFXListView<Release>) ((ImageView) event.getSource())
 									.getScene().lookup("#list_field");
@@ -1633,26 +1537,23 @@ public class DashBoardController implements Initializable {
 
 							FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
 
-							fs.testsuiterun(cycle.getRelease().getName(), cycle.getCyname(), testSuite.getTsname(),
-									currentbatchid1, listField, listData, cycle.getRelease(), cycle, testSuite);
+							fs.cyclerun(cycle.getRelease().getName(), cycle.getCyname(), currentbatchid, listField,
+									listData, cycle.getRelease(), cycle);
 
-							if (hbox_title_testSuite.getChildren().size() == 4) {
-								hbox_title_testSuite.getChildren()
-										.remove(hbox_title_testSuite.getChildren().size() - 1);
-								hbox_title_testSuite.getChildren()
-										.remove(hbox_title_testSuite.getChildren().size() - 1);
-								hbox_title_testSuite.getChildren()
-										.remove(hbox_title_testSuite.getChildren().size() - 1);
-								hbox_title_testSuite.getChildren().add(icon_run1);
+							if (hbox.getChildren().size() == 4) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
 
-							} else if (hbox_title_testSuite.getChildren().size() == 2) {
-								hbox_title_testSuite.getChildren()
-										.remove(hbox_title_testSuite.getChildren().size() - 1);
-								hbox_title_testSuite.getChildren().add(icon_run1);
+							} else if (hbox.getChildren().size() == 2) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
 							}
 						}
 					});
-					pdficon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+					pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
@@ -1665,15 +1566,14 @@ public class DashBoardController implements Initializable {
 							}
 
 							ReportsDownloader rd = new ReportsDownloader();
-							rd.download("Test Suite", testSuite.getBatchId(), "Reports/TestSuites/PDF", "pdf",
+							rd.download("Test Suite", cycle.getBatchId(), "Reports/TestSuites/PDF", "pdf",
 									reportcolumnlist,
-									new DAO().getfieldresults(testSuite.getBatchId(), 0, 0,
-											effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
-											QADefaultServerDetails.id));
+									new DAO().getfieldresults(cycle.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
+											reportcolumnlist.size(), null, QADefaultServerDetails.id));
 
 						}
 					});
-					excelicon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
@@ -1686,17 +1586,177 @@ public class DashBoardController implements Initializable {
 							}
 
 							ReportsDownloader rd = new ReportsDownloader();
-							rd.download("Test Suite", testSuite.getBatchId(), "Reports/TestSuites/Excel", "excel",
+							rd.download("Test Suite", cycle.getBatchId(), "Reports/TestSuites/Excel", "excel",
 									reportcolumnlist,
-									new DAO().getfieldresults(testSuite.getBatchId(), 0, 0,
-											effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
-											QADefaultServerDetails.id));
+									new DAO().getfieldresults(cycle.getBatchId(), 0, 0, effc.replacer(reportcolumnlist),
+											reportcolumnlist.size(), null, QADefaultServerDetails.id));
 						}
 					});
 
+					lbl_cycle.setStyle(
+							"-fx-background-radius: 0.5em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
+					rec.setStyle("-fx-background-radius: 0em;-fx-background-color: #162a4c");
+
+					lbl_cycle.setText(cycle.getCyname());
+					lbl_pass.setText(cycle.getPass() + "%");
+					lbl_fail.setText(cycle.getFail() + "%");
+
+					for (int i = 0; i < cycle.getTestsuites().length; i++) {
+
+						TestSuite testSuite = cycle.getTestsuites()[i];
+
+						HBox hbox_title_testSuite = new HBox();
+						HBox hbox_percent_testSuite = new HBox();
+						hbox_percent_testSuite.setPadding(new Insets(0, 0, 0, 0));
+						hbox_title_testSuite.setPadding(new Insets(0, 0, 0, 25));
+						hbox_percent_testSuite.setSpacing(2);
+						hbox_title_testSuite.setSpacing(5);
+						Label lbl_testSuite = new Label("");
+						Label lbl_pass_testSuite = new Label("");
+						Label lbl_fail_testSuite = new Label("");
+						Label rec = new Label("");
+						lbl_testSuite.setPadding(new Insets(0, 5, 0, 5));
+						lbl_testSuite.setMaxWidth(150);
+						lbl_testSuite.setMinWidth(150);
+						lbl_pass_testSuite.setPadding(new Insets(2, 0, 2, 0));
+						lbl_fail_testSuite.setPadding(new Insets(2, 0, 2, 0));
+						lbl_pass_testSuite.setMaxWidth(40);
+						lbl_pass_testSuite.setMinWidth(40);
+						lbl_fail_testSuite.setMaxWidth(40);
+						lbl_fail_testSuite.setMinWidth(40);
+						rec.setPadding(new Insets(1, 2, 1, 2));
+						lbl_pass_testSuite.setStyle(
+								"-fx-border-color: #66b366;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #66b366;-fx-opacity: 0.8;");
+						lbl_fail_testSuite.setStyle(
+								"-fx-border-color: #ff6666;-fx-border-radius: 1em;-fx-font-size: 9pt;-fx-font-family: \"Calibri\";-fx-alignment : center;-fx-text-fill: #ff6666;-fx-opacity: 0.8;");
+						lbl_testSuite.setStyle(
+								"-fx-background-radius: 0em;-fx-font-size: 12pt;-fx-font-family: \"Calibri\";-fx-text-fill: #162a4c;-fx-opacity: 1;");
+
+						lbl_testSuite.setText(testSuite.getTsname());
+						lbl_pass_testSuite.setText(testSuite.getPass() + "%");
+						lbl_fail_testSuite.setText(testSuite.getFail() + "%");
+
+						ImageView icon_execute1 = new ImageView(StaticImages.source_execute.getImage());
+						ImageView icon_run1 = new ImageView(StaticImages.source_run.getImage());
+						ImageView pdficon1 = new ImageView(StaticImages.pdficon.getImage());
+						ImageView excelicon1 = new ImageView(StaticImages.excelicon.getImage());
+
+						icon_execute1.setFitHeight(25.0);
+						icon_execute1.setFitWidth(25.0);
+						icon_run1.setFitHeight(25.0);
+						icon_run1.setFitWidth(25.0);
+						pdficon1.setFitHeight(25.0);
+						pdficon1.setFitWidth(20.0);
+						excelicon1.setFitHeight(25.0);
+						excelicon1.setFitWidth(23.0);
+						icon_execute1.setCursor(Cursor.HAND);
+						pdficon1.setCursor(Cursor.HAND);
+						excelicon1.setCursor(Cursor.HAND);
+						rec.setStyle("-fx-background-radius: 0em;-fx-background-color: grey");
+						hbox_percent_testSuite.getChildren().addAll(rec, lbl_testSuite, lbl_pass_testSuite,
+								lbl_fail_testSuite);
+
+						if (testSuite.IsExecute()) {
+							hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_run1);
+						} else {
+							if (testSuite.getBatchId() == new DAO().getmaxbatchid()) {
+								hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1,
+										pdficon1, excelicon1);
+							} else {
+								hbox_title_testSuite.getChildren().addAll(hbox_percent_testSuite, icon_execute1);
+							}
+						}
+						vbox.getChildren().add(hbox_title_testSuite);
+
+						icon_execute1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@SuppressWarnings("unchecked")
+							@Override
+							public void handle(MouseEvent event) {
+								icon_execute1.setVisible(false);
+								pdficon1.setVisible(false);
+								excelicon1.setVisible(false);
+								icon_run1.setVisible(true);
+
+								int currentbatchid1 = new DAO().getmaxbatchid() + 1;
+								testSuite.setIsExecute(true);
+								testSuite.setBatchId(currentbatchid1);
+
+								JFXListView<Release> listField = (JFXListView<Release>) ((ImageView) event.getSource())
+										.getScene().lookup("#list_field");
+								JFXListView<Cycle> listData = (JFXListView<Cycle>) ((ImageView) event.getSource())
+										.getScene().lookup("#list_data");
+
+								listField.refresh();
+								listData.refresh();
+
+								FieldtoFieldExecutionServices fs = new FieldtoFieldExecutionServices();
+
+								fs.testsuiterun(cycle.getRelease().getName(), cycle.getCyname(), testSuite.getTsname(),
+										currentbatchid1, listField, listData, cycle.getRelease(), cycle, testSuite);
+
+								if (hbox_title_testSuite.getChildren().size() == 4) {
+									hbox_title_testSuite.getChildren()
+											.remove(hbox_title_testSuite.getChildren().size() - 1);
+									hbox_title_testSuite.getChildren()
+											.remove(hbox_title_testSuite.getChildren().size() - 1);
+									hbox_title_testSuite.getChildren()
+											.remove(hbox_title_testSuite.getChildren().size() - 1);
+									hbox_title_testSuite.getChildren().add(icon_run1);
+
+								} else if (hbox_title_testSuite.getChildren().size() == 2) {
+									hbox_title_testSuite.getChildren()
+											.remove(hbox_title_testSuite.getChildren().size() - 1);
+									hbox_title_testSuite.getChildren().add(icon_run1);
+								}
+							}
+						});
+						pdficon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
+								if (!(ff.exists() && ff.isDirectory())) {
+									ff.mkdirs();
+								}
+								ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
+								if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+									reportcolumnlist.addAll(effc.addcolumnsforreport());
+								}
+
+								ReportsDownloader rd = new ReportsDownloader();
+								rd.download("Test Suite", testSuite.getBatchId(), "Reports/TestSuites/PDF", "pdf",
+										reportcolumnlist,
+										new DAO().getfieldresults(testSuite.getBatchId(), 0, 0,
+												effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
+												QADefaultServerDetails.id));
+
+							}
+						});
+						excelicon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
+								if (!(ff.exists() && ff.isDirectory())) {
+									ff.mkdirs();
+								}
+								ExecuteFieldtoFieldController effc = new ExecuteFieldtoFieldController();
+								if (reportcolumnlist == null || reportcolumnlist.size() == 0) {
+									reportcolumnlist.addAll(effc.addcolumnsforreport());
+								}
+
+								ReportsDownloader rd = new ReportsDownloader();
+								rd.download("Test Suite", testSuite.getBatchId(), "Reports/TestSuites/Excel", "excel",
+										reportcolumnlist,
+										new DAO().getfieldresults(testSuite.getBatchId(), 0, 0,
+												effc.replacer(reportcolumnlist), reportcolumnlist.size(), null,
+												QADefaultServerDetails.id));
+							}
+						});
+
+					}
+					vbox.getChildren().add(rec1);
+					setGraphic(vbox);
 				}
-				vbox.getChildren().add(rec1);
-				setGraphic(vbox);
+			} catch (Exception e) {
 			}
 		}
 
@@ -1755,101 +1815,106 @@ public class DashBoardController implements Initializable {
 
 		@Override
 		protected void updateItem(Rule rule, boolean empty) {
-			super.updateItem(rule, empty); // To change body of generated
-											// methods, choose Tools |
-											// Templates.
-			setText(null);
-			setGraphic(null);
-			hbox.getChildren().clear();
-			hbox_title.getChildren().clear();
-			if (rule != null && !empty) {
+			try {
+				super.updateItem(rule, empty); // To change body of generated
+												// methods, choose Tools |
+												// Templates.
+				setText(null);
+				setGraphic(null);
+				hbox.getChildren().clear();
+				hbox_title.getChildren().clear();
+				if (rule != null && !empty) {
 
-				hbox_title.getChildren().addAll(rec, lbl_rule, lbl_pass, lbl_fail);
+					hbox_title.getChildren().addAll(rec, lbl_rule, lbl_pass, lbl_fail);
 
-				if (rule.IsExecute()) {
-					hbox.getChildren().addAll(hbox_title, icon_run);
-				} else {
-					if (rule.getBatchId() == new DAO().getcrmaxbatchid()) {
-						hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+					if (rule.IsExecute()) {
+						hbox.getChildren().addAll(hbox_title, icon_run);
 					} else {
-						hbox.getChildren().addAll(hbox_title, icon_execute);
+						if (rule.getBatchId() == new DAO().getcrmaxbatchid()) {
+							hbox.getChildren().addAll(hbox_title, icon_execute, pdficon, excelicon);
+						} else {
+							hbox.getChildren().addAll(hbox_title, icon_execute);
+						}
 					}
+
+					lbl_rule.setText(rule.getRulename());
+					lbl_pass.setText(rule.getPass() + "%");
+					lbl_fail.setText(rule.getFail() + "%");
+					icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@SuppressWarnings("unchecked")
+						@Override
+						public void handle(MouseEvent event) {
+
+							int currentbatchid = new DAO().getcrmaxbatchid() + 1;
+							rule.setBatchId(currentbatchid);
+							rule.setIsExecute(true); // means executing
+
+							JFXListView<Module> listField = (JFXListView<Module>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_control");
+							JFXListView<Rule> listControlData = (JFXListView<Rule>) ((ImageView) event.getSource())
+									.getScene().lookup("#list_control_data");
+
+							listField.refresh();
+							listControlData.refresh();
+
+							ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
+							cre.rulerun(rule.getRulename(), currentbatchid, listField, listControlData,
+									rule.getModule(), rule);
+
+							if (hbox.getChildren().size() == 4) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+
+							} else if (hbox.getChildren().size() == 2) {
+								hbox.getChildren().remove(hbox.getChildren().size() - 1);
+								hbox.getChildren().add(icon_run);
+							}
+						}
+					});
+
+					pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/ControlReport/PDF").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteControlReportController ecr = new ExecuteControlReportController();
+							if (crcolumnlist != null || crcolumnlist.size() > 0) {
+								crcolumnlist.clear();
+							}
+							crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/PDF", "pdf",
+									crcolumnlist,
+									new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
+											crcolumnlist.size(), QADefaultServerDetails.id));
+						}
+					});
+					excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File ff = new File(new File(".", "/Reports/ControlReport/Excel").getAbsolutePath());
+							if (!(ff.exists() && ff.isDirectory())) {
+								ff.mkdirs();
+							}
+							ExecuteControlReportController ecr = new ExecuteControlReportController();
+							if (crcolumnlist != null || crcolumnlist.size() > 0) {
+								crcolumnlist.clear();
+							}
+							crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
+							ReportsDownloader rd = new ReportsDownloader();
+							rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/Excel", "excel",
+									crcolumnlist,
+									new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
+											crcolumnlist.size(), QADefaultServerDetails.id));
+						}
+					});
+					setGraphic(hbox);
 				}
-
-				lbl_rule.setText(rule.getRulename());
-				lbl_pass.setText(rule.getPass() + "%");
-				lbl_fail.setText(rule.getFail() + "%");
-				icon_execute.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@SuppressWarnings("unchecked")
-					@Override
-					public void handle(MouseEvent event) {
-
-						int currentbatchid = new DAO().getcrmaxbatchid() + 1;
-						rule.setBatchId(currentbatchid);
-						rule.setIsExecute(true); // means executing
-
-						JFXListView<Module> listField = (JFXListView<Module>) ((ImageView) event.getSource()).getScene()
-								.lookup("#list_control");
-						JFXListView<Rule> listControlData = (JFXListView<Rule>) ((ImageView) event.getSource())
-								.getScene().lookup("#list_control_data");
-
-						listField.refresh();
-						listControlData.refresh();
-
-						ControlReportsExecutionServices cre = new ControlReportsExecutionServices();
-						cre.rulerun(rule.getRulename(), currentbatchid, listField, listControlData, rule.getModule(),
-								rule);
-
-						if (hbox.getChildren().size() == 4) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-
-						} else if (hbox.getChildren().size() == 2) {
-							hbox.getChildren().remove(hbox.getChildren().size() - 1);
-							hbox.getChildren().add(icon_run);
-						}
-					}
-				});
-
-				pdficon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/ControlReport/PDF").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteControlReportController ecr = new ExecuteControlReportController();
-						if (crcolumnlist != null || crcolumnlist.size() > 0) {
-							crcolumnlist.clear();
-						}
-						crcolumnlist.addAll(ecr.addcolumnsforpdfreport());
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/PDF", "pdf",
-								crcolumnlist, new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										crcolumnlist.size(), QADefaultServerDetails.id));
-					}
-				});
-				excelicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						File ff = new File(new File(".", "/Reports/ControlReport/Excel").getAbsolutePath());
-						if (!(ff.exists() && ff.isDirectory())) {
-							ff.mkdirs();
-						}
-						ExecuteControlReportController ecr = new ExecuteControlReportController();
-						if (crcolumnlist != null || crcolumnlist.size() > 0) {
-							crcolumnlist.clear();
-						}
-						crcolumnlist.addAll(ecr.addcolumnsforexcelreport());
-						ReportsDownloader rd = new ReportsDownloader();
-						rd.download("Control Report", rule.getBatchId(), "Reports/ControlReport/Excel", "excel",
-								crcolumnlist, new DAO().getcrresults(rule.getBatchId(), 0, ecr.replacer(crcolumnlist),
-										crcolumnlist.size(), QADefaultServerDetails.id));
-					}
-				});
-				setGraphic(hbox);
+			} catch (Exception e) {
 			}
 		}
 

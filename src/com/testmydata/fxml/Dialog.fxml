@@ -55,12 +55,12 @@
         <Pane HBox.hgrow="ALWAYS" />
         <HBox fx:id="okParent" alignment="CENTER">
           <children>
-            <Button id="ok-btn" fx:id="okButton" minWidth="80.0" mnemonicParsing="false" onAction="#onClick" style="-fx-background-color: #40AA03;" text="Ok" textFill="WHITE" HBox.hgrow="NEVER">
+            <Button id="ok-btn" fx:id="okButton" minWidth="60.0" mnemonicParsing="false" onAction="#onClick" style="-fx-background-color: #40AA03;" text="Ok" textFill="WHITE" HBox.hgrow="NEVER">
               <HBox.margin>
                 <Insets left="14.0" />
               </HBox.margin>
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="10.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />

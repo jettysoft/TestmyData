@@ -19,11 +19,11 @@ import javafx.stage.Stage;
 
 public class ConfirmDialogController implements Initializable {
 	@FXML
-	private Label detailsLabel, headerLabel;
+	private Label detailsLabel;
 	@FXML
 	private Button yes, cancel;
 	@FXML
-	private ImageView exiticon;
+	private ImageView appicon;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -32,9 +32,8 @@ public class ConfirmDialogController implements Initializable {
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-		exiticon.setImage(StaticImages.exit_confirm.getImage());
+		appicon.setImage(StaticImages.appicon.getImage());
 
-		headerLabel.setEffect(ds);
 		yes.setEffect(ds);
 		cancel.setEffect(ds);
 	}
