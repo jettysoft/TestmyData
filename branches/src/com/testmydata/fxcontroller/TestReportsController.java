@@ -9,7 +9,6 @@ import java.util.concurrent.CountDownLatch;
 import com.jfoenix.controls.JFXComboBox;
 import com.testmydata.binarybeans.TestSuiteBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
@@ -24,27 +23,24 @@ import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class TestReportsController implements Initializable {
 
 	private static TestReportsController userHome = null;
-	Stage myStage;
+
 	@FXML
-	private ImageView homeicon, excelicon, pdficon, runicon, excelicon1, pdficon1, runicon1, excelicon11, pdficon11,
-			runicon11;
+	private ImageView closeicon, excelicon, pdficon, excelprocessicon, pdfprocessicon, excelicon1, pdficon1,
+			excelprocessicon1, pdfprocessicon1, excelicon11, pdficon11, excelprocessicon11, pdfprocessicon11;
 	@FXML
 	private AnchorPane selectionanchor, selectionanchor1, selectionanchor11;
 	@FXML
 	private JFXComboBox<String> testtype, batchid, testormoduleid, testtype1, batchid1, releasecombo, cyclecombo,
 			tscombo;
 
-	private static String lblStyle = null;
 	private static String[] testtypeslist = { "Select Test", "Test Suite", "Control Reports" };
 	private static int downloadno = 0;
 
@@ -60,18 +56,22 @@ public class TestReportsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		excelicon.setImage(StaticImages.excelicon.getImage());
 		pdficon.setImage(StaticImages.pdficon.getImage());
-		runicon.setImage(StaticImages.source_run.getImage());
+
 		excelicon1.setImage(StaticImages.excelicon.getImage());
 		pdficon1.setImage(StaticImages.pdficon.getImage());
-		runicon1.setImage(StaticImages.source_run.getImage());
+
 		excelicon11.setImage(StaticImages.excelicon.getImage());
 		pdficon11.setImage(StaticImages.pdficon.getImage());
-		runicon11.setImage(StaticImages.source_run.getImage());
 
-		lblStyle = "-fx-background-color: linear-gradient(#277CD2, #0C23EA);  -fx-text-alignment :center; -fx-background-radius: 25; -fx-background-insets: 0; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-clor: red;";
+		excelprocessicon.setImage(StaticImages.source_run.getImage());
+		pdfprocessicon.setImage(StaticImages.source_run.getImage());
+		excelprocessicon1.setImage(StaticImages.source_run.getImage());
+		pdfprocessicon1.setImage(StaticImages.source_run.getImage());
+		excelprocessicon11.setImage(StaticImages.source_run.getImage());
+		pdfprocessicon11.setImage(StaticImages.source_run.getImage());
 
 		testtype.getItems().clear();
 		testtype.getItems().addAll(testtypeslist);
@@ -89,11 +89,11 @@ public class TestReportsController implements Initializable {
 		settestsuites();
 		setreleasecombo();
 
-		Label excellbl = new Label("  Excel Report");
-		excellbl.setStyle(lblStyle);
-		excellbl.setMinWidth(85);
-		excellbl.setLayoutY(70);
-		excellbl.setLayoutX(660);
+		Label excellbl = new Label(" Excel Report ");
+		excellbl.setStyle(StaticImages.lblStyle);
+		excellbl.setMinWidth(55);
+		excellbl.setLayoutY(55);
+		excellbl.setLayoutX(675);
 		excellbl.setVisible(false);
 		selectionanchor.getChildren().add(excellbl);
 
@@ -110,11 +110,11 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		Label pdflbl = new Label("  PDF Report");
-		pdflbl.setStyle(lblStyle);
-		pdflbl.setMinWidth(85);
-		pdflbl.setLayoutY(70);
-		pdflbl.setLayoutX(700);
+		Label pdflbl = new Label(" PDF Report ");
+		pdflbl.setStyle(StaticImages.lblStyle);
+		pdflbl.setMinWidth(55);
+		pdflbl.setLayoutY(55);
+		pdflbl.setLayoutX(715);
 		pdflbl.setVisible(false);
 		selectionanchor.getChildren().add(pdflbl);
 
@@ -131,11 +131,11 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		Label excellbl1 = new Label("  Excel Report");
-		excellbl1.setStyle(lblStyle);
-		excellbl1.setMinWidth(85);
-		excellbl1.setLayoutY(70);
-		excellbl1.setLayoutX(430);
+		Label excellbl1 = new Label(" Excel Report ");
+		excellbl1.setStyle(StaticImages.lblStyle);
+		excellbl1.setMinWidth(55);
+		excellbl1.setLayoutY(55);
+		excellbl1.setLayoutX(675);
 		excellbl1.setVisible(false);
 		selectionanchor1.getChildren().add(excellbl1);
 
@@ -152,11 +152,11 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		Label pdflbl1 = new Label("  PDF Report");
-		pdflbl1.setStyle(lblStyle);
-		pdflbl1.setMinWidth(85);
-		pdflbl1.setLayoutY(70);
-		pdflbl1.setLayoutX(470);
+		Label pdflbl1 = new Label(" PDF Report ");
+		pdflbl1.setStyle(StaticImages.lblStyle);
+		pdflbl1.setMinWidth(55);
+		pdflbl1.setLayoutY(55);
+		pdflbl1.setLayoutX(715);
 		pdflbl1.setVisible(false);
 		selectionanchor1.getChildren().add(pdflbl1);
 
@@ -173,11 +173,11 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		Label excellbl11 = new Label("  Excel Report");
-		excellbl11.setStyle(lblStyle);
-		excellbl11.setMinWidth(85);
-		excellbl11.setLayoutY(70);
-		excellbl11.setLayoutX(660);
+		Label excellbl11 = new Label(" Excel Report ");
+		excellbl11.setStyle(StaticImages.lblStyle);
+		excellbl11.setMinWidth(55);
+		excellbl11.setLayoutY(55);
+		excellbl11.setLayoutX(675);
 		excellbl11.setVisible(false);
 		selectionanchor11.getChildren().add(excellbl11);
 
@@ -194,11 +194,11 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		Label pdflbl11 = new Label("  PDF Report");
-		pdflbl11.setStyle(lblStyle);
-		pdflbl11.setMinWidth(85);
-		pdflbl11.setLayoutY(70);
-		pdflbl11.setLayoutX(700);
+		Label pdflbl11 = new Label(" PDF Report ");
+		pdflbl11.setStyle(StaticImages.lblStyle);
+		pdflbl11.setMinWidth(55);
+		pdflbl11.setLayoutY(55);
+		pdflbl11.setLayoutX(715);
 		pdflbl11.setVisible(false);
 		selectionanchor11.getChildren().add(pdflbl11);
 
@@ -249,7 +249,9 @@ public class TestReportsController implements Initializable {
 		pdficon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon.setVisible(true);
+				pdficon.setVisible(false);
+				pdfprocessicon.setVisible(true);
+
 				if (testtype.getSelectionModel().getSelectedItem().equals("Test Suite")) {
 					File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
 					if (!(ff.exists() && ff.isDirectory())) {
@@ -290,7 +292,9 @@ public class TestReportsController implements Initializable {
 		excelicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon.setVisible(true);
+				excelicon.setVisible(false);
+				excelprocessicon.setVisible(true);
+
 				if (testtype.getSelectionModel().getSelectedItem().equals("Test Suite")) {
 					File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
 					if (!(ff.exists() && ff.isDirectory())) {
@@ -348,7 +352,8 @@ public class TestReportsController implements Initializable {
 		pdficon1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon1.setVisible(true);
+				pdficon1.setVisible(false);
+				pdfprocessicon1.setVisible(true);
 
 				File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
 				if (!(ff.exists() && ff.isDirectory())) {
@@ -372,7 +377,8 @@ public class TestReportsController implements Initializable {
 		excelicon1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon1.setVisible(true);
+				excelicon1.setVisible(false);
+				excelprocessicon1.setVisible(true);
 
 				File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
 				if (!(ff.exists() && ff.isDirectory())) {
@@ -426,7 +432,8 @@ public class TestReportsController implements Initializable {
 		pdficon11.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon11.setVisible(true);
+				pdficon11.setVisible(false);
+				pdfprocessicon11.setVisible(true);
 
 				File ff = new File(new File(".", "/Reports/TestSuites/PDF").getAbsolutePath());
 				if (!(ff.exists() && ff.isDirectory())) {
@@ -457,7 +464,8 @@ public class TestReportsController implements Initializable {
 		excelicon11.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				runicon11.setVisible(true);
+				excelicon11.setVisible(false);
+				excelprocessicon11.setVisible(true);
 
 				File ff = new File(new File(".", "/Reports/TestSuites/Excel").getAbsolutePath());
 				if (!(ff.exists() && ff.isDirectory())) {
@@ -484,19 +492,15 @@ public class TestReportsController implements Initializable {
 			}
 		});
 
-		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		// closing screen when clicks on close icon
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				TestReportsController nc = new TestReportsController();
-				scu.nullifyStrings(nc);
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+				NewFieldtoFieldController nc = new NewFieldtoFieldController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -1015,9 +1019,26 @@ public class TestReportsController implements Initializable {
 					});
 					latch.await();
 
-					runicon.setVisible(false);
-					runicon1.setVisible(false);
-					runicon11.setVisible(false);
+					if (downloadno == 1 || downloadno == 2 || downloadno == 3 || downloadno == 4) {
+						pdfprocessicon.setVisible(false);
+						pdficon.setVisible(true);
+					} else if (downloadno == 5 || downloadno == 6 || downloadno == 7 || downloadno == 8) {
+						excelprocessicon.setVisible(false);
+						excelicon.setVisible(true);
+					} else if (downloadno == 9 || downloadno == 10) {
+						pdfprocessicon1.setVisible(false);
+						pdficon1.setVisible(true);
+					} else if (downloadno == 11 || downloadno == 12) {
+						excelprocessicon1.setVisible(false);
+						excelicon1.setVisible(true);
+					} else if (downloadno == 13 || downloadno == 14 || downloadno == 15) {
+						pdfprocessicon11.setVisible(false);
+						pdficon11.setVisible(true);
+					} else if (downloadno == 16 || downloadno == 17 || downloadno == 18) {
+						excelprocessicon11.setVisible(false);
+						excelicon11.setVisible(true);
+					}
+
 					downloadno = 0;
 					// Keep with the background work
 					return null;

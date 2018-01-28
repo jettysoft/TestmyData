@@ -31,13 +31,13 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <JFXTabPane fx:id="testcasestab" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+      <JFXTabPane fx:id="suitespane" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
          <tabs>
             <Tab closable="false" text="New Test Suite">
                <content>
                   <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane fx:id="suiteanchor" layoutX="20.0" layoutY="54.0" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <AnchorPane fx:id="suiteanchor" layoutX="20.0" layoutY="54.0" prefHeight="120.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <JFXTextField fx:id="relasetext" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="200.0" promptText="Specify Release" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
@@ -61,7 +61,7 @@
                               <ImageView fx:id="clearicon" fitHeight="20.0" fitWidth="20.0" layoutX="765.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
-                        <Label layoutX="10.0" layoutY="36.0" text="New Suite" textFill="#162a4c">
+                        <Label layoutX="10.0" layoutY="36.0" text="New Suite" textFill="#162a4c" AnchorPane.leftAnchor="5.0">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
@@ -79,9 +79,9 @@
                               <Insets />
                            </opaqueInsets>
                         </AnchorPane>
-                        <TableView fx:id="tstable" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="180.0">
+                        <TableView fx:id="tstable" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
                            <columns>
-                              <TableColumn fx:id="items" editable="false" prefWidth="800.0" text="Selected Items for Test Suite" />
+                              <TableColumn fx:id="items" editable="false" minWidth="1100.0" prefWidth="1100.0" text="Selected Items for Test Suite" />
                            </columns>
                         </TableView>
                      </children>
@@ -110,11 +110,12 @@
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="10.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="testsuites" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                        <TableView fx:id="testsuites" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                            <columns>
-                              <TableColumn fx:id="id" editable="false" prefWidth="100.0" text="ID" />
-                              <TableColumn fx:id="testsuitename" editable="false" prefWidth="200.0" text="Test Suite Name" />
-                              <TableColumn fx:id="testitems" editable="false" prefWidth="800.0" text="Test Items" />
+                              <TableColumn fx:id="id" editable="false" minWidth="100.0" prefWidth="100.0" text="ID" />
+                              <TableColumn fx:id="testsuitename" editable="false" minWidth="200.0" prefWidth="200.0" text="Test Suite Name" />
+                              <TableColumn fx:id="testtype" editable="false" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Type" />
+                              <TableColumn fx:id="testitems" editable="false" minWidth="600.0" prefWidth="600.0" text="Test Items" />
                            </columns>
                         </TableView>
                      </children>

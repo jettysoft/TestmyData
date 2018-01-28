@@ -4,8 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,22 +15,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="14.0" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ffffff;" stylesheets="@StyleDialog.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ConfirmDialogController">
+<GridPane hgap="14.0" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #ffffff; -fx-border-color: #162a4c;" stylesheets="@StyleDialog.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ConfirmDialogController">
    <children>
       <VBox fx:id="topBoxContainer" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.rowIndex="0">
          <children>
             <StackPane fx:id="headContainer" styleClass="headContainer">
                <children>
-                  <Label fx:id="headerLabel" alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" style="-fx-background-color: #162a4c;" styleClass="header" text="Confirm..?" textAlignment="LEFT" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="exiticon" fitHeight="55.0" fitWidth="55.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
-                     <effect>
-                        <ColorAdjust />
-                     </effect>
-                  </ImageView>
+                  <AnchorPane minHeight="40.0" minWidth="418.0" prefHeight="40.0" prefWidth="420.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;">
+                     <children>
+                        <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Confirm..?" textFill="BLACK" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="appicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </AnchorPane>
                </children>
             </StackPane>
             <StackPane id="bodyContainer" fx:id="bodyContainer">
@@ -48,17 +51,17 @@
          <children>
             <Pane HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="cancel" layoutX="222.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #F8340D;" text="Cancel" textFill="WHITE">
+                  <Button fx:id="cancel" layoutX="232.0" mnemonicParsing="false" onAction="#cancel" prefHeight="20.0" prefWidth="60.0" style="-fx-background-color: #F8340D;" text="Cancel" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="10.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="ok-btn" fx:id="yes" layoutX="114.0" minWidth="80.0" mnemonicParsing="false" onAction="#yes" style="-fx-background-color: #40AA03;" text="Yes" textFill="WHITE">
+                  <Button id="ok-btn" fx:id="yes" layoutX="144.0" minWidth="60.0" mnemonicParsing="false" onAction="#yes" prefHeight="20.0" prefWidth="60.0" style="-fx-background-color: #40AA03;" text="Yes" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="10.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />

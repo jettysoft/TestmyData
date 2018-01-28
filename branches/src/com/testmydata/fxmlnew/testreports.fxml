@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="downloadpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.TestReportsController">
+   <children>
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Test Reports" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXTabPane fx:id="suitespane" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="All Tests">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <JFXComboBox fx:id="testtype" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="batchid" focusColor="#40aa03" layoutX="230.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="testormoduleid" focusColor="#162a4c" layoutX="440.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <ImageView fx:id="excelprocessicon" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdfprocessicon" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="excelicon" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdficon" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="36.0" text="Field to Field &amp; Control Reports" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </AnchorPane>
+                        <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="154.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <JFXComboBox fx:id="testtype1" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="batchid1" focusColor="#40aa03" layoutX="230.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <ImageView fx:id="excelprocessicon1" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdfprocessicon1" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="excelicon1" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdficon1" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="136.0" text="Field to Field by Test Suites" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane fx:id="selectionanchor11" layoutX="20.0" layoutY="254.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <JFXComboBox fx:id="releasecombo" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="cyclecombo" focusColor="#40aa03" layoutX="230.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="tscombo" focusColor="#162a4c" layoutX="440.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <ImageView fx:id="excelprocessicon11" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdfprocessicon11" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="excelicon11" fitHeight="20.0" fitWidth="20.0" layoutX="650.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="pdficon11" fitHeight="20.0" fitWidth="20.0" layoutX="690.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="236.0" text="Field to Field by Release" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
