@@ -1,6 +1,5 @@
 package com.testmydata.fxcontroller;
 
-import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,8 +14,6 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.SwingUtilities;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -38,7 +35,6 @@ import com.testmydata.dashboardfunction.Module;
 import com.testmydata.dashboardfunction.Release;
 import com.testmydata.dashboardfunction.Rule;
 import com.testmydata.dashboardfunction.TestSuite;
-import com.testmydata.fxhelpers.MenuItemsFXHelper;
 import com.testmydata.main.InactivityEventManager;
 import com.testmydata.main.InactivityListener;
 import com.testmydata.util.CommonFunctions;
@@ -116,6 +112,7 @@ public class DashBoardController implements Initializable {
 	public Date activatedDate = null;
 	Stage myStage;
 	SubScene ss;
+	@SuppressWarnings("unused")
 	private static UsersDetailsBeanBinaryTrade currentUsersDetailsBeanBinaryTree;
 	private static DashBoardController userHome = null;
 	static String[] selectedproject = null;
@@ -834,17 +831,34 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runadduser() {
-
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "adduser";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "adduserpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
 					}
-				});
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/AddUser.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -883,12 +897,30 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				// fxmlLoader.setController(this);
 				try {
-					// FX Stuff done here
-					EmailSettingsController.getInstance();
-					CommonFunctions.invokeEmailSettings(getClass());
-				} finally {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "emailsettingspane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
 
+					}
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/EmailSettings.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 		});
@@ -905,20 +937,36 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runqaserversettings() {
-		EventQueue.invokeLater(new Runnable() {
+		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						String screenName = "qaserversettings";
-						new MenuItemsFXHelper().initAndShowGUI(screenName);
-						QAServerSettingsController.getInstance(currentUsersDetailsBeanBinaryTree);
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "qaserverpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
 					}
-				});
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/qaserver.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
-
 	}
 
 	public void setqaserver() {

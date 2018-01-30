@@ -149,9 +149,9 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label exelbl = new Label("   Execute ");
+		Label exelbl = new Label(" Execute ");
 		exelbl.setStyle(StaticImages.lblStyle);
-		exelbl.setMinWidth(60);
+		exelbl.setMinWidth(50);
 		exelbl.setLayoutX(65);
 		exelbl.setLayoutY(15);
 		exelbl.setVisible(false);
@@ -170,9 +170,9 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label savelbl = new Label("   Save ");
+		Label savelbl = new Label(" Save ");
 		savelbl.setStyle(StaticImages.lblStyle);
-		savelbl.setMinWidth(45);
+		savelbl.setMinWidth(40);
 		savelbl.setLayoutX(105);
 		savelbl.setLayoutY(15);
 		savelbl.setVisible(false);
@@ -191,9 +191,9 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label updatelbl = new Label("   Update ");
+		Label updatelbl = new Label(" Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
-		updatelbl.setMinWidth(50);
+		updatelbl.setMinWidth(40);
 		updatelbl.setLayoutX(105);
 		updatelbl.setLayoutY(15);
 		updatelbl.setVisible(false);

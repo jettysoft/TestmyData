@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="qaserverpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.QAServerSettingsController">
+   <children>
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="QA Server Settings" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXTabPane fx:id="qaservertabs" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="Add New Server">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                           <children>
+                              <JFXComboBox fx:id="fexistingservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="fservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXTextField fx:id="fhosttext" focusColor="#40aa03" layoutX="40.0" layoutY="140.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="fusernametext" focusColor="#40aa03" layoutX="40.0" layoutY="180.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter User Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXPasswordField fx:id="fpasswordtext" focusColor="#40aa03" layoutX="40.0" layoutY="220.0" prefWidth="250.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <JFXCheckBox fx:id="deafultcheckbox" checkedColor="#38c910" layoutX="30.0" layoutY="270.0" text="Set as Default  Server" textFill="#162a4c" unCheckedColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXCheckBox>
+                              <Label layoutX="20.0" layoutY="5.0" text="Update Existing" textFill="#f21111">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="150.0" layoutY="60.0" text="OR" textFill="#0083ff">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="80.0" text="Add New Server" textFill="#40aa03">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="36.0" text="Server Setup Details" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <ImageView fx:id="testicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Add Module">
+               <content>
+                  <AnchorPane fx:id="actionanchor11" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                           <children>
+                              <JFXComboBox fx:id="existingmodulescombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXTextField fx:id="modulenametext" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Module Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label layoutX="20.0" layoutY="5.0" text="Update Existing" textFill="#f21111">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="150.0" layoutY="60.0" text="OR" textFill="#0083ff">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="80.0" text="Add New Module" textFill="#40aa03">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="36.0" text="Field to Field &amp; Control Reports" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <ImageView fx:id="modulesaveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="moduleupdateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+   </children>
+</AnchorPane>

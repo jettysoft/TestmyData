@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -15,7 +14,6 @@ import com.testmydata.binarybeans.QAServerDetailsBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dao.DAO;
 import com.testmydata.dao.OnlineDBAccess;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.EncryptAndDecrypt;
@@ -28,10 +26,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 public class QAServerSettingsController implements Initializable {
 	private static UsersDetailsBeanBinaryTrade currentUsersDetailsBeanBinaryTree;
@@ -44,12 +43,13 @@ public class QAServerSettingsController implements Initializable {
 	@FXML
 	private JFXComboBox<String> fexistingservercombo, fservercombo, existingmodulescombo;
 	@FXML
-	private JFXButton ftest, fsave, fupdate, msave, mupdate;
-	@FXML
-	private ImageView homeicon, greentick1, wrongtick1;
+	private ImageView closeicon, greentick1, wrongtick1, saveicon, updateicon, testicon, modulesaveicon,
+			moduleupdateicon;
 	@FXML
 	private JFXCheckBox deafultcheckbox;
-	Stage myStage;
+	@FXML
+	private AnchorPane actionanchor1, actionanchor11;
+
 	// private String[] servers = { "SELECT SERVER", "MY SQL", "MSSQL",
 	// "POSTGRESQL" };
 	private String[] servers = { "SELECT SERVER", "MY SQL", "MSSQL" };
@@ -64,14 +64,195 @@ public class QAServerSettingsController implements Initializable {
 		fservercombo.getItems().addAll(servers);
 		// selecting first value in combo
 		fservercombo.getSelectionModel().select(0);
-		// adding set style to combo text
 		fservercombo.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 
 		setexistingservers();
 		setexistingmodules();
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		greentick1.setImage(StaticImages.green_tick.getImage());
 		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
+		saveicon.setImage(StaticImages.save.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
+		testicon.setImage(StaticImages.source_execute.getImage());
+		modulesaveicon.setImage(StaticImages.save.getImage());
+		moduleupdateicon.setImage(StaticImages.save.getImage());
+
+		Label testlbl = new Label("  Test ");
+		testlbl.setStyle(StaticImages.lblStyle);
+		testlbl.setMinWidth(35);
+		testlbl.setLayoutX(65);
+		testlbl.setLayoutY(15);
+		testlbl.setVisible(false);
+		actionanchor1.getChildren().add(testlbl);
+
+		testicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				testlbl.setVisible(true);
+			}
+		});
+		testicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				testlbl.setVisible(false);
+			}
+		});
+		testicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				ftest();
+			}
+		});
+
+		Label sucesslbl = new Label(" Connection Successful ");
+		sucesslbl.setStyle(StaticImages.lblStyle);
+		sucesslbl.setMinWidth(80);
+		sucesslbl.setLayoutX(105);
+		sucesslbl.setLayoutY(15);
+		sucesslbl.setVisible(false);
+		actionanchor1.getChildren().add(sucesslbl);
+
+		greentick1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				sucesslbl.setVisible(true);
+			}
+		});
+		greentick1.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				sucesslbl.setVisible(false);
+			}
+		});
+
+		Label faillbl = new Label(" Connection Failure ");
+		faillbl.setStyle(StaticImages.lblStyle);
+		faillbl.setMinWidth(70);
+		faillbl.setLayoutX(105);
+		faillbl.setLayoutY(15);
+		faillbl.setVisible(false);
+		actionanchor1.getChildren().add(faillbl);
+
+		wrongtick1.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				faillbl.setVisible(true);
+			}
+		});
+		wrongtick1.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				faillbl.setVisible(false);
+			}
+		});
+
+		Label savelbl = new Label("  Save ");
+		savelbl.setStyle(StaticImages.lblStyle);
+		savelbl.setMinWidth(40);
+		savelbl.setLayoutX(145);
+		savelbl.setLayoutY(15);
+		savelbl.setVisible(false);
+		actionanchor1.getChildren().add(savelbl);
+
+		saveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(true);
+			}
+		});
+		saveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(false);
+			}
+		});
+		saveicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				fsave();
+			}
+		});
+
+		Label updatelbl = new Label(" Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(40);
+		updatelbl.setLayoutX(145);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
+		updateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				fupdate();
+			}
+		});
+
+		Label msavelbl = new Label("  Save ");
+		msavelbl.setStyle(StaticImages.lblStyle);
+		msavelbl.setMinWidth(40);
+		msavelbl.setLayoutX(145);
+		msavelbl.setLayoutY(15);
+		msavelbl.setVisible(false);
+		actionanchor11.getChildren().add(msavelbl);
+
+		modulesaveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				msavelbl.setVisible(true);
+			}
+		});
+		modulesaveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				msavelbl.setVisible(false);
+			}
+		});
+		modulesaveicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				msave();
+			}
+		});
+
+		Label mupdatelbl = new Label(" Update ");
+		mupdatelbl.setStyle(StaticImages.lblStyle);
+		mupdatelbl.setMinWidth(35);
+		mupdatelbl.setLayoutX(145);
+		mupdatelbl.setLayoutY(15);
+		mupdatelbl.setVisible(false);
+		actionanchor11.getChildren().add(mupdatelbl);
+
+		moduleupdateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				mupdatelbl.setVisible(true);
+			}
+		});
+		moduleupdateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				mupdatelbl.setVisible(false);
+			}
+		});
+		moduleupdateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				mupdate();
+			}
+		});
 
 		fexistingservercombo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -91,8 +272,8 @@ public class QAServerSettingsController implements Initializable {
 								} else {
 									deafultcheckbox.setSelected(false);
 								}
-								fsave.setVisible(false);
-								fupdate.setVisible(true);
+								saveicon.setVisible(false);
+								updateicon.setVisible(true);
 								break;
 							}
 						}
@@ -102,8 +283,8 @@ public class QAServerSettingsController implements Initializable {
 						fpasswordtext.clear();
 						fservercombo.getSelectionModel().select(0);
 						deafultcheckbox.setSelected(false);
-						fupdate.setVisible(false);
-						fsave.setVisible(true);
+						updateicon.setVisible(false);
+						saveicon.setVisible(true);
 						greentick1.setVisible(false);
 						wrongtick1.setVisible(false);
 					}
@@ -119,12 +300,12 @@ public class QAServerSettingsController implements Initializable {
 					if (!existingmodulescombo.getSelectionModel().getSelectedItem().equals("QA Modules")) {
 						String[] selecteditems = existingmodulescombo.getSelectionModel().getSelectedItem().split("-");
 						modulenametext.setText(selecteditems[1]);
-						msave.setVisible(false);
-						mupdate.setVisible(true);
+						modulesaveicon.setVisible(false);
+						moduleupdateicon.setVisible(true);
 					} else {
 						modulenametext.clear();
-						mupdate.setVisible(false);
-						msave.setVisible(true);
+						moduleupdateicon.setVisible(false);
+						modulesaveicon.setVisible(true);
 					}
 				} catch (NullPointerException ne) {
 				}
@@ -153,18 +334,14 @@ public class QAServerSettingsController implements Initializable {
 		});
 
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				QAServerSettingsController nc = new QAServerSettingsController();
-				scu.nullifyStrings(nc);
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+				QAServerSettingsController nc = new QAServerSettingsController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -201,24 +378,46 @@ public class QAServerSettingsController implements Initializable {
 	// Validating the Fields in screen
 	private boolean validateffields() {
 		boolean result = true;
+		StringBuffer message = new StringBuffer();
 		if (fhosttext.getText() == null || fhosttext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Host IP...");
-		} else if (fusernametext.getText() == null || fusernametext.getText().isEmpty()) {
+			fhosttext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Host IP...\n\n");
+		} else {
+			fhosttext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (fusernametext.getText() == null || fusernametext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter User Name...");
-		} else if (fpasswordtext.getText() == null || fpasswordtext.getText().isEmpty()) {
+			fusernametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter User Name...\n\n");
+		} else {
+			fusernametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (fpasswordtext.getText() == null || fpasswordtext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Password...");
-		} else if (fservercombo.getSelectionModel().getSelectedItem().equals("SELECT SERVER")) {
+			fpasswordtext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Password...\n\n");
+		} else {
+			fpasswordtext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (fservercombo.getSelectionModel().getSelectedItem().equals("SELECT SERVER")) {
 			result = false;
-			runmessage("Please Select Server...");
+			fservercombo.setUnFocusColor(Color.RED);
+			message.append("Please Select Server...\n\n");
+		} else {
+			fservercombo.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!result) {
+			runmessage(message.toString());
 		}
 		return result;
 	}
 
-	// Action Method to Test Button. Checking connection
-	@FXML
+	// Action Method to Test Icon. Checking connection
 	private void ftest() {
 		if (validateffields()) {
 			if (validateconnection(fservercombo.getSelectionModel().getSelectedItem(), fhosttext.getText(),
@@ -251,7 +450,6 @@ public class QAServerSettingsController implements Initializable {
 	}
 
 	// Saving to DB
-	@FXML
 	private void fsave() {
 		if (validateffields()) {
 			if (validateconnection(fservercombo.getSelectionModel().getSelectedItem(), fhosttext.getText(),
@@ -281,7 +479,6 @@ public class QAServerSettingsController implements Initializable {
 	}
 
 	// Updating existing server connection details
-	@FXML
 	private void fupdate() {
 		if (validateffields()) {
 			if (validateconnection(fservercombo.getSelectionModel().getSelectedItem(), fhosttext.getText(),
@@ -352,8 +549,8 @@ public class QAServerSettingsController implements Initializable {
 		fhosttext.clear();
 		fusernametext.clear();
 		fpasswordtext.clear();
-		fupdate.setVisible(false);
-		fsave.setVisible(true);
+		updateicon.setVisible(false);
+		saveicon.setVisible(true);
 		deafultcheckbox.setSelected(false);
 		fticksnonvisible();
 	}
@@ -377,14 +574,22 @@ public class QAServerSettingsController implements Initializable {
 	// Validating the Fields in Modules
 	private boolean validatemfields() {
 		boolean result = true;
+		StringBuffer message = new StringBuffer();
 		if (modulenametext.getText() == null || modulenametext.getText().isEmpty()) {
 			result = false;
-			runmessage("Please Enter Module Name...");
+			modulenametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Module Name...\n\n");
+		} else {
+			modulenametext.setUnFocusColor(Color.rgb(190, 190, 196));
 		}
+
+		if (!result) {
+			runmessage(message.toString());
+		}
+
 		return result;
 	}
 
-	@FXML
 	private void msave() {
 		if (validatemfields()) {
 			String result = new DAO().createmodulestable("modules", currentUsersDetailsBeanBinaryTree.getId(),
@@ -400,7 +605,6 @@ public class QAServerSettingsController implements Initializable {
 		}
 	}
 
-	@FXML
 	private void mupdate() {
 		if (validatemfields()) {
 			String result = new DAO().updatemoduledetails("modules", currentUsersDetailsBeanBinaryTree.getId(),
@@ -417,7 +621,7 @@ public class QAServerSettingsController implements Initializable {
 	private void setmdefaults() {
 		setexistingmodules();
 		modulenametext.clear();
-		mupdate.setVisible(false);
-		msave.setVisible(true);
+		moduleupdateicon.setVisible(false);
+		modulesaveicon.setVisible(true);
 	}
 }
