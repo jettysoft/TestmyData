@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
@@ -27,16 +25,16 @@ import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 public class AddUserController implements Initializable {
-	Stage myStage;
+
 	@FXML
-	private ImageView homeicon, wrongtick, greentick, wrongtick1, greentick1, pleasewait;
+	private ImageView closeicon, wrongtick, greentick, wrongtick1, greentick1, pleasewait, saveicon, updateicon;
 	@FXML
 	private JFXComboBox<String> usercombo;
 	@FXML
@@ -48,9 +46,7 @@ public class AddUserController implements Initializable {
 			addusercheck, addqacheck, dasboardcheck, activatecheck, deactivatecheck, newbugcheck, viewbugcheck,
 			downloadcheck, viewresultscheck, bugservercheck;
 	@FXML
-	private AnchorPane passwordinformationanchor, transaprentanchor;
-	@FXML
-	private JFXButton save, update;
+	private AnchorPane passwordinformationanchor, transaprentanchor, actionanchor1;
 	boolean passwordvalid = false, emailvalid = false;
 	static int email = 0, newcr = 0, newff = 0, newproject = 0, newts = 0, crexe = 0, tsexe, adduser = 0, addqa = 0,
 			dashboard = 0, activestatus = 0, newbug = 0, viewbug = 0, download = 0, viewresults = 0, bugserver = 0;
@@ -62,12 +58,68 @@ public class AddUserController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingusers();
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		wrongtick.setImage(StaticImages.wrong_tick.getImage());
 		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
 		greentick.setImage(StaticImages.green_tick.getImage());
 		greentick1.setImage(StaticImages.green_tick.getImage());
 		pleasewait.setImage(StaticImages.source_run.getImage());
+		saveicon.setImage(StaticImages.save.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
+
+		Label savelbl = new Label("  Save ");
+		savelbl.setStyle(StaticImages.lblStyle);
+		savelbl.setMinWidth(40);
+		savelbl.setLayoutX(65);
+		savelbl.setLayoutY(15);
+		savelbl.setVisible(false);
+		actionanchor1.getChildren().add(savelbl);
+
+		saveicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(true);
+			}
+		});
+		saveicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				savelbl.setVisible(false);
+			}
+		});
+		saveicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				save();
+			}
+		});
+
+		Label updatelbl = new Label(" Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(40);
+		updatelbl.setLayoutX(65);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
+		updateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				update();
+			}
+		});
 
 		emailtext.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (!newValue) { // when focus lost
@@ -258,23 +310,18 @@ public class AddUserController implements Initializable {
 		});
 
 		// closing screen when clicks on home icon
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				AddUserController nc = new AddUserController();
-				scu.nullifyStrings(nc);
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+				AddUserController nc = new AddUserController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
 
-	@FXML
 	private void save() {
 		if (validatefields()) {
 			String status = new DAO().registerUser("users", "", Loggedinuserdetails.companyName,
@@ -299,7 +346,6 @@ public class AddUserController implements Initializable {
 		}
 	}
 
-	@FXML
 	private void update() {
 		if (validatefields()) {
 			String status = new DAO().updateUser(firstnametext.getText(), lastnametext.getText(),
@@ -450,37 +496,80 @@ public class AddUserController implements Initializable {
 				bugservercheck.setSelected(false);
 				bugserver = 0;
 			}
-			save.setVisible(false);
-			update.setVisible(true);
+			saveicon.setVisible(false);
+			updateicon.setVisible(true);
 		}
 	}
 
 	private boolean validatefields() {
 		boolean result = true;
+		StringBuffer message = new StringBuffer();
 		if (firstnametext.getText() == null || firstnametext.getText().isEmpty()) {
-			runmessage("Please Enter First Name...");
 			result = false;
-		} else if (lastnametext.getText() == null || lastnametext.getText().isEmpty()) {
-			runmessage("Please Enter Last Name...");
+			firstnametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter First Name...\n\n");
+		} else {
+			firstnametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (lastnametext.getText() == null || lastnametext.getText().isEmpty()) {
 			result = false;
-		} else if (emailtext.getText() == null || emailtext.getText().isEmpty()) {
-			runmessage("Please Enter E-Mail Address...");
+			lastnametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Last Name...\n\n");
+		} else {
+			lastnametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (emailtext.getText() == null || emailtext.getText().isEmpty()) {
 			result = false;
-		} else if (securityquestiontext.getText() == null || securityquestiontext.getText().isEmpty()) {
-			runmessage("Please Enter Security Question...");
+			emailtext.setUnFocusColor(Color.RED);
+			message.append("Please Enter E-Mail Address...\n\n");
+		} else {
+			emailtext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (securityquestiontext.getText() == null || securityquestiontext.getText().isEmpty()) {
 			result = false;
-		} else if (securityanstext.getText() == null || securityanstext.getText().isEmpty()) {
-			runmessage("Please Enter Security Answer to recover the Password...");
+			securityquestiontext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Security Question...\n\n");
+		} else {
+			securityquestiontext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (securityanstext.getText() == null || securityanstext.getText().isEmpty()) {
 			result = false;
-		} else if (usernametext.getText() == null || usernametext.getText().isEmpty()) {
-			runmessage("Please Enter User ID...");
+			securityanstext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Security Answer to recover the Password...\n\n");
+		} else {
+			securityanstext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (usernametext.getText() == null || usernametext.getText().isEmpty()) {
 			result = false;
-		} else if (passwordtext.getText() == null || passwordtext.getText().isEmpty()) {
-			runmessage("Please Enter Password...");
+			usernametext.setUnFocusColor(Color.RED);
+			message.append("Please Enter User ID...\n\n");
+		} else {
+			usernametext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (passwordtext.getText() == null || passwordtext.getText().isEmpty()) {
 			result = false;
-		} else if (!passwordvalid) {
-			runmessage("Password doesn't meet the Password Stength Policy...");
+			passwordtext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Password...\n\n");
+		} else {
+			passwordtext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!passwordvalid) {
 			result = false;
+			passwordtext.setUnFocusColor(Color.RED);
+			message.append("Password doesn't meet the Password Stength Policy...\n\n");
+		} else {
+			passwordtext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!result) {
+			runmessage(message.toString());
 		}
 
 		return result;
@@ -509,8 +598,8 @@ public class AddUserController implements Initializable {
 		newbugcheck.setSelected(false);
 		viewbugcheck.setSelected(false);
 		bugservercheck.setSelected(false);
-		save.setVisible(true);
-		update.setVisible(false);
+		saveicon.setVisible(true);
+		updateicon.setVisible(false);
 		usercombo.getSelectionModel().select(0);
 		greentick.setVisible(false);
 		greentick1.setVisible(false);

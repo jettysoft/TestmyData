@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="adduserpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.AddUserController">
+   <children>
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="New User" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXTabPane fx:id="userstab" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="User Setup">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                           <children>
+                              <JFXComboBox fx:id="usercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXCheckBox fx:id="activatecheck" checkedColor="#40aa03" layoutX="30.0" layoutY="55.0" text="Activate User" textFill="#40aa03" unCheckedColor="#dad8d8" visible="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="deactivatecheck" checkedColor="#40aa03" layoutX="30.0" layoutY="55.0" text="Deactivate User" textFill="#ff3300" unCheckedColor="#dad8d8" visible="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXTextField fx:id="firstnametext" focusColor="#40aa03" layoutX="40.0" layoutY="140.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter First Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="lastnametext" focusColor="#40aa03" layoutX="40.0" layoutY="180.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Last Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="emailtext" focusColor="#40aa03" layoutX="40.0" layoutY="220.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Email Address" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXCheckBox fx:id="receiveemailcheck" checkedColor="#38c910" layoutX="30.0" layoutY="260.0" text="Receive Reports in email" textFill="#162a4c" unCheckedColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </JFXCheckBox>
+                              <JFXTextField fx:id="securityquestiontext" focusColor="#40aa03" layoutX="40.0" layoutY="290.0" prefHeight="25.0" prefWidth="250.0" promptText="Provide Security Question" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXPasswordField fx:id="securityanstext" focusColor="#40aa03" layoutX="40.0" layoutY="330.0" prefWidth="250.0" promptText="Provide Security Answer" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <Label layoutX="20.0" layoutY="5.0" text="Update Existing User" textFill="#f21111">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="150.0" layoutY="100.0" text="OR" textFill="#0083ff">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="120.0" text="Add New User" textFill="#40aa03">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="newcrcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="60.0" text="Control Report Rules" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="400.0" layoutY="2.0" text="Design" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="newffcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="30.0" text="Field to Field" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="projectcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="90.0" text="Project Setup" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="400.0" layoutY="122.0" text="Test Suite" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="newtscheck" checkedColor="#40aa03" layoutX="340.0" layoutY="150.0" text="New Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="400.0" layoutY="182.0" text="Test" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="execrcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="210.0" text="Execute Control Report" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="exetscheck" checkedColor="#40aa03" layoutX="340.0" layoutY="240.0" text="Execute Test Suite" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="400.0" layoutY="272.0" text="Bugs" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="newbugcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="300.0" text="New Bug" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="viewbugcheck" checkedColor="#40aa03" layoutX="340.0" layoutY="330.0" text="Vew Bug &amp; Update" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="570.0" layoutY="2.0" text="Reports" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="downloadcheck" checkedColor="#40aa03" layoutX="530.0" layoutY="30.0" text="Download (Reports)" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="viewresultscheck" checkedColor="#40aa03" layoutX="530.0" layoutY="60.0" text="View Results" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="570.0" layoutY="92.0" text="Settings" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXCheckBox fx:id="bugservercheck" checkedColor="#40aa03" layoutX="530.0" layoutY="120.0" text="Bug Server" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="addusercheck" checkedColor="#40aa03" layoutX="530.0" layoutY="150.0" text="New User" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="addqacheck" checkedColor="#40aa03" layoutX="530.0" layoutY="180.0" text="QA Server" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <JFXCheckBox fx:id="dasboardcheck" checkedColor="#40aa03" layoutX="530.0" layoutY="240.0" text="Dash Board Access" textFill="#162a4c" unCheckedColor="#dad8d8">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXCheckBox>
+                              <Label layoutX="570.0" layoutY="212.0" text="Dashboard" textFill="#40aa03">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="usernametext" focusColor="#40aa03" layoutX="800.0" layoutY="20.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter User Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXPasswordField fx:id="passwordtext" focusColor="#40aa03" layoutX="800.0" layoutY="60.0" prefWidth="250.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <AnchorPane fx:id="passwordinformationanchor" layoutX="820.0" layoutY="100.0" prefHeight="174.0" prefWidth="220.0" style="-fx-background-color: #ffffff;" visible="false">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="22.0" text="Password Field Must Contain" textFill="#f8340d">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="50.0" text="Letters Bettween 12 - 20 Only">
+                                       <font>
+                                          <Font name="System Bold" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="75.0" text="One Capital Letter">
+                                       <font>
+                                          <Font name="System Bold" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="100.0" text="One Symbol(@,$,%,&amp;,#,)">
+                                       <font>
+                                          <Font name="System Bold" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="125.0" text="One Number">
+                                       <font>
+                                          <Font name="System Bold" size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <ImageView fx:id="wrongtick" fitHeight="20.0" fitWidth="20.0" layoutX="1065.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="greentick" fitHeight="20.0" fitWidth="20.0" layoutX="1065.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="300.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="300.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="36.0" text="User Info" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="335.0" layoutY="36.0" text="Features to Access" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="785.0" layoutY="36.0" text="Login info" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+      <AnchorPane fx:id="transaprentanchor" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+         <children>
+            <ImageView fx:id="pleasewait" fitHeight="25.0" fitWidth="25.0" layoutX="600.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

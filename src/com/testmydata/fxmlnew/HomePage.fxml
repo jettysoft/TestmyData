@@ -91,7 +91,7 @@
             </Hyperlink>
             <Pane layoutX="100.0" layoutY="-8.0" maxHeight="2.0" minHeight="1.0" prefHeight="3.0" prefWidth="47.0" style="-fx-background-color: #f2e35e; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" />
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="270.0" layoutY="15.0" size="15" text="|" />
-            <Hyperlink fx:id="projectsetup" layoutX="300.0" onAction="#projectsetup" style="-fx-region-border: 0;" stylesheets="@../css/Hyperlink.css" text="Project Setup" textFill="#ffed4f">
+            <Hyperlink fx:id="projectsetup" layoutX="300.0" onAction="#projectsetup" stylesheets="@../css/Hyperlink.css" text="Project Setup" textFill="#ffed4f">
                <font>
                   <Font size="11.0" />
                </font>

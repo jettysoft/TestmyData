@@ -589,21 +589,6 @@ public class CommonFunctions {
 		stage.showAndWait();
 	}
 
-	public static void invokeEmailSettings(Class<?> className) {
-		Stage stage = new Stage();
-		Parent root = null;
-		try {
-			root = FXMLLoader.load(className.getResource("/com/testmydata/fxml/EmailSettings.fxml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		stage.setScene(new Scene(root));
-		stage.initStyle(StageStyle.UNDECORATED);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setAlwaysOnTop(true);
-		stage.showAndWait();
-	}
-
 	public static void invokeCashInput(Class<?> className) {
 		Stage stage = new Stage();
 		Parent root = null;
