@@ -212,10 +212,12 @@ public class DashBoardController implements Initializable {
 		lbl_data_title.setStyle(
 				"-fx-background-color:  #162a4c;-fx-alignment : center;-fx-background-radius: 1em;-fx-font-size: 14pt;-fx-font-family: \"Calibri\";-fx-text-fill: white;");
 		lbl_data_title.setVisible(false);
+		
 		list_field.setCellFactory(param -> new Cell());
 		list_data.setCellFactory(param -> new DataCell());
 		list_control.setCellFactory(param -> new ControlCell());
 		list_control_data.setCellFactory(param -> new DataControlCell());
+		
 		list_field.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Release>() {
 			@Override
 			public void changed(ObservableValue<? extends Release> observable, Release oldValue, Release newValue) {
@@ -1133,10 +1135,10 @@ public class DashBoardController implements Initializable {
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
 		Label rec = new Label("");
-		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
-		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
-		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
-		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute);
+		ImageView icon_run = new ImageView(StaticImages.source_run);
+		ImageView pdficon = new ImageView(StaticImages.pdficon);
+		ImageView excelicon = new ImageView(StaticImages.excelicon);
 
 		public Cell() {
 			hbox_title.setPadding(new Insets(0, 0, 0, 0));
@@ -1325,10 +1327,10 @@ public class DashBoardController implements Initializable {
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
 		Label rec = new Label("");
-		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
-		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
-		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
-		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute);
+		ImageView icon_run = new ImageView(StaticImages.source_run);
+		ImageView pdficon = new ImageView(StaticImages.pdficon);
+		ImageView excelicon = new ImageView(StaticImages.excelicon);
 
 		public ControlCell() {
 			hbox_title.setPadding(new Insets(0, 0, 0, 0));
@@ -1504,10 +1506,10 @@ public class DashBoardController implements Initializable {
 		Label lbl_fail = new Label("");
 		Label rec = new Label();
 		Label rec1 = new Label();
-		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
-		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
-		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
-		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute);
+		ImageView icon_run = new ImageView(StaticImages.source_run);
+		ImageView pdficon = new ImageView(StaticImages.pdficon);
+		ImageView excelicon = new ImageView(StaticImages.excelicon);
 
 		public DataCell() {
 			hbox_title.setPadding(new Insets(0, 0, 0, 0));
@@ -1702,10 +1704,10 @@ public class DashBoardController implements Initializable {
 						lbl_pass_testSuite.setText(testSuite.getPass() + "%");
 						lbl_fail_testSuite.setText(testSuite.getFail() + "%");
 
-						ImageView icon_execute1 = new ImageView(StaticImages.source_execute.getImage());
-						ImageView icon_run1 = new ImageView(StaticImages.source_run.getImage());
-						ImageView pdficon1 = new ImageView(StaticImages.pdficon.getImage());
-						ImageView excelicon1 = new ImageView(StaticImages.excelicon.getImage());
+						ImageView icon_execute1 = new ImageView(StaticImages.source_execute);
+						ImageView icon_run1 = new ImageView(StaticImages.source_run);
+						ImageView pdficon1 = new ImageView(StaticImages.pdficon);
+						ImageView excelicon1 = new ImageView(StaticImages.excelicon);
 
 						icon_execute1.setFitHeight(25.0);
 						icon_execute1.setFitWidth(25.0);
@@ -1836,10 +1838,10 @@ public class DashBoardController implements Initializable {
 		Label lbl_rule = new Label("");
 		Label lbl_pass = new Label("");
 		Label lbl_fail = new Label("");
-		ImageView icon_execute = new ImageView(StaticImages.source_execute.getImage());
-		ImageView icon_run = new ImageView(StaticImages.source_run.getImage());
-		ImageView pdficon = new ImageView(StaticImages.pdficon.getImage());
-		ImageView excelicon = new ImageView(StaticImages.excelicon.getImage());
+		ImageView icon_execute = new ImageView(StaticImages.source_execute);
+		ImageView icon_run = new ImageView(StaticImages.source_run);
+		ImageView pdficon = new ImageView(StaticImages.pdficon);
+		ImageView excelicon = new ImageView(StaticImages.excelicon);
 
 		public DataControlCell() {
 			hbox_title.setPadding(new Insets(0, 0, 0, 0));

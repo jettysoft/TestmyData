@@ -88,13 +88,13 @@ public class NewTestSuiteController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setinitialdetails();
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		processicon.setImage(StaticImages.source_run.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		refreshicon.setImage(StaticImages.refresh.getImage());
-		addicon.setImage(StaticImages.add.getImage());
-		clearicon.setImage(StaticImages.clear.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		processicon.setImage(StaticImages.source_run);
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
+		refreshicon.setImage(StaticImages.refresh);
+		addicon.setImage(StaticImages.add);
+		clearicon.setImage(StaticImages.clear);
 
 		tstable.getColumns().addAll(checkbox);
 		checkbox.setCellValueFactory(new PropertyValueFactory<>("checkboxs"));

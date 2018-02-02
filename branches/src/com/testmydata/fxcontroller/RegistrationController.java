@@ -71,12 +71,12 @@ public class RegistrationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		wrongtick.setImage(StaticImages.wrong_tick.getImage());
-		wrongtick2.setImage(StaticImages.wrong_tick.getImage());
-		wrongtick3.setImage(StaticImages.wrong_tick.getImage());
-		greentick.setImage(StaticImages.green_tick.getImage());
-		greentick2.setImage(StaticImages.green_tick.getImage());
-		greentick3.setImage(StaticImages.green_tick.getImage());
+		wrongtick.setImage(StaticImages.wrong_tick);
+		wrongtick2.setImage(StaticImages.wrong_tick);
+		wrongtick3.setImage(StaticImages.wrong_tick);
+		greentick.setImage(StaticImages.green_tick);
+		greentick2.setImage(StaticImages.green_tick);
+		greentick3.setImage(StaticImages.green_tick);
 
 		industrycombo.setStyle("-fx-text-fill: black; -fx-font-weight:bold;");
 

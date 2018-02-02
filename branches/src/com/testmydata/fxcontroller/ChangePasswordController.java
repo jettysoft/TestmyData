@@ -48,14 +48,14 @@ public class ChangePasswordController implements Initializable {
 		StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "Business Store Settings", "", "", true,
 				"Opens Change Password", "");
 
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		wrongtick.setImage(StaticImages.wrong_tick.getImage());
-		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
-		wrongtick2.setImage(StaticImages.wrong_tick.getImage());
-		greentick.setImage(StaticImages.green_tick.getImage());
-		greentick1.setImage(StaticImages.green_tick.getImage());
-		greentick2.setImage(StaticImages.green_tick.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		wrongtick.setImage(StaticImages.wrong_tick);
+		wrongtick1.setImage(StaticImages.wrong_tick);
+		wrongtick2.setImage(StaticImages.wrong_tick);
+		greentick.setImage(StaticImages.green_tick);
+		greentick1.setImage(StaticImages.green_tick);
+		greentick2.setImage(StaticImages.green_tick);
+		updateicon.setImage(StaticImages.save);
 
 		Label updatelbl = new Label(" Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);

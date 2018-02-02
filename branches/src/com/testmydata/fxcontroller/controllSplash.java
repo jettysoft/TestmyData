@@ -12,6 +12,7 @@ import com.testmydata.binarybeans.InvoiceHeaderBeanBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.fxhelpers.LoginFXHelper;
 import com.testmydata.main.WelcomePage;
+import com.testmydata.util.StaticImages;
 import com.testmydata.vpn.VpnConnectionThread;
 
 import javafx.application.Platform;
@@ -56,6 +57,7 @@ public class controllSplash implements Initializable {
 			lblWelcome.setText("Loading");
 			lblsecure.setText("Secured....");
 		}
+		imgLoading.setImage(StaticImages.im_loading);
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
@@ -107,10 +109,12 @@ public class controllSplash implements Initializable {
 		};
 		service.start();
 		service.setOnRunning((WorkerStateEvent event) -> {
+			
 			new FadeInLeftTransition(lblWelcome).play();
 			new FadeInRightTransition(lblRudy).play();
 			new FadeInLeftTransition(lblsecure).play();
 			new FadeInTransition(vboxBottom).play();
+			
 		});
 		service.setOnSucceeded((WorkerStateEvent event) -> {
 			// code to call loginfxml after splash screen

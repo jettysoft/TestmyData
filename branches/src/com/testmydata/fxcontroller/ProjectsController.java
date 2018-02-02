@@ -43,11 +43,11 @@ public class ProjectsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		refreshicon1.setImage(StaticImages.refresh.getImage());
-		refreshicon.setImage(StaticImages.refresh.getImage());
-		closeicon.setImage(StaticImages.closeicon.getImage());
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
+		refreshicon1.setImage(StaticImages.refresh);
+		refreshicon.setImage(StaticImages.refresh);
+		closeicon.setImage(StaticImages.closeicon);
 		updateicon.setVisible(false);
 
 		setexistingusers();

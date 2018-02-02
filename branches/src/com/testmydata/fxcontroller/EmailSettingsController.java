@@ -49,10 +49,10 @@ public class EmailSettingsController implements Initializable {
 				"Opens Email Settings", "");
 		populateEmailDetailsInitially();
 
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		wrongtick.setImage(StaticImages.wrong_tick.getImage());
-		greentick.setImage(StaticImages.green_tick.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		saveicon.setImage(StaticImages.save);
+		wrongtick.setImage(StaticImages.wrong_tick);
+		greentick.setImage(StaticImages.green_tick);
 
 		Label savelbl = new Label("  Save ");
 		savelbl.setStyle(StaticImages.lblStyle);

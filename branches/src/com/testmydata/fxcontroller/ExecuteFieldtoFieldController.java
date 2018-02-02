@@ -71,11 +71,11 @@ public class ExecuteFieldtoFieldController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		setreleasecombo();
 
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		runicon.setImage(StaticImages.source_execute.getImage());
-		processicon.setImage(StaticImages.source_run.getImage());
-		pdficon.setImage(StaticImages.pdficon.getImage());
-		excelicon.setImage(StaticImages.excelicon.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		runicon.setImage(StaticImages.source_execute);
+		processicon.setImage(StaticImages.source_run);
+		pdficon.setImage(StaticImages.pdficon);
+		excelicon.setImage(StaticImages.excelicon);
 
 		Label lbl = new Label(" Execute ");
 		lbl.setStyle(StaticImages.lblStyle);

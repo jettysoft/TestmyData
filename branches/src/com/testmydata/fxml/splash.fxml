@@ -13,9 +13,7 @@
       <AnchorPane layoutX="74.0" layoutY="14.0" prefHeight="327.0" prefWidth="518.0" style="-fx-background-color: #162a4c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="imgLoading" fitHeight="25.0" fitWidth="25.0" layoutX="210.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/com/testmydata/fxml/302.gif" />
-               </image>
+               
             </ImageView>
             <Text fx:id="lblWelcome" fill="WHITE" layoutX="45.0" layoutY="96.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" wrappingWidth="289.2421875">
                <font>

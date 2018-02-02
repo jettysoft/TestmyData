@@ -105,38 +105,38 @@ public class NewControlReportRulesController implements Initializable {
 		rulelistservice.start();
 		updateicon.setVisible(false);
 
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		refreshicon.setImage(StaticImages.refresh.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
+		refreshicon.setImage(StaticImages.refresh);
 
-		sourcevalidicon.setImage(StaticImages.sqleditor.getImage());
-		stagingvalidicon.setImage(StaticImages.sqleditor.getImage());
-		transvalidicon.setImage(StaticImages.sqleditor.getImage());
-		targetvalidicon.setImage(StaticImages.sqleditor.getImage());
+		sourcevalidicon.setImage(StaticImages.sqleditor);
+		stagingvalidicon.setImage(StaticImages.sqleditor);
+		transvalidicon.setImage(StaticImages.sqleditor);
+		targetvalidicon.setImage(StaticImages.sqleditor);
 
-		sourcecolicon.setImage(StaticImages.sqlcolumneditor.getImage());
-		stagingcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
-		transcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
-		targetcolicon.setImage(StaticImages.sqlcolumneditor.getImage());
+		sourcecolicon.setImage(StaticImages.sqlcolumneditor);
+		stagingcolicon.setImage(StaticImages.sqlcolumneditor);
+		transcolicon.setImage(StaticImages.sqlcolumneditor);
+		targetcolicon.setImage(StaticImages.sqlcolumneditor);
 
-		sourcecloseicon.setImage(StaticImages.closeicon.getImage());
-		stagingcloseicon.setImage(StaticImages.closeicon.getImage());
-		transcloseicon.setImage(StaticImages.closeicon.getImage());
-		targetcloseicon.setImage(StaticImages.closeicon.getImage());
-		sourcecolcloseicon.setImage(StaticImages.closeicon.getImage());
-		stagingcolcloseicon.setImage(StaticImages.closeicon.getImage());
-		transcolcloseicon.setImage(StaticImages.closeicon.getImage());
-		targetcolcloseicon.setImage(StaticImages.closeicon.getImage());
+		sourcecloseicon.setImage(StaticImages.closeicon);
+		stagingcloseicon.setImage(StaticImages.closeicon);
+		transcloseicon.setImage(StaticImages.closeicon);
+		targetcloseicon.setImage(StaticImages.closeicon);
+		sourcecolcloseicon.setImage(StaticImages.closeicon);
+		stagingcolcloseicon.setImage(StaticImages.closeicon);
+		transcolcloseicon.setImage(StaticImages.closeicon);
+		targetcolcloseicon.setImage(StaticImages.closeicon);
 
-		srunicon.setImage(StaticImages.source_execute.getImage());
-		strunicon.setImage(StaticImages.source_execute.getImage());
-		transrunicon.setImage(StaticImages.source_execute.getImage());
-		trunicon.setImage(StaticImages.source_execute.getImage());
-		scolrunicon.setImage(StaticImages.source_execute.getImage());
-		stcolrunicon.setImage(StaticImages.source_execute.getImage());
-		transcolrunicon.setImage(StaticImages.source_execute.getImage());
-		tcolrunicon.setImage(StaticImages.source_execute.getImage());
+		srunicon.setImage(StaticImages.source_execute);
+		strunicon.setImage(StaticImages.source_execute);
+		transrunicon.setImage(StaticImages.source_execute);
+		trunicon.setImage(StaticImages.source_execute);
+		scolrunicon.setImage(StaticImages.source_execute);
+		stcolrunicon.setImage(StaticImages.source_execute);
+		transcolrunicon.setImage(StaticImages.source_execute);
+		tcolrunicon.setImage(StaticImages.source_execute);
 
 		s1 = getdesign();
 		st1 = getdesign();
@@ -1612,7 +1612,7 @@ public class NewControlReportRulesController implements Initializable {
 		ModifyButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			modif_icon.setImage(StaticImages.modify.getImage());
+			modif_icon.setImage(StaticImages.modify);
 			modif_icon.setFitHeight(20.0);
 			modif_icon.setFitWidth(20.0);
 			cellButton.setMinWidth(20.0);
@@ -1677,7 +1677,7 @@ public class NewControlReportRulesController implements Initializable {
 		DeleteButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			delet_icon.setImage(StaticImages.delete.getImage());
+			delet_icon.setImage(StaticImages.delete);
 			delet_icon.setFitHeight(20);
 			delet_icon.setFitWidth(20);
 			cellButton.setMinWidth(20.0);

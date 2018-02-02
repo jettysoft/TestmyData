@@ -53,7 +53,7 @@ public class RegistrationFXHelper {
 		stage = new Stage();
 		UndecoratorController.getInstance("close");
 		stage.initStyle(StageStyle.UNDECORATED);
-		stage.getIcons().addAll(StaticImages.appicon.getImage());
+		stage.getIcons().addAll(StaticImages.appicon);
 		// new SystemScreenSize().start(stage);
 
 		root.setOnMousePressed(new EventHandler<MouseEvent>() {

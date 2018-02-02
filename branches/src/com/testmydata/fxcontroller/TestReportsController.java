@@ -56,22 +56,22 @@ public class TestReportsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		excelicon.setImage(StaticImages.excelicon.getImage());
-		pdficon.setImage(StaticImages.pdficon.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		excelicon.setImage(StaticImages.excelicon);
+		pdficon.setImage(StaticImages.pdficon);
 
-		excelicon1.setImage(StaticImages.excelicon.getImage());
-		pdficon1.setImage(StaticImages.pdficon.getImage());
+		excelicon1.setImage(StaticImages.excelicon);
+		pdficon1.setImage(StaticImages.pdficon);
 
-		excelicon11.setImage(StaticImages.excelicon.getImage());
-		pdficon11.setImage(StaticImages.pdficon.getImage());
+		excelicon11.setImage(StaticImages.excelicon);
+		pdficon11.setImage(StaticImages.pdficon);
 
-		excelprocessicon.setImage(StaticImages.source_run.getImage());
-		pdfprocessicon.setImage(StaticImages.source_run.getImage());
-		excelprocessicon1.setImage(StaticImages.source_run.getImage());
-		pdfprocessicon1.setImage(StaticImages.source_run.getImage());
-		excelprocessicon11.setImage(StaticImages.source_run.getImage());
-		pdfprocessicon11.setImage(StaticImages.source_run.getImage());
+		excelprocessicon.setImage(StaticImages.source_run);
+		pdfprocessicon.setImage(StaticImages.source_run);
+		excelprocessicon1.setImage(StaticImages.source_run);
+		pdfprocessicon1.setImage(StaticImages.source_run);
+		excelprocessicon11.setImage(StaticImages.source_run);
+		pdfprocessicon11.setImage(StaticImages.source_run);
 
 		testtype.getItems().clear();
 		testtype.getItems().addAll(testtypeslist);

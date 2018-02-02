@@ -62,12 +62,11 @@ public class LoginFXHelper {
 
 		Parent root = FXMLLoader.load(getClass().getResource(Screenpath));
 		stage = new Stage();
-
 		// stage.setTitle("Login");
 		UndecoratorController.getInstance("close");
 		stage.initStyle(StageStyle.UNDECORATED);
 
-		stage.getIcons().addAll(StaticImages.appicon.getImage());
+		stage.getIcons().addAll(StaticImages.appicon);
 
 		root.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override

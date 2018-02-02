@@ -82,7 +82,7 @@ public class ControllLogin implements Initializable {
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 		remembermebox.setStyle("-fx-text-fill: white; -fx-font-weight:bold;");
-		imageView.setImage(StaticImages.appicon.getImage());
+		imageView.setImage(StaticImages.appicon);
 
 		txtCompanyName.lengthProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -105,6 +105,7 @@ public class ControllLogin implements Initializable {
 		forgotPassword.setEffect(ds);
 
 		Platform.runLater(() -> {
+			
 			new FadeInLeftTransition(lblWelcome).play();
 			new FadeInLeftTransition1(lblPassword).play();
 			new FadeInLeftTransition1(lblUsername).play();
