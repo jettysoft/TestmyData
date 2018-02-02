@@ -3,12 +3,10 @@ package com.testmydata.fxcontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.testmydata.auditlog.StoreAuditLogger;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dao.DAO;
-import com.testmydata.fxutil.UndecoratorController;
 import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.Loggedinuserdetails;
@@ -18,13 +16,10 @@ import com.testmydata.vpn.VpnConnectionThread;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,9 +30,7 @@ public class ChangePasswordController implements Initializable {
 	@FXML
 	private static ChangePasswordController userHome = null;
 	@FXML
-	private ImageView homeicon, wrongtick, greentick, greentick1, wrongtick1, wrongtick2, greentick2;
-	@FXML
-	private JFXButton update;
+	private ImageView closeicon, wrongtick, greentick, greentick1, wrongtick1, wrongtick2, greentick2, updateicon;
 	@FXML
 	private JFXPasswordField newPasswordField, reTypeNewPasswordField, oldPasswordField;
 	@FXML
@@ -45,6 +38,8 @@ public class ChangePasswordController implements Initializable {
 	Stage myStage;
 	@FXML
 	private Label changepasswordlabel;
+	@FXML
+	private AnchorPane actionanchor1;
 	Boolean passwordvalid = false;
 	// static ActionEvent event1;
 
@@ -53,19 +48,41 @@ public class ChangePasswordController implements Initializable {
 		StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "Business Store Settings", "", "", true,
 				"Opens Change Password", "");
 
-		DropShadow ds = new DropShadow();
-		ds.setOffsetY(3.0f);
-		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
-		changepasswordlabel.setEffect(ds);
-		update.setEffect(ds);
-
-		homeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		wrongtick.setImage(StaticImages.wrong_tick.getImage());
 		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
 		wrongtick2.setImage(StaticImages.wrong_tick.getImage());
 		greentick.setImage(StaticImages.green_tick.getImage());
 		greentick1.setImage(StaticImages.green_tick.getImage());
 		greentick2.setImage(StaticImages.green_tick.getImage());
+		updateicon.setImage(StaticImages.save.getImage());
+
+		Label updatelbl = new Label(" Update ");
+		updatelbl.setStyle(StaticImages.lblStyle);
+		updatelbl.setMinWidth(40);
+		updatelbl.setLayoutX(65);
+		updatelbl.setLayoutY(15);
+		updatelbl.setVisible(false);
+		actionanchor1.getChildren().add(updatelbl);
+
+		updateicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(true);
+			}
+		});
+		updateicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				updatelbl.setVisible(false);
+			}
+		});
+		updateicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				update();
+			}
+		});
 
 		oldPasswordField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (oldPasswordField.getText() != null && !oldPasswordField.getText().trim().isEmpty()
@@ -179,18 +196,14 @@ public class ChangePasswordController implements Initializable {
 			}
 		});
 
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
+		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				ChangePasswordController nc = new ChangePasswordController();
-				scu.nullifyStrings(nc);
+			public void handle(MouseEvent t) {
+				AnchorPane pane = (AnchorPane) ((ImageView) t.getSource()).getParent().getParent().getParent();
+				pane.getChildren().remove(pane.getChildren().size() - 1);
 
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
+				AddUserController nc = new AddUserController();
+				Cleanup.nullifyStrings(nc);
 			}
 		});
 	}
@@ -199,30 +212,81 @@ public class ChangePasswordController implements Initializable {
 		return userHome;
 	}
 
-	@FXML
-	private void update(ActionEvent event) {
-		if (oldPasswordField.getText().trim().isEmpty()) {
-			CommonFunctions.message = "Please Enter Old Password.";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (newPasswordField.getText().trim().isEmpty()) {
-			CommonFunctions.message = "Please Enter New Password.";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (newPasswordField.getText().length() < 12) {
-			CommonFunctions.message = "Please Enter Minimum 12 Letters";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (newPasswordField.getText().length() > 20) {
-			CommonFunctions.message = "Please Enter Maximum 20 Letters";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (reTypeNewPasswordField.getText().trim().isEmpty()) {
-			CommonFunctions.message = "Please Re-Enter New Password.";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (!newPasswordField.getText().trim().equals(reTypeNewPasswordField.getText().trim())) {
-			CommonFunctions.message = "Passwords didn't match, Please Try Again.";
-			CommonFunctions.invokeAlertBox(getClass());
-		} else if (passwordvalid == false) {
-			CommonFunctions.message = "Please Enter Valid Password according to Instructions shown";
-			CommonFunctions.invokeAlertBox(getClass());
+	private void runmessage(String message) {
+		CommonFunctions.message = message;
+		CommonFunctions.invokeAlertBox(getClass());
+	}
+
+	private boolean validatefields() {
+		boolean result = true;
+		StringBuffer message = new StringBuffer();
+		if (oldPasswordField.getText() == null || oldPasswordField.getText().trim().isEmpty()) {
+			result = false;
+			oldPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Enter Old Password...\n\n");
 		} else {
+			oldPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (newPasswordField.getText() == null || newPasswordField.getText().trim().isEmpty()) {
+			result = false;
+			newPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Enter New Password...\n\n");
+		} else {
+			newPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (newPasswordField.getText() != null || newPasswordField.getText().length() < 12) {
+			result = false;
+			newPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Enter Minimum 12 Letters...\n\n");
+		} else {
+			newPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (newPasswordField.getText() != null || newPasswordField.getText().length() > 20) {
+			result = false;
+			newPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Enter Maximum 20 Letters...\n\n");
+		} else {
+			newPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (reTypeNewPasswordField.getText() == null || reTypeNewPasswordField.getText().trim().isEmpty()) {
+			result = false;
+			reTypeNewPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Confirm New Password...\n\n");
+		} else {
+			reTypeNewPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (newPasswordField.getText() == null || reTypeNewPasswordField.getText() == null
+				|| !newPasswordField.getText().trim().equals(reTypeNewPasswordField.getText().trim())) {
+			result = false;
+			reTypeNewPasswordField.setUnFocusColor(Color.RED);
+			message.append("Passwords didn't match, Please Try Again...\n\n");
+		} else {
+			reTypeNewPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!passwordvalid) {
+			result = false;
+			reTypeNewPasswordField.setUnFocusColor(Color.RED);
+			message.append("Please Enter Valid Password according to Instructions shown...\n\n");
+		} else {
+			reTypeNewPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!result) {
+			runmessage(message.toString());
+		}
+
+		return result;
+	}
+
+	private void update() {
+
+		if (validatefields()) {
 
 			String status = new DAO().updateUserPassword("Users",
 					Long.parseLong(Integer.toString(Loggedinuserdetails.id)), oldPasswordField.getText().trim(),
@@ -242,8 +306,8 @@ public class ChangePasswordController implements Initializable {
 						+ "Please Restart the System...!";
 				CommonFunctions.invokeAlertBox(getClass());
 
-				StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "Business Store Settings", "", "",
-						true, "Sucessfully Changed Password", "");
+				StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "TestmyData Settings", "", "", true,
+						"Sucessfully Changed Password", "");
 
 				VpnConnectionThread.shutdown();
 				Platform.exit();

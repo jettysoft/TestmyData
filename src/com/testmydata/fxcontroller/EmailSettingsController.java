@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 public class EmailSettingsController implements Initializable {
 	@FXML
@@ -48,7 +49,7 @@ public class EmailSettingsController implements Initializable {
 				"Opens Email Settings", "");
 		populateEmailDetailsInitially();
 
-		closeicon.setImage(StaticImages.homeicon.getImage());
+		closeicon.setImage(StaticImages.closeicon.getImage());
 		saveicon.setImage(StaticImages.save.getImage());
 		wrongtick.setImage(StaticImages.wrong_tick.getImage());
 		greentick.setImage(StaticImages.green_tick.getImage());
@@ -114,17 +115,59 @@ public class EmailSettingsController implements Initializable {
 		return userHome;
 	}
 
+	private boolean validatefields() {
+		boolean result = true;
+		StringBuffer message = new StringBuffer();
+
+		if (hosttext.getText() == null || hosttext.getText().isEmpty()) {
+			result = false;
+			hosttext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Host Name...\n\n");
+		} else {
+			hosttext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (porttext.getText() == null || porttext.getText().isEmpty()) {
+			result = false;
+			porttext.setUnFocusColor(Color.RED);
+			message.append("Please Enter Port Number...\n\n");
+		} else {
+			porttext.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (emailTxt.getText() == null || emailTxt.getText().isEmpty()) {
+			result = false;
+			emailTxt.setUnFocusColor(Color.RED);
+			message.append("Please Enter Email Address...\n\n");
+		} else {
+			emailTxt.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (passTxt.getText() == null || passTxt.getText().isEmpty()) {
+			result = false;
+			passTxt.setUnFocusColor(Color.RED);
+			message.append("Please Enter Password...\n\n");
+		} else {
+			passTxt.setUnFocusColor(Color.rgb(190, 190, 196));
+		}
+
+		if (!result) {
+			CommonFunctions.message = message.toString();
+			CommonFunctions.invokeAlertBox(getClass());
+		}
+
+		return result;
+	}
+
 	@FXML
 	private void save() {
-		boolean state = ValidateRealEmail.validateemail(emailTxt.getText());
-		if (!(state)) {
-			CommonFunctions.message = "Please Enter Valid Email Id...!";
-			CommonFunctions.invokeAlertBox(getClass());
-			return;
-		} else {
-
-			if (passTxt.getText().length() != 0 && hosttext.getText().length() != 0
-					&& porttext.getText().length() != 0) {
+		if (validatefields()) {
+			boolean state = ValidateRealEmail.validateemail(emailTxt.getText());
+			if (!(state)) {
+				CommonFunctions.message = "Please Enter Valid Email Id...!";
+				CommonFunctions.invokeAlertBox(getClass());
+				return;
+			} else {
 				HashMap<String, String> fileDetails = new HashMap<String, String>();
 				fileDetails.put("email", EncryptAndDecrypt.encryptData(emailTxt.getText()));
 				fileDetails.put("password", EncryptAndDecrypt.encryptData(passTxt.getText()));
@@ -142,10 +185,6 @@ public class EmailSettingsController implements Initializable {
 					CommonFunctions.invokeAlertBox(getClass());
 					return;
 				}
-			} else {
-				CommonFunctions.message = "Please complete the details properly...!";
-				CommonFunctions.invokeAlertBox(getClass());
-				return;
 			}
 		}
 	}
