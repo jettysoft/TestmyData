@@ -87,7 +87,7 @@ public class MenuItemsFXHelper {
 
 		stage.setScene(undecoratorScene);
 		stage.toFront();
-		stage.getIcons().addAll(StaticImages.appicon.getImage());
+		stage.getIcons().addAll(StaticImages.appicon);
 		stage.show();
 		stage.setFullScreen(true);
 		// stage.initStyle(StageStyle.UNDECORATED);

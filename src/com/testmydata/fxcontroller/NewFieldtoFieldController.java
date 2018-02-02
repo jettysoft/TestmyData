@@ -122,13 +122,13 @@ public class NewFieldtoFieldController implements Initializable {
 		setexistingmodules();
 		setdb();
 
-		executeicon.setImage(StaticImages.source_execute.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		viewicon.setImage(StaticImages.view.getImage());
-		refreshicon.setImage(StaticImages.refresh.getImage());
-		refreshicon1.setImage(StaticImages.refresh.getImage());
-		closeicon.setImage(StaticImages.closeicon.getImage());
+		executeicon.setImage(StaticImages.source_execute);
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
+		viewicon.setImage(StaticImages.view);
+		refreshicon.setImage(StaticImages.refresh);
+		refreshicon1.setImage(StaticImages.refresh);
+		closeicon.setImage(StaticImages.closeicon);
 
 		updateicon.setVisible(false);
 
@@ -878,7 +878,7 @@ public class NewFieldtoFieldController implements Initializable {
 		ModifyButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			modif_icon.setImage(StaticImages.modify.getImage());
+			modif_icon.setImage(StaticImages.modify);
 			modif_icon.setFitHeight(20.0);
 			modif_icon.setFitWidth(20.0);
 			cellButton.setMinWidth(20.0);
@@ -924,7 +924,7 @@ public class NewFieldtoFieldController implements Initializable {
 		DeleteButtonCell() {
 			pane.setAlignment(Pos.CENTER);
 			tp.setStyle(StaticImages.lblStyle);
-			delet_icon.setImage(StaticImages.delete.getImage());
+			delet_icon.setImage(StaticImages.delete);
 			delet_icon.setFitHeight(20);
 			delet_icon.setFitWidth(20);
 			cellButton.setMinWidth(20.0);

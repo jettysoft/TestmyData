@@ -27,7 +27,7 @@ public class DialogController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		appicon.setImage(StaticImages.appicon.getImage());
+		appicon.setImage(StaticImages.appicon);
 		detailsLabel.setText(CommonFunctions.message);
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(3.0f);

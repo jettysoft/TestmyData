@@ -69,7 +69,7 @@ public class WelcomePageFXHelper {
 		stage.setScene(undecoratorScene);
 		stage.toFront();
 		// Image image = new Image("/com/testmydata/fximages/crown.png");
-		stage.getIcons().addAll(StaticImages.appicon.getImage());
+		stage.getIcons().addAll(StaticImages.appicon);
 		stage.show();
 		stage.setFullScreen(true);
 		// stage.initStyle(StageStyle.UNDECORATED);

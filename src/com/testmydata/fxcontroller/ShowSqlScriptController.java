@@ -27,7 +27,7 @@ public class ShowSqlScriptController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		closeicon.setImage(StaticImages.wrong_tick.getImage());
+		closeicon.setImage(StaticImages.wrong_tick);
 		scripttext.setText(sqlscript);
 
 		closeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

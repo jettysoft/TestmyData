@@ -25,7 +25,7 @@ public class TestResultsController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		appicon.setImage(StaticImages.appicon.getImage());
+		appicon.setImage(StaticImages.appicon);
 		queryresultlabel.setText("Query Result : " + CommonFunctions.queryresult);
 		teststatuslabel.setText("Test Status : " + CommonFunctions.teststatus);
 		messagelabel.setText("Message : " + CommonFunctions.message);

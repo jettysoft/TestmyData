@@ -67,8 +67,8 @@ public class WelcomeController implements Initializable {
 		validate.setEffect(ds);
 		already_registered.setEffect(ds);
 
-		imageView.setImage(StaticImages.green_tick.getImage());
-		wrongimageView.setImage(StaticImages.wrong_tick.getImage());
+		imageView.setImage(StaticImages.green_tick);
+		wrongimageView.setImage(StaticImages.wrong_tick);
 
 		reg_key_text.setStyle("-fx-text-fill: red; -fx-font-weight:bold;");
 

@@ -64,10 +64,10 @@ public class ExecuteTestSuiteController implements Initializable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		homeicon.setImage(StaticImages.homeicon.getImage());
-		processicon.setImage(StaticImages.source_run.getImage());
-		excelicon.setImage(StaticImages.excelicon.getImage());
-		pdficon.setImage(StaticImages.pdficon.getImage());
+		homeicon.setImage(StaticImages.homeicon);
+		processicon.setImage(StaticImages.source_run);
+		excelicon.setImage(StaticImages.excelicon);
+		pdficon.setImage(StaticImages.pdficon);
 
 		tstable.getColumns().addAll(checkbox);
 		checkbox.setCellValueFactory(new PropertyValueFactory<>("checkboxs"));

@@ -68,14 +68,14 @@ public class QAServerSettingsController implements Initializable {
 
 		setexistingservers();
 		setexistingmodules();
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		greentick1.setImage(StaticImages.green_tick.getImage());
-		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
-		testicon.setImage(StaticImages.source_execute.getImage());
-		modulesaveicon.setImage(StaticImages.save.getImage());
-		moduleupdateicon.setImage(StaticImages.save.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		greentick1.setImage(StaticImages.green_tick);
+		wrongtick1.setImage(StaticImages.wrong_tick);
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
+		testicon.setImage(StaticImages.source_execute);
+		modulesaveicon.setImage(StaticImages.save);
+		moduleupdateicon.setImage(StaticImages.save);
 
 		Label testlbl = new Label("  Test ");
 		testlbl.setStyle(StaticImages.lblStyle);

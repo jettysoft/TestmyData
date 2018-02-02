@@ -32,7 +32,7 @@ public class ConfirmDialogController implements Initializable {
 		ds.setOffsetY(3.0f);
 		ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-		appicon.setImage(StaticImages.appicon.getImage());
+		appicon.setImage(StaticImages.appicon);
 
 		yes.setEffect(ds);
 		cancel.setEffect(ds);

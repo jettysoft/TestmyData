@@ -325,9 +325,7 @@ public class DAO {
 					Loggedinuserdetails.activateddate = rs.getString(29);
 					Loggedinuserdetails.projectaccess = rs.getInt(30);
 					Loggedinuserdetails.defaultproject = rs.getInt(31);
-
 					role = "Admin";
-
 					StoreAuditLogger.logStoreTransaction(userId, "Login", "", "", true,
 							"Successfully logged in to Business Store", role);
 				} else {

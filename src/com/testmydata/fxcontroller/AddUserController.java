@@ -58,14 +58,14 @@ public class AddUserController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingusers();
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		wrongtick.setImage(StaticImages.wrong_tick.getImage());
-		wrongtick1.setImage(StaticImages.wrong_tick.getImage());
-		greentick.setImage(StaticImages.green_tick.getImage());
-		greentick1.setImage(StaticImages.green_tick.getImage());
-		pleasewait.setImage(StaticImages.source_run.getImage());
-		saveicon.setImage(StaticImages.save.getImage());
-		updateicon.setImage(StaticImages.save.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		wrongtick.setImage(StaticImages.wrong_tick);
+		wrongtick1.setImage(StaticImages.wrong_tick);
+		greentick.setImage(StaticImages.green_tick);
+		greentick1.setImage(StaticImages.green_tick);
+		pleasewait.setImage(StaticImages.source_run);
+		saveicon.setImage(StaticImages.save);
+		updateicon.setImage(StaticImages.save);
 
 		Label savelbl = new Label("  Save ");
 		savelbl.setStyle(StaticImages.lblStyle);

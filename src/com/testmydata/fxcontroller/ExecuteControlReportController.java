@@ -66,11 +66,11 @@ public class ExecuteControlReportController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setexistingmodules();
-		closeicon.setImage(StaticImages.closeicon.getImage());
-		runicon.setImage(StaticImages.source_execute.getImage());
-		processicon.setImage(StaticImages.source_run.getImage());
-		pdficon.setImage(StaticImages.pdficon.getImage());
-		excelicon.setImage(StaticImages.excelicon.getImage());
+		closeicon.setImage(StaticImages.closeicon);
+		runicon.setImage(StaticImages.source_execute);
+		processicon.setImage(StaticImages.source_run);
+		pdficon.setImage(StaticImages.pdficon);
+		excelicon.setImage(StaticImages.excelicon);
 
 		module.setCellValueFactory(new PropertyValueFactory<>("module"));
 		rulename.setCellValueFactory(new PropertyValueFactory<>("name"));
