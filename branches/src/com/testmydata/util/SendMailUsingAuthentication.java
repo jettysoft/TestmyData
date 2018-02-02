@@ -19,9 +19,9 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMailUsingAuthentication {
 
-	private String SMTP_HOST_NAME = "smtp.gmail.com"; // for google
+	private static String SMTP_HOST_NAME = ""; // for google
 	private static final String encodingOptions = "text/html; charset=UTF-8";
-	private static final String SMTP_PORT = "465";
+	private static String SMTP_PORT = "";
 	String emailMsgTxt;
 	String[] emailList;
 	String localFileName;
@@ -40,6 +40,12 @@ public class SendMailUsingAuthentication {
 			}
 			if (props1 != null && props1.getProperty("password") != null && props1.getProperty("password") != "") {
 				SMTP_AUTH_PWD = EncryptAndDecrypt.decryptData(props1.getProperty("password"));
+			}
+			if (props1 != null && props1.getProperty("host") != null && props1.getProperty("host") != "") {
+				SMTP_HOST_NAME = EncryptAndDecrypt.decryptData(props1.getProperty("host"));
+			}
+			if (props1 != null && props1.getProperty("port") != null && props1.getProperty("port") != "") {
+				SMTP_PORT = EncryptAndDecrypt.decryptData(props1.getProperty("port"));
 			}
 		}
 	}
@@ -69,6 +75,12 @@ public class SendMailUsingAuthentication {
 				}
 				if (props1 != null && props1.getProperty("password") != null && props1.getProperty("password") != "") {
 					SMTP_AUTH_PWD = EncryptAndDecrypt.decryptData(props1.getProperty("password"));
+				}
+				if (props1 != null && props1.getProperty("host") != null && props1.getProperty("host") != "") {
+					SMTP_HOST_NAME = EncryptAndDecrypt.decryptData(props1.getProperty("host"));
+				}
+				if (props1 != null && props1.getProperty("port") != null && props1.getProperty("port") != "") {
+					SMTP_PORT = EncryptAndDecrypt.decryptData(props1.getProperty("port"));
 				}
 			}
 

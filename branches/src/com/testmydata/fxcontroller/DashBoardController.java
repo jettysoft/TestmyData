@@ -881,12 +881,30 @@ public class DashBoardController implements Initializable {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				// fxmlLoader.setController(this);
 				try {
-					// FX Stuff done here
-					ChangePasswordController.getInstance();
-					CommonFunctions.invokeChangepassword(getClass());
-				} finally {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "changepasswordpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
 
+					}
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/ChangePassword.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 		});
