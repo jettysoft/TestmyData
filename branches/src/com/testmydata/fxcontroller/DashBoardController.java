@@ -72,6 +72,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class DashBoardController implements Initializable {
@@ -129,11 +130,15 @@ public class DashBoardController implements Initializable {
 	static ArrayList<ProjectsBeanBinaryTrade> projectslist = new ArrayList<ProjectsBeanBinaryTrade>();
 
 	DecimalFormat df2 = new DecimalFormat("#.##");
+	@FXML
+    private Rectangle underline_settings,underline_testsuite,underline_test,underline_bugs,underline_reports,underline_design;
+    
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// start(); //starts dock icons
 
+		underline("none");
 		InvoiceStaticHelper.setDash(this);
 		// Order is most important
 		invokeInactivityListener();
@@ -2005,6 +2010,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void designbutton() {
+		 underline("design");
 		designanchor.setVisible(true);
 		testsuiteanchor.setVisible(false);
 		testanchor.setVisible(false);
@@ -2015,6 +2021,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void testsuitebutton() {
+		 underline("testsuite");
 		designanchor.setVisible(false);
 		testsuiteanchor.setVisible(true);
 		testanchor.setVisible(false);
@@ -2025,6 +2032,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void testbutton() {
+		 underline("test");
 		designanchor.setVisible(false);
 		testsuiteanchor.setVisible(false);
 		testanchor.setVisible(true);
@@ -2035,6 +2043,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void bugsbutton() {
+		 underline("bugs");
 		designanchor.setVisible(false);
 		testsuiteanchor.setVisible(false);
 		testanchor.setVisible(false);
@@ -2045,6 +2054,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void reportsbutton() {
+		 underline("reports");
 		designanchor.setVisible(false);
 		testsuiteanchor.setVisible(false);
 		testanchor.setVisible(false);
@@ -2055,6 +2065,7 @@ public class DashBoardController implements Initializable {
 
 	@FXML
 	private void settingsbutton() {
+		underline("settings");
 		designanchor.setVisible(false);
 		testsuiteanchor.setVisible(false);
 		testanchor.setVisible(false);
@@ -2079,4 +2090,125 @@ public class DashBoardController implements Initializable {
 		exisitingprojectscombo.getSelectionModel().select(Loggedinuserdetails.defaultproject);
 
 	}
+	  private void underline(String button){
+		  switch (button) {
+          case "design":
+              designbutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              settingsbutton.setStyle("");
+              bugsbutton.setStyle("");
+              reportsbutton.setStyle("");
+              testsuitebutton.setStyle("");
+              testbutton.setStyle("");
+              underline_design.setVisible(true);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(false);
+              break;
+          case "testsuite":
+              testsuitebutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              settingsbutton.setStyle("");
+              bugsbutton.setStyle("");
+              reportsbutton.setStyle("");
+              designbutton.setStyle("");
+              testbutton.setStyle("");
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(true);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(false);
+              break;
+          case "test":
+              testbutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              settingsbutton.setStyle("");
+              bugsbutton.setStyle("");
+              reportsbutton.setStyle("");
+              testsuitebutton.setStyle("");
+              designbutton.setStyle("");
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(true);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(false);
+              break;
+          case "bugs":
+              bugsbutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              settingsbutton.setStyle("");
+              designbutton.setStyle("");
+              reportsbutton.setStyle("");
+              testsuitebutton.setStyle("");
+              testbutton.setStyle("");
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(true);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(false);
+              break;
+          case "reports":
+              reportsbutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              settingsbutton.setStyle("");
+              bugsbutton.setStyle("");
+              designbutton.setStyle("");
+              testsuitebutton.setStyle("");
+              testbutton.setStyle("");
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(true);
+              break;
+          case "settings":
+              settingsbutton.setStyle("-fx-background-color: linear-gradient(#475267 0%,#162a4c 25%,  #162a4c 75% ,#3D4F6E 100%);\n" +
+"    -fx-border-color: #212121 #212121 transparent #212121;\n" +
+"    -fx-background-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-border-radius: 0.5em 0.5em 0 0;\n" +
+"    -fx-text-fill: #B7D4E6;");
+              designbutton.setStyle("");
+              bugsbutton.setStyle("");
+              reportsbutton.setStyle("");
+              testsuitebutton.setStyle("");
+              testbutton.setStyle("");
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(true);
+              underline_reports.setVisible(false);
+              break;
+          case "none":
+              underline_design.setVisible(false);
+              underline_bugs.setVisible(false);
+              underline_testsuite.setVisible(false);
+              underline_test.setVisible(false);
+              underline_settings.setVisible(false);
+              underline_reports.setVisible(false);
+              break;
+      
+      }
+	  }
 }
