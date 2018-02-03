@@ -12,71 +12,65 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainanchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
    <children>
-      <FontAwesomeIconView fx:id="securedfont" fill="#40aa03" glyphName="LOCK" layoutY="15.0" size="15" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="20.0" />
-      <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="55.0" layoutY="25.0" size="25" text="|" />
-      <MaterialDesignIconView fill="WHITE" glyphName="HOME" layoutX="5.0" layoutY="30.0" size="35" stroke="#f2ff05" strokeWidth="0.2">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </MaterialDesignIconView>
-      <JFXButton fx:id="designbutton" alignment="CENTER" focusTraversable="false" layoutX="85.0" layoutY="5.0" onAction="#designbutton" prefWidth="75.0" text="Design" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="testsuitebutton" alignment="CENTER" focusTraversable="false" layoutX="185.0" layoutY="5.0" onAction="#testsuitebutton" prefWidth="75.0" text="Test Suite" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="testbutton" alignment="CENTER" focusTraversable="false" layoutX="285.0" layoutY="5.0" onAction="#testbutton" prefWidth="75.0" text="Test" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="385.0" layoutY="5.0" onAction="#bugsbutton" prefWidth="75.0" text="Bugs" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="reportsbutton" alignment="CENTER" focusTraversable="false" layoutX="485.0" layoutY="5.0" onAction="#reportsbutton" prefWidth="75.0" text="Reports" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="settingsbutton" alignment="CENTER" focusTraversable="false" layoutX="585.0" layoutY="5.0" onAction="#settingsbutton" prefWidth="75.0" text="Settings" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <Label fx:id="qaserverlabel" alignment="CENTER" layoutY="40.0" text="Connected QA Server " textAlignment="JUSTIFY" textFill="#fcfcfc" AnchorPane.rightAnchor="10.0">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <AnchorPane fx:id="designanchor" layoutX="71.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0">
+       <AnchorPane minHeight="45.0" prefHeight="45.0" prefWidth="1200.0" style="-fx-border-color: #223960; -fx-background-color: #162a4c; -fx-border-width: 0px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontAwesomeIconView fx:id="securedfont" fill="#40aa03" glyphName="LOCK" size="15" visible="false" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
+            <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="58.0" layoutY="30.0" size="25" text="|" />
+            <MaterialDesignIconView fill="WHITE" glyphName="HOME" layoutX="10.0" layoutY="10.0" size="35" stroke="#f2ff05" strokeWidth="0.2" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+            <JFXButton fx:id="designbutton" alignment="CENTER" focusTraversable="false" layoutX="77.0" layoutY="5.0" onAction="#designbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Design" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+                  </JFXButton>
+            <JFXButton fx:id="testsuitebutton" alignment="CENTER" focusTraversable="false" layoutX="152.0" layoutY="5.0" onAction="#testsuitebutton" prefHeight="45.0" prefWidth="81.0" stylesheets="@../css/MenuBotton.css" text="Test Suite" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+            </JFXButton>
+            <JFXButton fx:id="testbutton" alignment="CENTER" focusTraversable="false" layoutX="250.0" layoutY="5.0" onAction="#testbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Test" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+            </JFXButton>
+            <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="331.0" layoutY="5.0" onAction="#bugsbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Bugs" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+            </JFXButton>
+            <JFXButton fx:id="reportsbutton" alignment="CENTER" focusTraversable="false" layoutX="419.0" layoutY="5.0" onAction="#reportsbutton" prefHeight="45.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Reports" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+            </JFXButton>
+            <JFXButton fx:id="settingsbutton" alignment="CENTER" focusTraversable="false" layoutX="517.0" layoutY="5.0" onAction="#settingsbutton" prefHeight="45.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Settings" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               
+            </JFXButton>
+            <ImageView fx:id="homeicon" fitHeight="30.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <JFXComboBox fx:id="exisitingprojectscombo" focusColor="WHITE" prefHeight="20.0" prefWidth="200.0" stylesheets="@../css/combobox.css" unFocusColor="WHITE" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="designanchor" layoutX="71.0" layoutY="50.0" prefHeight="0.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="110.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="newfieldtofield" layoutX="20.0" onAction="#fieldtofield" stylesheets="@../css/Hyperlink.css" text="Field to Field" textFill="#ffed4f">
@@ -98,7 +92,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="testsuiteanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="testsuiteanchor" layoutX="81.0" layoutY="50.0" prefHeight="0.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <Hyperlink fx:id="testsuiteff" layoutX="20.0" onAction="#newtestsuite" stylesheets="@../css/Hyperlink.css" text="New Test Suite" textFill="#ffed4f">
                <font>
@@ -108,7 +102,7 @@
             <Pane layoutX="195.0" layoutY="-8.0" maxHeight="2.0" minHeight="1.0" prefHeight="3.0" prefWidth="60.0" style="-fx-background-color: #f2e35e; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="testanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="testanchor" layoutX="81.0" layoutY="50.0" prefHeight="0.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="140.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="exeff" layoutX="20.0" onAction="#runfieldtofield" stylesheets="@../css/Hyperlink.css" text="Execute Test Suite" textFill="#ffed4f">
@@ -123,7 +117,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="bugsanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="bugsanchor" layoutX="81.0" layoutY="50.0" prefHeight="0.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="110.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="newbug" layoutX="20.0" onAction="#newbug" stylesheets="@../css/Hyperlink.css" text="New Bug" textFill="#ffed4f">
@@ -138,7 +132,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="reportsanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="reportsanchor" layoutX="81.0" layoutY="50.0" prefHeight="0.0" prefWidth="550.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="110.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="downloadreports" layoutX="20.0" onAction="#testreports" stylesheets="@../css/Hyperlink.css" text="Download" textFill="#ffed4f">
@@ -153,7 +147,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="settingsanchor" layoutX="81.0" layoutY="40.0" prefHeight="20.0" prefWidth="630.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="settingsanchor" layoutX="81.0" layoutY="50.0" prefHeight="0.0" prefWidth="630.0" style="-fx-background-color: #162a4c;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="105.0" layoutY="15.0" size="15" text="|" />
             <Hyperlink fx:id="bugserver" layoutX="20.0" onAction="#bugserver" stylesheets="@../css/Hyperlink.css" text="Bug Server" textFill="#ffed4f">
@@ -186,7 +180,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" layoutY="109.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+      <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
          <children>
             <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -228,12 +222,17 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <ImageView fx:id="homeicon" fitHeight="30.0" fitWidth="30.0" layoutX="-86.0" layoutY="-55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="3.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <AnchorPane id="AnchorPane" fx:id="subscreenanchor" layoutX="20.0" layoutY="119.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-      <JFXComboBox fx:id="exisitingprojectscombo" focusColor="WHITE" layoutX="691.0" prefWidth="200.0" stylesheets="@../css/combobox.css" unFocusColor="WHITE" AnchorPane.leftAnchor="691.0" AnchorPane.topAnchor="10.0" />
+      <Rectangle fx:id="underline_settings" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="516.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle fx:id="underline_testsuite" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="151.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="83.0" />
+      <Rectangle fx:id="underline_test" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="249.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="67.0" />
+      <Rectangle fx:id="underline_bugs" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="330.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="67.0" />
+      <Rectangle fx:id="underline_reports" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="418.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle fx:id="underline_design" arcHeight="5.0" arcWidth="5.0" fill="#e1c04b" height="5.0" layoutX="76.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="67.0" />
+      <Label fx:id="qaserverlabel" alignment="CENTER" layoutX="1078.0" layoutY="50.0" text="Connected QA Server " textAlignment="JUSTIFY" textFill="#fcfcfc" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+  
    </children>
 </AnchorPane>
