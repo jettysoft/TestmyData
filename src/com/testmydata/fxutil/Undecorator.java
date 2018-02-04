@@ -183,7 +183,7 @@ public class Undecorator extends StackPane {
 		// The controller
 		undecoratorController = new UndecoratorController(this);
 
-		undecoratorController.setAsStageDraggable(stage, clientArea);
+	//	undecoratorController.setAsStageDraggable(stage, clientArea);
 
 		// Focus drop shadows: radius, spread, offsets
 		dsFocused = new DropShadow(BlurType.THREE_PASS_BOX, Color.BLACK, SHADOW_WIDTH, 0.1, 0, 0);
