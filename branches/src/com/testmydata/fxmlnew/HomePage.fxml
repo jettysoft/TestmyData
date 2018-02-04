@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="mainanchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #162a4c;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.DashBoardController">
    <children>
-       <AnchorPane minHeight="45.0" prefHeight="45.0" prefWidth="1200.0" style="-fx-border-color: #223960; -fx-background-color: #162a4c; -fx-border-width: 0px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <AnchorPane fx:id="menuanchor" minHeight="45.0" prefHeight="45.0" prefWidth="1200.0" style="-fx-border-color: #223960; -fx-background-color: #162a4c; -fx-border-width: 0px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <FontAwesomeIconView fx:id="securedfont" fill="#40aa03" glyphName="LOCK" size="15" visible="false" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="25.0" />
             <MaterialDesignIconView fill="WHITE" glyphName="INSTAPAPER" layoutX="58.0" layoutY="30.0" size="25" text="|" />
@@ -26,37 +26,37 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MaterialDesignIconView>
-            <JFXButton fx:id="designbutton" alignment="CENTER" focusTraversable="false" layoutX="77.0" layoutY="5.0" onAction="#designbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Design" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="designbutton" alignment="CENTER" focusTraversable="false" layoutX="77.0" layoutY="5.0" onAction="#designbutton" prefHeight="40.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Design" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                
                   </JFXButton>
-            <JFXButton fx:id="testsuitebutton" alignment="CENTER" focusTraversable="false" layoutX="152.0" layoutY="5.0" onAction="#testsuitebutton" prefHeight="45.0" prefWidth="81.0" stylesheets="@../css/MenuBotton.css" text="Test Suite" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="testsuitebutton" alignment="CENTER" focusTraversable="false" layoutX="152.0" layoutY="5.0" onAction="#testsuitebutton" prefHeight="40.0" prefWidth="81.0" stylesheets="@../css/MenuBotton.css" text="Test Suite" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                
             </JFXButton>
-            <JFXButton fx:id="testbutton" alignment="CENTER" focusTraversable="false" layoutX="250.0" layoutY="5.0" onAction="#testbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Test" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="testbutton" alignment="CENTER" focusTraversable="false" layoutX="250.0" layoutY="5.0" onAction="#testbutton" prefHeight="40.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Test" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                
             </JFXButton>
-            <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="331.0" layoutY="5.0" onAction="#bugsbutton" prefHeight="45.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Bugs" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="331.0" layoutY="5.0" onAction="#bugsbutton" prefHeight="40.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Bugs" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                
             </JFXButton>
-            <JFXButton fx:id="reportsbutton" alignment="CENTER" focusTraversable="false" layoutX="419.0" layoutY="5.0" onAction="#reportsbutton" prefHeight="45.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Reports" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="reportsbutton" alignment="CENTER" focusTraversable="false" layoutX="419.0" layoutY="5.0" onAction="#reportsbutton" prefHeight="40.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Reports" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                
             </JFXButton>
-            <JFXButton fx:id="settingsbutton" alignment="CENTER" focusTraversable="false" layoutX="517.0" layoutY="5.0" onAction="#settingsbutton" prefHeight="45.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Settings" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="settingsbutton" alignment="CENTER" focusTraversable="false" layoutX="517.0" layoutY="5.0" onAction="#settingsbutton" prefHeight="40.0" prefWidth="71.0" stylesheets="@../css/MenuBotton.css" text="Settings" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -182,7 +182,7 @@
       </AnchorPane>
       <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
          <children>
-            <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;-fx-border-color: black; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
                   <JFXListView fx:id="list_field" layoutX="3.0" layoutY="40.0" prefHeight="183.0" prefWidth="358.0" stylesheets="@../css/report.css" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                   <JFXListView fx:id="list_control" layoutX="3.0" layoutY="278.0" prefHeight="183.0" prefWidth="358.0" stylesheets="@../css/report.css" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
@@ -201,7 +201,7 @@
                   <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
-            <AnchorPane fx:id="resultspane" layoutX="395.0" layoutY="16.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="resultspane" layoutX="395.0" layoutY="16.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;-fx-border-color: black;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
                   <JFXListView fx:id="list_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                   <JFXListView fx:id="list_control_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
@@ -215,7 +215,7 @@
                   <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
-            <AnchorPane fx:id="chartspane" layoutX="790.0" layoutY="26.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-width: 2;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="chartspane" layoutX="790.0" layoutY="26.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-color: black;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <effect>
                   <InnerShadow color="#bdbdbd" />
                </effect>

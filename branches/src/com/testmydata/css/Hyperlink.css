@@ -1,7 +1,7 @@
 .hyperlink, .hyperlink:active, .hyperlink:unfocus  {   
     -fx-text-fill : #ffed4f;
     -fx-underline : false;
-    -fx-border-radius : 0em;
+    -fx-border-color: transparent;
     -fx-background-color :  #162a4c;  
 }
 

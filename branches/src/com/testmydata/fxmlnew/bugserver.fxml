@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="bugserverpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1180.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.BugServerController">
    <children>
-      <JFXTabPane fx:id="testcasestab" focusTraversable="false" layoutX="10.0" layoutY="10.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <JFXTabPane fx:id="testcasestab" focusTraversable="false" layoutX="10.0" layoutY="10.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <tabs>
             <Tab closable="false" text="TFS / VSTS">
                <content>

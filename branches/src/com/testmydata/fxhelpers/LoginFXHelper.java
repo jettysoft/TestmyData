@@ -75,6 +75,7 @@ public class LoginFXHelper {
 				yOffset = event.getSceneY();
 			}
 		});
+		
 		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
