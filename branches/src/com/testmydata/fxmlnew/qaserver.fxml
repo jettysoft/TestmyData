@@ -36,7 +36,7 @@
                <content>
                   <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                        <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                            <children>
                               <JFXComboBox fx:id="fexistingservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
                               <JFXComboBox fx:id="fservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefWidth="250.0" unFocusColor="#bebec4" />
@@ -105,7 +105,7 @@
                <content>
                   <AnchorPane fx:id="actionanchor11" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+                        <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                            <children>
                               <JFXComboBox fx:id="existingmodulescombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="modulenametext" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Module Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">

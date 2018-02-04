@@ -8,10 +8,12 @@ import com.microsoft.tfs.core.TFSTeamProjectCollection;
 import com.microsoft.tfs.core.clients.workitem.CoreFieldReferenceNames;
 import com.microsoft.tfs.core.clients.workitem.NonCoreFieldsReferenceNames;
 import com.microsoft.tfs.core.clients.workitem.WorkItem;
+import com.microsoft.tfs.core.clients.workitem.WorkItemClient;
 import com.microsoft.tfs.core.clients.workitem.files.Attachment;
 import com.microsoft.tfs.core.clients.workitem.files.AttachmentCollection;
 import com.microsoft.tfs.core.clients.workitem.files.AttachmentFactory;
 import com.microsoft.tfs.core.clients.workitem.project.Project;
+import com.microsoft.tfs.core.clients.workitem.query.WorkItemCollection;
 import com.microsoft.tfs.core.clients.workitem.wittype.WorkItemType;
 //import com.microsoft.tfs.core.clients.workitem.wittype.WorkItemType;
 import com.testmydata.dao.TFSAccess;
@@ -28,21 +30,57 @@ public class CreateBugTFS {
 		// .getAbsolutePath()).getAbsoluteFile(),
 		// 30);
 		cfs.testgetmethod();
-		ProjectsTFS pfs = new ProjectsTFS();
-
-		UsersTFS usr = new UsersTFS();
-		for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
-			// usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
-		}
-		IterationTFS its = new IterationTFS();
+		// ProjectsTFS pfs = new ProjectsTFS();
+		//
+		// UsersTFS usr = new UsersTFS();
+		// for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
+		// //
+		// usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
+		// }
+		// IterationTFS its = new IterationTFS();
 		// its.getiterations("BusinessStore_Desktop");
+	}
+
+	public void test() {
+		final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
+
+		final Project project = tpc.getWorkItemClient().getProjects().get(TFSAccess.PROJECT_NAME);
+		final WorkItemClient workItemClient = project.getWorkItemClient();
+
+		// Define the WIQL query.
+		final String wiqlQuery = "Select ID, Title from WorkItems where (System.AreaPath under 'Parmzpizza_Redesign') and (System.WorkItemType = 'Test Case') order by Title"; //$NON-NLS-1$
+
+		// Run the query and get the results.
+		final WorkItemCollection workItems = workItemClient.query(wiqlQuery);
+		System.out.println("Found " + workItems.size() + " work items."); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println();
+
+		// Write out the heading.
+		System.out.println("Query: " + wiqlQuery); //$NON-NLS-1$
+		System.out.println();
+		System.out.println("ID\tTitle"); //$NON-NLS-1$
+
+		// Output the results of the query.
+		final int maxToPrint = 20;
+		for (int i = 0; i < workItems.size(); i++) {
+			if (i >= maxToPrint) {
+				System.out.println("[...]"); //$NON-NLS-1$
+				break;
+			}
+
+			final WorkItem workItem = workItems.getWorkItem(i);
+			System.out.println(workItem.getID() + "\t" + workItem.getTitle()); //$NON-NLS-1$
+		}
+		tpc.close();
 	}
 
 	public void testgetmethod() {
 		ArrayList<BugFieldsBeans> buglist = new ArrayList<BugFieldsBeans>();
-		buglist = getBugFields(30);
+		buglist = getBugFields(41);
 		System.out.println(buglist.get(0).getTitle());
-		System.out.println(buglist.get(0).getReprosteps().replaceAll("<br>", "\n"));
+		// System.out.println(buglist.get(0).getReprosteps().replaceAll("<br>",
+		// "\n"));
+		System.out.println("State : " + buglist.get(0).getState());
 	}
 
 	public void createTFSBug(String title, String assignedto, String areapath, String reprosteps, String createduser) {
