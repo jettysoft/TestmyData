@@ -26,6 +26,7 @@ import com.testmydata.binarybeans.UserTypeBeanBinaryTrade;
 import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dashboardfunction.Rule;
 import com.testmydata.dashboardfunction.TestSuite;
+import com.testmydata.fxcontroller.BugServerController;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.DBConfigJAXB;
 import com.testmydata.util.EncryptAndDecrypt;
@@ -43,6 +44,7 @@ public class DAO {
 	static StringBuffer messageInfo = null;
 
 	String sql = "", fsql = "", crsql = "";
+	static int countBugtablecreationfail = 0;
 
 	@SuppressWarnings("unused")
 	private static UsersDetailsBeanBinaryTrade currentUsersDetailsBeanBinaryTree;
@@ -3812,7 +3814,8 @@ public class DAO {
 
 				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, tfsid bigint(5) default 0, jiraid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
 						+ " title varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
-						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id))";
+						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id), "
+						+ " UNIQUE KEY(tcid), UNIQUE KEY(ruleid))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugstable", 1);
@@ -3831,8 +3834,8 @@ public class DAO {
 
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
-				String createTabelSQL = "create table bugserver (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, isdefault int(1) default 0, "
-						+ " collectionurl varchar(2000) default null, isactive int(1) default 0, createdby int(10) default 0, createddate datetime, PRIMARY KEY (id))";
+				String createTabelSQL = "create table bugserver (id bigint(10) NOT NULL AUTO_INCREMENT, servertype varchar(100) default null, isdefault int(1) default 0, "
+						+ " collectionurl varchar(1000) default null, isactive int(1) default 0, createdby int(10) default 0, createddate datetime, PRIMARY KEY (id), UNIQUE KEY(collectionurl))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugserver", 1);
@@ -3851,8 +3854,8 @@ public class DAO {
 
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
-				String createTabelSQL = "create table bugserverusers (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, username varchar(256) default null, "
-						+ " password varchar(256) default null, userid int(10) default 0, PRIMARY KEY (id))";
+				String createTabelSQL = "create table bugserverusers (id bigint(10) NOT NULL AUTO_INCREMENT, bugserverid bigint(5) default 0, username varchar(256) default null, "
+						+ " password varchar(256) default null, userid int(10) default 0, PRIMARY KEY (id), UNIQUE KEY(username))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugusers", 1);
@@ -3871,8 +3874,8 @@ public class DAO {
 
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
-				String createTabelSQL = "create table bugserverprojects (id bigint(10) NOT NULL AUTO_INCREMENT, tfs bigint(5) default 0, jira bigint(5) default 0, "
-						+ "projectname varchar(1000) default null,  projectid bigint(10) default 0, PRIMARY KEY (id))";
+				String createTabelSQL = "create table bugserverprojects (id bigint(10) NOT NULL AUTO_INCREMENT, bugserverid bigint(5) default 0, "
+						+ "projectname varchar(1000) default null,  projectid bigint(10) default 0, PRIMARY KEY (id), UNIQUE KEY(projectname))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugprojects", 1);
@@ -4046,6 +4049,48 @@ public class DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = null;
+		}
+		return result;
+	}
+
+	public String insertBugserverdetails(String tableName, String servertype, int defaultstatus, String collectionurl,
+			int isactive, long createdby) {
+		String result = "failure";
+
+		try {
+			String checktable = isTableAlreadyExisted(tableName);
+
+			if (checktable.equals("existed")) {
+				sql = "insert into " + tableName
+						+ " (servertype isdefault, collectionurl, isactive, createdby, createddate) values( ?, ?, ?, ?, ?, CURRENT_TIMESTAMP )";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, servertype);
+				ps.setInt(2, defaultstatus);
+				ps.setString(3, collectionurl);
+				ps.setInt(4, isactive);
+				ps.setLong(5, createdby);
+
+				int status1 = ps.executeUpdate();
+				if (status1 == 1) {
+					result = "success";
+				} else {
+					result = "duplicate";
+				}
+				ps.close();
+			} else {
+				if (countBugtablecreationfail == 0) {
+					BugServerController bsc = new BugServerController();
+					bsc.checkandcreatetables();
+					insertBugserverdetails(tableName, servertype, defaultstatus, collectionurl, isactive, createdby);
+					countBugtablecreationfail = 1;
+				} else {
+					result = "failure";
+					countBugtablecreationfail = 0;
+				}
+			}
+		} catch (Exception e) {
+			result = "duplicate";
+			e.printStackTrace();
 		}
 		return result;
 	}

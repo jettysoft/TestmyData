@@ -8,44 +8,50 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 public class StaticImages {
-	public final static Image appicon = new Image("/com/testmydata/fximages/crown.png",60,60,false,false);
-	public final static Image source_execute = new Image("/com/testmydata/fximages/runtest.png",25,25,false,false);
-	public final static Image source_run = new Image("/com/testmydata/fximages/please_wait.gif",25,25,false,false);
-	public final static Image pdficon = new Image("/com/testmydata/fximages/pdf.png",25,25,false,false);
-	public final static Image excelicon = new Image("/com/testmydata/fximages/excel.png",25,25,false,false);
-	public final static Image homeicon = new Image("/com/testmydata/fximages/Home_Icon.png",40,40,false,false);
-	public final static Image sqleditor = new Image("/com/testmydata/fximages/sqleditor.png",25,25,false,false);
-	public final static Image sqlcolumneditor = new Image("/com/testmydata/fximages/sqleditor_column.png",25,25,false,false);
-	//public final static Image closeicon = new Image("/com/testmydata/fximages/Wrong_tick.png",25,25,false,false);
-	public final static Image wrong_tick = new Image("/com/testmydata/fximages/Wrong_tick.png",25,25,false,false);
-	public final static Image green_tick = new Image("/com/testmydata/fximages/tick_green.png",25,25,false,false);
+	public final static Image appicon = new Image("/com/testmydata/fximages/crown.png", 60, 60, false, false);
+	public final static Image source_execute = new Image("/com/testmydata/fximages/runtest.png", 20, 20, false, false);
+	public final static Image source_run = new Image("/com/testmydata/fximages/please_wait.gif", 20, 20, false, false);
+	public final static Image pdficon = new Image("/com/testmydata/fximages/pdf.png", 20, 20, false, false);
+	public final static Image excelicon = new Image("/com/testmydata/fximages/excel.png", 20, 20, false, false);
+	public final static Image homeicon = new Image("/com/testmydata/fximages/Home_Icon.png", 40, 40, false, false);
+	public final static Image sqleditor = new Image("/com/testmydata/fximages/sqleditor.png", 20, 20, false, false);
+	public final static Image sqlcolumneditor = new Image("/com/testmydata/fximages/sqleditor_column.png", 20, 20,
+			false, false);
+	public final static Image wrong_tick = new Image("/com/testmydata/fximages/Wrong_tick.png", 20, 20, false, false);
+	public final static Image green_tick = new Image("/com/testmydata/fximages/tick_green.png", 20, 20, false, false);
 	// public final static ImageView exit_confirm = new
 	// ImageView("/com/testmydata/fximages/Exit_Confirm.png");
-        public final static Image closeicon = new Image("/com/testmydata/fximages/Wrong_tick.png",25,25,false,false);
-	public final static Image searchicon = new Image("/com/testmydata/fximages/search.png",25,25,false,false);
-	public final static Image testcases = new Image("/com/testmydata/fximages/testcases.png",25,25,false,false);
-	public final static Image controlreporticon = new Image("/com/testmydata/fximages/controlreport.png",25,25,false,false);
-	public final static Image fieldicon = new Image("/com/testmydata/fximages/fieldtofield.png",25,25,false,false);
-	public final static Image testsuites = new Image("/com/testmydata/fximages/testsuites.png",25,25,false,false);
-	public final static Image newtestsuite = new Image("/com/testmydata/fximages/newtestsuite.png",25,25,false,false);
-	public final static Image testexecution = new Image("/com/testmydata/fximages/testexecution.png",25,25,false,false);
-	public final static Image report = new Image("/com/testmydata/fximages/report.png",25,25,false,false);
-	public final static Image testreport = new Image("/com/testmydata/fximages/testreports.png",25,25,false,false);
-	public final static Image settings = new Image("/com/testmydata/fximages/settings.png",25,25,false,false);
-	public final static Image adduser = new Image("/com/testmydata/fximages/adduser.png",25,25,false,false);
-	public final static Image changepassword = new Image("/com/testmydata/fximages/changepassword.png",25,25,false,false);
-	public final static Image emailsettings = new Image("/com/testmydata/fximages/emailsettings.png",25,25,false,false);
-	public final static Image qaserver = new Image("/com/testmydata/fximages/qaserver.png",25,25,false,false);
-	public final static Image logout = new Image("/com/testmydata/fximages/logout.png",25,25,false,false);
-	public final static Image save = new Image("/com/testmydata/fximages/save.png",25,25,false,false);
-	public final static Image view = new Image("/com/testmydata/fximages/binocular.png",25,25,false,false);
-	public final static Image refresh = new Image("/com/testmydata/fximages/refresh.png",25,25,false,false);
-	public final static Image closeproject = new Image("/com/testmydata/fximages/closeproject.png",25,25,false,false);
-	public final static Image modify = new Image("/com/testmydata/fximages/modify.png",25,25,false,false);
-	public final static Image delete = new Image("/com/testmydata/fximages/delete.png",25,25,false,false);
-	public final static Image add = new Image("/com/testmydata/fximages/add.png",25,25,false,false);
-	public final static Image clear = new Image("/com/testmydata/fximages/clear.png",25,25,false,false);
-	public final static Image im_loading = new Image("/com/testmydata/fxml/302.gif",50,50,false,false);
+	public final static Image closeicon = new Image("/com/testmydata/fximages/Wrong_tick.png", 20, 20, false, false);
+	public final static Image searchicon = new Image("/com/testmydata/fximages/search.png", 20, 20, false, false);
+	public final static Image testcases = new Image("/com/testmydata/fximages/testcases.png", 20, 20, false, false);
+	public final static Image controlreporticon = new Image("/com/testmydata/fximages/controlreport.png", 20, 20, false,
+			false);
+	public final static Image fieldicon = new Image("/com/testmydata/fximages/fieldtofield.png", 20, 20, false, false);
+	public final static Image testsuites = new Image("/com/testmydata/fximages/testsuites.png", 20, 20, false, false);
+	public final static Image newtestsuite = new Image("/com/testmydata/fximages/newtestsuite.png", 20, 20, false,
+			false);
+	public final static Image testexecution = new Image("/com/testmydata/fximages/testexecution.png", 20, 20, false,
+			false);
+	public final static Image report = new Image("/com/testmydata/fximages/report.png", 20, 20, false, false);
+	public final static Image testreport = new Image("/com/testmydata/fximages/testreports.png", 20, 20, false, false);
+	public final static Image settings = new Image("/com/testmydata/fximages/settings.png", 20, 20, false, false);
+	public final static Image adduser = new Image("/com/testmydata/fximages/adduser.png", 20, 20, false, false);
+	public final static Image changepassword = new Image("/com/testmydata/fximages/changepassword.png", 20, 20, false,
+			false);
+	public final static Image emailsettings = new Image("/com/testmydata/fximages/emailsettings.png", 20, 20, false,
+			false);
+	public final static Image qaserver = new Image("/com/testmydata/fximages/qaserver.png", 20, 20, false, false);
+	public final static Image logout = new Image("/com/testmydata/fximages/logout.png", 20, 20, false, false);
+	public final static Image save = new Image("/com/testmydata/fximages/save.png", 20, 20, false, false);
+	public final static Image view = new Image("/com/testmydata/fximages/binocular.png", 20, 20, false, false);
+	public final static Image refresh = new Image("/com/testmydata/fximages/refresh.png", 20, 20, false, false);
+	public final static Image closeproject = new Image("/com/testmydata/fximages/closeproject.png", 20, 20, false,
+			false);
+	public final static Image modify = new Image("/com/testmydata/fximages/modify.png", 20, 20, false, false);
+	public final static Image delete = new Image("/com/testmydata/fximages/delete.png", 20, 20, false, false);
+	public final static Image add = new Image("/com/testmydata/fximages/add.png", 20, 20, false, false);
+	public final static Image clear = new Image("/com/testmydata/fximages/clear.png", 20, 20, false, false);
+	public final static Image im_loading = new Image("/com/testmydata/fxml/302.gif", 50, 50, false, false);
 
 	public static String lblStyleold = "-fx-background-color: linear-gradient(#f7f79e,#f2f271);  -fx-text-alignment :center; -fx-background-radius: 2; "
 			+ " -fx-background-insets: 0; -fx-text-fill: #162a4c; -fx-font-weight: normal; -fx-border-clor: #162a4c;";
