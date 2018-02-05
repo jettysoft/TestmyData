@@ -29,16 +29,18 @@ public class CreateBugTFS {
 		// File("C:/Users/jithendra.jetty/workspace/TestMyData/src/com/testmydata/fximages/testsuites.png")
 		// .getAbsolutePath()).getAbsoluteFile(),
 		// 30);
-		cfs.testgetmethod();
-		// ProjectsTFS pfs = new ProjectsTFS();
-		//
-		// UsersTFS usr = new UsersTFS();
-		// for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
-		// //
-		// usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
-		// }
+		// cfs.testgetmethod();
+		ProjectsTFS pfs = new ProjectsTFS();
+
+		UsersTFS usr = new UsersTFS();
+		for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
+			usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
+		}
 		// IterationTFS its = new IterationTFS();
 		// its.getiterations("BusinessStore_Desktop");
+		// ProjectsTFS pts = new ProjectsTFS();
+		// pts.getCategorylist();
+		// pts.gettfsprojects();
 	}
 
 	public void test() {

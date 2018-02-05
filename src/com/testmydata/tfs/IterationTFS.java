@@ -3,6 +3,7 @@ package com.testmydata.tfs;
 import java.util.ArrayList;
 
 import com.microsoft.tfs.core.TFSTeamProjectCollection;
+import com.microsoft.tfs.core.clients.workitem.node.Node;
 import com.microsoft.tfs.core.clients.workitem.node.NodeCollection;
 import com.microsoft.tfs.core.clients.workitem.project.Project;
 import com.testmydata.dao.TFSAccess;
@@ -18,7 +19,8 @@ public class IterationTFS {
 		NodeCollection nodes = project.getIterationRootNodes();
 
 		for (int i = 0; i < nodes.size(); i++) {
-			System.out.println(nodes.getNodes());
+			Node node = nodes.getNodes()[i];
+			System.out.println(node.getName() + " " + node.getID() + " " + node.getPath());
 		}
 
 		tpc.close();

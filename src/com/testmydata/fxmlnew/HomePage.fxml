@@ -140,7 +140,7 @@
                   <Font size="11.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="viewresults" layoutX="140.0" onAction="#testresults" stylesheets="@../css/Hyperlink.css" text="Vew Results" textFill="#ffed4f">
+            <Hyperlink fx:id="viewresults" layoutX="140.0" onAction="#testresults" stylesheets="@../css/Hyperlink.css" text="View Results" textFill="#ffed4f">
                <font>
                   <Font size="11.0" />
                </font>
@@ -182,7 +182,7 @@
       </AnchorPane>
       <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
          <children>
-            <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;-fx-border-color: black; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXListView fx:id="list_field" layoutX="3.0" layoutY="40.0" prefHeight="183.0" prefWidth="358.0" stylesheets="@../css/report.css" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                   <JFXListView fx:id="list_control" layoutX="3.0" layoutY="278.0" prefHeight="183.0" prefWidth="358.0" stylesheets="@../css/report.css" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
@@ -201,7 +201,7 @@
                   <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
-            <AnchorPane fx:id="resultspane" layoutX="395.0" layoutY="16.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;-fx-border-color: black;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <AnchorPane fx:id="resultspane" layoutX="397.0" layoutY="16.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <JFXListView fx:id="list_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                   <JFXListView fx:id="list_control_data" layoutX="23.0" layoutY="43.0" prefHeight="410.0" prefWidth="312.0" stylesheets="@../css/report.css" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
@@ -215,7 +215,7 @@
                   <InnerShadow color="#bdbdbd" />
                </effect>
             </AnchorPane>
-            <AnchorPane fx:id="chartspane" layoutX="790.0" layoutY="26.0" prefHeight="551.0" prefWidth="390.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em; -fx-border-color: black;" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="790.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <AnchorPane fx:id="chartspane" layoutX="790.0" layoutY="26.0" prefHeight="551.0" prefWidth="391.0" style="-fx-background-color: #ffffff; -fx-border-radius: 1em; -fx-background-radius: 1em;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="789.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                <effect>
                   <InnerShadow color="#bdbdbd" />
                </effect>

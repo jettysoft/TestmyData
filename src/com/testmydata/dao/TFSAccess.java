@@ -24,9 +24,9 @@ public class TFSAccess {
 	 * The URL to a TFS project collection, including virtual directory and
 	 * collection name (like "http://server:8080/tfs/DefaultCollection").
 	 */
+	public static String COLLECTION_URL = "http://104.45.155.21:8182/tfs/JettySoftCollection/"; //$NON-NLS-1$
 	// public static String COLLECTION_URL =
-	// "http://104.45.155.21:8182/tfs/JettySoftCollection/"; //$NON-NLS-1$
-	public static String COLLECTION_URL = "https://jettysoft.visualstudio.com/"; // need
+	// "https://jettysoft.visualstudio.com/"; // need
 	// enable
 	// access
 	// in
@@ -38,8 +38,8 @@ public class TFSAccess {
 	 * is desired.
 	 */
 
-	// public static String USERNAME = "siva.t";
-	public static String USERNAME = "jettysoft"; // "";//$NON-NLS-1$
+	public static String USERNAME = "siva.t";
+	// public static String USERNAME = "jettysoft"; // "";//$NON-NLS-1$
 	public static String PASSWORD = "Veerubharu$75"; //$NON-NLS-1$
 	public static String HTTP_PROXY_URL = "";
 	public static String HTTP_PROXY_USERNAME = ""; //$NON-NLS-1$
@@ -50,9 +50,9 @@ public class TFSAccess {
 	 * A team project name (without the leading "$/") where files, work items,
 	 * and builds can be created and modified.
 	 */
-	// public static String PROJECT_NAME = "BusinessStore_Desktop"; // "";
+	public static String PROJECT_NAME = "BusinessStore_Desktop"; // "";
 	// //$NON-NLS-1$
-	public static String PROJECT_NAME = "Parmzpizza_Redesign";
+	// public static String PROJECT_NAME = "Parmzpizza_Redesign";
 	/**
 	 * The name of an existing build definition.
 	 */

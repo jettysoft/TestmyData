@@ -20,6 +20,7 @@ public class ProjectsTFS {
 			pl.setProjectid(Integer.toString(project.getID()));
 			pl.setProjectname(project.getName());
 
+			// System.out.println(project.getID() + " " + project.getName());
 			plist.add(pl);
 		}
 

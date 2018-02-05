@@ -9,10 +9,10 @@ import javafx.scene.layout.StackPane;
 
 public class StaticImages {
 	public final static Image appicon = new Image("/com/testmydata/fximages/crown.png", 60, 60, false, false);
-	public final static Image source_execute = new Image("/com/testmydata/fximages/runtest.png", 20, 20, false, false);
-	public final static Image source_run = new Image("/com/testmydata/fximages/please_wait.gif", 20, 20, false, false);
-	public final static Image pdficon = new Image("/com/testmydata/fximages/pdf.png", 20, 20, false, false);
-	public final static Image excelicon = new Image("/com/testmydata/fximages/excel.png", 20, 20, false, false);
+	public final static Image source_execute = new Image("/com/testmydata/fximages/runtest.png", 25, 25, false, false);
+	public final static Image source_run = new Image("/com/testmydata/fximages/please_wait.gif", 25, 25, false, false);
+	public final static Image pdficon = new Image("/com/testmydata/fximages/pdf.png", 25, 25, false, false);
+	public final static Image excelicon = new Image("/com/testmydata/fximages/excel.png", 25, 25, false, false);
 	public final static Image homeicon = new Image("/com/testmydata/fximages/Home_Icon.png", 40, 40, false, false);
 	public final static Image sqleditor = new Image("/com/testmydata/fximages/sqleditor.png", 20, 20, false, false);
 	public final static Image sqlcolumneditor = new Image("/com/testmydata/fximages/sqleditor_column.png", 20, 20,
