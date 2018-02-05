@@ -28,7 +28,10 @@
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="refreshicon" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
-                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="6.0" text="Label" textFill="#40aa03" visible="false" />
+                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="12.0" text="Label" textFill="#162a4c" visible="false">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font></Label>
                            </children>
                            <opaqueInsets>
                               <Insets left="1.0" right="1.0" />
@@ -37,35 +40,31 @@
                               <InnerShadow color="#bec0c4" height="77.09" radius="18.7725" width="0.0" />
                            </effect>
                         </AnchorPane>
-                        <JFXComboBox fx:id="tfsurlscombo" focusColor="#40aa03" layoutX="100.0" layoutY="58.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                        <JFXComboBox fx:id="tfsurlcombo" focusColor="#40aa03" layoutX="100.0" layoutY="58.0" prefWidth="250.0" unFocusColor="#bebec4" />
                         <JFXTextField fx:id="tfsurltext" focusColor="#40aa03" layoutX="100.0" layoutY="120.0" prefWidth="250.0" promptText="Specify TFS / VSTS URL" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="tfsprojectnametext" focusColor="#40aa03" layoutX="100.0" layoutY="190.0" prefWidth="250.0" promptText="Specify Project Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" visible="false">
-                           <font>
-                              <Font name="Calibri Bold" size="12.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXComboBox fx:id="tfsusernamecombo" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" unFocusColor="#bebec4" visible="false" />
+                        <JFXComboBox fx:id="tfsprojectcombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="190.0" prefWidth="250.0" unFocusColor="#bebec4" visible="false" />
+                        <JFXComboBox fx:id="tfsusernamecombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" unFocusColor="#bebec4" visible="false" />
                         <JFXPasswordField fx:id="tfspasswordtext" focusColor="#40aa03" layoutX="100.0" layoutY="270.0" prefWidth="250.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" visible="false">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXCheckBox fx:id="defaultcheckattfs" checkedColor="#38c910" layoutX="370.0" layoutY="124.0" text="Set as Default Bug Tracking System" textFill="#162a4c" unCheckedColor="#bebec4">
+                        <JFXCheckBox fx:id="defaultcheckattfs" checkedColor="#40aa03" layoutX="370.0" layoutY="124.0" text="Set as Default Bug Tracking System" textFill="#162a4c" unCheckedColor="#bebec4">
                            <font>
                               <Font name="System Bold" size="10.0" />
                            </font></JFXCheckBox>
-                        <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                        <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                        <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                        <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                         <Label layoutX="50.0" layoutY="40.0" text="Update Existing" textFill="#f21111">
                            <font>
                               <Font name="Calibri Bold" size="11.0" />
                            </font>
                         </Label>
-                        <Label layoutX="49.0" layoutY="100.0" text="Add New TFS / VSTS Server" textFill="#40aa03">
+                        <Label fx:id="tfsserverlabel" layoutX="49.0" layoutY="100.0" text="Add New TFS / VSTS Server" textFill="#40aa03">
                            <font>
                               <Font name="Calibri Bold" size="11.0" />
                            </font>
@@ -75,7 +74,7 @@
                               <Font name="System Bold" size="10.0" />
                            </font>
                         </JFXCheckBox>
-                        <JFXCheckBox fx:id="activateheck" checkedColor="#38c910" layoutX="370.0" layoutY="63.0" text="Activate Server" textFill="#162a4c" unCheckedColor="#bebec4" visible="false">
+                        <JFXCheckBox fx:id="activatecheck" checkedColor="#40aa03" layoutX="370.0" layoutY="63.0" text="Activate Server" textFill="#162a4c" unCheckedColor="#bebec4" visible="false">
                            <font>
                               <Font name="System Bold" size="10.0" />
                            </font>
@@ -101,7 +100,7 @@
       </JFXTabPane>
       <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Bug Tracking System" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+            <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Bug Tracking System" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.testmydata.auditlog.StoreAuditLogger;
+import com.testmydata.binarybeans.BugServerBinaryTrade;
+import com.testmydata.binarybeans.BugServerProjectsBinaryTrade;
+import com.testmydata.binarybeans.BugServerUsersBinaryTrade;
 import com.testmydata.binarybeans.ControlReportExecutionBinaryTrade;
 import com.testmydata.binarybeans.ControlReportHelperBinaryTrade;
 import com.testmydata.binarybeans.ControlReportRulesBinaryTrade;
@@ -3812,10 +3815,9 @@ public class DAO {
 
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
-				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, tfsid bigint(5) default 0, jiraid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
+				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, bugserverid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
 						+ " title varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
-						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id), "
-						+ " UNIQUE KEY(tcid), UNIQUE KEY(ruleid))";
+						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugstable", 1);
@@ -4062,7 +4064,7 @@ public class DAO {
 
 			if (checktable.equals("existed")) {
 				sql = "insert into " + tableName
-						+ " (servertype isdefault, collectionurl, isactive, createdby, createddate) values( ?, ?, ?, ?, ?, CURRENT_TIMESTAMP )";
+						+ " (servertype, isdefault, collectionurl, isactive, createdby, createddate) values( ?, ?, ?, ?, ?, CURRENT_TIMESTAMP )";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, servertype);
 				ps.setInt(2, defaultstatus);
@@ -4090,6 +4092,206 @@ public class DAO {
 			}
 		} catch (Exception e) {
 			result = "duplicate";
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public ArrayList<BugServerBinaryTrade> getTFSBugserversDetails() {
+		ArrayList<BugServerBinaryTrade> serverlist = new ArrayList<BugServerBinaryTrade>();
+		try {
+
+			String checktable = isTableAlreadyExisted("bugserver");
+			if (checktable.equals("existed")) {
+				sql = "select id, isdefault, collectionurl, isactive, createdby, createddate from bugserver where servertype = 'tfs' ";
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					BugServerBinaryTrade bsbt = new BugServerBinaryTrade();
+					bsbt.setId(rs.getString(1));
+					bsbt.setIsdefault(rs.getString(2));
+					bsbt.setCollectionurl(rs.getString(3));
+					bsbt.setIsactive(rs.getString(4));
+					bsbt.setCreatedby(rs.getString(5));
+					bsbt.setCreatedate(rs.getString(6));
+
+					String sql2 = "select count(1) from bugserverprojects where bugserverid = '" + rs.getString(1)
+							+ "' and projectid = " + Loggedinuserdetails.defaultproject;
+
+					st1 = con.createStatement();
+					rs1 = st1.executeQuery(sql2);
+					int size = 0;
+					if (rs1.next()) {
+						size = rs1.getInt(1);
+					}
+					rs1.close();
+					st1.close();
+
+					BugServerProjectsBinaryTrade[] bts = new BugServerProjectsBinaryTrade[size];
+
+					String sql3 = "select id, projectname from bugserverprojects where bugserverid = '"
+							+ rs.getString(1) + "' and projectid = " + Loggedinuserdetails.defaultproject;
+
+					st1 = con.createStatement();
+					rs1 = st1.executeQuery(sql3);
+					int count = 0;
+					while (rs1.next()) {
+
+						BugServerProjectsBinaryTrade bts1 = new BugServerProjectsBinaryTrade();
+						bts1.setProjectid(rs1.getString(1));
+						bts1.setProjbugserverid(rs.getString(1));
+						bts1.setLocalproject(Integer.toString(Loggedinuserdetails.defaultproject));
+						bts1.setProjectname(rs1.getString(2));
+
+						bts[count] = bts1;
+						count++;
+					}
+
+					bsbt.setBugProjects(bts);
+
+					rs1.close();
+					st1.close();
+
+					String sql4 = "select count(1) from bugserverusers where bugserverid = '" + rs.getString(1) + "' ";
+
+					st1 = con.createStatement();
+					rs1 = st1.executeQuery(sql4);
+					int size1 = 0;
+					if (rs1.next()) {
+						size1 = rs1.getInt(1);
+					}
+					rs1.close();
+					st1.close();
+
+					BugServerUsersBinaryTrade[] bsu = new BugServerUsersBinaryTrade[size1];
+
+					String sql5 = "select id, username, password, (select userId from users where id = userid)as username, userid from bugserverusers where bugserverid = '"
+							+ rs.getString(1) + "' ";
+
+					st1 = con.createStatement();
+					rs1 = st1.executeQuery(sql5);
+					int count1 = 0;
+					while (rs1.next()) {
+
+						BugServerUsersBinaryTrade bsu1 = new BugServerUsersBinaryTrade();
+						bsu1.setBuguserid(rs1.getString(1));
+						bsu1.setUsername(rs1.getString(2));
+						bsu1.setPassword(rs1.getString(3));
+						bsu1.setLocaluser(rs1.getString(4));
+						bsu1.setLocaluserid(rs1.getString(5));
+
+						bsu[count1] = bsu1;
+						count1++;
+					}
+
+					bsbt.setBugUsers(bsu);
+
+					rs1.close();
+					st1.close();
+
+					serverlist.add(bsbt);
+
+				}
+				rs.close();
+				st.close();
+			} else {
+				serverlist = null;
+			}
+		} catch (Exception e) {
+			serverlist = null;
+		}
+		return serverlist;
+	}
+
+	public String insertBugUsersProjects(String Projectname, int projectid, String username, String password,
+			int userid, int bugserverid) {
+		String result = "failure";
+
+		try {
+			sql = "insert into bugserverprojects (bugserverid, projectname, projectid) values( ?, ?, ? )";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bugserverid);
+			ps.setString(2, Projectname);
+			ps.setInt(3, projectid);
+
+			int status1 = ps.executeUpdate();
+			ps.close();
+
+			sql = "insert into bugserverusers (bugserverid, username, password, userid) values (?, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bugserverid);
+			ps.setString(2, username);
+			ps.setString(3, password);
+			ps.setInt(4, userid);
+
+			int status2 = ps.executeUpdate();
+			ps.close();
+
+			if (status1 == 1 && status2 == 1) {
+				result = "success";
+			} else {
+				result = "failure";
+			}
+		} catch (Exception e) {
+			result = "failure";
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public String updateBugUsersProjects(String Projectname, int projectid, String username, String password,
+			int userid, int bugserverid, int bugprojectid, int buguserid, int isdefault, String collectionurl,
+			int isactive, int createdby) {
+		String result = "failure";
+
+		try {
+			if (isdefault == 1) {
+				sql = "update bugserver set isdefault = ?";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, 0);
+				ps.executeUpdate();
+				ps.close();
+			}
+
+			sql = "update bugserver set isdefault = ?, isactive = ?, collectionurl = ?, createdby = ?, createddate = CURRENT_TIMESTAMP where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, isdefault);
+			ps.setInt(2, isactive);
+			ps.setString(3, collectionurl);
+			ps.setInt(4, createdby);
+			ps.setInt(5, bugserverid);
+			int status1 = ps.executeUpdate();
+			ps.close();
+
+			sql = "update bugserverprojects set bugserverid = ?, projectname = ?, projectid = ? where id = ? ";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bugserverid);
+			ps.setString(2, Projectname);
+			ps.setInt(3, projectid);
+			ps.setInt(4, bugprojectid);
+
+			int status2 = ps.executeUpdate();
+			ps.close();
+
+			sql = "update bugserverusers set bugserverid = ?, username = ?, password = ?, userid = ? where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bugserverid);
+			ps.setString(2, username);
+			ps.setString(3, password);
+			ps.setInt(4, userid);
+			ps.setInt(5, buguserid);
+
+			int status3 = ps.executeUpdate();
+			ps.close();
+
+			if (status1 == 1 && status2 == 1 && status3 == 1) {
+				result = "success";
+			} else {
+				result = "failure";
+			}
+		} catch (Exception e) {
+			result = "failure";
 			e.printStackTrace();
 		}
 		return result;
