@@ -23,18 +23,16 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class ProjectsController implements Initializable {
-	Stage myStage;
 	@FXML
 	private JFXComboBox<String> ownercombo, exisitingprojectscombo;
 	@FXML
 	private JFXTextField projectnametext, searchtext;
 	@FXML
-	private ImageView  closeicon,saveicon, updateicon, refreshicon1, refreshicon;
+	private ImageView closeicon, saveicon, updateicon, refreshicon1, refreshicon;
 	@FXML
-	private AnchorPane projectspane,actionanchor1, actionanchor2;
+	private AnchorPane projectspane, actionanchor1, actionanchor2;
 	@FXML
 	private Label refreshlbl, refreshlbl1;
 	static String[] selectedowner = null, selectedproject = null;
@@ -87,9 +85,9 @@ public class ProjectsController implements Initializable {
 			}
 		});
 
-		Label savelbl = new Label("   Save ");
+		Label savelbl = new Label("  Save ");
 		savelbl.setStyle(StaticImages.lblStyle);
-		savelbl.setMinWidth(45);
+		savelbl.setMinWidth(40);
 		savelbl.setLayoutX(65);
 		savelbl.setLayoutY(15);
 		savelbl.setVisible(false);
@@ -108,9 +106,9 @@ public class ProjectsController implements Initializable {
 			}
 		});
 
-		Label updatelbl = new Label("   Update ");
+		Label updatelbl = new Label(" Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
-		updatelbl.setMinWidth(55);
+		updatelbl.setMinWidth(40);
 		updatelbl.setLayoutX(65);
 		updatelbl.setLayoutY(15);
 		updatelbl.setVisible(false);
@@ -192,24 +190,21 @@ public class ProjectsController implements Initializable {
 				Cleanup.nullifyStrings(nc);
 			}
 		});
-/*
-		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@SuppressWarnings("static-access")
-			@Override
-			public void handle(MouseEvent event) {
-				Cleanup scu = new Cleanup();
-				ProjectsController nc = new ProjectsController();
-				scu.nullifyStrings(nc);
-
-				Node source = (Node) event.getSource();
-				myStage = (Stage) source.getScene().getWindow();
-				myStage.close();
-				UndecoratorController.getInstance(null);
-			}
-		});
-		*/
+		/*
+		 * homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new
+		 * EventHandler<MouseEvent>() {
+		 * 
+		 * @SuppressWarnings("static-access")
+		 * 
+		 * @Override public void handle(MouseEvent event) { Cleanup scu = new
+		 * Cleanup(); ProjectsController nc = new ProjectsController();
+		 * scu.nullifyStrings(nc);
+		 * 
+		 * Node source = (Node) event.getSource(); myStage = (Stage)
+		 * source.getScene().getWindow(); myStage.close();
+		 * UndecoratorController.getInstance(null); } });
+		 */
 	}
-	
 
 	private void runmessage(String message) {
 		CommonFunctions.message = message;

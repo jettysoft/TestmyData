@@ -38,8 +38,8 @@
                      <children>
                         <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                            <children>
-                              <JFXComboBox fx:id="fexistingservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="fservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="fexistingservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="fservercombo" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="fhosttext" focusColor="#40aa03" layoutX="40.0" layoutY="140.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Host IP &amp; Port (EX. 127.0.01:3306)" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
@@ -107,7 +107,7 @@
                      <children>
                         <AnchorPane fx:id="selectionanchor1" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                            <children>
-                              <JFXComboBox fx:id="existingmodulescombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="existingmodulescombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="modulenametext" focusColor="#40aa03" layoutX="40.0" layoutY="100.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter Module Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />

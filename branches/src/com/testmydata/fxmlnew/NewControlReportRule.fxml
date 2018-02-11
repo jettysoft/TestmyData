@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="controlpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;-fx-border-color: black" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
+<AnchorPane fx:id="controlpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewControlReportRulesController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 1.0em;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <children>
@@ -52,7 +52,7 @@
                               <Insets />
                            </opaqueInsets>
                         </AnchorPane>
-                        <JFXComboBox fx:id="modulebox" focusColor="#40aa03" layoutX="40.0" layoutY="50.0" prefWidth="300.0" unFocusColor="#bebec4" />
+                        <JFXComboBox fx:id="modulebox" focusColor="#40aa03" layoutX="40.0" layoutY="50.0" prefWidth="300.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                         <JFXTextField fx:id="rulenametext" focusColor="#40aa03" layoutX="370.0" layoutY="50.0" prefWidth="300.0" promptText="Specify Rule Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
@@ -65,17 +65,17 @@
                            <children>
                               <VBox prefHeight="160.0" prefWidth="210.0" AnchorPane.topAnchor="40.0">
                                  <children>
-                                    <JFXComboBox fx:id="sdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="sdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="stablebox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="stablebox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="scolumnbox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="scolumnbox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
@@ -109,17 +109,17 @@
                               </Label>
                               <VBox layoutX="240.0" layoutY="178.0" prefHeight="160.0" prefWidth="210.0" AnchorPane.topAnchor="40.0">
                                  <children>
-                                    <JFXComboBox fx:id="stdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="stdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="sttablebox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="sttablebox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="stcolumnbox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="stcolumnbox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
@@ -138,17 +138,17 @@
                               </ImageView>
                               <VBox layoutX="480.0" layoutY="40.0" prefHeight="160.0" prefWidth="210.0" AnchorPane.topAnchor="40.0">
                                  <children>
-                                    <JFXComboBox fx:id="trdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="trdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="trtablebox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="trtablebox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="trcolumnbox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="trcolumnbox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
@@ -167,17 +167,17 @@
                               </ImageView>
                               <VBox layoutX="720.0" layoutY="32.0" prefHeight="160.0" prefWidth="205.0" AnchorPane.topAnchor="40.0">
                                  <children>
-                                    <JFXComboBox fx:id="ldbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="ldbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="ltablebox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="ltablebox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="lcolumnbox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="lcolumnbox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
@@ -196,17 +196,17 @@
                               </ImageView>
                               <VBox layoutX="960.0" layoutY="18.0" prefHeight="160.0" prefWidth="205.0" AnchorPane.topAnchor="40.0">
                                  <children>
-                                    <JFXComboBox fx:id="tdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="tdbbox" focusColor="#40aa03" layoutX="30.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="ttablebox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="ttablebox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>
                                     </JFXComboBox>
-                                    <JFXComboBox fx:id="tcolumnbox" focusColor="#40aa03" prefWidth="180.0" unFocusColor="#bebec4">
+                                    <JFXComboBox fx:id="tcolumnbox" focusColor="#40aa03" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4">
                                        <VBox.margin>
                                           <Insets left="10.0" top="25.0" />
                                        </VBox.margin>

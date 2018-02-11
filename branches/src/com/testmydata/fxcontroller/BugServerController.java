@@ -572,6 +572,8 @@ public class BugServerController implements Initializable {
 	private void tfsrefresh() {
 		settfscombo();
 		setdefaultcombo();
+		DashBoardController dbc = new DashBoardController();
+		dbc.setdefaultbugserver(tfsserverlist);
 	}
 
 	private void settfscombo() {
@@ -587,7 +589,7 @@ public class BugServerController implements Initializable {
 			tfsserverlist.clear();
 		}
 
-		tfsserverlist = new DAO().getTFSBugserversDetails();
+		tfsserverlist = new DAO().getTFSBugserversDetails("TFS");
 
 		if (tfsserverlist != null && tfsserverlist.size() > 0) {
 			for (int i = 0; i < tfsserverlist.size(); i++) {

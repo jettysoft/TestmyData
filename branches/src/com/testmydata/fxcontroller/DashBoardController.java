@@ -20,6 +20,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import com.testmydata.auditlog.StoreAuditLogger;
+import com.testmydata.binarybeans.BugServerBinaryTrade;
 import com.testmydata.binarybeans.ControlReportExecutionBinaryTrade;
 import com.testmydata.binarybeans.LocalUserLevelBeanBinaryTrade;
 import com.testmydata.binarybeans.ModulesBinaryTrade;
@@ -38,6 +39,7 @@ import com.testmydata.dashboardfunction.TestSuite;
 import com.testmydata.main.InactivityEventManager;
 import com.testmydata.main.InactivityListener;
 import com.testmydata.util.CommonFunctions;
+import com.testmydata.util.DefaultBugServerDetails;
 import com.testmydata.util.DockerClass;
 import com.testmydata.util.EncryptAndDecrypt;
 import com.testmydata.util.FileIOOperations;
@@ -128,6 +130,7 @@ public class DashBoardController implements Initializable {
 	static ArrayList<String> reportcolumnlist = new ArrayList<String>();
 	static ArrayList<String> crcolumnlist = new ArrayList<String>();
 	static ArrayList<ProjectsBeanBinaryTrade> projectslist = new ArrayList<ProjectsBeanBinaryTrade>();
+	static ArrayList<BugServerBinaryTrade> tfsserverlist = new ArrayList<BugServerBinaryTrade>();
 
 	DecimalFormat df2 = new DecimalFormat("#.##");
 	@FXML
@@ -140,7 +143,7 @@ public class DashBoardController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// start(); //starts dock icons
 
-		underline("none");
+		underline("design");
 		InvoiceStaticHelper.setDash(this);
 		// Order is most important
 		invokeInactivityListener();
@@ -149,6 +152,7 @@ public class DashBoardController implements Initializable {
 		QADefaultServerDetails qasd = new QADefaultServerDetails();
 		qasd.setqadefaultserver();
 		setqaserver();
+		setdefaultbugserver(null);
 
 		setexistingprojects();
 		setdashboardpanels();
@@ -766,7 +770,35 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void runnewbug() {
-		runmessage("Under Implementation...");
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "newbugpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+					}
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/CreateBug.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@FXML
@@ -1081,6 +1113,50 @@ public class DashBoardController implements Initializable {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void setdefaultbugserver(ArrayList<BugServerBinaryTrade> list) {
+		if (list == null || list.size() == 0) {
+			tfsserverlist = new DAO().getTFSBugserversDetails("ALL");
+		} else {
+			tfsserverlist = list;
+		}
+
+		if (tfsserverlist != null && tfsserverlist.size() > 0) {
+			for (int i = 0; i < tfsserverlist.size(); i++) {
+				if (tfsserverlist.get(i).getIsdefault().equals("1") && tfsserverlist.get(i).getIsactive().equals("1")) {
+					if (tfsserverlist.get(i).getServertype().contains("TFS")) {
+						DefaultBugServerDetails.serverid = tfsserverlist.get(i).getId();
+						DefaultBugServerDetails.servertype = "TFS";
+						DefaultBugServerDetails.collectionurl = tfsserverlist.get(i).getCollectionurl();
+
+						for (int j = 0; j < tfsserverlist.get(i).getBugProjects().length; j++) {
+							if (tfsserverlist.get(i).getBugProjects()[j].getProjbugserverid()
+									.equals(tfsserverlist.get(i).getId())
+									&& tfsserverlist.get(i).getBugProjects()[j].getLocalproject()
+											.equals(Integer.toString(Loggedinuserdetails.defaultproject))) {
+								DefaultBugServerDetails.projectname = tfsserverlist.get(i).getBugProjects()[j]
+										.getProjectname();
+							}
+						}
+
+						for (int k = 0; k < tfsserverlist.get(i).getBugUsers().length; k++) {
+							if (tfsserverlist.get(i).getBugUsers()[k].getUsersbugserverid()
+									.equals(tfsserverlist.get(i).getId())
+									&& tfsserverlist.get(i).getBugUsers()[k].getLocaluserid()
+											.equals(Integer.toString(Loggedinuserdetails.id))) {
+								DefaultBugServerDetails.username = tfsserverlist.get(i).getBugUsers()[k].getUsername();
+								DefaultBugServerDetails.password = tfsserverlist.get(i).getBugUsers()[k].getPassword();
+							}
+						}
+
+					} else if (tfsserverlist.get(i).getServertype().contains("JIRA")) {
+
+					}
+
+				}
+			}
 		}
 	}
 

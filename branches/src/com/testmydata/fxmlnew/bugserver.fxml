@@ -40,14 +40,14 @@
                               <InnerShadow color="#bec0c4" height="77.09" radius="18.7725" width="0.0" />
                            </effect>
                         </AnchorPane>
-                        <JFXComboBox fx:id="tfsurlcombo" focusColor="#40aa03" layoutX="100.0" layoutY="58.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                        <JFXComboBox fx:id="tfsurlcombo" focusColor="#40aa03" layoutX="100.0" layoutY="58.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                         <JFXTextField fx:id="tfsurltext" focusColor="#40aa03" layoutX="100.0" layoutY="120.0" prefWidth="250.0" promptText="Specify TFS / VSTS URL" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox fx:id="tfsprojectcombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="190.0" prefWidth="250.0" unFocusColor="#bebec4" visible="false" />
-                        <JFXComboBox fx:id="tfsusernamecombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" unFocusColor="#bebec4" visible="false" />
+                        <JFXComboBox fx:id="tfsprojectcombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="190.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
+                        <JFXComboBox fx:id="tfsusernamecombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
                         <JFXPasswordField fx:id="tfspasswordtext" focusColor="#40aa03" layoutX="100.0" layoutY="270.0" prefWidth="250.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" visible="false">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
