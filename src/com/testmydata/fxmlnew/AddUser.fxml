@@ -38,7 +38,7 @@
                      <children>
                         <AnchorPane fx:id="selectionanchor" layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                            <children>
-                              <JFXComboBox fx:id="usercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="usercombo" focusColor="#40aa03" layoutX="40.0" layoutY="20.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXCheckBox fx:id="activatecheck" checkedColor="#40aa03" layoutX="30.0" layoutY="55.0" text="Activate User" textFill="#40aa03" unCheckedColor="#dad8d8" visible="false">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

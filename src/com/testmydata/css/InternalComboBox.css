@@ -1,0 +1,60 @@
+
+.combo-box-popup .list-view {
+    -fx-padding: 10;
+    -fx-background-color:  white;
+    -fx-background-radius: 1em;
+    -fx-border-color: #162a4c;
+    -fx-border-radius: .5em;
+    -fx-border-width:1; 
+}
+ 
+
+.combo-box-popup .list-view .list-cell:filled {
+    -fx-padding: 5;
+    -fx-background-insets: 1;
+    -fx-text-fill: #162a4c;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color:  white;
+    -fx-text-fill: #40AA03;
+    -fx-background-radius: 0.5em;
+    -fx-padding: 5;
+    -fx-background-insets: 1;
+    
+}
+.combo-box-popup .list-view .list-cell:selected {
+    
+    -fx-padding: 5;
+    -fx-background-color: #5e7991;
+    -fx-text-fill: white;
+    -fx-background-radius: 0.5em;
+    -fx-background-insets: 1;
+}
+
+
+
+.combo-box{
+    -jfx-focus-color: #bebec4;
+    -jfx-unfocus-color: #bebec4;
+    -fx-text-fill: #162a4c;
+}
+.combo-box:hover{
+    -jfx-focus-color: #40AA03;
+    -jfx-unfocus-color: #40AA03;
+     -fx-text-fill: #40AA03;
+}
+
+
+.combo-box:hover .cell{
+    -fx-text-fill: #40AA03;
+    -fx-font: 12px "Calibri";
+    -fx-background-color: transparent;
+}
+.combo-box .cell{
+    -fx-text-fill: #162a4c;
+    -fx-font: 12px "Calibri";
+    -fx-background-color: transparent;
+}
+
+

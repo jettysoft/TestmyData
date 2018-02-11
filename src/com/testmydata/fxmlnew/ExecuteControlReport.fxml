@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="executeexecrpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;-fx-border-color: black" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ExecuteControlReportController">
+<AnchorPane fx:id="executeexecrpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ExecuteControlReportController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 1em;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <children>
@@ -39,8 +39,8 @@
                      <children>
                         <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="rulecombo" focusColor="#40aa03" layoutX="230.0" layoutY="20.0" prefWidth="180.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="20.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="rulecombo" focusColor="#40aa03" layoutX="230.0" layoutY="20.0" prefWidth="180.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="totaltext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="870.0" layoutY="23.0" prefWidth="80.0" promptText="Total Rules" stylesheets="@../css/TextFieldColors.css" text="0" unFocusColor="#bebec4">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />

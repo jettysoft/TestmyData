@@ -42,7 +42,7 @@
                      <children>
                         <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="20.0">
                            <children>
-                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="10.0" prefWidth="360.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="10.0" prefWidth="360.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="tsnametext" focusColor="#40aa03" layoutX="20.0" layoutY="50.0" prefWidth="360.0" promptText="Specify Test Scenario" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
@@ -67,9 +67,9 @@
                         </Label>
                         <AnchorPane layoutX="430.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0">
                            <children>
-                              <JFXComboBox fx:id="targetdbcombo" focusColor="#40aa03" layoutX="14.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="mappingdbcombo" focusColor="#40aa03" layoutX="254.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="sourcedbcombo" focusColor="#40aa03" layoutX="494.0" layoutY="26.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="targetdbcombo" focusColor="#40aa03" layoutX="14.0" layoutY="26.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="mappingdbcombo" focusColor="#40aa03" layoutX="254.0" layoutY="26.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="sourcedbcombo" focusColor="#40aa03" layoutX="494.0" layoutY="26.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <Label layoutX="494.0" layoutY="5.0" text="Source" textFill="#40aa03" underline="true">
                                  <font>
                                     <Font name="System Bold" size="11.0" />
@@ -85,17 +85,17 @@
                                     <Font name="System Bold" size="11.0" />
                                  </font>
                               </Label>
-                              <JFXComboBox fx:id="targettablecombo" focusColor="#40aa03" layoutX="14.0" layoutY="66.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="mappingtablecombo" focusColor="#40aa03" layoutX="254.0" layoutY="66.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="sourcetablecombo" focusColor="#40aa03" layoutX="494.0" layoutY="66.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="targettablecombo" focusColor="#40aa03" layoutX="14.0" layoutY="66.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="mappingtablecombo" focusColor="#40aa03" layoutX="254.0" layoutY="66.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="sourcetablecombo" focusColor="#40aa03" layoutX="494.0" layoutY="66.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <AnchorPane layoutX="16.0" layoutY="112.0" prefHeight="43.0" prefWidth="200.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0">
                                  <children>
-                                    <JFXComboBox fx:id="targetjoincombo" focusColor="#40aa03" layoutX="14.0" layoutY="5.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                                    <JFXComboBox fx:id="targetjoincombo" focusColor="#40aa03" layoutX="14.0" layoutY="5.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                                     <MaterialDesignIconView glyphName="ARROW_LEFT" layoutX="222.0" layoutY="28.0" />
                                     <MaterialDesignIconView glyphName="ARROW_RIGHT" layoutX="235.0" layoutY="28.0" />
-                                    <JFXComboBox fx:id="mappingtargetjoincombo" focusColor="#40aa03" layoutX="254.0" layoutY="5.0" prefWidth="95.0" unFocusColor="#bebec4" />
-                                    <JFXComboBox fx:id="mappingsourcejoincombo" focusColor="#40aa03" layoutX="359.0" layoutY="5.0" prefWidth="95.0" unFocusColor="#bebec4" />
-                                    <JFXComboBox fx:id="sourcejoincombo" focusColor="#40aa03" layoutX="494.0" layoutY="5.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                                    <JFXComboBox fx:id="mappingtargetjoincombo" focusColor="#40aa03" layoutX="254.0" layoutY="5.0" prefWidth="95.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                                    <JFXComboBox fx:id="mappingsourcejoincombo" focusColor="#40aa03" layoutX="359.0" layoutY="5.0" prefWidth="95.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                                    <JFXComboBox fx:id="sourcejoincombo" focusColor="#40aa03" layoutX="494.0" layoutY="5.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                                     <MaterialDesignIconView glyphName="ARROW_LEFT" layoutX="463.0" layoutY="28.0" />
                                     <MaterialDesignIconView glyphName="ARROW_RIGHT" layoutX="476.0" layoutY="28.0" />
                                  </children>
@@ -105,9 +105,9 @@
                                     <Font name="System Bold" size="11.0" />
                                  </font>
                               </Label>
-                              <JFXComboBox fx:id="targetwherecombo" focusColor="#40aa03" layoutX="14.0" layoutY="170.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="operatorcombo" focusColor="#40aa03" layoutX="254.0" layoutY="170.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="sourcewherecombo" focusColor="#162a4c" layoutX="494.0" layoutY="170.0" prefWidth="200.0" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="targetwherecombo" focusColor="#40aa03" layoutX="14.0" layoutY="170.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="operatorcombo" focusColor="#40aa03" layoutX="254.0" layoutY="170.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="sourcewherecombo" focusColor="#162a4c" layoutX="494.0" layoutY="170.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <Label layoutX="14.0" layoutY="155.0" text="Where Clause" textFill="#9494a1">
                                  <font>
                                     <Font name="System Bold" size="11.0" />
@@ -120,9 +120,9 @@
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="20.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="284.0">
+                        <AnchorPane layoutX="20.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="284.0">
                            <children>
-                              <JFXTextArea fx:id="sqlscripttextarea" focusColor="#f7f6f2" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <JFXTextArea fx:id="sqlscripttextarea" focusColor="WHITE" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="WHITE" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font>
@@ -134,9 +134,9 @@
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="430.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="284.0">
+                        <AnchorPane layoutX="430.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="284.0">
                            <children>
-                              <JFXTextArea fx:id="resultstextarea" editable="false" focusColor="#f7f6f2" prefHeight="95.0" prefWidth="350.0" stylesheets="@../css/RemoveFocusText.css" unFocusColor="#f7f6f2" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                              <JFXTextArea fx:id="resultstextarea" editable="false" focusColor="WHITE" prefHeight="95.0" prefWidth="350.0" stylesheets="@../css/RemoveFocusText.css" unFocusColor="WHITE" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font>

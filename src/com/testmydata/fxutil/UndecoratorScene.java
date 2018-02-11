@@ -1,7 +1,6 @@
 
 package com.testmydata.fxutil;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -107,11 +106,11 @@ public class UndecoratorScene extends Scene {
 	public void addStylesheet(String css) {
 		undecorator.getStylesheets().add(css);
 	}
-/*
-	public void setAsStageDraggable(Stage stage, Node node) {
-		undecorator.setAsStageDraggable(stage, node);
-	}
-*/
+
+	/*
+	 * public void setAsStageDraggable(Stage stage, Node node) {
+	 * undecorator.setAsStageDraggable(stage, node); }
+	 */
 	public void setBackgroundStyle(String style) {
 		undecorator.getShadowNode().setStyle(style);
 	}

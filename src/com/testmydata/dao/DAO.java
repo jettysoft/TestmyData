@@ -3816,8 +3816,9 @@ public class DAO {
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
 				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, bugserverid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
-						+ " title varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
-						+ " deleted int(1) default 0, createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, PRIMARY KEY (id))";
+						+ " title varchar(256) default null, assignedto varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
+						+ " createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, "
+						+ " serverbugid bigint(10) default 0, PRIMARY KEY (id))";
 				st = con.createStatement();
 				st.executeUpdate(createTabelSQL);
 				updateTrigerstatus("bugstable", 1);
@@ -4097,13 +4098,19 @@ public class DAO {
 		return result;
 	}
 
-	public ArrayList<BugServerBinaryTrade> getTFSBugserversDetails() {
+	public ArrayList<BugServerBinaryTrade> getTFSBugserversDetails(String source) {
 		ArrayList<BugServerBinaryTrade> serverlist = new ArrayList<BugServerBinaryTrade>();
 		try {
 
 			String checktable = isTableAlreadyExisted("bugserver");
 			if (checktable.equals("existed")) {
-				sql = "select id, isdefault, collectionurl, isactive, createdby, createddate from bugserver where servertype = 'tfs' ";
+				if (source.equals("TFS")) {
+					sql = "select id, isdefault, collectionurl, isactive, createdby, createddate, servertype from bugserver where servertype = 'tfs' ";
+				} else if (source.equals("JIRA")) {
+					sql = "select id, isdefault, collectionurl, isactive, createdby, createddate, servertype from bugserver where servertype = 'jira' ";
+				} else if (source.equals("ALL")) {
+					sql = "select id, isdefault, collectionurl, isactive, createdby, createddate, servertype from bugserver ";
+				}
 
 				st = con.createStatement();
 				rs = st.executeQuery(sql);
@@ -4115,6 +4122,7 @@ public class DAO {
 					bsbt.setIsactive(rs.getString(4));
 					bsbt.setCreatedby(rs.getString(5));
 					bsbt.setCreatedate(rs.getString(6));
+					bsbt.setServertype(rs.getString(7));
 
 					String sql2 = "select count(1) from bugserverprojects where bugserverid = '" + rs.getString(1)
 							+ "' and projectid = " + Loggedinuserdetails.defaultproject;
@@ -4180,6 +4188,7 @@ public class DAO {
 						bsu1.setPassword(rs1.getString(3));
 						bsu1.setLocaluser(rs1.getString(4));
 						bsu1.setLocaluserid(rs1.getString(5));
+						bsu1.setUsersbugserverid(rs.getString(1));
 
 						bsu[count1] = bsu1;
 						count1++;
@@ -4293,6 +4302,36 @@ public class DAO {
 		} catch (Exception e) {
 			result = "failure";
 			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public String createbugcopy(String serverid, String tcid, String ruleid, String title, String assignedto,
+			String state, String reason, String area, String reprosteps, int createdby, int projectid,
+			String serverbugid) {
+		String result = "success";
+		try {
+			sql = "insert into bugs (bugserverid, tcid,	ruleid,	title, assignedto, state, reason, area, reprosteps, createdby, createddate, projectid, serverbugid) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ? )";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, serverid);
+			ps.setString(2, tcid);
+			ps.setString(3, ruleid);
+			ps.setString(4, title);
+			ps.setString(5, assignedto);
+			ps.setString(6, state);
+			ps.setString(7, reason);
+			ps.setString(8, area);
+			ps.setString(9, reprosteps);
+			ps.setInt(10, createdby);
+			ps.setInt(11, projectid);
+			ps.setString(12, serverbugid);
+
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "failure";
 		}
 		return result;
 	}

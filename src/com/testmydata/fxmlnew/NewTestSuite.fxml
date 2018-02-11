@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="newtestsuitepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;-fx-border-color: black" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewTestSuiteController">
+<AnchorPane fx:id="newtestsuitepane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.NewTestSuiteController">
    <children>
       <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 1.0em;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <children>
@@ -54,9 +54,9 @@
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" />
-                              <JFXComboBox fx:id="tscombo" focusColor="#40aa03" layoutX="260.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
-                              <JFXComboBox fx:id="tccombo" focusColor="#162a4c" layoutX="500.0" layoutY="67.0" prefWidth="200.0" unFocusColor="#bebec4" visible="false" />
+                              <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="67.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="tscombo" focusColor="#40aa03" layoutX="260.0" layoutY="67.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
+                              <JFXComboBox fx:id="tccombo" focusColor="#162a4c" layoutX="500.0" layoutY="67.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
                               <ImageView fx:id="addicon" fitHeight="20.0" fitWidth="20.0" layoutX="730.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="clearicon" fitHeight="20.0" fitWidth="20.0" layoutX="765.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
                            </children>

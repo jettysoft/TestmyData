@@ -22,7 +22,7 @@ import com.testmydata.tfs.jira.binarybeans.BugFieldsBeans;
 
 public class CreateBugTFS {
 	public static void main(final String[] args) {
-		CreateBugTFS cfs = new CreateBugTFS();
+		// CreateBugTFS cfs = new CreateBugTFS();
 		// cfs.createTFSBug();
 		// cfs.addTFSattachment(new File(
 		// new
@@ -30,14 +30,17 @@ public class CreateBugTFS {
 		// .getAbsolutePath()).getAbsoluteFile(),
 		// 30);
 		// cfs.testgetmethod();
-		ProjectsTFS pfs = new ProjectsTFS();
+		// cfs.test();
 
-		UsersTFS usr = new UsersTFS();
-		for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
-			usr.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
-		}
-		// IterationTFS its = new IterationTFS();
-		// its.getiterations("BusinessStore_Desktop");
+		// ProjectsTFS pfs = new ProjectsTFS();
+		//
+		// for (int i = 0; i < pfs.gettfsprojects().size(); i++) {
+		// //
+		// UsersTFS.gettfsprojectsusers(pfs.gettfsprojects().get(i).getProjectname());
+		// UsersTFS.gettfsprojectsusers("Parmzpizza_Redesign");
+		// }
+
+		// IterationTFS.getiterations("Parmzpizza_Redesign");
 		// ProjectsTFS pts = new ProjectsTFS();
 		// pts.getCategorylist();
 		// pts.gettfsprojects();
@@ -85,7 +88,9 @@ public class CreateBugTFS {
 		System.out.println("State : " + buglist.get(0).getState());
 	}
 
-	public void createTFSBug(String title, String assignedto, String areapath, String reprosteps, String createduser) {
+	public static int createTFSBug(String title, String assignedto, String state, String reason, String areapath,
+			String reprosteps, String createduser, String iterationpath) {
+		int newbugid = 0;
 		try {
 			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
 			tpc.authenticate();
@@ -103,9 +108,10 @@ public class CreateBugTFS {
 			// Set the title on the work item.
 			newWorkItem.setTitle(title); // $NON-NLS-1$
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.ASSIGNED_TO).setValue(assignedto);
-			newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).setValue("New");
-			newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).setValue("New");
-			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(TFSAccess.PROJECT_NAME);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).setValue(state);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).setValue(reason);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(areapath);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.ITERATION_PATH).setValue(iterationpath);
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
 					.setValue("<p>Created from TestMyData by " + createduser + "</p>"); //$NON-NLS-1$
 			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
@@ -136,10 +142,12 @@ public class CreateBugTFS {
 			// System.out.println("Work item " + newWorkItem.getID() + "
 			// successfully created"); //$NON-NLS-1$ //$NON-NLS-2$
 
+			newbugid = newWorkItem.getID();
 			tpc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return newbugid;
 	}
 
 	public void updateTFSBug(int bugid, String title, String assignedto, String state, String reason, String areapath,
@@ -161,6 +169,7 @@ public class CreateBugTFS {
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
 					.setValue("<p>Update from TestMyData by " + updateduser + "</p>"); //$NON-NLS-1$
 			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.ITERATION_PATH).setValue(reason);
 
 			// Save the new work item to the server.
 			newWorkItem.save();

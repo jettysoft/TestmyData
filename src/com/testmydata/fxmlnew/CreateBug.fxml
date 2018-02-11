@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="newbugpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="1180.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.CreateBugController">
+   <children>
+      <JFXTabPane fx:id="tfstab" focusTraversable="false" layoutX="10.0" layoutY="10.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em;" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="TFS / VSTS">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="56.0" prefHeight="175.0" prefWidth="200.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+                           <children>
+                              <JFXTextField fx:id="titletext" focusColor="#40aa03" layoutX="25.0" layoutY="2.0" prefWidth="500.0" promptText="Enter Bug Title" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="13.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label layoutX="10.0" layoutY="32.0" text="Status" textFill="#162a4c">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="assignedtocombo" focusColor="#40aa03" labelFloat="true" layoutX="25.0" layoutY="60.0" prefWidth="200.0" promptText="Assigned To" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="statecombo" focusColor="#40aa03" labelFloat="true" layoutX="25.0" layoutY="100.0" prefWidth="200.0" promptText="State" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="reasoncombo" focusColor="#40aa03" labelFloat="true" layoutX="25.0" layoutY="140.0" prefWidth="200.0" promptText="Reason" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <Label layoutX="290.0" layoutY="32.0" text="Classification" textFill="#162a4c">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                              <JFXComboBox fx:id="areacombo" focusColor="#40aa03" labelFloat="true" layoutX="305.0" layoutY="60.0" prefWidth="200.0" promptText="Area" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                              <JFXComboBox fx:id="iterationcombo" focusColor="#40aa03" labelFloat="true" layoutX="305.0" layoutY="100.0" prefWidth="200.0" promptText="Iteration Path" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="refreshicon" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
+                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="12.0" text="Label" textFill="#162a4c" visible="false">
+                                 <font>
+                                    <Font name="Calibri Bold" size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets left="1.0" right="1.0" />
+                           </opaqueInsets>
+                           <effect>
+                              <InnerShadow color="#bec0c4" height="77.09" radius="18.7725" width="0.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane layoutX="49.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="240.0">
+                           <children>
+                              <JFXTextArea fx:id="reprostepstextarea" focusColor="WHITE" prefHeight="95.0" prefWidth="350.0" stylesheets="@../css/RemoveFocusText.css" unFocusColor="WHITE" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </JFXTextArea>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="15.0" layoutY="220.0" text="STEPS TO REPRODUCE" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+      <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="New Bug" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
