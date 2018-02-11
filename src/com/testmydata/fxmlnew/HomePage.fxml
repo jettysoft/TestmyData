@@ -180,7 +180,7 @@
             </Hyperlink>
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane id="AnchorPane" fx:id="dashpane" layoutX="10.0" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #162a4c; -fx-border-radius: 1em; -fx-background-radius: 1em;" styleClass="mainFxmlClass" stylesheets="@../css/report.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="80.0">
          <children>
             <AnchorPane fx:id="selectionpane" layoutY="18.0" prefHeight="551.0" prefWidth="390.0" style="-fx-border-radius: 1em; -fx-background-radius: 1em; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
                <children>
