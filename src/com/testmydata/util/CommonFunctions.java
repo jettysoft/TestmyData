@@ -19,7 +19,11 @@ import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,6 +63,7 @@ import com.toedter.calendar.JDateChooser;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -1372,5 +1377,43 @@ public class CommonFunctions {
 	public void runmessage(String message1) {
 		message = message1;
 		invokeAlertBox(getClass());
+	}
+
+	public static boolean validateSelectedDates(DatePicker startdate, DatePicker enddate, Class<?> cs) {
+		boolean flag = false;
+		String message = null;
+
+		if (startdate.getValue() != null && enddate.getValue() != null) {
+			LocalDateTime localDateTime = startdate.getValue().atStartOfDay();
+			ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+			Instant instant = Instant.from(zonedDateTime);
+
+			LocalDateTime localDateTime1 = enddate.getValue().atStartOfDay();
+			ZonedDateTime zonedDateTime1 = localDateTime1.atZone(ZoneId.systemDefault());
+			Instant instant1 = Instant.from(zonedDateTime1);
+			String comareDates = compareDates(Date.from(instant), Date.from(instant1));
+
+			if (comareDates.equals("failure")) {
+				message = "Internal error occured...!";
+				flag = false;
+			} else if (comareDates.equals("after")) {
+				message = "Starting date should be Greater than end date...!";
+				flag = false;
+			} else {
+				flag = true;
+			}
+		} else {
+			message = "Plesae select both Starting date & Ending date...!";
+			flag = false;
+		}
+
+		if (!flag) {
+			CommonFunctions.message = message;
+			invokeAlertBox(cs);
+			message = null;
+			return flag;
+		} else {
+			return flag;
+		}
 	}
 }

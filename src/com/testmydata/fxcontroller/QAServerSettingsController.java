@@ -79,7 +79,7 @@ public class QAServerSettingsController implements Initializable {
 
 		Label testlbl = new Label("  Test ");
 		testlbl.setStyle(StaticImages.lblStyle);
-		testlbl.setMinWidth(35);
+		testlbl.setMinWidth(40);
 		testlbl.setLayoutX(65);
 		testlbl.setLayoutY(15);
 		testlbl.setVisible(false);
@@ -203,7 +203,7 @@ public class QAServerSettingsController implements Initializable {
 		Label msavelbl = new Label("  Save ");
 		msavelbl.setStyle(StaticImages.lblStyle);
 		msavelbl.setMinWidth(40);
-		msavelbl.setLayoutX(145);
+		msavelbl.setLayoutX(65);
 		msavelbl.setLayoutY(15);
 		msavelbl.setVisible(false);
 		actionanchor11.getChildren().add(msavelbl);
@@ -463,8 +463,7 @@ public class QAServerSettingsController implements Initializable {
 					new DAO().updatetabledata("qaservers", "defaulttype", "0", "url !", dburl);
 					setfdefaults();
 
-					QADefaultServerDetails qasd = new QADefaultServerDetails();
-					qasd.setqadefaultserver();
+					QADefaultServerDetails.setqadefaultserver();
 					InvoiceStaticHelper.dash.setqaserver();
 				} else {
 					runmessage("Failed to Add QA Server, Please Try Again...");
@@ -494,8 +493,7 @@ public class QAServerSettingsController implements Initializable {
 					new DAO().updatetabledata("qaservers", "defaulttype", "0", "url !", dburl);
 					setfdefaults();
 
-					QADefaultServerDetails qasd = new QADefaultServerDetails();
-					qasd.setqadefaultserver();
+					QADefaultServerDetails.setqadefaultserver();
 					InvoiceStaticHelper.dash.setqaserver();
 				} else {
 					runmessage("Failed to Update QA Server, Please Try Again...");

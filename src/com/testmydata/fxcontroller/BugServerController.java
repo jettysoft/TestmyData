@@ -34,7 +34,7 @@ import javafx.scene.paint.Color;
 
 public class BugServerController implements Initializable {
 	@FXML
-	private ImageView saveicon, updateicon, refreshicon, closeicon, greentick1, wrongtick1;
+	private ImageView saveicon, updateicon, refreshicon, closeicon, greentick1, wrongtick1, tfsinfoicon;
 	@FXML
 	private JFXComboBox<String> tfsurlcombo, tfsprojectcombo, tfsusernamecombo;
 	@FXML
@@ -66,6 +66,7 @@ public class BugServerController implements Initializable {
 		closeicon.setImage(StaticImages.closeicon);
 		greentick1.setImage(StaticImages.green_tick);
 		wrongtick1.setImage(StaticImages.wrong_tick);
+		tfsinfoicon.setImage(StaticImages.infoicon);
 
 		updateicon.setVisible(false);
 
@@ -188,6 +189,37 @@ public class BugServerController implements Initializable {
 			}
 		});
 
+		Label infolbl = new Label("  Help ");
+		infolbl.setStyle(StaticImages.lblStyle);
+		infolbl.setMinWidth(30);
+		infolbl.setLayoutX(385);
+		infolbl.setLayoutY(245);
+		infolbl.setVisible(false);
+		actionanchor1.getChildren().add(infolbl);
+
+		tfsinfoicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				infolbl.setVisible(true);
+			}
+		});
+		tfsinfoicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				infolbl.setVisible(false);
+			}
+		});
+		tfsinfoicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				runmessage("Process to create user.\n" + "Step 1: Login to TFS.\n"
+						+ "Step 2: Navigate to User Icon (Top Right).\n"
+						+ "Step 3: Click on Security and under Security Tab click on 'Alternate authentication credentials'.\n"
+						+ "Step 4: Select 'Enable alternate authentication credentials'.\n"
+						+ "Step 5: Provide User name (Secondary) and Password.\n" + "Step 6: Save it");
+			}
+		});
+
 		tfspasswordtext.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (!newValue) { // when focus lost
 				if (validatetfsfields()) {
@@ -241,6 +273,7 @@ public class BugServerController implements Initializable {
 								tfsprojectcombo.setVisible(true);
 								tfsusernamecombo.setVisible(true);
 								tfspasswordtext.setVisible(true);
+								tfsinfoicon.setVisible(true);
 								tfsserverlabel.setText("Update TFS / VSTS Server");
 								setdefaultcombo();
 
@@ -415,6 +448,7 @@ public class BugServerController implements Initializable {
 		deactivatecheck.setSelected(false);
 		deactivatecheck.setVisible(false);
 		updateicon.setVisible(false);
+		tfsinfoicon.setVisible(false);
 		saveicon.setVisible(true);
 		selectedbugserverid = 0;
 		selectedprojectid = 0;

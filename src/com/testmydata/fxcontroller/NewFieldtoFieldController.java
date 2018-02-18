@@ -18,6 +18,7 @@ import com.testmydata.memorycleanup.Cleanup;
 import com.testmydata.util.ComboBoxFilter;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.CustomComparator;
+import com.testmydata.util.DefaultBugServerDetails;
 import com.testmydata.util.GetDBTables;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.StaticImages;
@@ -52,7 +53,7 @@ public class NewFieldtoFieldController implements Initializable {
 	@FXML
 	private JFXTabPane testcasestab;
 	@FXML
-	private ImageView executeicon, saveicon, updateicon, viewicon, refreshicon, refreshicon1, closeicon;
+	private ImageView executeicon, saveicon, updateicon, viewicon, refreshicon, refreshicon1, closeicon, bugicon;
 	@FXML
 	private JFXComboBox<String> modulecombo, targetdbcombo, targettablecombo, targetjoincombo, targetwherecombo,
 			mappingdbcombo, mappingtablecombo, mappingtargetjoincombo, mappingsourcejoincombo, operatorcombo,
@@ -129,6 +130,7 @@ public class NewFieldtoFieldController implements Initializable {
 		refreshicon.setImage(StaticImages.refresh);
 		refreshicon1.setImage(StaticImages.refresh);
 		closeicon.setImage(StaticImages.closeicon);
+		bugicon.setImage(StaticImages.bugicon);
 
 		updateicon.setVisible(false);
 
@@ -149,9 +151,9 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label exelbl = new Label(" Execute ");
+		Label exelbl = new Label("  Execute ");
 		exelbl.setStyle(StaticImages.lblStyle);
-		exelbl.setMinWidth(50);
+		exelbl.setMinWidth(55);
 		exelbl.setLayoutX(65);
 		exelbl.setLayoutY(15);
 		exelbl.setVisible(false);
@@ -170,7 +172,7 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label savelbl = new Label(" Save ");
+		Label savelbl = new Label("  Save ");
 		savelbl.setStyle(StaticImages.lblStyle);
 		savelbl.setMinWidth(40);
 		savelbl.setLayoutX(105);
@@ -191,9 +193,9 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label updatelbl = new Label(" Update ");
+		Label updatelbl = new Label("  Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
-		updatelbl.setMinWidth(40);
+		updatelbl.setMinWidth(45);
 		updatelbl.setLayoutX(105);
 		updatelbl.setLayoutY(15);
 		updatelbl.setVisible(false);
@@ -212,10 +214,46 @@ public class NewFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label viewlbl = new Label("   View ");
+		Label buglbl = new Label("  Create Bug ");
+		buglbl.setStyle(StaticImages.lblStyle);
+		buglbl.setMinWidth(60);
+		buglbl.setLayoutX(145);
+		buglbl.setLayoutY(15);
+		buglbl.setVisible(false);
+		actionanchor1.getChildren().add(buglbl);
+
+		bugicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				buglbl.setVisible(true);
+			}
+		});
+		bugicon.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				buglbl.setVisible(false);
+			}
+		});
+		bugicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				String title = "", tcid = "0";
+				if (tcnametext.getText() != null) {
+					title = tcnametext.getText();
+				}
+				if (testcaseid != null) {
+					tcid = testcaseid;
+				}
+
+				InvoiceStaticHelper.dash.runnewbug(true, null, null, title, null, null, null, null, null, tcid, "0",
+						DefaultBugServerDetails.servertype, null, getreprosteps(), "new");
+			}
+		});
+
+		Label viewlbl = new Label("  View ");
 		viewlbl.setStyle(StaticImages.lblStyle);
-		viewlbl.setMinWidth(50);
-		viewlbl.setLayoutX(450);
+		viewlbl.setMinWidth(40);
+		viewlbl.setLayoutX(440);
 		viewlbl.setLayoutY(25);
 		viewlbl.setVisible(false);
 		actionanchor2.getChildren().add(viewlbl);
@@ -232,7 +270,12 @@ public class NewFieldtoFieldController implements Initializable {
 				viewlbl.setVisible(false);
 			}
 		});
-
+		viewicon.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				populatetestcases();
+			}
+		});
 		refreshlbl.setStyle(StaticImages.lblStyle);
 
 		refreshicon.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -762,20 +805,20 @@ public class NewFieldtoFieldController implements Initializable {
 
 	private void populatetestcases() {
 		try {
-
-			testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
-					enddate.getValue().toString(), null, Loggedinuserdetails.defaultproject);
-			if (testcaselist == null || testcaselist.size() == 0) {
-				searchtext.setDisable(true);
-				removePrevioustestcasesfromtable();
-			} else {
-				searchtext.setDisable(false);
-				if (testcaselist.size() >= 2) {
-					Collections.sort(testcaselist, new CustomComparator());
+			if (CommonFunctions.validateSelectedDates(startdate, enddate, getClass())) {
+				testcaselist = new DAO().getTestCasesDetails("testcases", startdate.getValue().toString(),
+						enddate.getValue().toString(), null, Loggedinuserdetails.defaultproject);
+				if (testcaselist == null || testcaselist.size() == 0) {
+					searchtext.setDisable(true);
+					removePrevioustestcasesfromtable();
+				} else {
+					searchtext.setDisable(false);
+					if (testcaselist.size() >= 2) {
+						Collections.sort(testcaselist, new CustomComparator());
+					}
+					populateTable(testcaselist);
 				}
-				populateTable(testcaselist);
 			}
-
 		} catch (Exception e) {
 
 		}
@@ -1062,6 +1105,24 @@ public class NewFieldtoFieldController implements Initializable {
 			sqlscripttextarea.setText("");
 			statuslabel.setText("Select Join Columns...");
 		}
+	}
 
+	private String getreprosteps() {
+		String message = "";
+
+		StringBuffer steps = new StringBuffer();
+		steps.append("Steps to Reproduce\n");
+		steps.append("--------------------------\n");
+		if (tctextarea.getText() != null && tctextarea.getText().length() > 1) {
+			steps.append("Test Condition : " + tctextarea.getText() + "\n\n");
+		}
+		if (sqlscripttextarea.getText() != null && sqlscripttextarea.getText().length() > 1) {
+			steps.append("Query used\n");
+			steps.append("---------------\n");
+			steps.append(sqlscripttextarea.getText());
+		}
+		message = steps.toString();
+
+		return message;
 	}
 }

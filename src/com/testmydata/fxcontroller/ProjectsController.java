@@ -80,6 +80,8 @@ public class ProjectsController implements Initializable {
 					if (!newFruit.equals("Select Project")) {
 						selectedproject = exisitingprojectscombo.getSelectionModel().getSelectedItem().split("-");
 						loadprojectdetails(Integer.parseInt(selectedproject[0]));
+					} else {
+						resetdefault();
 					}
 				}
 			}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="buglistpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 1em; -fx-border-radius: 1em;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testmydata.fxcontroller.ViewBugListController">
+   <children>
+      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 1.0em;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <children>
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Bugs List" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeicon" fitHeight="20.0" fitWidth="20.0" layoutX="1060.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="2.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXTabPane fx:id="bugspane" focusTraversable="false" stylesheets="@../css/TabStyleNew.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+         <tabs>
+            <Tab closable="false" text="Existing Bugs">
+               <content>
+                  <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="70.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <JFXTextField fx:id="searchtext" focusColor="#40aa03" labelFloat="true" layoutX="40.0" layoutY="23.0" prefWidth="150.0" promptText="Search Bugs" stylesheets="@../css/TextFieldColors.css" unFocusColor="#f8340d">
+                                 <font>
+                                    <Font name="Calibri Bold" size="10.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="newcounttext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="760.0" layoutY="23.0" prefWidth="80.0" promptText="New" stylesheets="@../css/TextFieldColors.css" text="0" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="activecounttext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="870.0" layoutY="23.0" prefWidth="80.0" promptText="Active" stylesheets="@../css/TextFieldColors.css" text="0" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="resolvedcounttext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="980.0" layoutY="23.0" prefWidth="80.0" promptText="Resolved" stylesheets="@../css/TextFieldColors.css" text="0" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="closedcounttext" editable="false" focusColor="#40aa03" labelFloat="true" layoutX="1080.0" layoutY="23.0" prefWidth="80.0" promptText="Closed" stylesheets="@../css/TextFieldColors.css" text="0" unFocusColor="#bebec4">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font>
+                              </JFXTextField>
+                              <FontAwesomeIconView fill="#f8340d" glyphName="SEARCH" layoutX="175.0" layoutY="38.0" size="10" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="5.0" layoutY="36.0" text="Selection Criteria" textFill="#162a4c">
+                           <font>
+                              <Font name="System Bold" size="11.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane layoutX="151.0" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <effect>
+                              <InnerShadow choke="0.14" color="#bec0c4" height="47.44" radius="11.36" width="0.0" />
+                           </effect>
+                           <children>
+                              <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
+                              <ImageView fx:id="processingicon" fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
+                              <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </AnchorPane>
+                        <TableView fx:id="bugtable" prefHeight="420.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                           <columns>
+                              <TableColumn fx:id="id" prefWidth="50.0" text="ID" />
+                              <TableColumn fx:id="servertype" prefWidth="120.0" text="Server Type &amp; ID" />
+                              <TableColumn fx:id="bugid" prefWidth="104.0" text="Bug ID" />
+                              <TableColumn fx:id="title" minWidth="230.0" prefWidth="140.0" text="Title" />
+                              <TableColumn fx:id="tcid" prefWidth="70.0" text="T.C ID" />
+                              <TableColumn fx:id="ruleid" prefWidth="70.0" text="Rule ID" />
+                              <TableColumn fx:id="state" prefWidth="100.0" text="State" />
+                              <TableColumn fx:id="reason" prefWidth="100.0" text="Reason" />
+                              <TableColumn fx:id="assignedto" minWidth="160.0" prefWidth="150.0" text="Assigned To" />
+                              <TableColumn fx:id="createdby" minWidth="160.0" prefWidth="150.0" text="Created By" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTabPane>
+   </children>
+</AnchorPane>

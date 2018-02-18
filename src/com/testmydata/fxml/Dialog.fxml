@@ -23,7 +23,7 @@
                <children>
                   <AnchorPane minHeight="40.0" minWidth="418.0" prefHeight="40.0" prefWidth="420.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 0.5em;">
                      <children>
-                        <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Message" textFill="BLACK" AnchorPane.leftAnchor="35.0">
+                        <Label contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Message" textFill="#162a4c" AnchorPane.leftAnchor="35.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>

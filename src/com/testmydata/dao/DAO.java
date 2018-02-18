@@ -30,6 +30,7 @@ import com.testmydata.binarybeans.UsersDetailsBeanBinaryTrade;
 import com.testmydata.dashboardfunction.Rule;
 import com.testmydata.dashboardfunction.TestSuite;
 import com.testmydata.fxcontroller.BugServerController;
+import com.testmydata.tfs.jira.binarybeans.BugFieldsBeans;
 import com.testmydata.util.CommonFunctions;
 import com.testmydata.util.DBConfigJAXB;
 import com.testmydata.util.EncryptAndDecrypt;
@@ -3670,7 +3671,7 @@ public class DAO {
 		ArrayList<UsersDetailsBeanBinaryTrade> userlist = new ArrayList<UsersDetailsBeanBinaryTrade>();
 		try {
 			sql = "select id, firstName, lastName, userId, emailId, securityQuestion, answer, userActive, email, newcr, newff, newts, crexe, "
-					+ "tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver from users where id = '"
+					+ "tsexe, adduser, addqa, dashboard, reports, testresults, newbug, viewbug, addbugserver, projectaccess from users where id = '"
 					+ id + "'";
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
@@ -3698,6 +3699,7 @@ public class DAO {
 				udbt.setNewbug(rs.getString(20));
 				udbt.setViewbug(rs.getString(21));
 				udbt.setAddbugserver(rs.getString(22));
+				udbt.setProjectaccess(rs.getString(23));
 
 				userlist.add(udbt);
 			}
@@ -3815,8 +3817,8 @@ public class DAO {
 
 			if (isInvoiceAlreadyExisted.equals("notExisted")) {
 
-				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, bugserverid bigint(5) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
-						+ " title varchar(256) default null, assignedto varchar(256) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
+				String createTabelSQL = "create table bugs (id bigint(40) NOT NULL AUTO_INCREMENT, bugserverid bigint(20) default 0, tcid bigint(20) default 0, ruleid bigint(20) default 0,"
+						+ " title varchar(256) default null, assignedto varchar(256) default null, iterationpath varchar(2000) default null, state varchar(256) default null, reason varchar(256) default null, area varchar(256) default null, reprosteps longtext, "
 						+ " createdby int(10) default 0, updatedby int(10) default 0, createddate datetime, updateddate datetime, projectid bigint(10) default 0, "
 						+ " serverbugid bigint(10) default 0, PRIMARY KEY (id))";
 				st = con.createStatement();
@@ -4308,10 +4310,10 @@ public class DAO {
 
 	public String createbugcopy(String serverid, String tcid, String ruleid, String title, String assignedto,
 			String state, String reason, String area, String reprosteps, int createdby, int projectid,
-			String serverbugid) {
+			String serverbugid, String iterationpath) {
 		String result = "success";
 		try {
-			sql = "insert into bugs (bugserverid, tcid,	ruleid,	title, assignedto, state, reason, area, reprosteps, createdby, createddate, projectid, serverbugid) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ? )";
+			sql = "insert into bugs (bugserverid, tcid,	ruleid,	title, assignedto, state, reason, area, reprosteps, createdby, createddate, projectid, serverbugid, iterationpath) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ? , ?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, serverid);
 			ps.setString(2, tcid);
@@ -4325,6 +4327,7 @@ public class DAO {
 			ps.setInt(10, createdby);
 			ps.setInt(11, projectid);
 			ps.setString(12, serverbugid);
+			ps.setString(13, iterationpath);
 
 			ps.executeUpdate();
 
@@ -4334,5 +4337,168 @@ public class DAO {
 			result = "failure";
 		}
 		return result;
+	}
+
+	public String updatebugcopy(String serverid, String tcid, String ruleid, String title, String assignedto,
+			String state, String reason, String area, String reprosteps, int updatedby, int projectid,
+			String serverbugid, String iterationpath, String bugid, String source) {
+		String result = "success";
+		try {
+			if (!source.equals("service")) {
+				sql = "update bugs set bugserverid = ?, title = ?, assignedto = ?, state = ?, reason = ?, area = ?, reprosteps = ?, updatedby = ?, updateddate = CURRENT_TIMESTAMP, projectid = ?, "
+						+ "serverbugid = ?, iterationpath = ?, tcid = ?, ruleid = ? where id = ? ";
+			} else if (source.equals("service")) {
+				sql = "update bugs set bugserverid = ?, title = ?, assignedto = ?, state = ?, reason = ?, area = ?, reprosteps = ?, updatedby = ?, updateddate = CURRENT_TIMESTAMP, projectid = ?, "
+						+ "serverbugid = ?, iterationpath = ? where serverbugid = ? ";
+			}
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, serverid);
+			ps.setString(2, title);
+			ps.setString(3, assignedto);
+			ps.setString(4, state);
+			ps.setString(5, reason);
+			ps.setString(6, area);
+			ps.setString(7, reprosteps);
+			ps.setInt(8, updatedby);
+			ps.setInt(9, projectid);
+			ps.setString(10, serverbugid);
+			ps.setString(11, iterationpath);
+			if (!source.equals("service")) {
+				ps.setString(12, tcid);
+				ps.setString(13, ruleid);
+				ps.setString(14, bugid);
+			} else if (source.equals("service")) {
+				ps.setString(12, serverbugid);
+			}
+
+			ps.executeUpdate();
+
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "failure";
+		}
+		return result;
+	}
+
+	public String searchtitles(String type, String id) {
+		String title = null;
+		try {
+			if (type.equals("Test Case")) {
+				sql = "select tcname from testcases where id = '" + id + "'";
+			} else if (type.equals("Control Report")) {
+				sql = "select rulename from controlreportrules where id = '" + id + "'";
+			}
+
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				title = rs.getString(1);
+			}
+			rs.close();
+			st.close();
+
+		} catch (Exception e) {
+		}
+		return title;
+	}
+
+	public ArrayList<BugFieldsBeans> getBuglist(String bugid, String serverbugid, String area, String serverid,
+			int projectid) {
+		ArrayList<BugFieldsBeans> blist = new ArrayList<BugFieldsBeans>();
+		try {
+			if (isTableAlreadyExisted("bugs").equals("existed")) {
+				String subsql = null;
+				if (isTableAlreadyExisted("bugserver").equals("existed")) {
+					subsql = "select concat(servertype,' ',id) from bugserver where id = '" + serverid + "'";
+					st = con.createStatement();
+					rs = st.executeQuery(subsql);
+					if (rs.next()) {
+						subsql = "(select concat(servertype,' ',id) from bugserver where id = bg.bugserverid)";
+					} else {
+						subsql = "('TestmyData')";
+					}
+					rs.close();
+					st.close();
+				} else {
+					subsql = "('TestmyData')";
+				}
+
+				if (bugid == null && serverbugid == null) {
+					sql = "select bg.id, " + subsql
+							+ "as servertypos, bugserverid, serverbugid, title, tcid, ruleid, state, reason, assignedto, (select concat(firstName,' ',lastName) from users where id = bg.createdby)as createduser,"
+							+ " area, iterationpath, reprosteps, projectid from bugs bg where bugserverid = '"
+							+ serverid + "' and projectid = " + projectid + "";
+				} else if (bugid != null && serverbugid == null) {
+					sql = "select bg.id, " + subsql
+							+ "as servertypos, bugserverid, serverbugid, title, tcid, ruleid, state, reason, assignedto, (select concat(firstName,' ',lastName) from users where id = bg.createdby)as createduser,"
+							+ " area, iterationpath, reprosteps, projectid from bugs bg where id = '" + bugid
+							+ "' and bugserverid = '" + serverid + "' and projectid = " + projectid + "";
+				} else if (bugid == null && serverbugid != null) {
+					sql = "select bg.id, " + subsql
+							+ "as servertypos, bugserverid, serverbugid, title, tcid, ruleid, state, reason, assignedto, (select concat(firstName,' ',lastName) from users where id = bg.createdby)as createduser,"
+							+ " area, iterationpath, reprosteps, projectid from bugs bg where serverbugid = '"
+							+ serverbugid + "' and bugserverid = '" + serverid + "' and projectid = " + projectid + "";
+				}
+
+				st = con.createStatement();
+				rs = st.executeQuery(sql);
+				while (rs.next()) {
+					BugFieldsBeans bfb = new BugFieldsBeans();
+					bfb.setId(rs.getString(1));
+					bfb.setServertype(rs.getString(2));
+					bfb.setServerid(rs.getString(3));
+					bfb.setBugid(rs.getString(4));
+					bfb.setTitle(rs.getString(5));
+					bfb.setTcid(rs.getString(6));
+					bfb.setRuleid(rs.getString(7));
+					bfb.setState(rs.getString(8));
+					bfb.setReason(rs.getString(9));
+					bfb.setAssignedto(rs.getString(10));
+					bfb.setCreatedby(rs.getString(11));
+					bfb.setArea(rs.getString(12));
+					bfb.setIterationpath(rs.getString(13));
+					bfb.setReprosteps(rs.getString(14));
+					bfb.setLocalprojectid(rs.getString(15));
+
+					blist.add(bfb);
+				}
+				rs.close();
+				st.close();
+			} else {
+				blist = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			blist = null;
+		}
+		return blist;
+	}
+
+	public ArrayList<BugFieldsBeans> getbugidlist(String source, String area, String serverid, int projectid) {
+		ArrayList<BugFieldsBeans> idlist = new ArrayList<BugFieldsBeans>();
+		try {
+			if (source.equals("TFS")) {
+				sql = "select serverbugid from bugs where bugserverid = '" + serverid + "' and area = '" + area
+						+ "' and projectid = " + projectid + "";
+			} else if (source.equals("JIRA")) {
+
+			}
+
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				BugFieldsBeans bfb = new BugFieldsBeans();
+				bfb.setBugid(rs.getString(1));
+
+				idlist.add(bfb);
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return idlist;
 	}
 }

@@ -10,13 +10,13 @@ public class QADefaultServerDetails {
 
 	public static String url = null, username = null, password = null, classname = null, servertype = null;
 	public static int id = 0;
-	ArrayList<QAServerDetailsBinaryTrade> qaserverlist = new ArrayList<QAServerDetailsBinaryTrade>();
+	static ArrayList<QAServerDetailsBinaryTrade> qaserverlist = new ArrayList<QAServerDetailsBinaryTrade>();
 
 	public QADefaultServerDetails() {
 		InvoiceStaticHelper.setqasd(this);
 	}
 
-	public void setqadefaultserver() {
+	public static void setqadefaultserver() {
 		if (qaserverlist != null) {
 			restfields();
 			qaserverlist.clear();
@@ -36,7 +36,7 @@ public class QADefaultServerDetails {
 		}
 	}
 
-	private void restfields() {
+	private static void restfields() {
 		url = "";
 		username = "";
 		password = "";

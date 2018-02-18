@@ -43,11 +43,13 @@ import com.testmydata.util.DefaultBugServerDetails;
 import com.testmydata.util.DockerClass;
 import com.testmydata.util.EncryptAndDecrypt;
 import com.testmydata.util.FileIOOperations;
+import com.testmydata.util.LoadTFSorJiraUsers;
 import com.testmydata.util.Loggedinuserdetails;
 import com.testmydata.util.QADefaultServerDetails;
 import com.testmydata.util.ReportsDownloader;
 import com.testmydata.util.SchedulerTime;
 import com.testmydata.util.StaticImages;
+import com.testmydata.util.TFSSynchronizeService;
 import com.testmydata.vpn.VpnConnectionThread;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -136,31 +138,34 @@ public class DashBoardController implements Initializable {
 	@FXML
 	private Rectangle underline_settings, underline_testsuite, underline_test, underline_bugs, underline_reports,
 			underline_design;
+
 	double xOffset = 0;
 	double yOffset = 0;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// start(); //starts dock icons
-
-		underline("design");
 		InvoiceStaticHelper.setDash(this);
+		underline("design");
+
 		// Order is most important
 		invokeInactivityListener();
 		getlocaluserLevel();
 		trailvalidation(localUserLevel);
-		QADefaultServerDetails qasd = new QADefaultServerDetails();
-		qasd.setqadefaultserver();
+		QADefaultServerDetails.setqadefaultserver();
 		setqaserver();
 		setdefaultbugserver(null);
 
 		setexistingprojects();
 		setdashboardpanels();
 
+		LoadTFSorJiraUsers ltj = new LoadTFSorJiraUsers();
+		ltj.initialize(null, null);
+
 		homeicon.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent t) {
-
+				setdashpane(exisitingprojectscombo.getSelectionModel().getSelectedItem());
 			}
 		});
 
@@ -168,19 +173,8 @@ public class DashBoardController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends String> selected, String oldFruit, String newFruit) {
 				if (newFruit != null) {
-					if (!newFruit.equals("Select Project")) {
-						selectedproject = exisitingprojectscombo.getSelectionModel().getSelectedItem().split("-");
-						Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
-						new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
-								Integer.toString(Loggedinuserdetails.id));
-						setdashboardpanels();
-					} else {
-						selectedproject = "0-0".split("-");
-						Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
-						new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
-								Integer.toString(Loggedinuserdetails.id));
-						setdashboardpanels();
-					}
+					setdashpane(newFruit);
+					setdefaultbugserver(null);
 				}
 			}
 		});
@@ -192,8 +186,18 @@ public class DashBoardController implements Initializable {
 
 				if (VpnConnectionThread.isVpnConnected()) {
 					importantmethods();
+
+					// long starttime = System.nanoTime();
+					if (DefaultBugServerDetails.servertype != null
+							&& DefaultBugServerDetails.servertype.equals("TFS")) {
+						TFSSynchronizeService.startsync(); // TFS Sync
+					}
+					// long endtime = System.nanoTime();
+					// long total = ((endtime - starttime) / 1000000) / 1000;
+					// System.out.println("Time for Execution : " + total);
 					countforonehour++;
-					if (countforonehour == 120) {
+
+					if (countforonehour == 6) {
 						countforonehour = 0;
 					}
 				} else {
@@ -217,7 +221,7 @@ public class DashBoardController implements Initializable {
 
 				}
 			}
-		}, 5000, 30000); // First 1000 is to start after 1 sec, Second 60000
+		}, 5000, 600000); // First 1000 is to start after 1 sec, Second 60000
 		// is to loop for every 1 min (1000 * 60 sec = 60000)
 
 		lbl_data_title.setStyle(
@@ -509,6 +513,22 @@ public class DashBoardController implements Initializable {
 		}
 	}
 
+	private void setdashpane(String newFruit) {
+		if (!newFruit.equals("Select Project")) {
+			selectedproject = exisitingprojectscombo.getSelectionModel().getSelectedItem().split("-");
+			Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
+			new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
+					Integer.toString(Loggedinuserdetails.id));
+			setdashboardpanels();
+		} else {
+			selectedproject = "0-0".split("-");
+			Loggedinuserdetails.defaultproject = Integer.parseInt(selectedproject[0]);
+			new DAO().updatetabledata("users", "defaultproject", selectedproject[0], "id",
+					Integer.toString(Loggedinuserdetails.id));
+			setdashboardpanels();
+		}
+	}
+
 	@FXML
 	private void controlreport() {
 		// myStage = (Stage) mymenubar.getScene().getWindow();
@@ -763,13 +783,15 @@ public class DashBoardController implements Initializable {
 	@FXML
 	private void newbug() {
 		if (Loggedinuserdetails.newbug == 1) {
-			runnewbug();
+			runnewbug(false, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 		} else {
 			runmessage("Access Denied. Contact your Manager...");
 		}
 	}
 
-	public void runnewbug() {
+	public void runnewbug(boolean run1, String id1, String serverbugid1, String title, String assignedto, String state,
+			String reason, String area, String iterationpath, String tcid, String ruleid, String servertype1,
+			String serverid1, String reprosteps, String source) {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -794,7 +816,32 @@ public class DashBoardController implements Initializable {
 						Region root = (Region) fxmlLoader.load();
 						mainanchor.getChildren().add(root);
 					}
+
+					Thread.sleep(2000);
+
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "newbugpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+					}
+
+					if (exist && run1) {
+						if (source != null && source.equals("update")) {
+							InvoiceStaticHelper.cbc.updatefieldsetter(id1, serverbugid1, title, assignedto, state,
+									reason, area, iterationpath, tcid, ruleid, servertype1, serverid1, reprosteps);
+						} else if (source != null && source.equals("new")) {
+							InvoiceStaticHelper.cbc.newfieldsetter(tcid, ruleid, reprosteps, servertype1, title);
+						}
+					}
 				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
@@ -804,14 +851,43 @@ public class DashBoardController implements Initializable {
 	@FXML
 	private void viewbug() {
 		if (Loggedinuserdetails.viewbug == 1) {
-			runtestresults();
+			runviewbug();
 		} else {
 			runmessage("Access Denied. Contact your Manager...");
 		}
 	}
 
 	public void runviewbug() {
-		runmessage("Under Implementation...");
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				// fxmlLoader.setController(this);
+				try {
+					boolean exist = false;
+					for (int i = mainanchor.getChildren().size() - 1; i >= 0; i--) {
+						Node node = mainanchor.getChildren().get(i);
+						if (node.getId() != null && "buglistpane".equals(node.getId())) {
+							exist = true;
+							if (i != mainanchor.getChildren().size() - 1) {
+								mainanchor.getChildren().remove(i);
+								mainanchor.getChildren().add(node);
+							}
+							break;
+						}
+
+					}
+
+					if (!exist) {
+						String Screenpath = "/com/testmydata/fxmlnew/ViewBugList.fxml";
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
+						Region root = (Region) fxmlLoader.load();
+						mainanchor.getChildren().add(root);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@FXML
@@ -1117,6 +1193,9 @@ public class DashBoardController implements Initializable {
 	}
 
 	public void setdefaultbugserver(ArrayList<BugServerBinaryTrade> list) {
+		boolean validserver = false;
+		String projectname = null, username = null, password = null, projectmsg = null, usermsg = null;
+		StringBuffer msg = new StringBuffer();
 		if (list == null || list.size() == 0) {
 			tfsserverlist = new DAO().getTFSBugserversDetails("ALL");
 		} else {
@@ -1127,17 +1206,19 @@ public class DashBoardController implements Initializable {
 			for (int i = 0; i < tfsserverlist.size(); i++) {
 				if (tfsserverlist.get(i).getIsdefault().equals("1") && tfsserverlist.get(i).getIsactive().equals("1")) {
 					if (tfsserverlist.get(i).getServertype().contains("TFS")) {
-						DefaultBugServerDetails.serverid = tfsserverlist.get(i).getId();
-						DefaultBugServerDetails.servertype = "TFS";
-						DefaultBugServerDetails.collectionurl = tfsserverlist.get(i).getCollectionurl();
 
 						for (int j = 0; j < tfsserverlist.get(i).getBugProjects().length; j++) {
+
 							if (tfsserverlist.get(i).getBugProjects()[j].getProjbugserverid()
 									.equals(tfsserverlist.get(i).getId())
 									&& tfsserverlist.get(i).getBugProjects()[j].getLocalproject()
 											.equals(Integer.toString(Loggedinuserdetails.defaultproject))) {
-								DefaultBugServerDetails.projectname = tfsserverlist.get(i).getBugProjects()[j]
-										.getProjectname();
+								validserver = true;
+								projectname = tfsserverlist.get(i).getBugProjects()[j].getProjectname();
+								break;
+							} else {
+								projectmsg = "Please provide TFS Project Name (Case Sensitive).\n\nNote: TFS project will be mapped to Test my Data selected Project...";
+								validserver = false;
 							}
 						}
 
@@ -1146,18 +1227,57 @@ public class DashBoardController implements Initializable {
 									.equals(tfsserverlist.get(i).getId())
 									&& tfsserverlist.get(i).getBugUsers()[k].getLocaluserid()
 											.equals(Integer.toString(Loggedinuserdetails.id))) {
-								DefaultBugServerDetails.username = tfsserverlist.get(i).getBugUsers()[k].getUsername();
-								DefaultBugServerDetails.password = tfsserverlist.get(i).getBugUsers()[k].getPassword();
+								username = tfsserverlist.get(i).getBugUsers()[k].getUsername();
+								password = tfsserverlist.get(i).getBugUsers()[k].getPassword();
+								validserver = true;
+								break;
+							} else {
+								usermsg = "Please provide TFS User Credentials (Case Sensitive) for logged in User.\n\nNote: Process to create user.\n"
+										+ "Step 1: Login to TFS.\n" + "Step 2: Navigate to User Icon (Top Right).\n"
+										+ "Step 3: Click on Security and under Security Tab click on 'Alternate authentication credentials'.\n"
+										+ "Step 4: Select 'Enable alternate authentication credentials'.\n"
+										+ "Step 5: Provide User name (Secondary) and Password.\n" + "Step 6: Save it";
+								validserver = false;
 							}
+						}
+
+						if (validserver) {
+							DefaultBugServerDetails.serverid = tfsserverlist.get(i).getId();
+							DefaultBugServerDetails.servertype = "TFS";
+							DefaultBugServerDetails.collectionurl = tfsserverlist.get(i).getCollectionurl();
+							DefaultBugServerDetails.projectname = projectname;
+							DefaultBugServerDetails.username = username;
+							DefaultBugServerDetails.password = password;
+						} else {
+							if (projectmsg != null) {
+								msg.append(projectmsg);
+							}
+							if (usermsg != null) {
+								msg.append(usermsg);
+							}
+							setbugserverwhennull();
+							runmessage(msg.toString());
 						}
 
 					} else if (tfsserverlist.get(i).getServertype().contains("JIRA")) {
 
 					}
-
+				} else {
+					setbugserverwhennull();
 				}
 			}
+		} else {
+			setbugserverwhennull();
 		}
+	}
+
+	private void setbugserverwhennull() {
+		DefaultBugServerDetails.serverid = "0";
+		DefaultBugServerDetails.servertype = "TMD";
+		DefaultBugServerDetails.collectionurl = "";
+		DefaultBugServerDetails.projectname = "";
+		DefaultBugServerDetails.username = "";
+		DefaultBugServerDetails.password = "";
 	}
 
 	public void loadfieldtofield() {

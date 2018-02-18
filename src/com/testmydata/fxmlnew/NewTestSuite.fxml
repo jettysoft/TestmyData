@@ -79,7 +79,7 @@
                               <Insets />
                            </opaqueInsets>
                         </AnchorPane>
-                        <TableView fx:id="tstable" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
+                        <TableView fx:id="tstable" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="180.0">
                            <columns>
                               <TableColumn fx:id="items" editable="false" minWidth="1100.0" prefWidth="1100.0" text="Selected Items for Test Suite" />
                            </columns>
@@ -110,7 +110,7 @@
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="10.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="testsuites" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                        <TableView fx:id="testsuites" prefHeight="200.0" prefWidth="1180.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0">
                            <columns>
                               <TableColumn fx:id="id" editable="false" minWidth="100.0" prefWidth="100.0" text="ID" />
                               <TableColumn fx:id="testsuitename" editable="false" minWidth="200.0" prefWidth="200.0" text="Test Suite Name" />

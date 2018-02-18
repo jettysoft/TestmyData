@@ -35,7 +35,7 @@
                <content>
                   <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-radius: 1em; -fx-border-radius: 1em; -fx-background-color: #ffffff;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="40.0">
+                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #ffffff; -fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
                            <children>
                               <JFXComboBox fx:id="ownercombo" focusColor="#40aa03" layoutX="50.0" layoutY="150.0" prefWidth="360.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" AnchorPane.leftAnchor="50.0" />
                               <JFXTextField fx:id="projectnametext" focusColor="#40aa03" layoutX="50.0" layoutY="200.0" prefWidth="360.0" promptText="Enter Project Name" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" AnchorPane.leftAnchor="50.0">
@@ -65,18 +65,15 @@
                                  </font>
                               </Label>
                            </children>
-                           <effect>
-                              <InnerShadow color="#bdbdbd" radius="12.715" width="31.86" />
-                           </effect>
                         </AnchorPane>
-                        <AnchorPane prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-width: 1px 0px 1px 0px;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <effect>
-                              <InnerShadow choke="0.14" color="#bdbdbd" radius="4.75" width="0.0" />
+                              <InnerShadow choke="0.2" color="#bdbdbd" height="40.0" radius="9.5" width="0.0" />
                            </effect>
                            <children>
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
                               <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>

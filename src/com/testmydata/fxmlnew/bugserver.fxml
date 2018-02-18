@@ -26,9 +26,9 @@
                            <children>
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="refreshicon" fitHeight="25.0" fitWidth="25.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
-                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="12.0" text="Label" textFill="#162a4c" visible="false">
+                              <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="12.0" textFill="#162a4c" visible="false">
                                  <font>
                                     <Font name="Calibri Bold" size="11.0" />
                                  </font></Label>
@@ -47,7 +47,6 @@
                            </font>
                         </JFXTextField>
                         <JFXComboBox fx:id="tfsprojectcombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="190.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
-                        <JFXComboBox fx:id="tfsusernamecombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
                         <JFXPasswordField fx:id="tfspasswordtext" focusColor="#40aa03" layoutX="100.0" layoutY="270.0" prefWidth="250.0" promptText="Enter Password" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4" visible="false">
                            <font>
                               <Font name="Calibri Bold" size="12.0" />
@@ -57,6 +56,8 @@
                            <font>
                               <Font name="System Bold" size="10.0" />
                            </font></JFXCheckBox>
+                        <JFXComboBox fx:id="tfsusernamecombo" editable="true" focusColor="#40aa03" layoutX="100.0" layoutY="230.0" prefWidth="250.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" visible="false" />
+                        <ImageView fx:id="tfsinfoicon" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                         <ImageView fx:id="wrongtick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                         <ImageView fx:id="greentick1" fitHeight="20.0" fitWidth="20.0" layoutX="360.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                         <Label layoutX="50.0" layoutY="40.0" text="Update Existing" textFill="#f21111">

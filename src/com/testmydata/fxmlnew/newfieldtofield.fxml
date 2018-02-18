@@ -22,7 +22,7 @@
    <children>
       <AnchorPane prefHeight="40.0" prefWidth="1019.0" style="-fx-background-color: linear-gradient(#ffffff 0%, #d5d5d5 25%, #ffffff 75%, #ffffff 100%);-fx-background-radius: 1em;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <children>
-            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Field to Field Test" textFill="BLACK" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
+            <Label fx:id="productheader" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" text="Field to Field Test" textFill="#162a4c" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="901.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -40,7 +40,7 @@
             <content>
               <AnchorPane fx:id="actionanchor1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="20.0">
+                        <AnchorPane layoutX="20.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" stylesheets="@../css/TextFieldColors.css" AnchorPane.leftAnchor="0.0">
                            <children>
                               <JFXComboBox fx:id="modulecombo" focusColor="#40aa03" layoutX="20.0" layoutY="10.0" prefWidth="360.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXTextField fx:id="tsnametext" focusColor="#40aa03" layoutX="20.0" layoutY="50.0" prefWidth="360.0" promptText="Specify Test Scenario" stylesheets="@../css/TextFieldColors.css" unFocusColor="#bebec4">
@@ -60,12 +60,12 @@
                               </JFXTextArea>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="20.0" layoutY="36.0" text="Test Case Details" textFill="#162a4c">
+                        <Label layoutX="20.0" layoutY="36.0" text="Test Case Details" textFill="#162a4c" AnchorPane.leftAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="430.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0">
+                        <AnchorPane layoutX="430.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8;" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <JFXComboBox fx:id="targetdbcombo" focusColor="#40aa03" layoutX="14.0" layoutY="26.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
                               <JFXComboBox fx:id="mappingdbcombo" focusColor="#40aa03" layoutX="254.0" layoutY="26.0" prefWidth="200.0" stylesheets="@../css/InternalComboBox.css" unFocusColor="#bebec4" />
@@ -115,12 +115,12 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="430.0" layoutY="36.0" text="Mapping Set" textFill="#162a4c">
+                        <Label layoutX="402.0" layoutY="36.0" text="Mapping Set" textFill="#162a4c">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="20.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="284.0">
+                        <AnchorPane layoutX="20.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="284.0">
                            <children>
                               <JFXTextArea fx:id="sqlscripttextarea" focusColor="WHITE" layoutX="70.0" layoutY="70.0" prefHeight="95.0" prefWidth="350.0" promptText="SQL Editor (EX. Select count(1) from tb1 join tb2 on tb1.id = tb2.id where tb1.account != tb2.account ; PASS If count = 0, FAIL if count &gt; 0 )" stylesheets="@../css/RemoveFocusText.css" unFocusColor="WHITE" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <font>
@@ -129,12 +129,12 @@
                               </JFXTextArea>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="20.0" layoutY="266.0" text="Sql Editor" textFill="#162a4c">
+                        <Label layoutX="20.0" layoutY="266.0" text="Sql Editor" textFill="#162a4c" AnchorPane.leftAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="430.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="284.0">
+                        <AnchorPane layoutX="430.0" layoutY="254.0" prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #d4d4d8; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="402.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="284.0">
                            <children>
                               <JFXTextArea fx:id="resultstextarea" editable="false" focusColor="WHITE" prefHeight="95.0" prefWidth="350.0" stylesheets="@../css/RemoveFocusText.css" unFocusColor="WHITE" wrapText="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <font>
@@ -143,7 +143,7 @@
                               </JFXTextArea>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="430.0" layoutY="266.0" text="Test Result" textFill="#162a4c">
+                        <Label layoutX="402.0" layoutY="266.0" text="Test Result" textFill="#162a4c">
                            <font>
                               <Font name="System Bold" size="11.0" />
                            </font>
@@ -156,7 +156,8 @@
                               <ImageView fx:id="executeicon" fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="saveicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="updateicon" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
+                              <ImageView fx:id="bugicon" fitHeight="20.0" fitWidth="20.0" layoutX="120.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="refreshicon1" fitHeight="20.0" fitWidth="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0" />
                               <Label fx:id="refreshlbl1" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutY="15.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                               <Label fx:id="statuslabel" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="6.0" text="Label" textFill="#40aa03" visible="false" />
                            </children>
@@ -185,12 +186,15 @@
                               <FontAwesomeIconView accessibleRole="BUTTON" fill="#162a4c" glyphName="SEARCH" layoutX="678.0" layoutY="33.0" />
                               <JFXDatePicker fx:id="enddate" defaultColor="#F8340D" layoutX="220.0" layoutY="10.0" promptText="Select End Date" style="-fx-background-color: #ffffff;" />
                               <JFXDatePicker fx:id="startdate" defaultColor="#40AA03" layoutX="40.0" layoutY="10.0" promptText="Select Start Date" style="-fx-background-color: #ffffff;" />
-                              <ImageView fx:id="viewicon" fitHeight="25.0" fitWidth="25.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="viewicon" fitHeight="20.0" fitWidth="20.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ImageView>
                               <ImageView fx:id="refreshicon" fitHeight="20.0" fitWidth="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0" />
                               <Label fx:id="refreshlbl" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="1125.0" layoutY="25.0" mouseTransparent="true" prefWidth="55.0" text="Refresh" visible="false" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
-                        <TableView fx:id="tctable" prefHeight="420.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+                        <TableView fx:id="tctable" prefHeight="420.0" prefWidth="1200.0" styleClass="mainFxmlClass" stylesheets="@../css/table_view_redesign.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
                            <columns>
                               <TableColumn fx:id="id" editable="false" prefWidth="91.0" text="ID" />
                               <TableColumn fx:id="module" editable="false" prefWidth="100.0" text="Module" />

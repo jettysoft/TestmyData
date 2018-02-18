@@ -115,6 +115,7 @@ public class CreateBugTFS {
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
 					.setValue("<p>Created from TestMyData by " + createduser + "</p>"); //$NON-NLS-1$
 			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
+			// newWorkItem.getFields().getField("Activity").setValue("Testing");
 
 			// Enumerate the work item types for this project.
 			// for (final FieldDefinition fieldDefinition :
@@ -150,8 +151,8 @@ public class CreateBugTFS {
 		return newbugid;
 	}
 
-	public void updateTFSBug(int bugid, String title, String assignedto, String state, String reason, String areapath,
-			String reprosteps, String updateduser) {
+	public static int updateTFSBug(int bugid, String title, String assignedto, String state, String reason,
+			String areapath, String reprosteps, String updateduser, String iterationpath) {
 		try {
 			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
 			tpc.authenticate();
@@ -165,22 +166,25 @@ public class CreateBugTFS {
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.ASSIGNED_TO).setValue(assignedto);
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.STATE).setValue(state);
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).setValue(reason);
-			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(TFSAccess.PROJECT_NAME);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).setValue(areapath);
 			newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY)
-					.setValue("<p>Update from TestMyData by " + updateduser + "</p>"); //$NON-NLS-1$
+					.setValue("<p>Updated from TestMyData by " + updateduser + "</p>"); //$NON-NLS-1$
 			newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).setValue(reprosteps);
-			newWorkItem.getFields().getField(CoreFieldReferenceNames.ITERATION_PATH).setValue(reason);
+			newWorkItem.getFields().getField(CoreFieldReferenceNames.ITERATION_PATH).setValue(iterationpath);
 
 			// Save the new work item to the server.
 			newWorkItem.save();
 
 			tpc.close();
 		} catch (Exception e) {
+			bugid = 0;
 			e.printStackTrace();
 		}
+
+		return bugid;
 	}
 
-	public ArrayList<BugFieldsBeans> getBugFields(int bugid) {
+	public static ArrayList<BugFieldsBeans> getBugFields(int bugid) {
 		ArrayList<BugFieldsBeans> bugdetails = new ArrayList<BugFieldsBeans>();
 		try {
 			final TFSTeamProjectCollection tpc = TFSAccess.connectToTFS();
@@ -198,9 +202,12 @@ public class CreateBugTFS {
 			bfb.setReason(newWorkItem.getFields().getField(CoreFieldReferenceNames.REASON).getValue().toString());
 			bfb.setArea(newWorkItem.getFields().getField(CoreFieldReferenceNames.AREA_PATH).getValue().toString());
 			// bfb.setHistory(newWorkItem.getFields().getField(CoreFieldReferenceNames.HISTORY).getValue().toString());
-			bfb.setReprosteps(
-					newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).getValue().toString());
+			bfb.setReprosteps(newWorkItem.getFields().getField(NonCoreFieldsReferenceNames.REPRO_STEPS).getValue()
+					.toString().replaceAll("<br>", "\n"));
+			bfb.setIterationpath(
+					newWorkItem.getFields().getField(CoreFieldReferenceNames.ITERATION_PATH).getValue().toString());
 			// bfb.setBugattachmentsbeans(getTFSattachment(bugid));
+			bfb.setBugid(newWorkItem.getFields().getField(CoreFieldReferenceNames.ID).getValue().toString());
 			bugdetails.add(bfb);
 
 			tpc.close();

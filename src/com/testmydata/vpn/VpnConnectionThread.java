@@ -90,6 +90,5 @@ public class VpnConnectionThread extends Thread {
 		} catch (IOException e) {
 			// Ignore this one.
 		}
-
 	}
 }
