@@ -7,24 +7,9 @@ public class ControlReportRulesBinaryTrade extends BinaryTrade {
 	private byte[] id, name, sdb, stable, scolumn, stdb, sttable, stcolumn, trdb, trtable, trcolumn, ldb, ltable,
 			lcolumn, tdb, ttable, tcolumn, createdby, updatedby, createdDate, updatedDate, module, stost, sttotr, trtol,
 			ltot, stostcol, sttotrcol, trtolcol, ltotcol;
-	private BooleanProperty checkboxs;
 
 	public ControlReportRulesBinaryTrade() {
 		data = new byte[2];
-		this.checkboxs = new SimpleBooleanProperty(false);
-		// This value will change depending what you want to store
-	}
-
-	public boolean isCheckboxs() {
-		return checkboxs.get();
-	}
-
-	public void setCheckboxs(boolean checkboxs) {
-		this.checkboxs.set(checkboxs);
-	}
-
-	public BooleanProperty checkboxsProperty() {
-		return checkboxs;
 	}
 
 	public boolean isButtons() {

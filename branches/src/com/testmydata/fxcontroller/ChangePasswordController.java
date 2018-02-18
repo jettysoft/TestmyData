@@ -57,9 +57,9 @@ public class ChangePasswordController implements Initializable {
 		greentick2.setImage(StaticImages.green_tick);
 		updateicon.setImage(StaticImages.save);
 
-		Label updatelbl = new Label(" Update ");
+		Label updatelbl = new Label("  Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
-		updatelbl.setMinWidth(40);
+		updatelbl.setMinWidth(45);
 		updatelbl.setLayoutX(65);
 		updatelbl.setLayoutY(15);
 		updatelbl.setVisible(false);
@@ -116,7 +116,8 @@ public class ChangePasswordController implements Initializable {
 					&& newPasswordField.getText().trim() != "") {
 				if (!newValue) { // when focus lost
 					if (!newPasswordField.getText()
-							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")) {
+							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
+							|| newPasswordField.getLength() < 12) {
 						greentick1.setVisible(false);
 						wrongtick1.setVisible(true);
 						passwordinformationanchor.setVisible(true);
@@ -130,7 +131,8 @@ public class ChangePasswordController implements Initializable {
 				}
 				if (newValue) { // when focus gain
 					if (!newPasswordField.getText()
-							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")) {
+							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
+							|| newPasswordField.getLength() < 12) {
 						greentick1.setVisible(false);
 						wrongtick1.setVisible(true);
 						passwordinformationanchor.setVisible(true);
@@ -236,7 +238,7 @@ public class ChangePasswordController implements Initializable {
 			newPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
 		}
 
-		if (newPasswordField.getText() != null || newPasswordField.getText().length() < 12) {
+		if (newPasswordField.getText() != null && newPasswordField.getText().length() < 12) {
 			result = false;
 			newPasswordField.setUnFocusColor(Color.RED);
 			message.append("Please Enter Minimum 12 Letters...\n\n");
@@ -244,7 +246,7 @@ public class ChangePasswordController implements Initializable {
 			newPasswordField.setUnFocusColor(Color.rgb(190, 190, 196));
 		}
 
-		if (newPasswordField.getText() != null || newPasswordField.getText().length() > 20) {
+		if (newPasswordField.getText() != null && newPasswordField.getText().length() > 20) {
 			result = false;
 			newPasswordField.setUnFocusColor(Color.RED);
 			message.append("Please Enter Maximum 20 Letters...\n\n");
@@ -287,33 +289,36 @@ public class ChangePasswordController implements Initializable {
 	private void update() {
 
 		if (validatefields()) {
+			CommonFunctions.message = "Unsaved Work Items will be lost. Do you want to continue ?";
+			CommonFunctions.invokeConfirmDialog(getClass());
+			if (CommonFunctions.selectionstatus != null && CommonFunctions.selectionstatus.equals("yes")) {
+				String status = new DAO().updateUserPassword("Users",
+						Long.parseLong(Integer.toString(Loggedinuserdetails.id)), oldPasswordField.getText().trim(),
+						newPasswordField.getText().trim(), Loggedinuserdetails.userId);
 
-			String status = new DAO().updateUserPassword("Users",
-					Long.parseLong(Integer.toString(Loggedinuserdetails.id)), oldPasswordField.getText().trim(),
-					newPasswordField.getText().trim(), Loggedinuserdetails.userId);
+				if (status.equals("failure")) {
+					CommonFunctions.message = "Password Updation Failed...!";
+					CommonFunctions.invokeAlertBox(getClass());
+				} else if (status.equals("error")) {
+					CommonFunctions.message = "Internal Error Occured...!";
+					CommonFunctions.invokeAlertBox(getClass());
+				} else if (status.equals("passwordNotMatched")) {
+					CommonFunctions.message = "Sorry! Old Password Not Matched. Please Try Again...!";
+					CommonFunctions.invokeAlertBox(getClass());
+				} else if (status.equals("success")) {
+					CommonFunctions.message = "Password Changed Successfully " + "\n\n" + "System Will Shut Down."
+							+ "\n\n" + "Please Restart the System...!";
+					CommonFunctions.invokeAlertBox(getClass());
 
-			if (status.equals("failure")) {
-				CommonFunctions.message = "Password Updation Failed...!";
-				CommonFunctions.invokeAlertBox(getClass());
-			} else if (status.equals("error")) {
-				CommonFunctions.message = "Internal Error Occured...!";
-				CommonFunctions.invokeAlertBox(getClass());
-			} else if (status.equals("passwordNotMatched")) {
-				CommonFunctions.message = "Sorry! Old Password Not Matched. Please Try Again...!";
-				CommonFunctions.invokeAlertBox(getClass());
-			} else if (status.equals("success")) {
-				CommonFunctions.message = "Password Changed Successfully " + "\n\n" + "System Will Shut Down." + "\n\n"
-						+ "Please Restart the System...!";
-				CommonFunctions.invokeAlertBox(getClass());
+					StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "TestmyData Settings", "", "",
+							true, "Sucessfully Changed Password", "");
 
-				StoreAuditLogger.logStoreTransaction(Loggedinuserdetails.userId, "TestmyData Settings", "", "", true,
-						"Sucessfully Changed Password", "");
-
-				VpnConnectionThread.shutdown();
-				Platform.exit();
-				System.exit(0);
-				// LogOut lock = new LogOut();
-				// lock.relogin(event);
+					VpnConnectionThread.shutdown();
+					Platform.exit();
+					System.exit(0);
+					// LogOut lock = new LogOut();
+					// lock.relogin(event);
+				}
 			}
 		}
 	}

@@ -77,9 +77,9 @@ public class ExecuteFieldtoFieldController implements Initializable {
 		pdficon.setImage(StaticImages.pdficon);
 		excelicon.setImage(StaticImages.excelicon);
 
-		Label lbl = new Label(" Execute ");
+		Label lbl = new Label("  Execute ");
 		lbl.setStyle(StaticImages.lblStyle);
-		lbl.setMinWidth(50);
+		lbl.setMinWidth(55);
 		lbl.setLayoutY(15);
 		lbl.setLayoutX(65);
 		lbl.setVisible(false);
@@ -104,9 +104,9 @@ public class ExecuteFieldtoFieldController implements Initializable {
 			}
 		});
 
-		Label excellbl = new Label(" Excel Report ");
+		Label excellbl = new Label("  Excel Report ");
 		excellbl.setStyle(StaticImages.lblStyle);
-		excellbl.setMinWidth(65);
+		excellbl.setMinWidth(70);
 		excellbl.setLayoutY(15);
 		excellbl.setLayoutX(105);
 		excellbl.setVisible(false);
@@ -179,20 +179,23 @@ public class ExecuteFieldtoFieldController implements Initializable {
 				@Override
 				public void handle(MouseEvent click) {
 					if (click.getClickCount() > 0) {
-						@SuppressWarnings("rawtypes")
-						TablePosition pos = tctable.getSelectionModel().getSelectedCells().get(0);
-						int row = pos.getRow();
-						int col = pos.getColumn();
 
-						if (col == 7) {
-							for (int i = 0; i < tctable.getItems().size(); i++) {
-								if (i == row) {
-									ShowSqlScriptController.getInstance(tctable.getItems().get(row).getSqlscript());
-									CommonFunctions.invokeSQLScriptController(getClass());
+						if (tctable.getItems().size() > 0) {
+							@SuppressWarnings("rawtypes")
+							TablePosition pos = tctable.getSelectionModel().getSelectedCells().get(0);
+							int row = pos.getRow();
+							int col = pos.getColumn();
+
+							if (col == 7) {
+								for (int i = 0; i < tctable.getItems().size(); i++) {
+									if (i == row) {
+										ShowSqlScriptController.getInstance(tctable.getItems().get(row).getSqlscript());
+										CommonFunctions.invokeSQLScriptController(getClass());
+									}
 								}
 							}
-
 						}
+
 					}
 				}
 			});

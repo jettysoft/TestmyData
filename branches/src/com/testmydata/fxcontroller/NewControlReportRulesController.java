@@ -45,13 +45,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class NewControlReportRulesController implements Initializable {
 
 	private static NewControlReportRulesController userHome = null;
-	Stage myStage;
+
 	@FXML
 	private ImageView closeicon, sourcevalidicon, stagingvalidicon, transvalidicon, targetvalidicon, sourcecloseicon,
 			stagingcloseicon, transcloseicon, targetcloseicon, srunicon, strunicon, transrunicon, trunicon,
@@ -211,7 +210,7 @@ public class NewControlReportRulesController implements Initializable {
 		lbl.setStyle(StaticImages.lblStyle);
 		lbl.setMinWidth(170);
 		lbl.setLayoutX(240);
-		lbl.setLayoutY(115);
+		lbl.setLayoutY(140);
 		lbl.setVisible(false);
 		etlanchor.getChildren().add(lbl);
 
@@ -232,7 +231,7 @@ public class NewControlReportRulesController implements Initializable {
 		scollbl.setStyle(StaticImages.lblStyle);
 		scollbl.setMinWidth(150);
 		scollbl.setLayoutX(240);
-		scollbl.setLayoutY(165);
+		scollbl.setLayoutY(187);
 		scollbl.setVisible(false);
 		etlanchor.getChildren().add(scollbl);
 
@@ -253,7 +252,7 @@ public class NewControlReportRulesController implements Initializable {
 		stlbl.setStyle(StaticImages.lblStyle);
 		stlbl.setMinWidth(160);
 		stlbl.setLayoutX(480);
-		stlbl.setLayoutY(115);
+		stlbl.setLayoutY(140);
 		stlbl.setVisible(false);
 		etlanchor.getChildren().add(stlbl);
 
@@ -274,7 +273,7 @@ public class NewControlReportRulesController implements Initializable {
 		stcollbl.setStyle(StaticImages.lblStyle);
 		stcollbl.setMinWidth(160);
 		stcollbl.setLayoutX(480);
-		stcollbl.setLayoutY(165);
+		stcollbl.setLayoutY(187);
 		stcollbl.setVisible(false);
 		etlanchor.getChildren().add(stcollbl);
 
@@ -295,7 +294,7 @@ public class NewControlReportRulesController implements Initializable {
 		trtlbl.setStyle(StaticImages.lblStyle);
 		trtlbl.setMinWidth(160);
 		trtlbl.setLayoutX(720);
-		trtlbl.setLayoutY(115);
+		trtlbl.setLayoutY(140);
 		trtlbl.setVisible(false);
 		etlanchor.getChildren().add(trtlbl);
 
@@ -316,7 +315,7 @@ public class NewControlReportRulesController implements Initializable {
 		trcoltlbl.setStyle(StaticImages.lblStyle);
 		trcoltlbl.setMinWidth(160);
 		trcoltlbl.setLayoutX(720);
-		trcoltlbl.setLayoutY(165);
+		trcoltlbl.setLayoutY(187);
 		trcoltlbl.setVisible(false);
 		etlanchor.getChildren().add(trcoltlbl);
 
@@ -336,8 +335,8 @@ public class NewControlReportRulesController implements Initializable {
 		Label ttlbl = new Label(" Loading-Target Row Count Validation ");
 		ttlbl.setStyle(StaticImages.lblStyle);
 		ttlbl.setMinWidth(150);
-		ttlbl.setLayoutX(900);
-		ttlbl.setLayoutY(150);
+		ttlbl.setLayoutX(960);
+		ttlbl.setLayoutY(140);
 		ttlbl.setVisible(false);
 		etlanchor.getChildren().add(ttlbl);
 
@@ -357,8 +356,8 @@ public class NewControlReportRulesController implements Initializable {
 		Label ttcollbl1 = new Label(" Loading-Target Column Sum Validation ");
 		ttcollbl1.setStyle(StaticImages.lblStyle);
 		ttcollbl1.setMinWidth(150);
-		ttcollbl1.setLayoutX(900);
-		ttcollbl1.setLayoutY(200);
+		ttcollbl1.setLayoutX(960);
+		ttcollbl1.setLayoutY(187);
 		ttcollbl1.setVisible(false);
 		etlanchor.getChildren().add(ttcollbl1);
 
@@ -375,9 +374,9 @@ public class NewControlReportRulesController implements Initializable {
 			}
 		});
 
-		Label savelbl = new Label("   Save ");
+		Label savelbl = new Label("  Save ");
 		savelbl.setStyle(StaticImages.lblStyle);
-		savelbl.setMinWidth(45);
+		savelbl.setMinWidth(40);
 		savelbl.setLayoutX(105);
 		savelbl.setLayoutY(15);
 		savelbl.setVisible(false);
@@ -402,9 +401,9 @@ public class NewControlReportRulesController implements Initializable {
 			}
 		});
 
-		Label updatelbl = new Label("   Update ");
+		Label updatelbl = new Label(" Update ");
 		updatelbl.setStyle(StaticImages.lblStyle);
-		updatelbl.setMinWidth(50);
+		updatelbl.setMinWidth(45);
 		updatelbl.setLayoutX(105);
 		updatelbl.setLayoutY(15);
 		updatelbl.setVisible(false);

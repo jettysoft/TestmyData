@@ -200,14 +200,14 @@ public class SendMailUsingAuthentication {
 			// Set the host smtp address
 			Properties props = new Properties();
 			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.host", SMTP_HOST_NAME);
+			props.put("mail.smtp.host", "e23.ehosts.com");
 			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.port", SMTP_PORT);
-			props.put("mail.smtp.socketFactory.port", SMTP_PORT);
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.socketFactory.port", "465");
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			// props.put("mail.smtp.socketFactory.fallback", "true");
 
-			SMTPAuthenticator auth = new SMTPAuthenticator();
+			PasswordSMTPAuthenticator auth = new PasswordSMTPAuthenticator();
 			Session session = Session.getDefaultInstance(props, auth);
 
 			session.setDebug(debug);
@@ -216,7 +216,7 @@ public class SendMailUsingAuthentication {
 			Message msg = new MimeMessage(session);
 
 			// set the from and to address
-			InternetAddress addressFrom = new InternetAddress("donotreply");
+			InternetAddress addressFrom = new InternetAddress("support@jettysoft.com");
 			msg.setFrom(addressFrom);
 
 			InternetAddress[] addressTo = new InternetAddress[recipients.length];
@@ -434,6 +434,15 @@ public class SendMailUsingAuthentication {
 		public javax.mail.PasswordAuthentication getPasswordAuthentication() {
 			String username = SMTP_AUTH_USER;
 			String password = SMTP_AUTH_PWD;
+			return new javax.mail.PasswordAuthentication(username, password);
+		}
+	}
+
+	private class PasswordSMTPAuthenticator extends javax.mail.Authenticator {
+		@Override
+		public javax.mail.PasswordAuthentication getPasswordAuthentication() {
+			String username = "support@jettysoft.com";
+			String password = "Jettysoft@123";
 			return new javax.mail.PasswordAuthentication(username, password);
 		}
 	}

@@ -106,15 +106,14 @@ public class ForgotPasswordController implements Initializable {
 
 					String message = "Hi,<br/><br/>Your <b>Test My Data</b> Credentails Are : <br/><br/> User Name: "
 							+ UsersDetailsBeanBinaryTree.getUserId() + "<br/>Password: " + newPassword
-							+ "<br/><br/><br/><b>Note:</b> This is an auto generated email and please do not reply to this email.<br><br><a href='#'><b>Test My Data</b></a><br/>JettySoft LTD<br/>Vancouver, Canada <br> Email Disclaimer";
+							+ "<br/><br/><br/><b>Note:</b> This is an auto generated email and please do not reply to this email.<br><br><a href='#'><b>Test My Data</b></a><br/>JettySoft LTD";
 					String[] recipentsList = { UsersDetailsBeanBinaryTree.getEmailId() };
 
 					SendMailUsingAuthentication smtpMailSender = new SendMailUsingAuthentication();
 
 					try {
 						String returnValue = smtpMailSender.postMailWithOutAttachment(recipentsList,
-								"Test My Data - Password Recovery Email", message,
-								SendMailUsingAuthentication.SMTP_AUTH_USER);
+								"Test My Data - Password Recovery Email", message, "support@jettysoft.com");
 
 						if (returnValue.equals("success")) {
 

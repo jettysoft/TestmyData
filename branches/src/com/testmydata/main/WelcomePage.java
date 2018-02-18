@@ -45,7 +45,7 @@ public class WelcomePage {
 	}
 
 	public static void main(String[] args) throws Exception {
-		
+
 		launchApp();
 		VpnConnectionThread.launch();
 		// setVirtualKeyboardCSS();

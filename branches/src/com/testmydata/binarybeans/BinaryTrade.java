@@ -3,7 +3,7 @@ package com.testmydata.binarybeans;
 import java.awt.image.BufferedImage;
 
 public abstract class BinaryTrade {
-	byte[] data;
+	public byte[] data;
 
 	public long wordFromBytesFromOffset(int offset) {
 		long val = 0;

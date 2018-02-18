@@ -44,7 +44,7 @@
                </font>
                
             </JFXButton>
-            <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="331.0" layoutY="5.0" onAction="#bugsbutton" prefHeight="40.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Bugs" textAlignment="JUSTIFY" textFill="WHITE">
+            <JFXButton fx:id="bugsbutton" alignment="CENTER" focusTraversable="false" layoutX="331.0" layoutY="5.0" onAction="#bugsbutton" prefHeight="40.0" prefWidth="65.0" stylesheets="@../css/MenuBotton.css" text="Bug" textAlignment="JUSTIFY" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

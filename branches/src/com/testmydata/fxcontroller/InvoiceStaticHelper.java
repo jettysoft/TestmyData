@@ -9,6 +9,8 @@ public class InvoiceStaticHelper {
 	public static NewControlReportRulesController newcrs = null;
 	public static QADefaultServerDetails qasd = null;
 	public static FieldtoFieldExecutionServices ffes = null;
+	public static CreateBugController cbc = null;
+	public static ViewBugListController vblc = null;
 
 	public static void setDash(DashBoardController dash) {
 		InvoiceStaticHelper.dash = dash;
@@ -24,5 +26,13 @@ public class InvoiceStaticHelper {
 
 	public static void setffes(FieldtoFieldExecutionServices ffesc) {
 		InvoiceStaticHelper.ffes = ffesc;
+	}
+
+	public static void setcbc(CreateBugController cbcs) {
+		InvoiceStaticHelper.cbc = cbcs;
+	}
+
+	public static void setvblc(ViewBugListController vblcs) {
+		InvoiceStaticHelper.vblc = vblcs;
 	}
 }

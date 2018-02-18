@@ -55,10 +55,10 @@ public class ExecuteControlReportController implements Initializable {
 	@FXML
 	private AnchorPane actionanchor1;
 
-	ArrayList<ModulesBinaryTrade> moduleslist = new ArrayList<ModulesBinaryTrade>();
-	ArrayList<ControlReportExecutionBinaryTrade> ruleslist = new ArrayList<ControlReportExecutionBinaryTrade>();
-	ArrayList<ControlReportExecutionBinaryTrade> rulenamelist = new ArrayList<ControlReportExecutionBinaryTrade>();
-	ArrayList<String> reportcolumnlist = new ArrayList<String>();
+	static ArrayList<ModulesBinaryTrade> moduleslist = new ArrayList<ModulesBinaryTrade>();
+	static ArrayList<ControlReportExecutionBinaryTrade> ruleslist = new ArrayList<ControlReportExecutionBinaryTrade>();
+	static ArrayList<ControlReportExecutionBinaryTrade> rulenamelist = new ArrayList<ControlReportExecutionBinaryTrade>();
+	static ArrayList<String> reportcolumnlist = new ArrayList<String>();
 
 	static boolean executed = false;
 	static int batchid = 0, counttestcases = 0, it = 0, passcount = 0, failcount = 0, noofthreads = 0, batchsize = 0;
@@ -85,9 +85,9 @@ public class ExecuteControlReportController implements Initializable {
 		targetcount.setCellValueFactory(new PropertyValueFactory<>("targetcount"));
 		rulestatus.setCellValueFactory(new PropertyValueFactory<>("rulestatus"));
 
-		Label lbl = new Label(" Execute ");
+		Label lbl = new Label("  Execute ");
 		lbl.setStyle(StaticImages.lblStyle);
-		lbl.setMinWidth(50);
+		lbl.setMinWidth(55);
 		lbl.setLayoutY(15);
 		lbl.setLayoutX(65);
 		lbl.setVisible(false);
@@ -112,9 +112,9 @@ public class ExecuteControlReportController implements Initializable {
 			}
 		});
 
-		Label excellbl = new Label(" Excel Report ");
+		Label excellbl = new Label("  Excel Report ");
 		excellbl.setStyle(StaticImages.lblStyle);
-		excellbl.setMinWidth(65);
+		excellbl.setMinWidth(70);
 		excellbl.setLayoutY(15);
 		excellbl.setLayoutX(105);
 		excellbl.setVisible(false);

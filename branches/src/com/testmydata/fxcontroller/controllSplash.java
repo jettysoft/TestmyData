@@ -109,12 +109,12 @@ public class controllSplash implements Initializable {
 		};
 		service.start();
 		service.setOnRunning((WorkerStateEvent event) -> {
-			
+
 			new FadeInLeftTransition(lblWelcome).play();
 			new FadeInRightTransition(lblRudy).play();
 			new FadeInLeftTransition(lblsecure).play();
 			new FadeInTransition(vboxBottom).play();
-			
+
 		});
 		service.setOnSucceeded((WorkerStateEvent event) -> {
 			// code to call loginfxml after splash screen

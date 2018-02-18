@@ -51,7 +51,10 @@ public class StaticImages {
 	public final static Image delete = new Image("/com/testmydata/fximages/delete.png", 20, 20, false, false);
 	public final static Image add = new Image("/com/testmydata/fximages/add.png", 20, 20, false, false);
 	public final static Image clear = new Image("/com/testmydata/fximages/clear.png", 20, 20, false, false);
-	public final static Image im_loading = new Image("/com/testmydata/fxml/302.gif", 50, 50, false, false);
+	public final static Image bugicon = new Image("/com/testmydata/fximages/bug.png", 20, 20, false, false);
+	public final static Image infoicon = new Image("/com/testmydata/fximages/help.png", 20, 20, false, false);
+
+	public final static Image im_loading = new Image("/com/testmydata/fxml/302.gif", 25, 25, false, false);
 
 	public static String lblStyleold = "-fx-background-color: linear-gradient(#f7f79e,#f2f271);  -fx-text-alignment :center; -fx-background-radius: 2; "
 			+ " -fx-background-insets: 0; -fx-text-fill: #162a4c; -fx-font-weight: normal; -fx-border-clor: #162a4c;";

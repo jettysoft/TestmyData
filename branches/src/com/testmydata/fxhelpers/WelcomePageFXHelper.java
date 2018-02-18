@@ -57,7 +57,6 @@ public class WelcomePageFXHelper {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Screenpath));
 		// fxmlLoader.setController(this);
 		Region root = (Region) fxmlLoader.load();
-		
 
 		stage = new Stage();
 
@@ -76,29 +75,31 @@ public class WelcomePageFXHelper {
 		stage.setFullScreen(true);
 		// stage.initStyle(StageStyle.UNDECORATED);
 		// new SystemScreenSize().start(stage);
-		
-		AnchorPane menu_pane = (AnchorPane) undecoratorScene.lookup("#menuanchor");
+		try {
+			AnchorPane menu_pane = (AnchorPane) undecoratorScene.lookup("#menuanchor");
 
-		menu_pane.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(!stage.isFullScreen()){
-				xOffset = event.getSceneX();
-				yOffset = event.getSceneY();
+			menu_pane.setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if (!stage.isFullScreen()) {
+						xOffset = event.getSceneX();
+						yOffset = event.getSceneY();
+					}
 				}
-			}
-		});
-		menu_pane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(!stage.isFullScreen()){
-				stage.setX(event.getScreenX() - xOffset);
-				stage.setY(event.getScreenY() - yOffset);
+			});
+			menu_pane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if (!stage.isFullScreen()) {
+						stage.setX(event.getScreenX() - xOffset);
+						stage.setY(event.getScreenY() - yOffset);
+					}
 				}
-			}
-		});
-		
-		
+			});
+		} catch (NullPointerException ne) {
+
+		}
+
 		// Scene scene = new Scene(root);
 		// stage.setScene(scene);
 		Platform.setImplicitExit(false);

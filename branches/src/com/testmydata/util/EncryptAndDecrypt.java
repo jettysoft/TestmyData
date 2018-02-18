@@ -66,6 +66,10 @@ public class EncryptAndDecrypt {
 		return output;
 	}
 
+	/**
+	 * @param input
+	 * @return
+	 */
 	public static String decryptData(String input) {
 		String doutput = null;
 		try {
@@ -108,13 +112,14 @@ public class EncryptAndDecrypt {
 	}
 
 	// public static void main(String args[]) {
-	// // encryptData("jettysof_ppf");
+	// // encryptData("jdbc:mysql://40.117.94.2:3306/");
 	//
 	// decryptData("q7dqpXcL8THRn+yh81MaKkDRHuayiDeQRB2ZhSnla/0=");
-	// decryptData("E8zT5SbHq+62h5h6McPsug==");
+	// decryptData("te7bnf3dpnH28dAqPMEbxA==");
 	// decryptData("ubzPqP5asE39q9gmRHMJVN2seBBJ0XlFYt8HX8fOlqg=");
 	// decryptData("CdJmiO/TRAy2tnHpnkEkUe/HaBJb9Q7fFFvKcoNHlZQ=");
 	// decryptData("q0Dw61lCAnjGvRpkx1Jrdg==");
+	// decryptData("AuCnHeyrumCnIFdLtvi0Gg==");
 	// }
 
 }

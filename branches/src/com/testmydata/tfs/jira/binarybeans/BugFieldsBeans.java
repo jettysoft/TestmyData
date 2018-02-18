@@ -2,9 +2,29 @@ package com.testmydata.tfs.jira.binarybeans;
 
 import com.testmydata.binarybeans.BinaryTrade;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class BugFieldsBeans extends BinaryTrade {
-	byte[] bugid, title, assignedto, state, reason, area, history, reprosteps;
+	byte[] id, serverid, servertype, bugid, title, tcid, ruleid, state, reason, assignedto, area, history, reprosteps,
+			createdby, iterationpath, localprojectid;
 	BugAttachmentsBeans[] bugattachmentsbeans;
+
+	public BugFieldsBeans() {
+		data = new byte[2];
+	}
+
+	public boolean isButtons() {
+		return data[0] == 1 ? true : false;
+	}
+
+	public void setButtons(boolean buttons) {
+		data[0] = (byte) (buttons ? 1 : 0);
+	}
+
+	public BooleanProperty buttonsProperty() {
+		return new SimpleBooleanProperty(isButtons());
+	}
 
 	public BugAttachmentsBeans[] getBugattachmentsbeans() {
 		return bugattachmentsbeans;
@@ -12,6 +32,54 @@ public class BugFieldsBeans extends BinaryTrade {
 
 	public void setBugattachmentsbeans(BugAttachmentsBeans[] bugattachmentsbeans) {
 		this.bugattachmentsbeans = bugattachmentsbeans;
+	}
+
+	public String getId() {
+		try {
+			return new String(id);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setId(String Id) {
+		if (Id == null || Id.length() == 0) {
+			return;
+		}
+		this.id = new byte[Id.length()];
+		string2Bytes(Id, this.id);
+	}
+
+	public String getServertype() {
+		try {
+			return new String(servertype);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setServertype(String Servertype) {
+		if (Servertype == null || Servertype.length() == 0) {
+			return;
+		}
+		this.servertype = new byte[Servertype.length()];
+		string2Bytes(Servertype, this.servertype);
+	}
+
+	public String getServerid() {
+		try {
+			return new String(serverid);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setServerid(String Serverid) {
+		if (Serverid == null || Serverid.length() == 0) {
+			return;
+		}
+		this.serverid = new byte[Serverid.length()];
+		string2Bytes(Serverid, this.serverid);
 	}
 
 	public String getBugid() {
@@ -140,6 +208,86 @@ public class BugFieldsBeans extends BinaryTrade {
 		}
 		this.reprosteps = new byte[Reprosteps.length()];
 		string2Bytes(Reprosteps, this.reprosteps);
+	}
+
+	public String getTcid() {
+		try {
+			return new String(tcid);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setTcid(String Tcid) {
+		if (Tcid == null || Tcid.length() == 0) {
+			return;
+		}
+		this.tcid = new byte[Tcid.length()];
+		string2Bytes(Tcid, this.tcid);
+	}
+
+	public String getRuleid() {
+		try {
+			return new String(ruleid);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setRuleid(String Ruleid) {
+		if (Ruleid == null || Ruleid.length() == 0) {
+			return;
+		}
+		this.ruleid = new byte[Ruleid.length()];
+		string2Bytes(Ruleid, this.ruleid);
+	}
+
+	public String getCreatedby() {
+		try {
+			return new String(createdby);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setCreatedby(String Createdby) {
+		if (Createdby == null || Createdby.length() == 0) {
+			return;
+		}
+		this.createdby = new byte[Createdby.length()];
+		string2Bytes(Createdby, this.createdby);
+	}
+
+	public String getIterationpath() {
+		try {
+			return new String(iterationpath);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setIterationpath(String Iterationpath) {
+		if (Iterationpath == null || Iterationpath.length() == 0) {
+			return;
+		}
+		this.iterationpath = new byte[Iterationpath.length()];
+		string2Bytes(Iterationpath, this.iterationpath);
+	}
+
+	public String getLocalprojectid() {
+		try {
+			return new String(localprojectid);
+		} catch (NullPointerException ne) {
+			return null;
+		}
+	}
+
+	public void setLocalprojectid(String Localprojectid) {
+		if (Localprojectid == null || Localprojectid.length() == 0) {
+			return;
+		}
+		this.localprojectid = new byte[Localprojectid.length()];
+		string2Bytes(Localprojectid, this.localprojectid);
 	}
 
 }

@@ -96,8 +96,8 @@ public class RegistrationController implements Initializable {
 		password.focusedProperty().addListener((arg0, oldValue, newValue) -> {
 			if (password.getText() != null && !password.getText().trim().isEmpty() && password.getText().trim() != "") {
 				if (!newValue) { // when focus lost
-					if (!password.getText()
-							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")) {
+					if (!password.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
+							|| password.getLength() < 12) {
 						greentick2.setVisible(false);
 						wrongtick2.setVisible(true);
 						passwordinformationanchor.setVisible(true);
@@ -108,10 +108,11 @@ public class RegistrationController implements Initializable {
 						passwordinformationanchor.setVisible(false);
 						passwordvalid = true;
 					}
+					setpasswordimages();
 				}
 				if (newValue) { // when focus gain
-					if (!password.getText()
-							.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")) {
+					if (!password.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
+							|| password.getLength() < 12) {
 						greentick2.setVisible(false);
 						wrongtick2.setVisible(true);
 						passwordinformationanchor.setVisible(true);
@@ -122,7 +123,9 @@ public class RegistrationController implements Initializable {
 						passwordinformationanchor.setVisible(false);
 						passwordvalid = true;
 					}
+					setpasswordimages();
 				}
+
 			}
 		});
 		password.lengthProperty().addListener(new ChangeListener<Number>() {
@@ -141,38 +144,10 @@ public class RegistrationController implements Initializable {
 			if (confirmpassword.getText() != null && !confirmpassword.getText().trim().isEmpty()
 					&& confirmpassword.getText().trim() != "") {
 				if (!newValue) { // when focus lost
-					if (passwordvalid == true) {
-						if (!confirmpassword.getText().equals(password.getText().trim())) {
-							greentick.setVisible(false);
-							wrongtick.setVisible(true);
-							passwordinformationanchor.setVisible(true);
-						} else {
-							greentick.setVisible(true);
-							wrongtick.setVisible(false);
-							passwordinformationanchor.setVisible(false);
-						}
-					} else {
-						greentick.setVisible(false);
-						wrongtick.setVisible(true);
-						passwordinformationanchor.setVisible(true);
-					}
+					setpasswordimages();
 				}
 				if (newValue) { // when focus gain
-					if (passwordvalid == true) {
-						if (!confirmpassword.getText().equals(password.getText().trim())) {
-							greentick.setVisible(false);
-							wrongtick.setVisible(true);
-							passwordinformationanchor.setVisible(true);
-						} else {
-							greentick.setVisible(true);
-							wrongtick.setVisible(false);
-							passwordinformationanchor.setVisible(false);
-						}
-					} else {
-						greentick.setVisible(false);
-						wrongtick.setVisible(true);
-						passwordinformationanchor.setVisible(true);
-					}
+					setpasswordimages();
 				}
 			}
 		});
@@ -365,6 +340,24 @@ public class RegistrationController implements Initializable {
 		}
 
 		setInformation();
+	}
+
+	private void setpasswordimages() {
+		if (passwordvalid == true) {
+			if (!confirmpassword.getText().equals(password.getText().trim())) {
+				greentick.setVisible(false);
+				wrongtick.setVisible(true);
+				passwordinformationanchor.setVisible(true);
+			} else {
+				greentick.setVisible(true);
+				wrongtick.setVisible(false);
+				passwordinformationanchor.setVisible(false);
+			}
+		} else {
+			greentick.setVisible(false);
+			wrongtick.setVisible(true);
+			passwordinformationanchor.setVisible(true);
+		}
 	}
 
 	private void setInformation() {
